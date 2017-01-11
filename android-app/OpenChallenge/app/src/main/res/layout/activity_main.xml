@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:design="http://schema.android.com/apk/res/android.support.design"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.gnufsociety.openchallenge.MainActivity">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/home_fragment"></FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:background="@color/colorPrimaryDark"
         android:orientation="horizontal">
 
         <ImageButton
             android:id="@+id/home_bottom"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:tint="#FFFFFF"
 
-            android:src="@drawable/home_24" />
+            android:src="@drawable/home_24"
+            android:onClick="clickBottomBar" />
 
         <ImageButton
             android:id="@+id/map_bottom"
@@ -35,7 +39,8 @@
             android:layout_weight="1"
             android:tint="#FFFFFF"
             android:background="@android:color/transparent"
-            android:src="@drawable/map_24" />
+            android:src="@drawable/map_24"
+            android:onClick="clickBottomBar" />
 
         <ImageButton
             android:id="@+id/add_bottom"
@@ -45,7 +50,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:tint="#FFFFFF"
-            android:src="@drawable/add_box_24" />
+            android:src="@drawable/add_box_24"
+            android:onClick="clickBottomBar" />
         <ImageButton
             android:id="@+id/favorite_bottom"
             android:layout_width="0dp"
@@ -54,7 +60,8 @@
             android:layout_weight="1"
             android:tint="#FFFFFF"
             android:background="@android:color/transparent"
-            android:src="@drawable/favorite_24" />
+            android:src="@drawable/favorite_24"
+            android:onClick="clickBottomBar" />
         <ImageButton
             android:id="@+id/profile_bottom"
             android:layout_width="0dp"
@@ -63,8 +70,9 @@
             android:layout_weight="1"
             android:tint="#FFFFFF"
             android:background="@android:color/transparent"
-            android:src="@drawable/profile_24" />
+            android:src="@drawable/profile_24"
+            android:onClick="clickBottomBar" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
