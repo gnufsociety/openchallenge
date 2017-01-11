@@ -4,13 +4,18 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+
+
         //set last as home button
         last = (ImageButton) findViewById(R.id.home_bottom);
-        last.setColorFilter(Color.BLACK);
+        last.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
         Fragment1 f = new Fragment1();
         getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment,f,f.TAG)
-                .addToBackStack(null).commit();
+                .addToBackStack(f.TAG).commit();
 
         System.out.println("lol");
         System.out.println("Tiemmodify");
@@ -72,12 +79,12 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             ImageButton current = null;
-            last.getDrawable().clearColorFilter();
+            last.clearColorFilter();
             //last.setColorFilter(Color.WHITE);
             getSupportFragmentManager().popBackStackImmediate();
             FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1);
             String tag = entry.getName();
-            if (tag == null){
+            if (tag.equals(Fragment1.TAG)){
                 current = (ImageButton) findViewById(R.id.home_bottom);
             }
             else if (tag.equals(Fragment2.TAG)){
@@ -94,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //set black color to current button
-            current.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.DST);
+            current.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
             last = current;
         }
 
@@ -109,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
         if (btn == last)
             return;
         //set black the clicked button
-        btn.getDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.DST);
+        btn.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
         //set white last button
         if (last != null)
-            last.getDrawable().clearColorFilter();
+            last.clearColorFilter();
         if (btn == last)
             return;
         last = btn;
