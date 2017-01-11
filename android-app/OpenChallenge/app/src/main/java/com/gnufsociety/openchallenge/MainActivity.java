@@ -11,5 +11,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         System.out.println("lol");
         System.out.println("Tiemmodify");
+        System.out.println("Sdcmmodify");
     }
 }
