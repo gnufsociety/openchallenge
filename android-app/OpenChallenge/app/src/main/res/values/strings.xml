@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OpenChallenge</string>
-
+    <string name="action_search">Search...</string>
+    <string name="app_name_label">Open Challenge</string>
 </resources>
