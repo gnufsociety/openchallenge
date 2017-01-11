@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    card:cardCornerRadius="2dp"
+    card:cardElevation="4dp"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp">
+
+
+        <TextView
+            android:text="Smash The Stack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="24sp"
+            android:paddingTop="8dp"
+            android:textColor="@color/black"
+            android:id="@+id/card_title" />
+
+        <TextView
+            android:text="Organizer: spallas"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_organizer"
+            android:layout_below="@+id/card_title"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:text="Type: Coding"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_type"
+            android:layout_below="@+id/card_organizer"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:text="Where: Casa mia"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_where"
+            android:layout_below="@+id/card_type"
+            android:layout_alignParentLeft="true" />
+        <TextView
+            android:text="When: Dopodomai"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_when"
+            android:layout_below="@+id/card_where"
+            android:layout_alignParentLeft="true" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_when"
+            android:src="@drawable/favorite_border_24"
+            android:background="@android:color/transparent"
+            android:tint="@color/cardview_dark_background"
+            android:paddingTop="5dp"
+            />
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/hacking"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

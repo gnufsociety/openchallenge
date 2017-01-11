@@ -9,4 +9,6 @@
     <color name="icons">#212121</color>
     <color name="divider">#BDBDBD</color>
     <color name="selected_btn">#FFF52500</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
