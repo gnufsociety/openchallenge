@@ -1,0 +1,90 @@
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:id="@+id/frame_navigation">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/home_fragment"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/home_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:tint="#FFFFFF"
+
+            android:src="@drawable/home_24"
+            android:onClick="clickBottomBar" />
+
+        <ImageButton
+            android:id="@+id/map_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:tint="#FFFFFF"
+            android:background="@android:color/transparent"
+            android:src="@drawable/map_24"
+            android:onClick="clickBottomBar" />
+
+        <ImageButton
+            android:id="@+id/add_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:tint="#FFFFFF"
+            android:src="@drawable/add_box_24"
+            android:onClick="clickBottomBar" />
+        <ImageButton
+            android:id="@+id/favorite_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:tint="#FFFFFF"
+            android:background="@android:color/transparent"
+            android:src="@drawable/favorite_24"
+            android:onClick="clickBottomBar" />
+        <ImageButton
+            android:id="@+id/profile_bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:tint="#FFFFFF"
+            android:background="@android:color/transparent"
+            android:src="@drawable/profile_24"
+            android:onClick="clickBottomBar" />
+    </LinearLayout>
+</LinearLayout>

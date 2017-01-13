@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/side_profile"
+            android:title="Your profile" />
+        <item
+            android:id="@+id/side_achievements"
+            android:title="Achievements" />
+
+        <item
+            android:id="@+id/side_settings"
+            android:title="Settings" />
+    </group>
+
+    <item android:title="Help us">
+        <menu>
+            <item
+                android:id="@+id/side_share"
+                android:title="Share with friends" />
+            <item
+                android:id="@+id/side_info"
+                android:title="Info/Copyright" />
+        </menu>
+    </item>
+
+</menu>

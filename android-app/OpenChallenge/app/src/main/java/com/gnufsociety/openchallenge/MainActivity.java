@@ -2,10 +2,16 @@ package com.gnufsociety.openchallenge;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -17,7 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //last button pressed
     private ImageButton last = null;
@@ -31,13 +37,21 @@ public class MainActivity extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, myToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         //set last as home button
         last = (ImageButton) findViewById(R.id.home_bottom);
         last.setColorFilter(ContextCompat.getColor(this,R.color.colorAccent));
         Fragment1 f = new Fragment1();
-        getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment,f,f.TAG)
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_fragment,f,f.TAG)
                 .addToBackStack(f.TAG).commit();
 
         System.out.println("lol");
@@ -74,6 +88,11 @@ public class MainActivity extends AppCompatActivity {
      * **/
     @Override
     public void onBackPressed() {
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }
 
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 1) {
@@ -178,4 +197,33 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+   @SuppressWarnings("StatementWithEmptyBody")
+   @Override
+   public boolean onNavigationItemSelected(MenuItem item) {
+       // Handle navigation view item clicks here.
+       int id = item.getItemId();
+
+       if (id == R.id.side_profile) {
+           // Handle the profile clicked action
+           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null).show();
+       } else if (id == R.id.side_achievements) {
+           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null).show();
+       } else if (id == R.id.side_settings) {
+           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null).show();
+       } else if (id == R.id.side_share) {
+           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null).show();
+       } else if (id == R.id.side_info) {
+           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                   .setAction("Action", null).show();
+       }
+
+       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+       drawer.closeDrawer(GravityCompat.START);
+       return true;
+   }
 }
