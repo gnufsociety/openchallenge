@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- SEARCH: the item to start the search activity -->
     <item
         android:id="@+id/action_favorite"
         android:icon="@drawable/search_24"

@@ -21,13 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
     //last button pressed
     private ImageButton last = null;
+    private Toolbar myToolbar = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
 
