@@ -24,14 +24,6 @@ public class Fragment5 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment5,container,false);
-
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        recyclerView.setAdapter(new CardAdapter());
-
-        return view;
+        return inflater.inflate(R.layout.fragment5,container,false);
     }
 }
