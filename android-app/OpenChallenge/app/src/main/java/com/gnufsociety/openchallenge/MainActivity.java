@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         //set last as home button
         last = (ImageButton) findViewById(R.id.home_bottom);
-        last.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
+        last.setColorFilter(ContextCompat.getColor(this,R.color.colorAccent));
         Fragment1 f = new Fragment1();
         getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment,f,f.TAG)
                 .addToBackStack(f.TAG).commit();
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //set black color to current button
-            current.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
+            current.setColorFilter(ContextCompat.getColor(this,R.color.colorAccent));
             last = current;
         }
 
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         if (btn == last)
             return;
         //set black the clicked button
-        btn.setColorFilter(ContextCompat.getColor(this,R.color.selected_btn));
+        btn.setColorFilter(ContextCompat.getColor(this,R.color.colorAccent));
         //set white last button
         if (last != null)
             last.clearColorFilter();

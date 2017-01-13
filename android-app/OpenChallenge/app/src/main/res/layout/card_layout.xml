@@ -18,7 +18,7 @@
         android:paddingRight="16dp"
         android:paddingTop="16dp"
         android:paddingBottom="8dp"
-        android:background="@color/divider"
+        android:background="@color/white"
         android:paddingLeft="16dp">
 
 
