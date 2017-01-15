@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.home_fragment,f,f.TAG)
                 .addToBackStack(f.TAG).commit();
 
-        System.out.println("lol");
+        System.out.println("lal");
         System.out.println("Tiemmodify");
         System.out.println("Sdcmmodify");
         System.out.println("TheMonkeyKing");
