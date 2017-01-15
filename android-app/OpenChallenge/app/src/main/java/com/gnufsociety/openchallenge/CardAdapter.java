@@ -20,13 +20,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     List<Challenge> list;
 
-    public CardAdapter(){
+    public CardAdapter() {
         list = Challenge.getSampleList();
     }
 
     @Override
     public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
         return new CardViewHolder(view);
     }
 
@@ -34,14 +34,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Challenge c = list.get(position);
 
+        if (c.liked)
+            holder.button.colorLike();
+        else
+            holder.button.decolorLike();
+
         holder.title.setText(c.name);
-        holder.org.setText("Organizer: "+c.organizer.name);
-        holder.type.setText("Type: "+c.type);
-        holder.when.setText("When: "+c.when);
-        holder.where.setText("Where: "+c.where);
+        holder.org.setText("Organizer: " + c.organizer.name);
+        holder.type.setText("Type: " + c.type);
+        holder.when.setText("When: " + c.when);
+        holder.where.setText("Where: " + c.where);
         holder.rate.setRating((float) c.organizer.rating);
         holder.img.setImageResource(c.resImage);
-
 
 
     }
@@ -57,7 +61,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         public RatingBar rate;
         public ImageView img;
         //Gesture detector for double tap listener
-        private GestureDetector gd ;
+        private GestureDetector gd;
+
         public CardViewHolder(View view) {
 
             super(view);
@@ -74,15 +79,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             img = (ImageView) view.findViewById(R.id.card_img);
 
             //listener
-            GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener(){
+            final GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener() {
                 @Override
                 public boolean onDoubleTap(MotionEvent e) {
                     System.out.println("clicked");
                     button.likeIt();
+                    list.get(getAdapterPosition()).likeIt();
                     return true;
                 }
             };
-            gd = new GestureDetector(button.getContext(),lis);
+            gd = new GestureDetector(button.getContext(), lis);
 
             //set listener on touch event
             view.setOnTouchListener(new View.OnTouchListener() {
@@ -98,6 +104,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 @Override
                 public void onClick(View v) {
                     button.likeIt();
+                    list.get(getAdapterPosition()).likeIt();
+
                 }
             });
 

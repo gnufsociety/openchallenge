@@ -14,6 +14,7 @@ public class Challenge {
     public String type;
     public String when;
     public String where;
+    public boolean liked = false;
 
     public Challenge(String name, int resImage, User organizer, String type, String when, String where) {
         this.name = name;
@@ -23,7 +24,9 @@ public class Challenge {
         this.when = when;
         this.where = where;
     }
-
+    public void likeIt(){
+        liked = !liked;
+    }
     public static List<Challenge> getSampleList(){
         ArrayList<Challenge> arr = new ArrayList<>();
         User u1 = new User("sdc",3.4);
@@ -48,12 +51,12 @@ public class Challenge {
         arr.add(c2);
         arr.add(c3);
         arr.add(c4);
-        arr.add(c1);
-        arr.add(c2);
-        arr.add(c3);
-        arr.add(c4);
-        arr.add(c2);
-        arr.add(c1);
+        arr.add(c5);
+        arr.add(c6);
+        arr.add(c7);
+        arr.add(c8);
+        arr.add(c9);
+        arr.add(c10);
 
         return arr;
     }
