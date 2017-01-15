@@ -6,16 +6,22 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by sdc on 1/11/17.
  */
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
+    List<Challenge> list;
 
     public CardAdapter(){
-
+        list = Challenge.getSampleList();
     }
 
     @Override
@@ -26,23 +32,46 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     @Override
     public void onBindViewHolder(CardViewHolder holder, int position) {
+        Challenge c = list.get(position);
+
+        holder.title.setText(c.name);
+        holder.org.setText("Organizer: "+c.organizer.name);
+        holder.type.setText("Type: "+c.type);
+        holder.when.setText("When: "+c.when);
+        holder.where.setText("Where: "+c.where);
+        holder.rate.setRating((float) c.organizer.rating);
+        holder.img.setImageResource(c.resImage);
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return list.size();
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
         public FavoriteButton button;
+        public TextView title, org, type, when, where;
+        public RatingBar rate;
+        public ImageView img;
         //Gesture detector for double tap listener
         private GestureDetector gd ;
         public CardViewHolder(View view) {
 
             super(view);
             button = (FavoriteButton) view.findViewById(R.id.card_favorite);
+
+            title = (TextView) view.findViewById(R.id.card_title);
+            org = (TextView) view.findViewById(R.id.card_organizer);
+            type = (TextView) view.findViewById(R.id.card_type);
+            when = (TextView) view.findViewById(R.id.card_when);
+            where = (TextView) view.findViewById(R.id.card_where);
+
+            rate = (RatingBar) view.findViewById(R.id.card_rate);
+
+            img = (ImageView) view.findViewById(R.id.card_img);
 
             //listener
             GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener(){

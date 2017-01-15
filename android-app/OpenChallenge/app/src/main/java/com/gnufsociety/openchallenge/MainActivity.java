@@ -73,6 +73,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == R.id.action_search){
+            Fragment2 f = new Fragment2();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.home_fragment,f,f.TAG)
+                    .addToBackStack(f.TAG).commit();
+        }
+
         //noinspection SimplifiableIfStatement
         //if (id == R.id.action_settings) {
         //    return true;
@@ -229,10 +236,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
    }
 
 
-    public void startAnimation(final View view){
-        FavoriteButton fb = (FavoriteButton) view;
-        fb.likeIt();
-
-
-    }
 }

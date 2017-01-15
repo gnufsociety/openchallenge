@@ -85,7 +85,8 @@
             android:scaleType="centerCrop"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:id="@+id/card_img" />
 
         <android.support.v7.widget.AppCompatRatingBar
             android:layout_height="wrap_content"
@@ -96,8 +97,8 @@
             android:layout_below="@+id/card_when"
             android:layout_toRightOf="@+id/card_favorite"
             android:paddingTop="4dp"
-            android:id="@+id/appCompatRatingBar"
-            android:paddingStart="20dp"
+            android:id="@+id/card_rate"
+            android:paddingLeft="20dp"
             android:layout_width="100dp" />
 
     </RelativeLayout>
