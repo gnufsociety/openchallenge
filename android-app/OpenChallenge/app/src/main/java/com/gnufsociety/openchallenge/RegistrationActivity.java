@@ -35,6 +35,8 @@ public class RegistrationActivity extends AppCompatActivity {
         userView = (TextView) findViewById(R.id.user_reg);
         emailView = (TextView) findViewById(R.id.email_reg);
         passView = (TextView) findViewById(R.id.pass_reg);
+
+        auth = FirebaseAuth.getInstance();
     }
 
     public void regUser(View view){
