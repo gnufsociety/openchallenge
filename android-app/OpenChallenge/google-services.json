@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "568775391795",
+    "firebase_url": "https://openchallenge-81990.firebaseio.com",
+    "project_id": "openchallenge-81990",
+    "storage_bucket": "openchallenge-81990.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568775391795:android:24ae4919551e07d2",
+        "android_client_info": {
+          "package_name": "com.gnufsociety.openchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568775391795-rplbdasdhblr00fuou4utn2c6l6brdab.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcWuxlwE51wxHCyWGTj_r2AfTZBXbw3Lo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
