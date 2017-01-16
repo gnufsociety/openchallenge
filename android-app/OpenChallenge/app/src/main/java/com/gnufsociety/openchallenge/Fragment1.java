@@ -19,7 +19,16 @@ public class Fragment1 extends Fragment {
 
     public static String TAG = "fragment1";
 
+    public CardAdapter adapter;
+
     public Fragment1(){
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new CardAdapter();
 
     }
 
@@ -34,7 +43,7 @@ public class Fragment1 extends Fragment {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(new CardAdapter());
+        recyclerView.setAdapter(adapter);
 
 
         return view;

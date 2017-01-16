@@ -33,58 +33,60 @@
         android:layout_height="56dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
-        <ImageButton
+        <com.gnufsociety.openchallenge.BottomButton
             android:id="@+id/home_bottom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:tint="#FFFFFF"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="Home"
+            app:imageButton="@drawable/home_24"
+            android:onClick="clickBottomBar"
 
-            android:src="@drawable/home_24"
-            android:onClick="clickBottomBar" />
+            />
 
-        <ImageButton
+        <com.gnufsociety.openchallenge.BottomButton
+            android:layout_weight="1"
+            android:layout_width="0dp"
             android:id="@+id/map_bottom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:tint="#FFFFFF"
-            android:background="@android:color/transparent"
-            android:src="@drawable/map_24"
-            android:onClick="clickBottomBar" />
+            android:layout_height="wrap_content"
+            app:title="Nearby"
+            app:imageButton="@drawable/map_24"
+            android:onClick="clickBottomBar"
 
-        <ImageButton
+            />
+
+        <com.gnufsociety.openchallenge.BottomButton
             android:id="@+id/add_bottom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:tint="#FFFFFF"
-            android:src="@drawable/add_box_24"
-            android:onClick="clickBottomBar" />
-        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="Organize"
+            app:imageButton="@drawable/add_box_24"
+            android:onClick="clickBottomBar"
+
+            />
+
+        <com.gnufsociety.openchallenge.BottomButton
             android:id="@+id/favorite_bottom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:tint="#FFFFFF"
-            android:background="@android:color/transparent"
-            android:src="@drawable/favorite_24"
-            android:onClick="clickBottomBar" />
-        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="Favorites"
+            app:imageButton="@drawable/favorite_24"
+            android:onClick="clickBottomBar"
+
+            />
+        <com.gnufsociety.openchallenge.BottomButton
             android:id="@+id/profile_bottom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
             android:layout_weight="1"
-            android:tint="#FFFFFF"
-            android:background="@android:color/transparent"
-            android:src="@drawable/profile_24"
-            android:onClick="clickBottomBar" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:title="Profile"
+            app:imageButton="@drawable/profile_24"
+            android:onClick="clickBottomBar"
+
+            />
+
+
     </LinearLayout>
 </LinearLayout>
