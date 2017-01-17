@@ -2,9 +2,12 @@
     <string name="app_name">OpenChallenge</string>
     <string name="action_search">Search...</string>
     <string name="app_name_label">Open Challenge</string>
-
+    <string name = "register_underlined">New user? Register <u>here</u></string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
