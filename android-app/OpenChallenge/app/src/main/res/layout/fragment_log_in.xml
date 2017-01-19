@@ -12,7 +12,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:hint="Email or Username" />
 
     <EditText
@@ -20,7 +19,6 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
         android:inputType="textPassword"
         android:layout_below="@id/email_log"
         android:hint="Password" />

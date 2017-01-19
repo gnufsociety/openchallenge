@@ -42,6 +42,12 @@ public class LogInFragment extends Fragment {
         emailEdit = (EditText) view.findViewById(R.id.email_log);
         passEdit = (EditText) view.findViewById(R.id.pass_log);
         logBtn = (Button) view.findViewById(R.id.log_btn);
+        view.findViewById(R.id.link_register_log).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.logreg_frame,new RegistrationFragment()).commit();
+            }
+        });
         auth = FirebaseAuth.getInstance();
         logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
