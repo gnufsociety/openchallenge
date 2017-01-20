@@ -4,6 +4,7 @@ package com.gnufsociety.openchallenge;
  * Created by Leonardo on 14/01/2017.
  */
 public class User {
+    public String email;
     public String name;
     public double rating;
 
@@ -11,5 +12,6 @@ public class User {
         this.name = name;
         this.rating = rating;
     }
+
 
 }

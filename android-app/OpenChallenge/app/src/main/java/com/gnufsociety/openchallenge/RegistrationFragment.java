@@ -1,6 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -29,9 +30,8 @@ public class RegistrationFragment extends Fragment {
 
 
 
-    private EditText emailEdit, passEdit;
+    private EditText emailEdit, passEdit, confPassEdit;
     private FirebaseAuth auth;
-    private EditText userEdit;
 
     public RegistrationFragment() {
         // Required empty public constructor
@@ -46,8 +46,8 @@ public class RegistrationFragment extends Fragment {
         regBtn = (Button) view.findViewById(R.id.reg_btn);
 
         emailEdit = (EditText) view.findViewById(R.id.email_reg);
-        passEdit = (EditText) view.findViewById(R.id.pass_reg);
-        userEdit = (EditText) view.findViewById(R.id.user_reg);
+        passEdit = (EditText) view.findViewById(R.id.password_reg);
+        confPassEdit = (EditText) view.findViewById(R.id.confirm_pass_reg);
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +65,24 @@ public class RegistrationFragment extends Fragment {
     public void registerUser(){
         final String email = emailEdit.getText().toString();
         final String pass = passEdit.getText().toString();
+        final String confPass = confPassEdit.getText().toString();
+
+        if (!pass.equals(confPass)){
+            Toast.makeText(getContext(),"Le password non corrispondono!", Toast.LENGTH_LONG).show();
+            return;
+        }
+        //create new account and start main activity with boolean new set to true, so it will show the configuration activity
         auth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getContext(), "Complimenti ti sei registrato stronzo",Toast.LENGTH_SHORT).show();
-                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.logreg_frame,new LogInFragment()).commit();
+                            Intent in = new Intent(getContext(), MainActivity.class);
+                            Bundle extra = new Bundle();
+                            extra.putBoolean("new", true);
+                            in.putExtras(extra);
+                            startActivity(in);
                         }
                     }
                 });
