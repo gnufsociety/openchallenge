@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.gnufsociety.openchallenge.RegistrationFragment">
+
+    <EditText
+        android:id="@+id/email_reg"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:layout_centerHorizontal="true"
+        android:hint="Email" />
+
+    <EditText
+        android:id="@+id/user_reg"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:hint="Username"
+        android:layout_below="@id/email_reg"/>
+    <EditText
+        android:id="@+id/pass_reg"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:layout_below="@id/user_reg"
+        android:hint="Password" />
+    <Button
+        android:id="@+id/reg_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:layout_below="@id/pass_reg"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/link_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/reg_btn"
+        android:layout_centerHorizontal="true"
+        android:text="@string/login_underlined"/>
+
+</RelativeLayout>
