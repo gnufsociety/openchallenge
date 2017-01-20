@@ -1,10 +1,6 @@
 package com.gnufsociety.openchallenge;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.graphics.Color;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -18,16 +14,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     //last button pressed
     private BottomButton last = null;
     private Toolbar myToolbar = null;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle extra = getIntent().getExtras();
+
+        //If is a new user, start configuration activity
+        boolean newUser = extra.getBoolean("new", false);
+        if (newUser) {
+            startActivity(new Intent(this, ConfigurationActivity.class));
+        }
+        Fragment1 f = new Fragment1();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.home_fragment, f, Fragment1.TAG)
+                .addToBackStack(Fragment1.TAG).commit();
+
+
+        //get instance of Firebase authentication
+        auth = FirebaseAuth.getInstance();
+
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -44,10 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //set last as home button
         last = (BottomButton) findViewById(R.id.home_bottom);
         last.clickIt();
-        Fragment1 f = new Fragment1();
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_fragment,f,f.TAG)
-                .addToBackStack(f.TAG).commit();
+
 
         System.out.println("lal");
         System.out.println("Tiemmodify");
@@ -69,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_search){
+        if (id == R.id.action_search) {
             Fragment2 f = new Fragment2();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_fragment,f,f.TAG)
+                    .replace(R.id.home_fragment, f, f.TAG)
                     .addToBackStack(f.TAG).commit();
         }
 
@@ -88,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * Override onBackPressed, if there are no other fragment in the stack close application else
      * close pop last fragment.
      * Change the color of last button pressed
-     * **/
+     **/
     @Override
     public void onBackPressed() {
 
@@ -105,21 +117,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             last.clickIt();
             //last.setColorFilter(Color.WHITE);
             getSupportFragmentManager().popBackStackImmediate();
-            FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount()-1);
+            FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
             String tag = entry.getName();
-            if (tag.equals(Fragment1.TAG)){
+            if (tag.equals(Fragment1.TAG)) {
                 current = (BottomButton) findViewById(R.id.home_bottom);
-            }
-            else if (tag.equals(Fragment2.TAG)){
+            } else if (tag.equals(Fragment2.TAG)) {
                 current = (BottomButton) findViewById(R.id.map_bottom);
-            }
-            else if (tag.equals(Fragment3.TAG)){
+            } else if (tag.equals(Fragment3.TAG)) {
                 current = (BottomButton) findViewById(R.id.add_bottom);
-            }
-            else if (tag.equals(Fragment4.TAG)){
+            } else if (tag.equals(Fragment4.TAG)) {
                 current = (BottomButton) findViewById(R.id.favorite_bottom);
-            }
-            else if (tag.equals(Fragment5.TAG)){
+            } else if (tag.equals(Fragment5.TAG)) {
                 current = (BottomButton) findViewById(R.id.profile_bottom);
             }
 
@@ -133,8 +141,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Change color of the button pressed and show the new fragment
-     * **/
-    public void clickBottomBar(View view){
+     **/
+    public void clickBottomBar(View view) {
         BottomButton btn = (BottomButton) view;
         if (btn == last)
             return;
@@ -147,14 +155,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         last = btn;
         FragmentManager manager = getSupportFragmentManager();
-        switch (btn.getId()){
+        switch (btn.getId()) {
             case R.id.home_bottom:
                 Fragment1 f = null;
                 f = (Fragment1) manager.findFragmentByTag(Fragment1.TAG);
                 if (f == null)
                     f = new Fragment1();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment,f,Fragment1.TAG)
+                        .replace(R.id.home_fragment, f, Fragment1.TAG)
                         .addToBackStack(Fragment1.TAG)
                         .commit();
                 break;
@@ -164,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (f4 == null)
                     f4 = new Fragment4();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment,f4,Fragment4.TAG)
+                        .replace(R.id.home_fragment, f4, Fragment4.TAG)
                         .addToBackStack(Fragment4.TAG)
                         .commit();
                 break;
@@ -174,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (f3 == null)
                     f3 = new Fragment3();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment,f3,Fragment3.TAG)
+                        .replace(R.id.home_fragment, f3, Fragment3.TAG)
                         .addToBackStack(Fragment3.TAG)
                         .commit();
                 break;
@@ -184,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (f2 == null)
                     f2 = new Fragment2();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment,f2,Fragment2.TAG)
+                        .replace(R.id.home_fragment, f2, Fragment2.TAG)
                         .addToBackStack(Fragment2.TAG)
                         .commit();
                 break;
@@ -194,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (f5 == null)
                     f5 = new Fragment5();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment,f5,Fragment5.TAG)
+                        .replace(R.id.home_fragment, f5, Fragment5.TAG)
                         .addToBackStack(f5.TAG)
                         .commit();
                 break;
@@ -202,34 +210,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-   @SuppressWarnings("StatementWithEmptyBody")
-   @Override
-   public boolean onNavigationItemSelected(MenuItem item) {
-       // Handle navigation view item clicks here.
-       int id = item.getItemId();
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
 
-       if (id == R.id.side_profile) {
-           // Handle the profile clicked action
-           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show();
-       } else if (id == R.id.side_achievements) {
-           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show();
-       } else if (id == R.id.side_settings) {
-           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show();
-       } else if (id == R.id.side_share) {
-           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show();
-       } else if (id == R.id.side_info) {
-           Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show();
-       }
+        if (id == R.id.side_profile) {
+            // Handle the profile clicked action
+            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (id == R.id.side_achievements) {
+            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (id == R.id.side_settings) {
+            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (id == R.id.side_share) {
+            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        } else if (id == R.id.side_info) {
+            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
 
-       DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-       drawer.closeDrawer(GravityCompat.START);
-       return true;
-   }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
 
 }

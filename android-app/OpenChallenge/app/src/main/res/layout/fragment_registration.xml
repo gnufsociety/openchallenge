@@ -13,26 +13,27 @@
         android:hint="Email" />
 
     <EditText
-        android:id="@+id/user_reg"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:hint="Username"
-        android:layout_below="@id/email_reg"/>
-    <EditText
-        android:id="@+id/pass_reg"
+        android:id="@+id/password_reg"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:inputType="textPassword"
-        android:layout_below="@id/user_reg"
-        android:hint="Password" />
+        android:hint="Password"
+        android:layout_below="@id/email_reg"/>
+    <EditText
+        android:id="@+id/confirm_pass_reg"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:inputType="textPassword"
+        android:layout_below="@id/password_reg"
+        android:hint="Confirm password" />
     <Button
         android:id="@+id/reg_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
-        android:layout_below="@id/pass_reg"
+        android:layout_below="@id/confirm_pass_reg"
         android:layout_centerHorizontal="true"/>
 
     <TextView
