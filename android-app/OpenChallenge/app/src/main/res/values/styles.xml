@@ -9,4 +9,13 @@
         <item name="divider">@color/divider</item>
     </style>
 
+    <style name="collapsedText">
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+    <style name="expandedText">
+
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

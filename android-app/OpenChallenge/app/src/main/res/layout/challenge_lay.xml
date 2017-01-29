@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:grid="http://schemas.android.com/tools"
+    android:background="@color/backGroundHome2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_card"
+            grid:columnCount="5"
+            grid:rowCount="2">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/chall_user_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_column="0"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:src="@drawable/pullups" />
+
+            <TextView
+                android:id="@+id/chall_organizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
+                android:paddingLeft="10dp"
+                android:text="spallas"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.AppCompatRatingBar
+                android:id="@+id/chall_rate"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:paddingLeft="8dp"
+                android:paddingTop="0dp"
+                android:rating="5" />
+
+            <ImageView
+                android:id="@+id/chall_map"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_column="3"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
+                android:src="@drawable/map_24"
+                android:tint="@android:color/tab_indicator_text" />
+
+            <TextView
+                android:id="@+id/chall_when"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
+                android:paddingLeft="4dp"
+                android:text="2 feb 2017" />
+
+            <ImageView
+                android:id="@+id/chall_time"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_column="3"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
+                android:src="@drawable/clock_24"
+                android:tint="@android:color/tab_indicator_text" />
+
+            <android.support.v4.widget.Space
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:layout_columnWeight="1"
+                android:layout_row="0"
+                android:layout_rowSpan="2" />
+
+            <TextView
+                android:id="@+id/chall_where"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
+                android:paddingLeft="4dp"
+                android:text="Via galla placidia 21" />
+
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/chall_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:text="@string/desc_cardlay"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Rules"
+            android:textSize="32sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:cardCornerRadius="6dp"
+            app:cardElevation="5dp">
+            <TextView
+                android:id="@+id/chall_rules"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/rules"/>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
+

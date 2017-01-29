@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -67,7 +68,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         //Gesture detector for double tap listener
         private GestureDetector gd;
 
-        public CardViewHolder(View view) {
+        public CardViewHolder(final View view) {
 
             super(view);
             button = (FavoriteButton) view.findViewById(R.id.card_favorite);
@@ -83,6 +84,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             img = (ImageView) view.findViewById(R.id.card_img);
             user_img = (CircleImageView) view.findViewById(R.id.card_user_img);
 
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    view.getContext().startActivity(new Intent(view.getContext(),ChallengeActivity.class));
+                }
+            });
 
             //listener
             final GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener() {
@@ -91,6 +98,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                     System.out.println("clicked");
                     button.likeIt();
                     list.get(getAdapterPosition()).likeIt();
+                    return true;
+                }
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    button.getContext().startActivity(new Intent(button.getContext(),ChallengeActivity.class));
+
                     return true;
                 }
             };
