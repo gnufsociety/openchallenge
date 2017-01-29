@@ -7,10 +7,12 @@ public class User {
     public String email;
     public String name;
     public double rating;
+    public int resPic;
 
-    public User(String name, double rating) {
+    public User(String name, double rating, int resPic) {
         this.name = name;
         this.rating = rating;
+        this.resPic = resPic;
     }
 
 

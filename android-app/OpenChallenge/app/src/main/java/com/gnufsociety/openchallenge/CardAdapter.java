@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by sdc on 1/11/17.
@@ -39,13 +40,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         else
             holder.button.decolorLike();
 
+        holder.desc.setText(c.desc);
         holder.title.setText(c.name);
-        holder.org.setText("Organizer: " + c.organizer.name);
-        holder.type.setText("Type: " + c.type);
-        holder.when.setText("When: " + c.when);
-        holder.where.setText("Where: " + c.where);
+        holder.org.setText(c.organizer.name);
+        holder.when.setText(c.when);
+        holder.where.setText(c.where);
         holder.rate.setRating((float) c.organizer.rating);
         holder.img.setImageResource(c.resImage);
+        holder.user_img.setImageResource(c.organizer.resPic);
 
 
     }
@@ -57,9 +59,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
         public FavoriteButton button;
-        public TextView title, org, type, when, where;
+        public TextView title, org, when, where, desc;
         public RatingBar rate;
         public ImageView img;
+
+        public CircleImageView user_img;
         //Gesture detector for double tap listener
         private GestureDetector gd;
 
@@ -70,13 +74,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
             title = (TextView) view.findViewById(R.id.card_title);
             org = (TextView) view.findViewById(R.id.card_organizer);
-            type = (TextView) view.findViewById(R.id.card_type);
             when = (TextView) view.findViewById(R.id.card_when);
             where = (TextView) view.findViewById(R.id.card_where);
+            desc = (TextView) view.findViewById(R.id.card_descr);
 
             rate = (RatingBar) view.findViewById(R.id.card_rate);
 
             img = (ImageView) view.findViewById(R.id.card_img);
+            user_img = (CircleImageView) view.findViewById(R.id.card_user_img);
+
 
             //listener
             final GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener() {

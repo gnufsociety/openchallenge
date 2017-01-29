@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_marginTop="5dp"
     android:layout_marginRight="5dp"
     android:layout_marginLeft="5dp"
@@ -22,7 +22,10 @@
         android:background="@color/white"
         android:paddingLeft="16dp"
         android:id="@+id/card_layout">
-
+        <RelativeLayout
+            android:id="@+id/first_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <TextView
             android:text="Smash The Stack"
@@ -35,72 +38,198 @@
             android:id="@+id/card_title" />
 
         <TextView
-            android:text="Organizer: spallas"
-            android:textSize="16sp"
+            android:textSize="15sp"
+            android:textColor="#424242"
+            android:text="@string/desc_cardlay"
+            android:paddingRight="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/card_organizer"
             android:layout_below="@+id/card_title"
-            android:layout_alignParentLeft="true" />
-
-        <TextView
-            android:text="Type: Coding"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/card_type"
-            android:layout_below="@+id/card_organizer"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:text="Where: Casa mia"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/card_where"
-            android:layout_below="@+id/card_type"
-            android:layout_alignParentLeft="true" />
-        <TextView
-            android:text="When: Dopodomai"
-            android:textSize="16sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="7dp"
-            android:id="@+id/card_when"
-            android:layout_below="@+id/card_where"
-            android:layout_alignParentLeft="true" />
-        <!---->
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/card_descr"
+            android:layout_toStartOf="@+id/card_img"
+            android:layout_toLeftOf="@+id/card_img" />
         <com.gnufsociety.openchallenge.FavoriteButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/card_when"
             android:src="@drawable/favorite_border_24"
             android:background="@android:color/transparent"
             android:tint="@color/cardview_dark_background"
-            android:id="@+id/card_favorite" />
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/hacking"
-            android:scaleType="centerCrop"
-            android:layout_centerVertical="true"
+            android:id="@+id/card_favorite"
+            android:layout_above="@+id/card_descr"
+            android:layout_toRightOf="@+id/card_title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toEndOf="@+id/card_title" />
+        <!--<android.support.v4.widget.Space
+            android:id="@+id/card_space"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@id/frame_img_card"/>-->
+       <!-- <FrameLayout
+            android:paddingTop="8dp"
+            android:id="@+id/frame_img_card"
+            android:layout_alignBottom="@+id/card_descr"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/card_img" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">-->
+            <ImageView
+                android:layout_marginTop="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/hacking"
+                android:scaleType="centerCrop"
+                android:id="@+id/card_img"
+                 />
 
-        <android.support.v7.widget.AppCompatRatingBar
+
+ </RelativeLayout>
+
+        <GridLayout
+            android:paddingTop="10dp"
+            app:rowCount="2"
+            app:columnCount="5"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:numStars="5"
-            android:rating="3"
-            android:isIndicator="true"
-            style="@style/Base.Widget.AppCompat.RatingBar.Small"
-            android:layout_below="@+id/card_when"
-            android:layout_toRightOf="@+id/card_favorite"
-            android:paddingTop="4dp"
-            android:id="@+id/card_rate"
-            android:paddingLeft="20dp"
-            android:layout_width="100dp" />
+            android:layout_below="@id/first_card">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_gravity="center_vertical"
+                android:id="@+id/card_user_img"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/pullups"/>
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="spallas"
+                android:paddingLeft="10dp"
+                android:textSize="16sp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/card_organizer"/>
+            <android.support.v7.widget.AppCompatRatingBar
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="8dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_row="1"
+                android:numStars="5"
+                android:rating="5"
+                android:isIndicator="true"
+                style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                android:paddingTop="0dp"
+                android:id="@+id/card_rate"
+                android:layout_width="88dp" />
+
+            <ImageView
+                android:tint="@android:color/tab_indicator_text"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/map_24"
+                android:id="@+id/card_map"
+                android:layout_gravity="center_vertical"
+                android:layout_row="1"
+                android:layout_column="3" />
+
+            <TextView
+                android:paddingLeft="4dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/card_when"
+                android:text="2 feb 2017"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_row="0"/>
+
+            <ImageView
+                android:tint="@android:color/tab_indicator_text"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/clock_24"
+                android:id="@+id/card_time"
+                android:layout_gravity="center_vertical"
+                android:layout_row="0"
+                android:layout_column="3" />
+            <android.support.v4.widget.Space
+                android:layout_height="match_parent"
+                android:layout_columnWeight="1"
+                android:layout_column="2"
+                android:layout_row="0"
+                android:layout_rowSpan="2"/>
+
+            <TextView
+                android:paddingLeft="4dp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/card_where"
+                android:text="Via galla placidia 21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="4"
+                android:layout_row="1"/>
+
+        </GridLayout>
+
+
 
     </RelativeLayout>
-
 </android.support.v7.widget.CardView>
+  <!--
+
+    <TextView
+        android:text="Organizer: spallas"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_organizer"
+        android:layout_below="@+id/card_title"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:text="Type: Coding"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_type"
+        android:layout_below="@+id/card_organizer"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:text="Where: Casa mia"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card_where"
+        android:layout_below="@+id/card_type"
+        android:layout_alignParentLeft="true" />
+    <TextView
+        android:text="When: Dopodomai"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="7dp"
+        android:id="@+id/card_when"
+        android:layout_below="@+id/card_where"
+        android:layout_alignParentLeft="true" />
+    &lt;!&ndash;&ndash;&gt;
+    <com.gnufsociety.openchallenge.FavoriteButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/card_when"
+        android:src="@drawable/favorite_border_24"
+        android:background="@android:color/transparent"
+        android:tint="@color/cardview_dark_background"
+        android:id="@+id/card_favorite" />
+
+
+
+
+</android.support.v7.widget.CardView>-->

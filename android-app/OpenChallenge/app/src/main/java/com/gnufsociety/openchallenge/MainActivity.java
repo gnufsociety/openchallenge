@@ -1,20 +1,31 @@
 package com.gnufsociety.openchallenge;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -22,12 +33,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private BottomButton last = null;
     private Toolbar myToolbar = null;
     private FirebaseAuth auth;
+    public SearchFragment searchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle extra = getIntent().getExtras();
+        searchFragment = new SearchFragment();
+        searchFragment.setContext(this);
 
         //If is a new user, start configuration activity
         boolean newUser = extra.getBoolean("new", false);
@@ -71,6 +85,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                getSupportFragmentManager().popBackStackImmediate();
+                return true;
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                Query userQuery = ref.orderByChild("name").equalTo(query);
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        searchFragment.users.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            //System.out.println("user: "+snapshot.child("name").getValue());
+                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
+                        }
+                        searchFragment.adapter.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                Query userQuery = ref.orderByChild("name").startAt(newText).endAt(newText+"\uf8ff");
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        searchFragment.users.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            //System.out.println("user: "+snapshot.child("name").getValue());
+                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
+                        }
+                        searchFragment.adapter.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                return true;
+            }
+        });
         return true;
     }
 
@@ -82,10 +167,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-            Fragment2 f = new Fragment2();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_fragment, f, f.TAG)
-                    .addToBackStack(f.TAG).commit();
+                    .replace(R.id.home_fragment, searchFragment, "search")
+                    .addToBackStack("search").commit();
         }
 
         //noinspection SimplifiableIfStatement
