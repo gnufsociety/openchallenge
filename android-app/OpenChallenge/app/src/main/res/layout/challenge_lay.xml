@@ -118,8 +118,34 @@
             android:text="@string/desc_cardlay"
             android:textColor="@color/black"
             android:textSize="20sp" />
+
+        <LinearLayout
+            android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:text="Participants"
+                android:textColor="@color/white" />
+            <android.support.v4.widget.Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Join"
+                android:backgroundTint="@color/colorAccent"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+
         <TextView
-            android:paddingTop="10dp"
+            android:paddingTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

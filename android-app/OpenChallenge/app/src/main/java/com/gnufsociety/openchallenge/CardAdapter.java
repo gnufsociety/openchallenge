@@ -102,7 +102,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 }
 
                 @Override
-                public boolean onSingleTapUp(MotionEvent e) {
+                public boolean onSingleTapConfirmed(MotionEvent e) {
                     button.getContext().startActivity(new Intent(button.getContext(),ChallengeActivity.class));
 
                     return true;
