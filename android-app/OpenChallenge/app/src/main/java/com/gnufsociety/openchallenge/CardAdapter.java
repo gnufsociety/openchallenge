@@ -1,6 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -103,7 +104,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
                 @Override
                 public boolean onSingleTapConfirmed(MotionEvent e) {
-                    button.getContext().startActivity(new Intent(button.getContext(),ChallengeActivity.class));
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("challenge",list.get(getAdapterPosition()));
+                    Intent i = new Intent(button.getContext(),ChallengeActivity.class);
+                    i.putExtras(bundle);
+                    button.getContext().startActivity(i);
 
                     return true;
                 }

@@ -28,6 +28,13 @@
                 android:fitsSystemWindows="true"
                 android:src="@drawable/hacking"
                 app:layout_collapseMode="parallax" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/scrim_bottom"
+                android:layout_alignBottom="@+id/chall_image"
+                />
             <android.support.v7.widget.Toolbar
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:id="@+id/chall_toolbar"
@@ -41,4 +48,16 @@
     <include
         layout="@layout/challenge_lay"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:text="Join Challenge"
+            android:textSize="18sp"/>
+    </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

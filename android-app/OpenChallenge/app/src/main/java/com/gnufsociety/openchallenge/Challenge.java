@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Leonardo on 14/01/2017.
  */
 
-public class Challenge {
+public class Challenge implements Serializable {
     public String name;
     public int resImage;
     public User organizer;
