@@ -1,33 +1,54 @@
 package com.gnufsociety.openchallenge;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
     //last button pressed
     private BottomButton last = null;
     private Toolbar myToolbar = null;
     private FirebaseAuth auth;
+    public SearchFragment searchFragment;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Bundle extra = getIntent().getExtras();
+        searchFragment = new SearchFragment();
+        searchFragment.setContext(this);
 
         //If is a new user, start configuration activity
         boolean newUser = extra.getBoolean("new", false);
@@ -71,6 +92,77 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                getSupportFragmentManager().popBackStackImmediate();
+                return true;
+            }
+        });
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                Query userQuery = ref.orderByChild("name").equalTo(query);
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        searchFragment.users.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            //System.out.println("user: "+snapshot.child("name").getValue());
+                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
+                        }
+                        searchFragment.adapter.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                Query userQuery = ref.orderByChild("name").startAt(newText).endAt(newText+"\uf8ff");
+                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        searchFragment.users.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            //System.out.println("user: "+snapshot.child("name").getValue());
+                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
+                        }
+                        searchFragment.adapter.notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                return true;
+            }
+        });
         return true;
     }
 
@@ -82,10 +174,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.action_search) {
-            Fragment2 f = new Fragment2();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.home_fragment, f, f.TAG)
-                    .addToBackStack(f.TAG).commit();
+                    .replace(R.id.home_fragment, searchFragment, "search")
+                    .addToBackStack("search").commit();
         }
 
         //noinspection SimplifiableIfStatement
@@ -161,7 +252,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 f = (Fragment1) manager.findFragmentByTag(Fragment1.TAG);
                 if (f == null)
                     f = new Fragment1();
-                manager.beginTransaction()
+                /*else
+                    manager.popBackStackImmediate(Fragment1.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                */manager.beginTransaction()
                         .replace(R.id.home_fragment, f, Fragment1.TAG)
                         .addToBackStack(Fragment1.TAG)
                         .commit();
@@ -171,7 +264,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 f4 = (Fragment4) manager.findFragmentByTag(Fragment4.TAG);
                 if (f4 == null)
                     f4 = new Fragment4();
-                manager.beginTransaction()
+                /*else
+                    manager.popBackStackImmediate(Fragment4.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                */manager.beginTransaction()
                         .replace(R.id.home_fragment, f4, Fragment4.TAG)
                         .addToBackStack(Fragment4.TAG)
                         .commit();
@@ -181,29 +276,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 f3 = (Fragment3) manager.findFragmentByTag(Fragment3.TAG);
                 if (f3 == null)
                     f3 = new Fragment3();
-                manager.beginTransaction()
+                /*else
+                    manager.popBackStackImmediate(Fragment3.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                */manager.beginTransaction()
                         .replace(R.id.home_fragment, f3, Fragment3.TAG)
                         .addToBackStack(Fragment3.TAG)
                         .commit();
                 break;
             case R.id.map_bottom:
-                Fragment2 f2 = null;
-                f2 = (Fragment2) manager.findFragmentByTag(Fragment2.TAG);
+                SupportMapFragment f2 = null;
+                f2 = (SupportMapFragment) manager.findFragmentByTag(Fragment2.TAG);
                 if (f2 == null)
-                    f2 = new Fragment2();
-                manager.beginTransaction()
+                    f2 = new SupportMapFragment();
+                /*else
+                    manager.popBackStackImmediate(Fragment2.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                */manager.beginTransaction()
                         .replace(R.id.home_fragment, f2, Fragment2.TAG)
                         .addToBackStack(Fragment2.TAG)
                         .commit();
+                f2.getMapAsync(this);
                 break;
             case R.id.profile_bottom:
                 Fragment5 f5 = null;
                 f5 = (Fragment5) manager.findFragmentByTag(Fragment5.TAG);
                 if (f5 == null)
                     f5 = new Fragment5();
-                manager.beginTransaction()
+                /*else
+                    manager.popBackStackImmediate(Fragment5.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                */manager.beginTransaction()
                         .replace(R.id.home_fragment, f5, Fragment5.TAG)
-                        .addToBackStack(f5.TAG)
+                        .addToBackStack(Fragment5.TAG)
                         .commit();
                 break;
         }
@@ -240,4 +342,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(41.908818, 12.542522);
+        LatLng rome = new LatLng(41.908818, 12);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(rome).title("Marker inney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
+    }
 }

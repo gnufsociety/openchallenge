@@ -50,6 +50,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     extras.putBoolean("new", false);
                     intent.putExtras(extras);
                     startActivity(intent);
+                    finish();
                 }
             }
         };

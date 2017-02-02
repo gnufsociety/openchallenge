@@ -61,7 +61,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         String username = usernameEdit.getText().toString();
         if (username.equals(""))
             return false;
-        User u = new User(username,0.0);
+        User u = new User(username,0.0,1);
         u.email = user.getEmail();
         database.getReference().child("users").child(user.getUid()).setValue(u);
 
