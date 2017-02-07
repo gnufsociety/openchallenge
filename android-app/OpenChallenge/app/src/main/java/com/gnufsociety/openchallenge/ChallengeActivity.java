@@ -12,9 +12,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChallengeActivity extends AppCompatActivity {
+public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public CollapsingToolbarLayout collapseToolbar;
     public Toolbar toolbar;
@@ -26,7 +34,7 @@ public class ChallengeActivity extends AppCompatActivity {
     public TextView when;
     public TextView desc;
     public TextView rules;
-
+    private GoogleMap mMap;
 
 
     @Override
@@ -68,6 +76,10 @@ public class ChallengeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.chall_map_fra);
+        mapFragment.getMapAsync(this);
+
     }
 
 
@@ -84,5 +96,18 @@ public class ChallengeActivity extends AppCompatActivity {
 
     public void showParticipants(View view){
         startActivity(new Intent(this, ParticipantsActivity.class));
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(41.908818, 12.542522);
+        LatLng rome = new LatLng(41.908818, 12);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(rome).title("Marker inney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
     }
 }
