@@ -152,11 +152,11 @@ www.onlinetattoolearning.com
         </LinearLayout>-->
         <RelativeLayout
             android:id="@+id/chall_part_layout"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:onClick="showParticipants"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="showParticipants"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <FrameLayout
                 android:id="@+id/chall_participants"
@@ -164,79 +164,111 @@ www.onlinetattoolearning.com
                 android:layout_height="wrap_content">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@drawable/cina1"
                     app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    app:civ_border_width="1dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="25dp"
                     android:src="@drawable/panici1"
                     app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    app:civ_border_width="1dp" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="50dp"
                     android:src="@drawable/io1"
                     app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp" />
+                    app:civ_border_width="1dp" />
 
             </FrameLayout>
+
             <TextView
-                android:paddingLeft="25dp"
+                android:id="@+id/chall_npart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/chall_participants"
-                android:id="@+id/chall_npart"
-                android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="17sp"
+                android:paddingLeft="25dp"
                 android:text="15 participants"
-                android:layout_below="@+id/textView4" />
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
             <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
                 android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/chall_npart"
                 android:text=" - 5 pending"
-                android:id="@+id/textView4" />
+                android:textSize="17sp" />
         </RelativeLayout>
 
-
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="10dp"
-            android:text="Rules"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            app:cardCornerRadius="6dp"
-            app:cardElevation="5dp">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/chall_rules"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:text="@string/rules" />
-        </android.support.v7.widget.CardView>
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:text="Rules"
+                android:textColor="@color/black"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="6dp"
+                app:cardElevation="5dp">
+
+                <TextView
+                    android:id="@+id/chall_rules"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingTop="@dimen/activity_vertical_margin"
+                    android:text="@string/rules" />
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Location"
+                android:textColor="@color/black"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <fragment
+                android:id="@+id/chall_map_fra"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="40dp" />
+        </LinearLayout>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 
