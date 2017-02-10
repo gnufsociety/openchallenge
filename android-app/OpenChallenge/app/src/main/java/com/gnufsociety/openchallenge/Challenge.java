@@ -40,6 +40,10 @@ public class Challenge implements Serializable {
         this.lng = place.getDouble("long");
         this.organizer = new User("marco",4,R.drawable.io1);
 
+        // UNCOMMENT WHEN IT'S READY
+        //JSONObject userObj = obj.getJSONObject("change here");
+        //this.organizer = new User(userObj);
+
 
 
     }

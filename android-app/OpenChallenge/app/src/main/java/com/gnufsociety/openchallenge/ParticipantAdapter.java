@@ -1,6 +1,9 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.Intent;
 import android.icu.text.MessagePattern;
+import android.os.Bundle;
+import android.support.v4.app.ShareCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +38,8 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     @Override
     public void onBindViewHolder(PartipantHolder holder, int position) {
         User u = users.get(position);
+
+        // TODO: 2/10/17 CHANGE WHEN USER IS READY
         holder.civ.setImageResource(u.resPic);
         holder.user.setText(u.name);
         holder.rate.setRating((float) u.rating);
@@ -55,6 +60,16 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             civ = (CircleImageView) itemView.findViewById(R.id.part_row_image);
             user = (TextView) itemView.findViewById(R.id.part_row_user);
             rate = (RatingBar) itemView.findViewById(R.id.part_row_rate);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(civ.getContext(),UserActivity.class);
+                    Bundle extra = new Bundle();
+                    extra.putSerializable("user",users.get(getAdapterPosition()));
+                    intent.putExtras(extra);
+                    civ.getContext().startActivity(intent);
+                }
+            });
 
 
         }
