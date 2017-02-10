@@ -20,7 +20,7 @@ import okhttp3.Response;
 public class ApiHelper {
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public OkHttpClient client;
-    public String ip = "10.0.2.2/api/";
+    public String url = "http://10.0.2.2:3000/api/";
 
     public ApiHelper(){
         client = new OkHttpClient();
@@ -44,7 +44,7 @@ public class ApiHelper {
 
         RequestBody body = RequestBody.create(JSON,json.toString());
         Request request = new Request.Builder()
-                .url(ip+"newChallenge")
+                .url(url +"newChallenge")
                 .post(body)
                 .build();
         Response resp = client.newCall(request).execute();
