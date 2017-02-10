@@ -19,4 +19,7 @@
         <!--AIzaSyDlcwLyWGDsCsbtvU_sAl6v1973o1NgaDU-->
         AIzaSyDcWuxlwE51wxHCyWGTj_r2AfTZBXbw3Lo
     </string>
+    <string name="google_maps_key2" templateMergeStrategy="preserve" translatable="false">
+    <!--AIzaSyDlcwLyWGDsCsbtvU_sAl6v1973o1NgaDU-->
+    </string>
 </resources>

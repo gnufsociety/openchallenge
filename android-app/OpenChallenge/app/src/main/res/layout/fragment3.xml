@@ -21,6 +21,7 @@
             grid:rowCount="8">
 
             <EditText
+                android:id="@+id/organize_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -29,6 +30,7 @@
                 android:hint="Challenge name" />
 
             <EditText
+                android:id="@+id/organize_desc_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -37,6 +39,7 @@
                 android:hint="Challenge description" />
 
             <EditText
+                android:id="@+id/organize_rules_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -45,36 +48,29 @@
                 android:hint="Challenge rules" />
 
             <Button
-                android:id="@+id/organize_find_place"
-                android:layout_width="120dp"
-                android:layout_column="0"
-                android:layout_row="3"
-                android:text="Set place" />
-
-            <Button
                 android:id="@+id/organize_date_btn"
                 android:layout_width="120dp"
-                android:layout_column="0"
+                android:layout_gravity="right"
+                android:layout_column="1"
                 android:layout_row="4"
                 android:text="Choose date" />
 
             <TextView
                 android:id="@+id/organize_date_text"
-                android:layout_column="1"
-                android:layout_gravity="center"
+                android:layout_column="0"
                 android:layout_row="4"
                 android:text="23/02/2017"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/organize_place_text"
-                android:layout_column="1"
-                android:layout_gravity="center"
+                android:layout_column="0"
                 android:layout_row="3"
                 android:text="Via galla placidia 21B"
                 android:textSize="18sp" />
 
             <Button
+                android:id="@+id/organize_pick_image_btn"
                 android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_columnSpan="2"
@@ -82,6 +78,7 @@
                 android:text="add image" />
 
             <ImageView
+                android:id="@+id/organize_image_view"
                 android:layout_width="match_parent"
                 android:layout_column="0"
                 android:layout_columnSpan="2"
@@ -90,11 +87,21 @@
                 android:src="@drawable/hacking"
                 android:layout_marginBottom="44dp"/>
 
+            <Button
+                android:id="@+id/organize_find_place"
+                android:layout_width="120dp"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:layout_row="3"
+                android:text="Set place"
+                android:layout_height="wrap_content" />
+
 
         </GridLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <Button
+        android:id="@+id/organize_create_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
