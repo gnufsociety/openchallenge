@@ -1,4 +1,4 @@
-<img src="ic_launcher.png" alt="Icon" style="width: 200px;"/>
+<img src="ic_launcher.png" alt="Icon" width="150" height="150"/>
 
 # OpenChallenge
 
