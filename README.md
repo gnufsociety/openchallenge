@@ -10,7 +10,7 @@ You can download our application and test it on your smartphone. [Here](https://
 
 Once you downloaded it sign up with your email, choose a username and join us into our magic world!
 
-If you found some bugs report it [here](https://github.com/gnufsociety/openchallenge/issues)
+If you found some bugs or have some suggestions report them [here](https://github.com/gnufsociety/openchallenge/issues)
 
 
 # GCW2017 - Milestone 1
