@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -56,6 +57,25 @@ public class ApiHelper {
             e.printStackTrace();
         }
         return "errore";
+    }
+
+    public ArrayList<Challenge> getHomeChallenge(){
+
+        Request request = new Request.Builder()
+                .url(url+"allChallenges")
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+
+            return Challenge.getArrayList(resp.body().string());
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return new ArrayList<>();
     }
 
 }

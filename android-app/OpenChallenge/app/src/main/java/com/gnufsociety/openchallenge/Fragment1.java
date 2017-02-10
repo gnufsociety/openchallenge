@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 /**
  * Created by sdc on 1/11/17.
  */
@@ -20,6 +23,7 @@ public class Fragment1 extends Fragment {
     public static String TAG = "fragment1";
 
     public CardAdapter adapter;
+    public RecyclerView recyclerView;
 
     public Fragment1(){
 
@@ -28,7 +32,7 @@ public class Fragment1 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        adapter = new CardAdapter();
+        //adapter = new CardAdapter();
 
     }
 
@@ -38,12 +42,31 @@ public class Fragment1 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment1,container,false);
 
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
+        AsyncTask<Void,Void,ArrayList<Challenge>> task = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
+            @Override
+            protected ArrayList<Challenge> doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                return api.getHomeChallenge();
+            }
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
+            @Override
+            protected void onPostExecute(ArrayList<Challenge> challenges) {
+                super.onPostExecute(challenges);
+                adapter = new CardAdapter(challenges);
+                recyclerView.setAdapter(adapter);
+
+            }
+        };
+
+        task.execute();
+
+
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setAdapter(adapter);
+        //recyclerView.setAdapter(adapter);
 
 
         return view;

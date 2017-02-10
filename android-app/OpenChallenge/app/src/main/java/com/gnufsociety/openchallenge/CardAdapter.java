@@ -12,6 +12,12 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -22,9 +28,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
     List<Challenge> list;
+    public FirebaseStorage fstorage;
+    public StorageReference storage;
 
-    public CardAdapter() {
-        list = Challenge.getSampleList();
+    public CardAdapter(List<Challenge> list) {
+        this.list = list;
+        fstorage = FirebaseStorage.getInstance();
+        storage = fstorage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
     }
 
     @Override
@@ -37,6 +47,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public void onBindViewHolder(CardViewHolder holder, int position) {
         Challenge c = list.get(position);
 
+        StorageReference img = storage.child("challenges/"+c.imageLocation);
+
+
         if (c.liked)
             holder.button.colorLike();
         else
@@ -46,9 +59,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.title.setText(c.name);
         holder.org.setText(c.organizer.name);
         holder.when.setText(c.when);
-        holder.where.setText(c.where);
+        holder.where.setText(c.address);
         holder.rate.setRating((float) c.organizer.rating);
-        holder.img.setImageResource(c.resImage);
+//        holder.img.setImageResource(c.resImage);
+
+        Glide.with(holder.desc.getContext())
+                .using(new FirebaseImageLoader())
+                .load(img)
+                .into(holder.img);
+
+
         holder.user_img.setImageResource(c.organizer.resPic);
 
 
