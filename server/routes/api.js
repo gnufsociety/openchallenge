@@ -37,10 +37,8 @@ router.post('/newChallenge', function (req, res) {
 router.get('/allChallenges', function (req, res) {
     db.get().collection('challenges').find().toArray(function (err, docs) {
        assert.equal(err, null);
-       // res.json(docs);
-       res.send('[{"_id":"589da3f3e5ac0950b0405b0a","organizer":"3niTtjEL09W4ACIpv9i30Ai4d9A2","name":"lancio di caccole","description":"chi le tira piu lontano","rules":"senza dita dei piedi","image":"lancio_di_caccole208","date":"10/1/2017","location":{"address":"Via Ariosto, 00185 Roma, Italy","lat":41.89054219999999,"long":12.504060699999998}}]');
-
-
+       res.json(docs);
+       res.send();
     });
 
 });
