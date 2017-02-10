@@ -6,5 +6,6 @@ OpenChallenge is a new app that allows you to challenge your friends in anything
 
 # GCW2017 - Milestone 1
 
--[Keynote](https://drive.google.com/file/d/0BxzqNvZynJFuSUZKcGY3Vl9oLWc/view?usp=sharing "In Google Drive...")
--User survey
+[Slide](https://drive.google.com/file/d/0BxzqNvZynJFuSUZKcGY3Vl9oLWc/view?usp=sharing "In Google Drive...")
+
+User Survey
