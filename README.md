@@ -4,9 +4,9 @@
 
 OpenChallenge is a new app that allows you to challenge your friends in anything that comes to your mind.
 
-# Try our application
+# Try the app out
 
-You can download our application and test it on your smartphone. [Here](https://www.google.com) you can find the last working apk.
+You can download our application and test it on your smartphone. [Here](https://drive.google.com/open?id=0BxPHKYeeZnRBcl91V1NuZFlYTlU) you can find the last working apk.
 
 Once you downloaded it sign up with your email, choose a username and join us into our magic world!
 
@@ -15,9 +15,9 @@ If you found some bugs or have some suggestions report them [here](https://githu
 
 # GCW2017 - Milestone 1
 
-[Slide](https://drive.google.com/file/d/0BxzqNvZynJFuSUZKcGY3Vl9oLWc/view?usp=sharing "In Google Drive...")
+[Slide](https://drive.google.com/file/d/0BxzqNvZynJFuTTdDWWR0dzIxaHM/view?usp=sharing "In Google Drive...")
 
-User Survey
+Do users need it? [Check our survey!](https://drive.google.com/open?id=1-U_5xIuSbrT4D2hFS4C3XrPz_Ko8Ud8sek5cS1dLxmk "Users survey")
 
 # GCW2017 - Milestone 2
 
