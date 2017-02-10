@@ -2,37 +2,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.gnufsociety.openchallenge.ConfigurationActivity">
 
 
-
     <TextView
-        android:text="Configure your profile"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/black"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:id="@+id/textView3" />
+        android:text="Configure your profile"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
 
     <EditText
+        android:id="@+id/username_first"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Username"
-        android:layout_below="@+id/textView3"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/username_first"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
+        android:hint="Username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/configure_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/username_first"
+        android:hint="Status"
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/done_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/username_first"
+        android:text="Done"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/configure_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/io1"
+        app:civ_border_width="2dp"
+        android:layout_below="@+id/configure_status"
         android:layout_centerHorizontal="true"
-        android:text="Done"/>
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:onClick="chooseProPic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHoose image"
+        android:layout_below="@+id/configure_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
 
 </RelativeLayout>

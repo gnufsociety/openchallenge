@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,6 +67,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         Glide.with(holder.desc.getContext())
                 .using(new FirebaseImageLoader())
                 .load(img)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.img);
 
 
@@ -111,6 +113,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                     Intent user = new Intent(user_img.getContext(), UserActivity.class);
                     Bundle extra = new Bundle();
                     extra.putSerializable("user",list.get(getAdapterPosition()).organizer);
+
                     user.putExtras(extra);
                     user_img.getContext().startActivity(user);
                 }

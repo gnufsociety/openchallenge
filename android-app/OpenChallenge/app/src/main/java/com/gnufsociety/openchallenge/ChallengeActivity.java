@@ -12,12 +12,17 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -55,9 +60,21 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
 
         image.setImageResource(c.resImage);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+        StorageReference cImage = sref.child("challenges/"+c.imageLocation);
+
+        Glide.with(this)
+                .using(new FirebaseImageLoader())
+                .load(cImage)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(image);
         desc.setText(c.desc);
         where.setText(c.address);
         when.setText(c.when);
+        rules.setText(c.rules);
+
 
         user_img.setImageResource(c.organizer.resPic);
         orgUsername.setText(c.organizer.name);

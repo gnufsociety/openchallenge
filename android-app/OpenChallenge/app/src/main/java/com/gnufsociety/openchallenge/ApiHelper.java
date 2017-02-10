@@ -21,36 +21,36 @@ import okhttp3.Response;
 public class ApiHelper {
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     public OkHttpClient client;
-    public String url = "http://10.0.2.2:3000/api/";
+    public String url = "http://139.59.131.72:3000/api/";
 
-    public ApiHelper(){
+    public ApiHelper() {
         client = new OkHttpClient();
     }
 
-    public String createChallenge(String org,String name, String desc, String rules, String image, String date, Place place){
-        JSONObject json ;
+    public String createChallenge(String org, String name, String desc, String rules, String image, String date, Place place) {
+        JSONObject json;
         try {
             json = new JSONObject()
-                    .put("organizer",org)
-                    .put("name",name)
+                    .put("organizer", org)
+                    .put("name", name)
                     .put("description", desc)
                     .put("rules", rules)
                     .put("image", image)
-                    .put("date",date)
+                    .put("date", date)
                     .put("location", new JSONObject()
-                            .put("address",place.getAddress())
-                            .put("lat",place.getLatLng().latitude)
-                            .put("long",place.getLatLng().longitude));
+                            .put("address", place.getAddress())
+                            .put("lat", place.getLatLng().latitude)
+                            .put("long", place.getLatLng().longitude));
 
 
-        RequestBody body = RequestBody.create(JSON,json.toString());
-        Request request = new Request.Builder()
-                .url(url +"newChallenge")
-                .post(body)
-                .build();
-        Response resp = client.newCall(request).execute();
+            RequestBody body = RequestBody.create(JSON, json.toString());
+            Request request = new Request.Builder()
+                    .url(url + "newChallenge")
+                    .post(body)
+                    .build();
+            Response resp = client.newCall(request).execute();
 
-        return resp.body().string();
+            return resp.body().string();
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -59,10 +59,10 @@ public class ApiHelper {
         return "errore";
     }
 
-    public ArrayList<Challenge> getHomeChallenge(){
+    public ArrayList<Challenge> getHomeChallenge() {
 
         Request request = new Request.Builder()
-                .url(url+"allChallenges")
+                .url(url + "allChallenges")
                 .build();
         try {
             Response resp = client.newCall(request).execute();
@@ -78,4 +78,31 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
+    public void createUser(String username, String status, String imgLocation, String uid) {
+        JSONObject json = null;
+        try {
+            json = new JSONObject()
+                    .put("username", username)
+                    .put("status", status)
+                    .put("uid", uid)
+                    .put("picture", imgLocation);
+
+
+            RequestBody body = RequestBody.create(JSON, json.toString());
+
+            Request req = new Request.Builder()
+                    .url(url + "newUser")
+                    .post(body)
+                    .build();
+            Response resp = client.newCall(req).execute();
+            System.out.println(resp.body().string());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

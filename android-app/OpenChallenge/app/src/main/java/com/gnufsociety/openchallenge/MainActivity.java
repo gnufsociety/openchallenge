@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public SearchFragment searchFragment;
     private GoogleMap mMap;
 
+    private Fragment1 f1;
+    private Fragment3 f3;
+    private Fragment4 f4;
+    private SupportMapFragment f2;
+    private Fragment5 f5;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (newUser) {
             startActivity(new Intent(this, ConfigurationActivity.class));
         }
-        Fragment1 f = new Fragment1();
+        f1 = new Fragment1();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_fragment, f, Fragment1.TAG)
+                .replace(R.id.home_fragment, f1, Fragment1.TAG)
                 .addToBackStack(Fragment1.TAG).commit();
 
 
@@ -248,20 +255,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager manager = getSupportFragmentManager();
         switch (btn.getId()) {
             case R.id.home_bottom:
-                Fragment1 f = null;
-                f = (Fragment1) manager.findFragmentByTag(Fragment1.TAG);
-                if (f == null)
-                    f = new Fragment1();
-                /*else
-                    manager.popBackStackImmediate(Fragment1.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                */manager.beginTransaction()
-                        .replace(R.id.home_fragment, f, Fragment1.TAG)
+                //Fragment1 f = null;
+                //f1 = (Fragment1) manager.findFragmentByTag(Fragment1.TAG);
+                if (f1 == null)
+                    f1 = new Fragment1();
+                manager.beginTransaction()
+                        .replace(R.id.home_fragment, f1, Fragment1.TAG)
                         .addToBackStack(Fragment1.TAG)
                         .commit();
                 break;
             case R.id.favorite_bottom:
-                Fragment4 f4 = null;
-                f4 = (Fragment4) manager.findFragmentByTag(Fragment4.TAG);
+                //f4 = (Fragment4) manager.findFragmentByTag(Fragment4.TAG);
                 if (f4 == null)
                     f4 = new Fragment4();
                 /*else
@@ -272,8 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.add_bottom:
-                Fragment3 f3 = null;
-                f3 = (Fragment3) manager.findFragmentByTag(Fragment3.TAG);
+                //f3 = (Fragment3) manager.findFragmentByTag(Fragment3.TAG);
                 if (f3 == null)
                     f3 = new Fragment3();
                 /*else
@@ -284,8 +287,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.map_bottom:
-                SupportMapFragment f2 = null;
-                f2 = (SupportMapFragment) manager.findFragmentByTag(Fragment2.TAG);
+                //f2 = (SupportMapFragment) manager.findFragmentByTag(Fragment2.TAG);
                 if (f2 == null)
                     f2 = new SupportMapFragment();
                 /*else
@@ -297,8 +299,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 f2.getMapAsync(this);
                 break;
             case R.id.profile_bottom:
-                Fragment5 f5 = null;
-                f5 = (Fragment5) manager.findFragmentByTag(Fragment5.TAG);
+                //f5 = (Fragment5) manager.findFragmentByTag(Fragment5.TAG);
                 if (f5 == null)
                     f5 = new Fragment5();
                 /*else
@@ -347,11 +348,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(41.908818, 12.542522);
-        LatLng rome = new LatLng(41.908818, 12);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(rome).title("Marker inney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
+        for (Challenge c : f1.adapter.list) {
+            LatLng lat = new LatLng(c.lat,c.lng);
+            mMap.addMarker(new MarkerOptions()
+                            .position(lat)
+                            .title(c.name));
+        }
+        if (f1.adapter.list.size() > 0){
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(0).lat,f1.adapter.list.get(0).lng)));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
+        }
     }
 }
