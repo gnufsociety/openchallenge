@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:grid="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backGroundHome2">
+    android:background="@color/backGroundHome2"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
 
-    <TextView
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            grid:columnCount="2"
+            grid:rowCount="8">
+
+            <EditText
+                android:id="@+id/organize_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="0"
+                android:hint="Challenge name" />
+
+            <EditText
+                android:id="@+id/organize_desc_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="1"
+                android:hint="Challenge description" />
+
+            <EditText
+                android:id="@+id/organize_rules_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="2"
+                android:hint="Challenge rules" />
+
+            <Button
+                android:id="@+id/organize_date_btn"
+                android:layout_width="120dp"
+                android:layout_gravity="right"
+                android:layout_column="1"
+                android:layout_row="4"
+                android:text="Choose date" />
+
+            <TextView
+                android:id="@+id/organize_date_text"
+                android:layout_column="0"
+                android:layout_row="4"
+                android:text="23/02/2017"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/organize_place_text"
+                android:layout_column="0"
+                android:layout_row="3"
+                android:text="Via galla placidia 21B"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/organize_pick_image_btn"
+                android:layout_width="match_parent"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="5"
+                android:text="add image" />
+
+            <ImageView
+                android:id="@+id/organize_image_view"
+                android:layout_width="match_parent"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:layout_row="6"
+                android:scaleType="centerCrop"
+                android:src="@drawable/hacking"
+                android:layout_marginBottom="44dp"/>
+
+            <Button
+                android:id="@+id/organize_find_place"
+                android:layout_width="120dp"
+                android:layout_column="1"
+                android:layout_gravity="right"
+                android:layout_row="3"
+                android:text="Set place"
+                android:layout_height="wrap_content" />
+
+
+        </GridLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/organize_create_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Create it!" />
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Organize Fragment todo"
         android:textSize="30sp"
-        android:gravity="center" />
+        android:gravity="center" />-->
 
-</LinearLayout>
+</RelativeLayout>

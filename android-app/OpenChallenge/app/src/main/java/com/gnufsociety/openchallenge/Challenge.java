@@ -1,5 +1,7 @@
 package com.gnufsociety.openchallenge;
 
+import com.google.android.gms.location.places.Place;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +16,9 @@ public class Challenge implements Serializable {
     public User organizer;
     public String desc;
     public String when;
+    public Place place;
+    public String imageLocation;
+    public String rules;
     public String where;
     public boolean liked = false;
 

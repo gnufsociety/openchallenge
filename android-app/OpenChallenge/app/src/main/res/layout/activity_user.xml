@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_user"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:showDividers="middle"
+    android:dividerPadding="12dp"
+    android:divider="@drawable/mydivider"
+
+    tools:context="com.gnufsociety.openchallenge.UserActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/user_toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content">
+
+        <GridLayout
+            android:id="@+id/user_grid_profile"
+            android:paddingBottom="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:columnCount="5"
+            tools:rowCount="2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+            <android.support.v4.widget.Space
+                android:layout_column="1"
+                android:layout_row="0"
+                android:layout_columnWeight="1"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_pro_pic"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:layout_rowSpan="2"
+                android:layout_width="100dp"
+                android:src="@drawable/io1"
+                app:civ_border_width="1dp"
+                android:layout_height="100dp"
+                />
+
+            <ImageView
+
+                android:layout_row="0"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+            <TextView
+                android:id="@+id/user_number_gold"
+                android:text="21"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+
+            <TextView
+                android:id="@+id/user_number_bronze"
+                android:text="12"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_column="4"
+                android:layout_gravity="center"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+
+            <TextView
+                android:text="120"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_row="1"
+                android:layout_column="3"
+                android:layout_gravity="center"
+                android:id="@+id/user_number_silver"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+
+            <ImageView
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView2"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+
+            <ImageView
+                android:layout_row="0"
+                android:layout_column="3"
+                android:layout_gravity="center"
+                android:src="@mipmap/ic_launcher"
+                android:layout_columnSpan="1"
+                android:layout_columnWeight="1" />
+
+        </GridLayout>
+        <TextView
+            android:id="@+id/user_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="19sp"
+            android:layout_below="@id/user_grid_profile"
+            android:text="Ci scrivo barre a caso perchè non so che dire"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Organized challenges: "
+            android:textSize="25dp"/>
+        <TextView
+            android:id="@+id/user_number_organized"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:text="4"
+            android:textStyle="bold"/>
+        <!--<android.support.v7.widget.RecyclerView
+            android:layout_below="@id/user_number_organized"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>-->
+    </RelativeLayout>
+    <RelativeLayout
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Joined challenges: "
+            android:textSize="25dp"/>
+        <TextView
+            android:id="@+id/user_number_joined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="28dp"
+            android:textColor="@color/black"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:text="391"
+            android:textStyle="bold"/>
+        <!--<android.support.v7.widget.RecyclerView
+            android:layout_below="@id/user_number_joined"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>-->
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/work"/>
+
+</LinearLayout>

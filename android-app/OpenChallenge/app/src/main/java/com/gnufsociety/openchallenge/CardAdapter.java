@@ -85,12 +85,23 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             img = (ImageView) view.findViewById(R.id.card_img);
             user_img = (CircleImageView) view.findViewById(R.id.card_user_img);
 
-            view.setOnClickListener(new View.OnClickListener() {
+            user_img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent user = new Intent(user_img.getContext(), UserActivity.class);
+                    Bundle extra = new Bundle();
+                    extra.putSerializable("user",list.get(getAdapterPosition()).organizer);
+                    user.putExtras(extra);
+                    user_img.getContext().startActivity(user);
+                }
+            });
+
+            /*view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     view.getContext().startActivity(new Intent(view.getContext(),ChallengeActivity.class));
                 }
-            });
+            });*/
 
             //listener
             final GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener() {

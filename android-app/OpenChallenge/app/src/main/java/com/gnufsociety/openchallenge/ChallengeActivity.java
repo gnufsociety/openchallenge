@@ -25,6 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public CollapsingToolbarLayout collapseToolbar;
+    public Challenge c;
     public Toolbar toolbar;
     public ImageView image;
     public CircleImageView user_img;
@@ -41,7 +42,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
-        Challenge c = (Challenge) getIntent().getExtras().getSerializable("challenge");
+        c = (Challenge) getIntent().getExtras().getSerializable("challenge");
         collapseToolbar = (CollapsingToolbarLayout) findViewById(R.id.chall_collapsing_toolbar);
         toolbar = (Toolbar) findViewById(R.id.chall_toolbar);
         image = (ImageView) findViewById(R.id.chall_image);
@@ -109,5 +110,13 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         mMap.addMarker(new MarkerOptions().position(rome).title("Marker inney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
+    }
+
+    public void showUser(View view){
+        Intent user = new Intent(this, UserActivity.class);
+        Bundle extra = new Bundle();
+        extra.putSerializable("user",c.organizer);
+        user.putExtras(extra);
+        startActivity(user);
     }
 }
