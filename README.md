@@ -1,4 +1,4 @@
-![alt text](./ic_launcher.png =500x500)
+<img src="ic_launcher.png" alt="Icon" style="width: 200px;"/>
 
 # OpenChallenge
 
