@@ -28,13 +28,21 @@ router.post('/newChallenge', function (req, res) {
         assert.equal(err, null);
 
         db.get().collection('challenges').find().limit(1).toArray(function (err, docs) {
-            assert.equal(err, null);
+            assert.equal(null, err);
             res.send(docs[0]);
 
             db.close();
         });
         
     });
+});
+
+router.get('/allChallenges', function (req, res) {
+    db.get().collection('challenges').find().toArray(function (err, docs) {
+       assert.equal(null, err);
+       res.json(docs);
+    });
+
 });
 
 // USERS
