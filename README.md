@@ -6,7 +6,7 @@ OpenChallenge is a new app that allows you to challenge your friends in anything
 
 # Try our application
 
-You can download our application and test it on your smartphone. [Here](https://www.google.com) you can find the last working apk.
+You can download our application and test it on your smartphone. [Here](https://drive.google.com/open?id=0BxPHKYeeZnRBcl91V1NuZFlYTlU) you can find the last working apk.
 
 Once you downloaded it sign up with your email, choose a username and join us into our magic world!
 
