@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schemas/Challenge.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/schemas/User.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -312,7 +310,7 @@
       <workItem from="1486572487930" duration="115000" />
       <workItem from="1486719875734" duration="10658000" />
       <workItem from="1486827916779" duration="173000" />
-      <workItem from="1486846017048" duration="8856000" />
+      <workItem from="1486846017048" duration="8872000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -328,11 +326,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486855003211</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mongoose">
+      <created>1486855055302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1486855055302</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20524000" />
+    <option name="totallyTimeSpent" value="20540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
