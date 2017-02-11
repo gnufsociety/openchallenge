@@ -57,7 +57,7 @@ router.post('/newUser', function (req, res) {
 
 });
 
-router.get('allUsers', function (req, res) {
+router.get('/allUsers', function (req, res) {
     db.get().collection('users').find().limit(1).toArray(function (err, docs) {
         assert.equal(err, null);
         res.json(docs);
