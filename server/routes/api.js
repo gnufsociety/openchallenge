@@ -17,40 +17,47 @@ router.get('/', function (req, res, next) {
     res.send("Ciao chicco!")
 });
 
+/*
+* Challenge api
+* */
+
+router.post('/newChallenge', function (req, res) {
+    var obj = req.body;
+    var chall = new Challenge({
+        name: obj.name,
+        picture: obj.picture,
+        description: obj.description,
+        rules: obj.rules,
+        image: obj.image,
+        location: {
+            address: obj.location.address,
+            lat: obj.location.lat,
+            long: obj.location.long
+        },
+        date: obj.date,
+        organizer: obj.organizer,
+        participants: []
+    })
+    chall.save(function (err) {
+        if (err) {
+            res.send("Errore");
+        }
+        else {
+            res.send("Saved!");
+        }
+    })
+});
+
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .populate('organizer')
-        .populate('participants')
         .exec(function (error, chall) {
             console.log(JSON.stringify(chall, null, "\t"));
             res.send(chall);
         })
 });
 
-router.post('/newUser', function (req, res, next) {
-    var obj = req.body;
-    var user = new User({
-        username: obj.username,
-        status: obj.status,
-        rate: 0,
-        gold: 0,
-        silver: 0,
-        bronze: 0,
-        uid: obj.uid
-    });
-    user.save(function (err) {
-        if (err) res.send("Errore");
-        else res.send("User " + user.username + " created!");
-    })
-});
-
-router.get('/allUsers', function (req, res) {
-    User.find(function (err, users) {
-        assert.equal(err, null);
-        res.send(users);
-    });
-});
 
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
@@ -90,31 +97,41 @@ router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
 
 });
 
-router.post('/newChallenge', function (req, res) {
+router.get('/getParticipants/:chall_id', function (req, res, next) {
+    Challenge.findById(req.params.chall_id)
+        .populate('participants')
+        .exec( function (err, chall) {
+            res.send(chall.participants);
+        })
+});
+
+/**
+ * User api
+ */
+
+
+router.post('/newUser', function (req, res, next) {
     var obj = req.body;
-    var chall = new Challenge({
-        name: obj.name,
-        picture: obj.picture,
-        description: obj.description,
-        rules: obj.rules,
-        image: obj.image,
-        location: {
-            address: obj.location.address,
-            lat: obj.location.lat,
-            long: obj.location.long
-        },
-        date: obj.date,
-        organizer: obj.organizer,
-        participants: []
+    var user = new User({
+        username: obj.username,
+        status: obj.status,
+        rate: 0,
+        gold: 0,
+        silver: 0,
+        bronze: 0,
+        uid: obj.uid
+    });
+    user.save(function (err) {
+        if (err) res.send("Errore");
+        else res.send("User " + user.username + " created!");
     })
-    chall.save(function (err) {
-        if (err) {
-            res.send("Errore");
-        }
-        else {
-            res.send("Saved!");
-        }
-    })
+});
+
+router.get('/allUsers', function (req, res) {
+    User.find(function (err, users) {
+        assert.equal(err, null);
+        res.send(users);
+    });
 });
 
 
