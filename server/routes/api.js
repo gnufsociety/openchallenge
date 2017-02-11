@@ -2,8 +2,9 @@ var express = require('express');
 //var db = require('../db');
 var assert = require('assert');
 var mongoose = require('mongoose');
-var User = require('./../schemas/User');
-var Challenge = require('./../schemas/Challenge');
+
+var User = require('../schemas/User');
+var Challenge = require('../schemas/Challenge');
 
 
 var router = express.Router();   // get router instance
@@ -14,7 +15,7 @@ var db_url = 'mongodb://localhost:27017/openchallenge';
 mongoose.connect(db_url);
 
 router.get('/', function (req, res, next) {
-    res.send("Ciao chicco!")
+    res.send("Ciao chicco!");
 });
 
 router.get('/allChallenges', function (req, res, next) {
@@ -25,7 +26,7 @@ router.get('/allChallenges', function (req, res, next) {
         .exec(function (error, chall) {
             console.log(JSON.stringify(chall, null, "\t"));
             res.send(chall);
-        })
+        });
 });
 
 router.post('/newUser', function (req, res, next) {
@@ -40,7 +41,7 @@ router.post('/newUser', function (req, res, next) {
         uid: obj.uid
     });
     user.save(function (err) {
-        if (err) res.send("Errore");
+        if (err) res.send("Error");
         else res.send("User " + user.username + " created!");
     })
 });
@@ -58,7 +59,7 @@ router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
 
     Challenge.findByIdAndUpdate(
         chall_id,
-        {$push: {"participants": user_id}},
+        {$addToSet: {"participants": user_id}},  // do not add if already present
         {safe: true, upsert: true},
         function (err) {
             if (err) {
@@ -106,10 +107,10 @@ router.post('/newChallenge', function (req, res) {
         date: obj.date,
         organizer: obj.organizer,
         participants: []
-    })
+    });
     chall.save(function (err) {
         if (err) {
-            res.send("Errore");
+            res.send("Error");
         }
         else {
             res.send("Saved!");
@@ -176,6 +177,15 @@ router.post('/newChallenge', function (req, res) {
  /**
  * USERS APIs
  *
+
+         router.get('/usersByPrefix/:prefix', function (req, res) {
+             db.get().collection('users').find({nickname : {$regex : req.params.prefix+'*', $options:"$i" } })
+             // options: i => query is case insensitive
+                 .toArray(function (err, docs) {
+                assert.equal(err,null);
+                res.json(docs);
+             });
+         });
 
  router.post('/newUser', function (req, res) {
  var body_obj = req.body;
