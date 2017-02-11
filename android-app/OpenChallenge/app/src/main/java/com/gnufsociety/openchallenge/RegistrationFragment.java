@@ -77,7 +77,7 @@ public class RegistrationFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-                            Toast.makeText(getContext(), "Complimenti ti sei registrato stronzo",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Complimenti ti sei registrato!",Toast.LENGTH_SHORT).show();
                             Intent in = new Intent(getContext(), MainActivity.class);
                             Bundle extra = new Bundle();
                             extra.putBoolean("new", true);

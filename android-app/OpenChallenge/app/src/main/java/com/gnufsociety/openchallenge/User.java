@@ -1,5 +1,8 @@
 package com.gnufsociety.openchallenge;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,11 +14,32 @@ public class User implements Serializable{
     public String name;
     public double rating;
     public int resPic;
+    public String proPicLocation;
+    public int silverMedals;
+    public int goldMedals;
+    public int bronzeMedals;
+
 
     public User(String name, double rating, int resPic) {
         this.name = name;
         this.rating = rating;
         this.resPic = resPic;
+    }
+    public User(JSONObject obj){
+        try {
+
+            //Change this parameters with the one provided by the magic David1
+            this.name = obj.getString("");
+            this.rating = obj.getDouble("");
+            this.proPicLocation = obj.getString("");
+            this.goldMedals = obj.getInt("");
+            this.silverMedals = obj.getInt("");
+            this.bronzeMedals = obj.getInt("");
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public static ArrayList<User> getList(){

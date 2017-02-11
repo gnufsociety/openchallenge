@@ -43,9 +43,9 @@ public class UserActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Random random = new Random(System.currentTimeMillis());
-        goldMedal.setText((random.nextInt() % 100)+"");
-        silverMedal.setText((random.nextInt() % 100)+"");
-        bronzeMedal.setText((random.nextInt() % 100)+"");
+        goldMedal.setText((random.nextInt(100))+"");
+        silverMedal.setText((random.nextInt(100))+"");
+        bronzeMedal.setText((random.nextInt(100))+"");
     }
 
     @Override

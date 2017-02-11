@@ -70,6 +70,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 .load(cImage)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(image);
+
         desc.setText(c.desc);
         where.setText(c.address);
         when.setText(c.when);
@@ -120,11 +121,9 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(41.908818, 12.542522);
-        LatLng rome = new LatLng(41.908818, 12);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.addMarker(new MarkerOptions().position(rome).title("Marker inney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng marker = new LatLng(c.lat,c.lng);
+        mMap.addMarker(new MarkerOptions().position(marker).title(c.name));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
     }
 

@@ -1,6 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -72,8 +73,14 @@ public class LogInFragment extends Fragment {
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful())
-                            checkIfUserExists(auth.getCurrentUser());
+                        if (task.isSuccessful()){
+                            Intent in = new Intent(getContext(), MainActivity.class);
+                            Bundle extra = new Bundle();
+                            extra.putBoolean("new", false);
+                            in.putExtras(extra);
+                            startActivity(in);
+                        }
+                            //checkIfUserExists(auth.getCurrentUser(),passEdit.getContext());
                         else
                             Toast.makeText(getContext(),"Non sei registrato furbetto",Toast.LENGTH_LONG).show();
                     }
@@ -81,11 +88,11 @@ public class LogInFragment extends Fragment {
     }
 
     //theoretically this is unnecessary because if a user just login, he already have configured his account
-    private void checkIfUserExists(final FirebaseUser user) {
+    private void checkIfUserExists(final FirebaseUser user, final Context context) {
         database.getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Intent in = new Intent(getContext(), MainActivity.class);
+                Intent in = new Intent(context, MainActivity.class);
                 Bundle extra = new Bundle();
                 if (!dataSnapshot.hasChild(user.getUid()))
                     extra.putBoolean("new",true);

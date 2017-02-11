@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
@@ -24,6 +25,7 @@ public class Fragment1 extends Fragment {
 
     public CardAdapter adapter;
     public RecyclerView recyclerView;
+    public SwipeRefreshLayout refreshLayout;
 
     public Fragment1(){
 
@@ -43,7 +45,9 @@ public class Fragment1 extends Fragment {
         View view = inflater.inflate(R.layout.fragment1,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
-        AsyncTask<Void,Void,ArrayList<Challenge>> task = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
+        refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
+
+        final AsyncTask<Void,Void,ArrayList<Challenge>> task = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
             @Override
             protected ArrayList<Challenge> doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
@@ -55,9 +59,33 @@ public class Fragment1 extends Fragment {
                 super.onPostExecute(challenges);
                 adapter = new CardAdapter(challenges);
                 recyclerView.setAdapter(adapter);
+                //refreshLayout.setRefreshing(false);
 
             }
         };
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                AsyncTask<Void,Void,ArrayList<Challenge>> tas = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
+                    @Override
+                    protected ArrayList<Challenge> doInBackground(Void... params) {
+                        ApiHelper api = new ApiHelper();
+                        return api.getHomeChallenge();
+                    }
+
+                    @Override
+                    protected void onPostExecute(ArrayList<Challenge> challenges) {
+                        super.onPostExecute(challenges);
+                        adapter = new CardAdapter(challenges);
+                        recyclerView.setAdapter(adapter);
+                        refreshLayout.setRefreshing(false);
+
+                    }
+                };
+                tas.execute();
+            }
+        });
+
 
         task.execute();
 
