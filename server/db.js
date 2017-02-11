@@ -9,6 +9,8 @@ var state = {
     db: null
 };
 
+exports.ObjectId = require('mongodb').ObjectId;
+
 exports.connect = function(url, done) {
     if (state.db) return done();
 

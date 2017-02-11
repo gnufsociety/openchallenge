@@ -26,6 +26,8 @@ db.connect(db_url, function (err, done) {
 
         router.post('/newChallenge', function (req, res) {
             var body_obj = req.body;
+            body_obj.participants = [];   // the new challenge also contains a list of participants
+
             db.get().collection('challenges').insertOne(body_obj, function (err, result) {
                 assert.equal(err, null);
 
@@ -50,6 +52,17 @@ db.connect(db_url, function (err, done) {
         });
 
 
+        router.post('/addParticipant/:challengeid/:participantid', function (req, res) {
+            db.get().collection('challenges').updateOne({_id : db.ObjectId(req.params.challengeid) },
+                {$addToSet : {participants : req.params.participantid}},
+                // ...do not insert if already present
+                function (err, results) {
+                    assert.equal(err, null);
+                    res.send("Added new participant!");
+                });
+        });
+
+
         /**
          * USERS APIs
          */
@@ -64,20 +77,24 @@ db.connect(db_url, function (err, done) {
         });
 
 
+        router.get('/usersByPrefix/:prefix', function (req, res) {
+            db.get().collection('users').find({nickname : {$regex : req.params.prefix+'*', $options:"$i" } })
+            // options: i => query is case insensitive
+                .toArray(function (err, docs) {
+               assert.equal(err,null);
+               res.json(docs);
+            });
+        });
+
+
         router.get('/allUsers', function (req, res) {
-            db.get().collection('users').find().limit(1).toArray(function (err, docs) {
+            db.get().collection('users').find().toArray(function (err, docs) {
                 assert.equal(err, null);
                 res.json(docs);
 
             });
         });
 
-            router.get('/allUsers', function (req, res) {
-                db.get().collection('users').find().limit(1).toArray(function (err, docs) {
-                    assert.equal(err, null);
-                    res.json(docs);
-                });
-            });
     }
 });
 
