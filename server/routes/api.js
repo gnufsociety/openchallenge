@@ -2,8 +2,8 @@ var express = require('express');
 //var db = require('../db');
 var assert = require('assert');
 var mongoose = require('mongoose');
-var User = require('./../schemas/User');
-var Challenge = require('./../schemas/Challenge');
+var User = require('../schemas/User');
+var Challenge = require('../schemas/Challenge');
 
 
 var router = express.Router();   // get router instance
@@ -14,10 +14,10 @@ var db_url = 'mongodb://localhost:27017/openchallenge';
 mongoose.connect(db_url);
 
 router.get('/', function (req, res, next) {
-    res.send("Ciao chicco!")
+    res.send("Ciao chicco!");
 });
 
-/*
+/**
 * Challenge api
 * */
 
@@ -37,10 +37,10 @@ router.post('/newChallenge', function (req, res) {
         date: obj.date,
         organizer: obj.organizer,
         participants: []
-    })
+    });
     chall.save(function (err) {
         if (err) {
-            res.send("Errore");
+            res.send("Error");
         }
         else {
             res.send("Saved!");
@@ -65,7 +65,7 @@ router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
 
     Challenge.findByIdAndUpdate(
         chall_id,
-        {$push: {"participants": user_id}},
+        {$addToSet: {"participants": user_id}},  // do not add if already present
         {safe: true, upsert: true},
         function (err) {
             if (err) {
@@ -91,7 +91,7 @@ router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
                 res.send('err');
                 console.log(err);
             }
-            else res.send('removed!')
+            else res.send('removed!');
         }
     )
 
@@ -104,6 +104,7 @@ router.get('/getParticipants/:chall_id', function (req, res, next) {
             res.send(chall.participants);
         })
 });
+
 
 /**
  * User api
