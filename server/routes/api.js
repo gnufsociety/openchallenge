@@ -23,11 +23,11 @@ router.get('/', function (req, res, next) {
 
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
-    User.find({'uid':obj.organizer}).exec(function (err, user) {
+    User.findOne({'uid':obj.organizer}).exec(function (err, user) {
         assert.equal(err,null);
         var chall = new Challenge({
             name: obj.name,
-            picture: obj.picture,
+            //picture: obj.picture,
             description: obj.description,
             rules: obj.rules,
             image: obj.image,
@@ -66,38 +66,42 @@ router.get('/allChallenges', function (req, res, next) {
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-
-    Challenge.findByIdAndUpdate(
-        chall_id,
-        {$addToSet: {"participants": user_id}},  // do not add if already present
-        {safe: true, upsert: true},
-        function (err) {
-            if (err) {
-                res.send('err');
-                console.log(err);
+    User.findOne({'uid':user_id}).exec(function (err, user) {
+        Challenge.findByIdAndUpdate(
+            chall_id,
+            {$addToSet: {"participants": user._id}},  // do not add if already present
+            {safe: true, upsert: true},
+            function (err) {
+                if (err) {
+                    res.send('err');
+                    console.log(err);
+                }
+                else res.send('you participate now!')
             }
-            else res.send('you participate now!')
-        }
-    )
+        );
+    });
+
 
 });
 
 router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-
-    Challenge.findByIdAndUpdate(
-        chall_id,
-        {$pull: {"participants": user_id}},
-        {safe: true, upsert: true},
-        function (err) {
-            if (err) {
-                res.send('err');
-                console.log(err);
+    User.findOne({'uid':user_id}).exec(function (err, user) {
+        Challenge.findByIdAndUpdate(
+            chall_id,
+            {$pull: {"participants": user._id}},
+            {safe: true, upsert: true},
+            function (err) {
+                if (err) {
+                    res.send('err');
+                    console.log(err);
+                }
+                else res.send('removed!');
             }
-            else res.send('removed!');
-        }
-    )
+        );
+    });
+
 
 });
 
