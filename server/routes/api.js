@@ -37,7 +37,7 @@ router.post('/newChallenge', function (req, res) {
                 long: obj.location.long
             },
             date: obj.date,
-            organizer: user.organizer,
+            organizer: user._id
             participants: []
         });
         chall.save(function (err) {
