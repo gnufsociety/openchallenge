@@ -18,13 +18,13 @@ router.get('/', function (req, res, next) {
 });
 
 /**
-* Challenge api
-* */
+ * Challenge api
+ * */
 
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
-    User.findOne({'uid':obj.organizer}).exec(function (err, user) {
-        assert.equal(err,null);
+    User.findOne({'uid': obj.organizer}).exec(function (err, user) {
+        assert.equal(err, null);
         var chall = new Challenge({
             name: obj.name,
             //picture: obj.picture,
@@ -55,9 +55,13 @@ router.post('/newChallenge', function (req, res) {
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
-        .populate('organizer')
+        .populate('organizer', '_id uid username status rate')
+        .populate({
+            path: 'participants',
+            select : 'username picture',
+            options: {limit : 2}
+        })
         .exec(function (error, chall) {
-            console.log(JSON.stringify(chall, null, "\t"));
             res.send(chall);
         })
 });
@@ -66,7 +70,7 @@ router.get('/allChallenges', function (req, res, next) {
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-    User.findOne({'uid':user_id}).exec(function (err, user) {
+    User.findOne({'uid': user_id}).exec(function (err, user) {
         Challenge.findByIdAndUpdate(
             chall_id,
             {$addToSet: {"participants": user._id}},  // do not add if already present
@@ -87,7 +91,7 @@ router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
 router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-    User.findOne({'uid':user_id}).exec(function (err, user) {
+    User.findOne({'uid': user_id}).exec(function (err, user) {
         Challenge.findByIdAndUpdate(
             chall_id,
             {$pull: {"participants": user._id}},
@@ -108,7 +112,7 @@ router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
 router.get('/getParticipants/:chall_id', function (req, res, next) {
     Challenge.findById(req.params.chall_id)
         .populate('participants')
-        .exec( function (err, chall) {
+        .exec(function (err, chall) {
             res.send(chall.participants);
         })
 });
@@ -124,6 +128,7 @@ router.post('/newUser', function (req, res, next) {
     var user = new User({
         username: obj.username,
         status: obj.status,
+        picture:obj.picture,
         rate: 0,
         gold: 0,
         silver: 0,
@@ -140,6 +145,14 @@ router.get('/allUsers', function (req, res) {
     User.find(function (err, users) {
         assert.equal(err, null);
         res.send(users);
+    });
+});
+
+router.get('/findUsers/:user', function (req, res) {
+    var user = req.params.user;
+    User.find({'username': new RegExp('^' + user)}).exec(function (err, users) {
+        if (err) res.send('Error');
+        else res.send(users);
     });
 });
 
