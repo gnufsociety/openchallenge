@@ -23,29 +23,33 @@ router.get('/', function (req, res, next) {
 
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
-    var chall = new Challenge({
-        name: obj.name,
-        picture: obj.picture,
-        description: obj.description,
-        rules: obj.rules,
-        image: obj.image,
-        location: {
-            address: obj.location.address,
-            lat: obj.location.lat,
-            long: obj.location.long
-        },
-        date: obj.date,
-        organizer: obj.organizer,
-        participants: []
+    User.find({'uid':obj.organizer}).exec(function (err, user) {
+        assert.equal(err,null);
+        var chall = new Challenge({
+            name: obj.name,
+            picture: obj.picture,
+            description: obj.description,
+            rules: obj.rules,
+            image: obj.image,
+            location: {
+                address: obj.location.address,
+                lat: obj.location.lat,
+                long: obj.location.long
+            },
+            date: obj.date,
+            organizer: user.organizer,
+            participants: []
+        });
+        chall.save(function (err) {
+            if (err) {
+                res.send("Error");
+            }
+            else {
+                res.send("Saved!");
+            }
+        })
     });
-    chall.save(function (err) {
-        if (err) {
-            res.send("Error");
-        }
-        else {
-            res.send("Saved!");
-        }
-    })
+
 });
 
 router.get('/allChallenges', function (req, res, next) {
