@@ -78,6 +78,45 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
+    public ArrayList<User> getParticipant(String id_chall){
+        Request request = new Request.Builder()
+                .url(url+ "getParticipants/"+id_chall)
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+            return User.getUsersArray(resp.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return new ArrayList<>();
+    }
+
+    public void addParticipant(String id_chall, String uid){
+        Request request = new Request.Builder()
+                .url(url+"/addParticipant/"+id_chall+"/"+uid)
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void removeParticipant(String id_chall, String uid){
+        Request request = new Request.Builder()
+                .url(url+"/removeParticipant/"+id_chall+"/"+uid)
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void createUser(String username, String status, String imgLocation, String uid) {
         JSONObject json = null;
         try {

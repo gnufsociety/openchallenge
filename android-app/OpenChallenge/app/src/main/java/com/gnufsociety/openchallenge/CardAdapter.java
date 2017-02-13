@@ -49,6 +49,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         Challenge c = list.get(position);
 
         StorageReference img = storage.child("challenges/"+c.imageLocation);
+        StorageReference userImg = storage.child("users/"+c.organizer.proPicLocation);
 
 
         if (c.liked)
@@ -60,7 +61,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.title.setText(c.name);
         holder.org.setText(c.organizer.name);
         holder.when.setText(c.when);
-        holder.where.setText(c.address);
+        holder.where.setText(c.address.split(",")[0]);
         holder.rate.setRating((float) c.organizer.rating);
 //        holder.img.setImageResource(c.resImage);
 
@@ -70,8 +71,14 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.img);
 
+        Glide.with(holder.desc.getContext())
+                .using(new FirebaseImageLoader())
+                .load(userImg)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(holder.user_img);
 
-        holder.user_img.setImageResource(c.organizer.resPic);
+
+        //holder.user_img.setImageResource(c.organizer.resPic);
 
 
     }

@@ -54,23 +54,23 @@ public class FavoriteButton extends ImageButton {
 
     private void setLike(){
         if (liked){
-            setImageResource(R.drawable.favorite_border_24);
-            setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+            setImageResource(R.drawable.favorite_border_16);
+            setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
             liked = false;
         }
         else {
-            setImageResource(R.drawable.favorite_24);
+            setImageResource(R.drawable.favorite_16);
             setColorFilter(Color.RED);
             liked = true;
         }
     }
     public void colorLike(){
 
-            setImageResource(R.drawable.favorite_24);
+            setImageResource(R.drawable.favorite_16);
             setColorFilter(Color.RED);
     }
     public void decolorLike(){
-            setImageResource(R.drawable.favorite_border_24);
-            setColorFilter(ContextCompat.getColor(getContext(),R.color.black));
+            setImageResource(R.drawable.favorite_border_16);
+            setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
     }
 }

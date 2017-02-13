@@ -48,25 +48,14 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/card_title"
-                android:layout_toLeftOf="@+id/card_img"
-                android:layout_toStartOf="@+id/card_img"
+                android:layout_toLeftOf="@+id/frame_image"
+                android:layout_toStartOf="@+id/frame_image"
                 android:paddingRight="15dp"
                 android:text="@string/desc_cardlay"
                 android:textColor="#424242"
                 android:textSize="15sp" />
 
-            <com.gnufsociety.openchallenge.FavoriteButton
-                android:id="@+id/card_favorite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/card_descr"
-                android:layout_marginBottom="2dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toEndOf="@+id/card_title"
-                android:layout_toRightOf="@+id/card_title"
-                android:background="@android:color/transparent"
-                android:src="@drawable/favorite_border_24"
-                android:tint="@color/cardview_dark_background" />
+
             <!--<android.support.v4.widget.Space
                 android:id="@+id/card_space"
                 android:layout_width="match_parent"
@@ -80,15 +69,32 @@
                  android:layout_alignParentEnd="true"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content">-->
-            <ImageView
-                android:id="@+id/card_img"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <FrameLayout
+                android:id="@+id/frame_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/hacking" />
+                android:layout_marginTop="8dp">
+
+                <ImageView
+                    android:id="@+id/card_img"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hacking" />
+                <com.gnufsociety.openchallenge.FavoriteButton
+                    android:id="@+id/card_favorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="right"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/favorite_border_16" />
+
+
+            </FrameLayout>
 
 
         </RelativeLayout>
@@ -149,6 +155,8 @@
 
             <TextView
                 android:id="@+id/card_when"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="4"
@@ -176,6 +184,8 @@
 
             <TextView
                 android:id="@+id/card_where"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="4"

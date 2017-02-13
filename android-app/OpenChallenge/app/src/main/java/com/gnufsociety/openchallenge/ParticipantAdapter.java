@@ -11,6 +11,12 @@ import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import java.util.zip.Inflater;
 
@@ -41,6 +47,17 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
 
         // TODO: 2/10/17 CHANGE WHEN USER IS READY
         holder.civ.setImageResource(u.resPic);
+
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+        StorageReference userPic = sref.child("users/"+u.proPicLocation);
+
+        Glide.with(holder.civ.getContext())
+                .using(new FirebaseImageLoader())
+                .load(userPic)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(holder.civ);
+
         holder.user.setText(u.name);
         holder.rate.setRating((float) u.rating);
     }

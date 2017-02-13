@@ -1,6 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -40,6 +43,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public TextView desc;
     public TextView rules;
     private GoogleMap mMap;
+    private FirebaseAuth auth;
 
 
     @Override
@@ -61,6 +65,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         image.setImageResource(c.resImage);
 
+        auth = FirebaseAuth.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
         StorageReference cImage = sref.child("challenges/"+c.imageLocation);
@@ -72,12 +77,20 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 .into(image);
 
         desc.setText(c.desc);
-        where.setText(c.address);
+        where.setText(c.address.split(",")[0]);
         when.setText(c.when);
         rules.setText(c.rules);
 
 
         user_img.setImageResource(c.organizer.resPic);
+
+        StorageReference userImage = sref.child("users/"+c.organizer.proPicLocation);
+        Glide.with(this)
+                .using(new FirebaseImageLoader())
+                .load(userImage)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(user_img);
+
         orgUsername.setText(c.organizer.name);
         orgRate.setRating((float) c.organizer.rating);
 
@@ -113,7 +126,12 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     public void showParticipants(View view){
-        startActivity(new Intent(this, ParticipantsActivity.class));
+        Intent intent = new Intent(this, ParticipantsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("challenge",c);
+        intent.putExtras(bundle);
+
+        startActivity(intent);
     }
 
     @Override
@@ -133,5 +151,24 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         extra.putSerializable("user",c.organizer);
         user.putExtras(extra);
         startActivity(user);
+    }
+
+    public void joinChallenge(final View view){
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                api.addParticipant(c.id,auth.getCurrentUser().getUid());
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                Button btn = (Button) view;
+                btn.setText("Joined!");
+            }
+        };
+        task.execute();
+
     }
 }

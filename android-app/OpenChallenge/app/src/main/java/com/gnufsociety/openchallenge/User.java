@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,8 +11,11 @@ import java.util.ArrayList;
  * Created by Leonardo on 14/01/2017.
  */
 public class User implements Serializable{
+    public String status;
     public String email;
     public String name;
+    public String id;
+    public String uid;
     public double rating;
     public int resPic;
     public String proPicLocation;
@@ -29,12 +33,16 @@ public class User implements Serializable{
         try {
 
             //Change this parameters with the one provided by the magic David1
-            this.name = obj.getString("");
-            this.rating = obj.getDouble("");
-            this.proPicLocation = obj.getString("");
-            this.goldMedals = obj.getInt("");
-            this.silverMedals = obj.getInt("");
-            this.bronzeMedals = obj.getInt("");
+
+            this.name = obj.getString("username");
+            this.rating = obj.getDouble("rate");
+            this.proPicLocation = obj.getString("picture");
+            this.status = obj.getString("status");
+            this.goldMedals = obj.getInt("gold");
+            this.silverMedals = obj.getInt("silver");
+            this.bronzeMedals = obj.getInt("bronze");
+            this.uid = obj.getString("uid");
+            this.id = obj.getString("_id");
 
 
         } catch (JSONException e) {
@@ -65,6 +73,20 @@ public class User implements Serializable{
 
         return users;
     }
+
+    public static ArrayList<User> getUsersArray(String json) throws JSONException {
+        ArrayList<User> users = new ArrayList<>();
+
+        JSONArray arr = new JSONArray(json);
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
+            users.add(new User(obj));
+        }
+
+        return users;
+    }
+
+
 
 
 }

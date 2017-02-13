@@ -20,6 +20,7 @@ public class Challenge implements Serializable {
     public User organizer;
     public String desc;
     public String when;
+    public String id;
     public Place place;
     public String imageLocation;
     public String rules;
@@ -39,10 +40,11 @@ public class Challenge implements Serializable {
         this.lat = place.getDouble("lat");
         this.lng = place.getDouble("long");
         this.organizer = new User("marco",4,R.drawable.io1);
+        this.id = obj.getString("_id");
 
         // UNCOMMENT WHEN IT'S READY
-        //JSONObject userObj = obj.getJSONObject("change here");
-        //this.organizer = new User(userObj);
+        JSONObject userObj = obj.getJSONObject("organizer");
+        this.organizer = new User(userObj);
 
 
 

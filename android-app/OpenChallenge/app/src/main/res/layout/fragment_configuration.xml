@@ -52,19 +52,12 @@
         android:id="@+id/configure_image"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/io1"
+        android:src="@drawable/user"
         app:civ_border_width="2dp"
         android:layout_below="@+id/configure_status"
         android:layout_centerHorizontal="true"
+        android:onClick="chooseProPic"
         android:layout_marginTop="10dp" />
 
-    <Button
-        android:onClick="chooseProPic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CHoose image"
-        android:layout_below="@+id/configure_image"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
 
 </RelativeLayout>
