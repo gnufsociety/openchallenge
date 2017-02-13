@@ -18,42 +18,50 @@ router.get('/', function (req, res, next) {
 });
 
 /**
-* Challenge api
-* */
+ * Challenge api
+ * */
 
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
-    var chall = new Challenge({
-        name: obj.name,
-        picture: obj.picture,
-        description: obj.description,
-        rules: obj.rules,
-        image: obj.image,
-        location: {
-            address: obj.location.address,
-            lat: obj.location.lat,
-            long: obj.location.long
-        },
-        date: obj.date,
-        organizer: obj.organizer,
-        participants: []
+    User.findOne({'uid': obj.organizer}).exec(function (err, user) {
+        assert.equal(err, null);
+        var chall = new Challenge({
+            name: obj.name,
+            //picture: obj.picture,
+            description: obj.description,
+            rules: obj.rules,
+            image: obj.image,
+            location: {
+                address: obj.location.address,
+                lat: obj.location.lat,
+                long: obj.location.long
+            },
+            date: obj.date,
+            organizer: user._id,
+            participants: []
+        });
+        chall.save(function (err) {
+            if (err) {
+                res.send("Error");
+            }
+            else {
+                res.send("Saved!");
+            }
+        })
     });
-    chall.save(function (err) {
-        if (err) {
-            res.send("Error");
-        }
-        else {
-            res.send("Saved!");
-        }
-    })
+
 });
 
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .populate('organizer')
+        .populate({
+            path: 'participants',
+            select : 'username picture',
+            options: {limit : 2}
+        })
         .exec(function (error, chall) {
-            console.log(JSON.stringify(chall, null, "\t"));
             res.send(chall);
         })
 });
@@ -62,45 +70,49 @@ router.get('/allChallenges', function (req, res, next) {
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-
-    Challenge.findByIdAndUpdate(
-        chall_id,
-        {$addToSet: {"participants": user_id}},  // do not add if already present
-        {safe: true, upsert: true},
-        function (err) {
-            if (err) {
-                res.send('err');
-                console.log(err);
+    User.findOne({'uid': user_id}).exec(function (err, user) {
+        Challenge.findByIdAndUpdate(
+            chall_id,
+            {$addToSet: {"participants": user._id}},  // do not add if already present
+            {safe: true, upsert: true},
+            function (err) {
+                if (err) {
+                    res.send('err');
+                    console.log(err);
+                }
+                else res.send('you participate now!')
             }
-            else res.send('you participate now!')
-        }
-    )
+        );
+    });
+
 
 });
 
 router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-
-    Challenge.findByIdAndUpdate(
-        chall_id,
-        {$pull: {"participants": user_id}},
-        {safe: true, upsert: true},
-        function (err) {
-            if (err) {
-                res.send('err');
-                console.log(err);
+    User.findOne({'uid': user_id}).exec(function (err, user) {
+        Challenge.findByIdAndUpdate(
+            chall_id,
+            {$pull: {"participants": user._id}},
+            {safe: true, upsert: true},
+            function (err) {
+                if (err) {
+                    res.send('err');
+                    console.log(err);
+                }
+                else res.send('removed!');
             }
-            else res.send('removed!');
-        }
-    )
+        );
+    });
+
 
 });
 
 router.get('/getParticipants/:chall_id', function (req, res, next) {
     Challenge.findById(req.params.chall_id)
         .populate('participants')
-        .exec( function (err, chall) {
+        .exec(function (err, chall) {
             res.send(chall.participants);
         })
 });
@@ -116,6 +128,7 @@ router.post('/newUser', function (req, res, next) {
     var user = new User({
         username: obj.username,
         status: obj.status,
+        picture:obj.picture,
         rate: 0,
         gold: 0,
         silver: 0,
@@ -132,6 +145,14 @@ router.get('/allUsers', function (req, res) {
     User.find(function (err, users) {
         assert.equal(err, null);
         res.send(users);
+    });
+});
+
+router.get('/findUsers/:user', function (req, res) {
+    var user = req.params.user;
+    User.find({'username': new RegExp('^' + user)}).exec(function (err, users) {
+        if (err) res.send('Error');
+        else res.send(users);
     });
 });
 
