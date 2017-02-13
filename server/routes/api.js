@@ -53,12 +53,11 @@ router.post('/newChallenge', function (req, res) {
 });
 
 router.get('/getNumParticipants/:id_chall', function (req, res, next) {
-    Challenge.find({_id: req.params.id_chall})
-        .select('participants')
-        .exec(function (err, part) {
+    Challenge.findOne({_id: req.params.id_chall})
+        .exec(function (err, chall) {
             if (err) res.send("err")
             else
-                res.send(part.length + "");
+                res.send(chall.participants.length + "");
         })
 });
 router.get('/allChallenges', function (req, res, next) {
