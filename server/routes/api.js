@@ -55,7 +55,7 @@ router.post('/newChallenge', function (req, res) {
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
-        .populate('organizer', '_id uid username status rate')
+        .populate('organizer')
         .populate({
             path: 'participants',
             select : 'username picture',
