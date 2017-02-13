@@ -52,14 +52,23 @@ router.post('/newChallenge', function (req, res) {
 
 });
 
+router.get('/getNumParticipants/:id_chall', function (req, res, next) {
+    Challenge.find({_id: req.params.id_chall})
+        .select('participants')
+        .exec(function (err, part) {
+            if (err) res.send("err")
+            else
+                res.send(part.length + "");
+        })
+});
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .populate('organizer')
         .populate({
             path: 'participants',
-            select : 'username picture',
-            options: {limit : 2}
+            select: 'username picture',
+            options: {limit: 2}
         })
         .exec(function (error, chall) {
             res.send(chall);
@@ -128,7 +137,7 @@ router.post('/newUser', function (req, res, next) {
     var user = new User({
         username: obj.username,
         status: obj.status,
-        picture:obj.picture,
+        picture: obj.picture,
         rate: 0,
         gold: 0,
         silver: 0,
