@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,6 +9,7 @@
     >
 
     <EditText
+        android:inputType="textEmailAddress"
         android:id="@+id/email_log"
         android:layout_width="300dp"
         android:layout_height="wrap_content"

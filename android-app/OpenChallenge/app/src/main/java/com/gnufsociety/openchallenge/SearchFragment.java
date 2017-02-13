@@ -4,6 +4,8 @@ package com.gnufsociety.openchallenge;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +20,9 @@ import java.util.ArrayList;
  */
 public class SearchFragment extends Fragment {
 
-    public ArrayList<CharSequence> users;
-    public ListView userList;
-    public ArrayAdapter<CharSequence> adapter;
+    public ArrayList<User> users;
+    public RecyclerView userList;
+    public ParticipantAdapter adapter;
     public Context context;
     public SearchFragment() {
         // Required empty public constructor
@@ -29,7 +31,6 @@ public class SearchFragment extends Fragment {
     }
     public void setContext(Context c){
         this.context = c;
-        adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1,users);
     }
 
 
@@ -38,8 +39,10 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-
-        userList = (ListView) view.findViewById(R.id.search_list);
+        users = new ArrayList<>();
+        userList = (RecyclerView) view.findViewById(R.id.search_list);
+        adapter = new ParticipantAdapter(users);
+        userList.setLayoutManager(new LinearLayoutManager(getContext()));
         userList.setAdapter(adapter);
 
         return view;

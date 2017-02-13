@@ -175,7 +175,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/chall_participants"
                 android:paddingLeft="25dp"
-                android:text="15 participants"
+                android:text="participants"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 

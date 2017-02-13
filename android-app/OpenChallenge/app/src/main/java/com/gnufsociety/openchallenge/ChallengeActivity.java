@@ -42,6 +42,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public TextView when;
     public TextView desc;
     public TextView rules;
+    public TextView numPart;
     private GoogleMap mMap;
     private FirebaseAuth auth;
 
@@ -61,14 +62,32 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         when = (TextView) findViewById(R.id.chall_when);
         desc = (TextView) findViewById(R.id.chall_desc);
         rules = (TextView) findViewById(R.id.chall_rules);
+        numPart = (TextView) findViewById(R.id.chall_npart);
 
+        AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
+            @Override
+            protected Integer doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                return api.numParticipant(c.id);
+            }
+
+            @Override
+            protected void onPostExecute(Integer integer) {
+                numPart.setText(integer + " participants");
+            }
+        };
+
+
+
+        //set num participant from web
+        task.execute();
 
         image.setImageResource(c.resImage);
 
         auth = FirebaseAuth.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
-        StorageReference cImage = sref.child("challenges/"+c.imageLocation);
+        StorageReference cImage = sref.child("challenges/" + c.imageLocation);
 
         Glide.with(this)
                 .using(new FirebaseImageLoader())
@@ -84,7 +103,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         user_img.setImageResource(c.organizer.resPic);
 
-        StorageReference userImage = sref.child("users/"+c.organizer.proPicLocation);
+        StorageReference userImage = sref.child("users/" + c.organizer.proPicLocation);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(userImage)
@@ -93,7 +112,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         orgUsername.setText(c.organizer.name);
         orgRate.setRating((float) c.organizer.rating);
-
 
 
         collapseToolbar.setTitle(c.name);
@@ -109,6 +127,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.chall_map_fra);
+
+
         mapFragment.getMapAsync(this);
 
     }
@@ -116,7 +136,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
                 break;
@@ -125,10 +145,10 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         return true;
     }
 
-    public void showParticipants(View view){
+    public void showParticipants(View view) {
         Intent intent = new Intent(this, ParticipantsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("challenge",c);
+        bundle.putSerializable("challenge", c);
         intent.putExtras(bundle);
 
         startActivity(intent);
@@ -139,26 +159,26 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng marker = new LatLng(c.lat,c.lng);
+        LatLng marker = new LatLng(c.lat, c.lng);
         mMap.addMarker(new MarkerOptions().position(marker).title(c.name));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
     }
 
-    public void showUser(View view){
+    public void showUser(View view) {
         Intent user = new Intent(this, UserActivity.class);
         Bundle extra = new Bundle();
-        extra.putSerializable("user",c.organizer);
+        extra.putSerializable("user", c.organizer);
         user.putExtras(extra);
         startActivity(user);
     }
 
-    public void joinChallenge(final View view){
+    public void joinChallenge(final View view) {
         AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                api.addParticipant(c.id,auth.getCurrentUser().getUid());
+                api.addParticipant(c.id, auth.getCurrentUser().getUid());
                 return null;
             }
 

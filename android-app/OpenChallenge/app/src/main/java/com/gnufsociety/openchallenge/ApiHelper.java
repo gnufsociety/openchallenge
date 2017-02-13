@@ -117,6 +117,36 @@ public class ApiHelper {
         }
     }
 
+    public int numParticipant(String chall_id){
+        Request request = new Request.Builder()
+                .url(url+"getNumParticipants/"+chall_id)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+            return Integer.parseInt(response.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+
+    }
+
+    public ArrayList<User> searchUsers(String prefix){
+        Request request = new Request.Builder()
+                .url(url+"findUsers/"+prefix)
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+            return User.getUsersArray(resp.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
     public void createUser(String username, String status, String imgLocation, String uid) {
         JSONObject json = null;
         try {

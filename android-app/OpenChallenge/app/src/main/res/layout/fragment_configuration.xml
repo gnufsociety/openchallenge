@@ -25,8 +25,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3"
-        android:hint="Username"
-        android:inputType="textPersonName" />
+        android:hint="Username" />
 
     <EditText
         android:id="@+id/configure_status"
@@ -37,8 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/username_first"
-        android:hint="Status"
-        android:inputType="textPersonName" />
+        android:hint="Status" />
 
     <Button
         android:id="@+id/done_btn"

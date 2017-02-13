@@ -13,12 +13,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,11 +69,19 @@ public class Fragment3 extends Fragment {
     public ImageView image;
     public Uri uriImage;
     public Place place;
-
+    public MainActivity main;
     public Fragment3(){
 
     }
 
+    public void setMainActivity(MainActivity main){
+        this.main = main;
+    }
+
+
+    public void setToHomePage(){
+        main.clickBottomBar(main.findViewById(R.id.home_bottom));
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -84,6 +94,7 @@ public class Fragment3 extends Fragment {
         descEdit = (EditText) view.findViewById(R.id.organize_desc_edit);
         rulesEdit = (EditText) view.findViewById(R.id.organize_rules_edit);
 
+        image.setColorFilter(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
         view.findViewById(R.id.organize_find_place).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +109,7 @@ public class Fragment3 extends Fragment {
 
             }
         });
-        view.findViewById(R.id.organize_pick_image_btn).setOnClickListener(new View.OnClickListener() {
+        image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 chooseFromGallerry();
@@ -124,8 +135,9 @@ public class Fragment3 extends Fragment {
         DatePickerDialog.OnDateSetListener mDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth+"/"+month+"/"+year;
+                String date = dayOfMonth+"/"+(month+1)+"/"+year;
                 dateText.setText(date);
+                dateText.setTextColor(ContextCompat.getColor(getContext(),R.color.black));
             }
         };
         final Calendar c = Calendar.getInstance();
@@ -165,6 +177,8 @@ public class Fragment3 extends Fragment {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(getContext(),"Upload successfull",Toast.LENGTH_LONG).show();
+                setToHomePage();
+
             }
         }).addOnFailureListener(getActivity(), new OnFailureListener() {
             @Override
@@ -199,7 +213,10 @@ public class Fragment3 extends Fragment {
         if (requestCode == PLACE_AUTOCOMPLETE_INTENT){
             if (resultCode == RESULT_OK){
                 place = PlaceAutocomplete.getPlace(getContext(),data);
-                placeText.setText(place.getAddress());
+                String s = (String) place.getAddress();
+                placeText.setText(s.split(",")[0]);
+                placeText.setTextColor(ContextCompat.getColor(getContext(),R.color.black));
+
                 System.out.println(place.getAddress());
             }
         }
@@ -209,6 +226,10 @@ public class Fragment3 extends Fragment {
 
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),uriImage);
+                    image.clearColorFilter();
+                    image.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                    image.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
+                    image.requestLayout();
                     image.setImageBitmap(bitmap);
 
 

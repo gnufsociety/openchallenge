@@ -3,6 +3,7 @@ package com.gnufsociety.openchallenge;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -32,6 +34,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
@@ -121,7 +125,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                AsyncTask<String,Void,ArrayList<User>> task = new AsyncTask<String, Void, ArrayList<User>>() {
+                    @Override
+                    protected ArrayList<User> doInBackground(String... params) {
+                        ApiHelper api = new ApiHelper();
+                        return api.searchUsers(params[0]);
+                    }
+
+                    @Override
+                    protected void onPostExecute(ArrayList<User> users) {
+                        searchFragment.users = users;
+                        searchFragment.adapter = new ParticipantAdapter(users);
+                    }
+                };
+
+                task.execute(query);
+
+
+                /*DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
                 Query userQuery = ref.orderByChild("name").equalTo(query);
                 userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -139,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
 
                 return true;
             }
@@ -147,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
+                /*DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
                 Query userQuery = ref.orderByChild("name").startAt(newText).endAt(newText+"\uf8ff");
                 userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -165,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
-                });
+                });*/
 
                 return true;
             }
@@ -185,6 +206,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .replace(R.id.home_fragment, searchFragment, "search")
                     .addToBackStack("search").commit();
         }
+        else if (id == R.id.action_logout){
+            auth.signOut();
+            startActivity(new Intent(this,RegistrationActivity.class));
+            finish();
+        }
+
 
         //noinspection SimplifiableIfStatement
         //if (id == R.id.action_settings) {
@@ -277,11 +304,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.add_bottom:
                 //f3 = (Fragment3) manager.findFragmentByTag(Fragment3.TAG);
-                if (f3 == null)
+                if (f3 == null) {
                     f3 = new Fragment3();
-                /*else
-                    manager.popBackStackImmediate(Fragment3.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                */manager.beginTransaction()
+                    f3.setMainActivity(this);
+
+                }
+                manager.beginTransaction()
                         .replace(R.id.home_fragment, f3, Fragment3.TAG)
                         .addToBackStack(Fragment3.TAG)
                         .commit();

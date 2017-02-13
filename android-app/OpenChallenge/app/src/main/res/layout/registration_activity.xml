@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:weightSum="1">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@mipmap/ic_launcher"
-        android:layout_weight="0.30
-        " />
+        android:layout_weight="0.30"
+        android:src="@mipmap/ic_launcher" />
+
     <TextView
-        android:text="Welcome To OpenChallenge"
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:textSize="34sp"
         android:gravity="center"
-        android:textStyle="bold"
+        android:paddingTop="20dp"
+        android:text="Welcome To OpenChallenge"
         android:textColor="@color/black"
-        android:paddingTop="20dp"/>
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
-    <FrameLayout
-        android:id="@+id/logreg_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.7"
-        tools:layout="@layout/fragment_log_in"/>
+        <FrameLayout
+            android:id="@+id/logreg_frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            tools:layout="@layout/fragment_log_in" />
 </LinearLayout>
