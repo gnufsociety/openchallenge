@@ -11,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -35,6 +37,8 @@ public class Fragment5 extends Fragment {
     public CircleImageView civ;
     public TextView gold, silver, bronze;
     public TextView status;
+    public LinearLayout layout;
+    public ProgressBar spinner;
     public Fragment5(){
 
     }
@@ -48,6 +52,8 @@ public class Fragment5 extends Fragment {
         silver = (TextView) view.findViewById(R.id.user_number_silver);
         bronze = (TextView) view.findViewById(R.id.user_number_bronze);
         status = (TextView) view.findViewById(R.id.user_status);
+        spinner = (ProgressBar) view.findViewById(R.id.user_progress_bar);
+        layout = (LinearLayout) view.findViewById(R.id.user_layout);
 
         AsyncTask<String,Void,User> task = new AsyncTask<String, Void, User>() {
             @Override
@@ -75,12 +81,15 @@ public class Fragment5 extends Fragment {
 
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(user.name);
 
+                spinner.setVisibility(View.GONE);
+                layout.setVisibility(View.VISIBLE);
+
             }
         };
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         task.execute(auth.getCurrentUser().getUid());
-        
+
 
 
 

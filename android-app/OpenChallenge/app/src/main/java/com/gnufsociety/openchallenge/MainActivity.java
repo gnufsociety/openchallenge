@@ -188,6 +188,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      **/
     @Override
     public void onBackPressed() {
+        if (!getSupportActionBar().getTitle().equals("Open Challenge"))
+            getSupportActionBar().setTitle("Open Challenge");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -228,6 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * Change color of the button pressed and show the new fragment
      **/
     public void clickBottomBar(View view) {
+        if (!getSupportActionBar().getTitle().equals("Open Challenge"))
+            getSupportActionBar().setTitle("Open Challenge");
         BottomButton btn = (BottomButton) view;
         if (btn == last)
             return;
