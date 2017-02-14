@@ -164,6 +164,15 @@ router.get('/findUsers/:user', function (req, res) {
     });
 });
 
+router.get('/findUserByUid/:uid', function (req, res) {
+    var user_id = req.params.uid;
+    User.findOne({'uid':user_id})
+        .exec(function (err, user) {
+            if (err) res.send("Error");
+            else res.send(user);
+        });
+});
+
 
 /*db.connect(db_url, function (err, done) {
  if (err) {

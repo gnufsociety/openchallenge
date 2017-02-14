@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                AsyncTask<String,Void,ArrayList<User>> task = new AsyncTask<String, Void, ArrayList<User>>() {
+                AsyncTask<String, Void, ArrayList<User>> task = new AsyncTask<String, Void, ArrayList<User>>() {
                     @Override
                     protected ArrayList<User> doInBackground(String... params) {
                         ApiHelper api = new ApiHelper();
@@ -134,61 +134,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     @Override
                     protected void onPostExecute(ArrayList<User> users) {
-                        searchFragment.users = users;
-                        searchFragment.adapter = new ParticipantAdapter(users);
+                        searchFragment.adapter.swapList(users);
                     }
                 };
 
                 task.execute(query);
 
 
-                /*DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
-                Query userQuery = ref.orderByChild("name").equalTo(query);
-                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        searchFragment.users.clear();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            //System.out.println("user: "+snapshot.child("name").getValue());
-                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
-                        }
-                        searchFragment.adapter.notifyDataSetChanged();
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
-
                 return true;
+
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String newText){
 
-                /*DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users");
-                Query userQuery = ref.orderByChild("name").startAt(newText).endAt(newText+"\uf8ff");
-                userQuery.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        searchFragment.users.clear();
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            //System.out.println("user: "+snapshot.child("name").getValue());
-                            searchFragment.users.add((CharSequence) snapshot.child("name").getValue());
-                        }
-                        searchFragment.adapter.notifyDataSetChanged();
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });*/
-
-                return true;
+                return false;
             }
         });
         return true;

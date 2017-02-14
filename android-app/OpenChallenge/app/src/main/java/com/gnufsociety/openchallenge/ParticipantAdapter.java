@@ -18,6 +18,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.zip.Inflater;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -34,6 +35,12 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         this.users = users;
     }
 
+
+    public void swapList(List<User> list){
+        users.clear();
+        users.addAll(list);
+        notifyDataSetChanged();
+    }
 
     @Override
     public PartipantHolder onCreateViewHolder(ViewGroup parent, int viewType) {

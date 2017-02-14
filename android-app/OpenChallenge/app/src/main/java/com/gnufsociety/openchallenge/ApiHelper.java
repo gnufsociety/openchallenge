@@ -174,4 +174,20 @@ public class ApiHelper {
 
 
     }
+
+    public User getCurrentUser(String uid){
+        Request req = new Request.Builder()
+                .url(url+ "findUserByUid/"+uid)
+                .build();
+        try {
+            Response resp = client.newCall(req).execute();
+            return new User(new JSONObject(resp.body().string()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
