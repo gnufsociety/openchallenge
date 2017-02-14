@@ -4,6 +4,7 @@ var assert = require('assert');
 var mongoose = require('mongoose');
 var User = require('../schemas/User');
 var Challenge = require('../schemas/Challenge');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 
 var router = express.Router();   // get router instance
@@ -52,13 +53,27 @@ router.post('/newChallenge', function (req, res) {
 
 });
 
-router.get('/getNumParticipants/:id_chall', function (req, res, next) {
-    Challenge.findOne({_id: req.params.id_chall})
-        .exec(function (err, chall) {
-            if (err) res.send("err")
-            else
-                res.send(chall.participants.length + "");
-        })
+router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) {
+    User.findOne({'uid':req.params.user_uid}).exec(function (err, user) {
+        Challenge.findOne({_id: req.params.id_chall})
+            .exec(function (err, chall) {
+                if (err) res.send("err")
+                else {
+                    var part = chall.participants;
+                    var found = false;
+                    for (var i = 0; i< part.length; i++){
+                        if (part[i].toString() == user._id.toString()){
+                            found = true;
+                            break;
+                        }
+                    }
+                    var obj = {'participants':part.length,
+                                'you':found}
+                    res.send(obj);
+                }
+            });
+    });
+
 });
 router.get('/allChallenges', function (req, res, next) {
 

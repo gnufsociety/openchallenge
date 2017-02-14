@@ -7,7 +7,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:visibility="gone"
         android:divider="@drawable/mydivider"
         android:showDividers="middle"
         android:id="@+id/user_layout"
@@ -63,7 +62,7 @@
                 android:layout_gravity="center"
                 android:layout_row="0"
                 android:scaleType="centerCrop"
-                android:src="@drawable/bronze" />
+                android:src="@drawable/bronze128" />
 
             <TextView
                 android:id="@+id/user_number_gold"
@@ -111,7 +110,7 @@
                 android:layout_gravity="center"
                 android:layout_row="0"
                 android:scaleType="centerCrop"
-                android:src="@drawable/gold" />
+                android:src="@drawable/gold128" />
 
             <ImageView
                 android:layout_width="72dp"
@@ -122,7 +121,7 @@
                 android:layout_gravity="center"
                 android:layout_row="0"
                 android:scaleType="centerCrop"
-                android:src="@drawable/silver" />
+                android:src="@drawable/silver128" />
 
         </GridLayout>
 

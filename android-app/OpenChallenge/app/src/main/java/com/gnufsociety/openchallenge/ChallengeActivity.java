@@ -45,6 +45,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public TextView numPart;
     private GoogleMap mMap;
     private FirebaseAuth auth;
+    public boolean isOrganizer = false;
 
 
     @Override
@@ -82,13 +83,18 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         //set num participant from web
         task.execute();
 
-        image.setImageResource(c.resImage);
+
 
         auth = FirebaseAuth.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
         StorageReference cImage = sref.child("challenges/" + c.imageLocation);
 
+        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)){
+            ((Button) findViewById(R.id.chall_join_btn)).setText("Chooooose winner");
+        }
+
+        image.setImageResource(c.resImage);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(cImage)
