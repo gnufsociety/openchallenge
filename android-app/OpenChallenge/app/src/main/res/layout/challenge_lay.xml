@@ -13,242 +13,242 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/mydivider"
-        android:orientation="vertical"
-        android:showDividers="middle"
-
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/first_card"
-            android:paddingBottom="10dp"
-            grid:columnCount="5"
-            grid:rowCount="2">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:onClick="showUser"
-                android:id="@+id/chall_user_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_column="0"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_rowSpan="2"
-                android:src="@drawable/pullups" />
-
-            <android.support.v7.widget.AppCompatRatingBar
-                android:id="@+id/chall_rate"
-                style="@style/Base.Widget.AppCompat.RatingBar.Small"
-                android:layout_width="88dp"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:paddingLeft="8dp"
-                android:paddingTop="0dp"
-                android:rating="5" />
-
-            <ImageView
-                android:id="@+id/chall_map"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_column="3"
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:src="@drawable/map_24"
-                android:tint="@android:color/tab_indicator_text" />
-
-            <TextView
-                android:ellipsize="end"
-                android:id="@+id/chall_when"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="4"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:paddingLeft="4dp"
-                android:text="2 feb 2017" />
-
-            <ImageView
-                android:id="@+id/chall_time"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_column="3"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:src="@drawable/clock_24"
-                android:tint="@android:color/tab_indicator_text" />
-
-            <android.support.v4.widget.Space
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:layout_columnWeight="1"
-                android:layout_row="0"
-                android:layout_rowSpan="2" />
-
-            <TextView
-                android:id="@+id/chall_where"
-                android:ellipsize="end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="4"
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:paddingLeft="4dp"
-                android:text="Via galla placidia 21" />
-
-            <TextView
-                android:onClick="showUser"
-                android:id="@+id/chall_organizer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:paddingLeft="10dp"
-                android:text="spallas"
-                android:textSize="16sp" />
-
-        </GridLayout>
-
-
-        <TextView
-            android:id="@+id/chall_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:text="@string/desc_cardlay"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
-
-        <RelativeLayout
-            android:id="@+id/chall_part_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="showParticipants"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp">
-
-            <FrameLayout
-                android:id="@+id/chall_participants"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/cina1"
-                    app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="25dp"
-                    android:src="@drawable/panici1"
-                    app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp" />
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:src="@drawable/io1"
-                    app:civ_border_color="@color/backGroundHome2"
-                    app:civ_border_width="1dp" />
-
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/chall_npart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView4"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/chall_participants"
-                android:paddingLeft="25dp"
-                android:text="participants"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
-
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/chall_npart"
-                android:text=" - 5 pending"
-                android:textSize="17sp" />
-        </RelativeLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:divider="@drawable/mydivider"
+            android:orientation="vertical"
+            android:showDividers="middle"
 
-            <TextView
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:text="Rules"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-                android:textStyle="bold" />
+                android:layout_below="@id/first_card"
+                android:paddingBottom="10dp"
+                grid:columnCount="5"
+                grid:rowCount="2">
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="5dp">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/chall_user_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_column="0"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:onClick="showUser"
+                    android:src="@drawable/pullups" />
+
+                <android.support.v7.widget.AppCompatRatingBar
+                    android:id="@+id/chall_rate"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="88dp"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="1"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="0dp"
+                    android:rating="5" />
+
+                <ImageView
+                    android:id="@+id/chall_map"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_column="3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="1"
+                    android:src="@drawable/map_24"
+                    android:tint="@android:color/tab_indicator_text" />
 
                 <TextView
-                    android:id="@+id/chall_rules"
-                    android:layout_width="match_parent"
+                    android:id="@+id/chall_when"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="4"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="0"
+                    android:ellipsize="end"
+                    android:paddingLeft="4dp"
+                    android:text="2 feb 2017" />
+
+                <ImageView
+                    android:id="@+id/chall_time"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_column="3"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="0"
+                    android:src="@drawable/clock_24"
+                    android:tint="@android:color/tab_indicator_text" />
+
+                <android.support.v4.widget.Space
                     android:layout_height="match_parent"
-                    android:paddingBottom="@dimen/activity_vertical_margin"
-                    android:paddingLeft="@dimen/activity_horizontal_margin"
-                    android:paddingRight="@dimen/activity_horizontal_margin"
-                    android:paddingTop="@dimen/activity_vertical_margin"
-                    android:text="@string/rules" />
-            </android.support.v7.widget.CardView>
+                    android:layout_column="2"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/chall_where"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="4"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="1"
+                    android:ellipsize="end"
+                    android:paddingLeft="4dp"
+                    android:text="Via galla placidia 21" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+                <TextView
+                    android:id="@+id/chall_organizer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_row="0"
+                    android:onClick="showUser"
+                    android:paddingLeft="10dp"
+                    android:text="spallas"
+                    android:textSize="16sp" />
+
+            </GridLayout>
+
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:text="Location"
-                android:textColor="@color/black"
-                android:textSize="32sp"
-                android:textStyle="bold" />
-
-            <fragment
-                android:id="@+id/chall_map_fra"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:id="@+id/chall_desc"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_marginBottom="40dp" />
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/desc_cardlay"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <RelativeLayout
+                android:id="@+id/chall_part_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="showParticipants"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp">
+
+                <FrameLayout
+                    android:id="@+id/chall_participants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/cina1"
+                        app:civ_border_color="@color/backGroundHome2"
+                        app:civ_border_width="1dp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="25dp"
+                        android:src="@drawable/panici1"
+                        app:civ_border_color="@color/backGroundHome2"
+                        app:civ_border_width="1dp" />
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:src="@drawable/io1"
+                        app:civ_border_color="@color/backGroundHome2"
+                        app:civ_border_width="1dp" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/chall_npart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView4"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/chall_participants"
+                    android:paddingLeft="25dp"
+                    android:text="participants"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/chall_npart"
+                    android:text=" - 5 pending"
+                    android:textSize="17sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="10dp"
+                    android:text="Rules"
+                    android:textColor="@color/black"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    app:cardCornerRadius="6dp"
+                    app:cardElevation="5dp">
+
+                    <TextView
+                        android:id="@+id/chall_rules"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingBottom="@dimen/activity_vertical_margin"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/activity_vertical_margin"
+                        android:text="@string/rules" />
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Location"
+                    android:textColor="@color/black"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <fragment
+                    android:id="@+id/chall_map_fra"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="400dp"
+                    android:layout_marginBottom="40dp" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
 

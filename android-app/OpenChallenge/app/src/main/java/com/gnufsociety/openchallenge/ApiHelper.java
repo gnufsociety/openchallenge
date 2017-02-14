@@ -117,18 +117,20 @@ public class ApiHelper {
         }
     }
 
-    public int numParticipant(String chall_id){
+    public JSONObject numParticipant(String chall_id, String uid){
         Request request = new Request.Builder()
-                .url(url+"getNumParticipants/"+chall_id)
+                .url(url+"getNumParticipants/"+chall_id+"/"+uid)
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            return Integer.parseInt(response.body().string());
+            return new JSONObject(response.body().string());
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return -1;
+        return null;
 
     }
 

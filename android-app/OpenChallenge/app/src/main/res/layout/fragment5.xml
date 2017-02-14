@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:visibility="gone"
         android:divider="@drawable/mydivider"
         android:showDividers="middle"
         android:id="@+id/user_layout"

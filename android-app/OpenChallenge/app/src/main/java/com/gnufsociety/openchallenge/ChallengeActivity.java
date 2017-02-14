@@ -2,8 +2,10 @@ package com.gnufsociety.openchallenge;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,9 +30,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     public CollapsingToolbarLayout collapseToolbar;
     public Challenge c;
@@ -45,7 +51,10 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public TextView numPart;
     private GoogleMap mMap;
     private FirebaseAuth auth;
+    public SwipeRefreshLayout refresh;
+    public Button join;
     public boolean isOrganizer = false;
+    public boolean joined = false;
 
 
     @Override
@@ -64,34 +73,46 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         desc = (TextView) findViewById(R.id.chall_desc);
         rules = (TextView) findViewById(R.id.chall_rules);
         numPart = (TextView) findViewById(R.id.chall_npart);
+        join = (Button) findViewById(R.id.chall_join_btn);
+        /*refresh = (SwipeRefreshLayout) findViewById(R.id.chall_refresh);*/
 
-        AsyncTask<Void, Void, Integer> task = new AsyncTask<Void, Void, Integer>() {
+        auth = FirebaseAuth.getInstance();
+
+        AsyncTask<Void, Void, JSONObject> task = new AsyncTask<Void, Void, JSONObject>() {
             @Override
-            protected Integer doInBackground(Void... params) {
+            protected JSONObject doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                return api.numParticipant(c.id);
+                return api.numParticipant(c.id, auth.getCurrentUser().getUid());
             }
 
             @Override
-            protected void onPostExecute(Integer integer) {
-                numPart.setText(integer + " participants");
+            protected void onPostExecute(JSONObject integer) {
+                try {
+                    boolean find = integer.getBoolean("you");
+                    int num = integer.getInt("participants");
+                    numPart.setText(num + " participants");
+                    if (find) {
+                        join.setText("Joined");
+                        joined = true;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         };
-
 
 
         //set num participant from web
         task.execute();
 
 
-
-        auth = FirebaseAuth.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
         StorageReference cImage = sref.child("challenges/" + c.imageLocation);
 
-        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)){
-            ((Button) findViewById(R.id.chall_join_btn)).setText("Chooooose winner");
+        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
+            join.setText("Chooooose winner");
+            isOrganizer = true;
         }
 
         image.setImageResource(c.resImage);
@@ -134,6 +155,14 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.chall_map_fra);
 
+        /*refresh.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.black);
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(refresh.getContext(),"",Toast.LENGTH_LONG).show();
+                refresh.setRefreshing(false);
+            }
+        });*/
 
         mapFragment.getMapAsync(this);
 
@@ -184,17 +213,31 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             @Override
             protected Void doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                api.addParticipant(c.id, auth.getCurrentUser().getUid());
+                if (joined)
+                    api.removeParticipant(c.id, auth.getCurrentUser().getUid());
+                else
+                    api.addParticipant(c.id, auth.getCurrentUser().getUid());
                 return null;
             }
 
             @Override
             protected void onPostExecute(Void aVoid) {
                 Button btn = (Button) view;
-                btn.setText("Joined!");
+                String n = numPart.getText().toString();
+                int i = Integer.parseInt(n.split(" ")[0]);
+                if (joined) {
+                    numPart.setText(--i + " participants");
+                    btn.setText("Join Challenge");
+                }
+                else {
+                    numPart.setText(++i + " participants");
+                    btn.setText("Joined!");
+                }
+                joined = !joined;
             }
         };
         task.execute();
 
     }
+
 }
