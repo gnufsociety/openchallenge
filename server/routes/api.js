@@ -26,7 +26,7 @@ router.post('/setWinners', function (req, res) {
     var obj = req.body;
     var errors = false;
     User.findByIdAndUpdate(
-        obj.first._id,
+        obj.first,
         {$inc: {'gold': 1}},
         {safe:true, upsert:true},
         function (err) {
@@ -34,7 +34,7 @@ router.post('/setWinners', function (req, res) {
               errors = true;
             }
             User.findByIdAndUpdate(
-                obj.second._id,
+                obj.second,
                 {$inc: {'silver': 1}},
                 {safe:true, upsert:true},
                 function (err) {
@@ -42,7 +42,7 @@ router.post('/setWinners', function (req, res) {
                         errors = true;
                     }
                     User.findByIdAndUpdate(
-                        obj.third._id,
+                        obj.third,
                         {$inc: {'bronze': 1}},
                         {safe:true, upsert:true},
                         function (err) {

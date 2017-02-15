@@ -78,9 +78,9 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
-    public ArrayList<User> getParticipant(String id_chall){
+    public ArrayList<User> getParticipant(String id_chall) {
         Request request = new Request.Builder()
-                .url(url+ "getParticipants/"+id_chall)
+                .url(url + "getParticipants/" + id_chall)
                 .build();
         try {
             Response resp = client.newCall(request).execute();
@@ -94,20 +94,9 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
-    public void addParticipant(String id_chall, String uid){
+    public void addParticipant(String id_chall, String uid) {
         Request request = new Request.Builder()
-                .url(url+"/addParticipant/"+id_chall+"/"+uid)
-                .build();
-        try {
-            Response resp = client.newCall(request).execute();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    public void removeParticipant(String id_chall, String uid){
-        Request request = new Request.Builder()
-                .url(url+"/removeParticipant/"+id_chall+"/"+uid)
+                .url(url + "/addParticipant/" + id_chall + "/" + uid)
                 .build();
         try {
             Response resp = client.newCall(request).execute();
@@ -117,9 +106,21 @@ public class ApiHelper {
         }
     }
 
-    public JSONObject numParticipant(String chall_id, String uid){
+    public void removeParticipant(String id_chall, String uid) {
         Request request = new Request.Builder()
-                .url(url+"getNumParticipants/"+chall_id+"/"+uid)
+                .url(url + "/removeParticipant/" + id_chall + "/" + uid)
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public JSONObject numParticipant(String chall_id, String uid) {
+        Request request = new Request.Builder()
+                .url(url + "getNumParticipants/" + chall_id + "/" + uid)
                 .build();
         try {
             Response response = client.newCall(request).execute();
@@ -134,9 +135,9 @@ public class ApiHelper {
 
     }
 
-    public ArrayList<User> searchUsers(String prefix){
+    public ArrayList<User> searchUsers(String prefix) {
         Request request = new Request.Builder()
-                .url(url+"findUsers/"+prefix)
+                .url(url + "findUsers/" + prefix)
                 .build();
         try {
             Response resp = client.newCall(request).execute();
@@ -177,9 +178,9 @@ public class ApiHelper {
 
     }
 
-    public User getCurrentUser(String uid){
+    public User getCurrentUser(String uid) {
         Request req = new Request.Builder()
-                .url(url+ "findUserByUid/"+uid)
+                .url(url + "findUserByUid/" + uid)
                 .build();
         try {
             Response resp = client.newCall(req).execute();
@@ -191,5 +192,24 @@ public class ApiHelper {
         }
 
         return null;
+    }
+
+    public void setWinners(User[] users) {
+        try {
+            JSONObject json = new JSONObject()
+                    .put("first", users[0].id)
+                    .put("second", users[1].id)
+                    .put("third", users[2].id);
+            RequestBody body = RequestBody.create(JSON, json.toString());
+            Request req = new Request.Builder()
+                    .url(url+"setWinners")
+                    .post(body)
+                    .build();
+            Response resp = client.newCall(req).execute();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
