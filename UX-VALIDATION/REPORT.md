@@ -15,7 +15,8 @@ Here are some of the questions we made:
 
 Here are some of the hand-sketched images we showed:
 
-![alt-text](./)
-![alt-text](./)
-![alt-text](./)
-![alt-text](./)
+<img src="challenge_draw.png" alt="Icon" width="200" height="500"/>
+<img src="home_draw.png" alt="Icon" width="200" height="400"/>
+<img src="map_draw.png" alt="Icon" width="200" height="400"/>
+<img src="organize_draw.png" alt="Icon" width="200" height="500"/>
+
