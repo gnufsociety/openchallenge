@@ -21,6 +21,8 @@ Do users need it? [Check our survey!](https://drive.google.com/open?id=1-U_5xIuS
 
 # GCW2017 - Milestone 2
 
+[Here](https://docs.google.com/spreadsheets/d/1gcSQNKwyko8KUxCel-J6TnrHCPXHBI1VwzDgyYXCGT8/edit?usp=sharing) you can find our work's calendar
+
 Pub/Organizer suvery 
 
 
