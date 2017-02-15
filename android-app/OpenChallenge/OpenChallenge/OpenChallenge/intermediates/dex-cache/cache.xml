@@ -106,7 +106,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="929427462effe2afc19bee5b568af3ac84d5d75a">
+        sha1="8908bb5df5da818b8669a7f94c47840d090dd435">
         <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_cfae3e6f9f4c7a4f56ac0ea5d0edede6d9ea00c1/classes.dex" />
     </item>
     <item
@@ -475,7 +475,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="84da8dd7aebfea52ebad6b7694a2244e0d832b4f">
+        sha1="21370e093e97b25eb03e98bd73e60a498384295f">
         <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d4749232b1449cf1d806b741b951b2c2ac0e3bfa/classes.dex" />
     </item>
     <item
