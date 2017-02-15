@@ -261,6 +261,15 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 podium.setVisibility(View.VISIBLE);
                 podium.setWinners(winners);
                 join.setVisibility(View.GONE);
+                AsyncTask<User[],Void,Void> task = new AsyncTask<User[], Void, Void>() {
+                    @Override
+                    protected Void doInBackground(User[]... params) {
+                        ApiHelper api = new ApiHelper();
+                        api.setWinners(params[0]);
+                        return null;
+                    }
+                };
+                task.execute(winners);
             }
         }
     }
