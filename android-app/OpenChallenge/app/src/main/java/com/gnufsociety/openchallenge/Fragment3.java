@@ -94,7 +94,7 @@ public class Fragment3 extends Fragment {
         descEdit = (EditText) view.findViewById(R.id.organize_desc_edit);
         rulesEdit = (EditText) view.findViewById(R.id.organize_rules_edit);
 
-        image.setColorFilter(ContextCompat.getColor(getContext(),R.color.colorAccent));
+        //image.setColorFilter(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
         view.findViewById(R.id.organize_find_place).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,6 +230,7 @@ public class Fragment3 extends Fragment {
                     image.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
                     image.getLayoutParams().width = LinearLayout.LayoutParams.MATCH_PARENT;
                     image.requestLayout();
+                    image.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     image.setImageBitmap(bitmap);
 
 
