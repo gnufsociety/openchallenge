@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -27,9 +28,10 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
     public List<User> users;
     FirebaseStorage storage;
     StorageReference sref;
+    public WinnerActivity winnerActivity;
     public int choosen = 0;
 
-    public WinnerAdapter(List<User> users){
+    public WinnerAdapter(List<User> users, WinnerActivity winnerActivity){
         for (User user : users) {
             user.bronzeMedals = 0;
             user.silverMedals = 0;
@@ -38,6 +40,7 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
         this.users = users;
         storage = FirebaseStorage.getInstance();
         sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+        this.winnerActivity = winnerActivity;
     }
 
 
@@ -94,20 +97,27 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
                         case 0:
                             curr.goldMedals++;
                             medal.setImageResource(R.drawable.gold128);
-                            Snackbar.make(itemView,"Choose the second",Snackbar.LENGTH_LONG).show();
+                            winnerActivity.winners[0] = curr;
+                            //Snackbar.make(itemView,"Choose the second",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(v.getContext(),"Choose the second",Toast.LENGTH_SHORT).show();
                             break;
                         case 1:
                             curr.silverMedals++;
+                            winnerActivity.winners[1] = curr;
                             medal.setImageResource(R.drawable.silver128);
-                            Snackbar.make(itemView,"Choose the third",Snackbar.LENGTH_LONG).show();
+                            //Snackbar.make(itemView,"Choose the third",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(v.getContext(),"Choose the third",Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
                             curr.bronzeMedals++;
+                            winnerActivity.winners[2] = curr;
                             medal.setImageResource(R.drawable.bronze128);
-                            Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
+                            //Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(v.getContext(),"Click the button",Toast.LENGTH_SHORT).show();
                             break;
                         default:
-                            Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
+                            //Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(v.getContext(),"I said click the button ass ho*e",Toast.LENGTH_SHORT).show();
                     }
                     choosen++;
                 }

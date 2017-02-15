@@ -22,6 +22,42 @@ router.get('/', function (req, res, next) {
  * Challenge api
  * */
 
+router.post('/setWinners', function (req, res) {
+    var obj = req.body;
+    var errors = false;
+    User.findByIdAndUpdate(
+        obj.first._id,
+        {$inc: {'gold': 1}},
+        {safe:true, upsert:true},
+        function (err) {
+            if (err){
+              errors = true;
+            }
+            User.findByIdAndUpdate(
+                obj.second._id,
+                {$inc: {'silver': 1}},
+                {safe:true, upsert:true},
+                function (err) {
+                    if (err){
+                        errors = true;
+                    }
+                    User.findByIdAndUpdate(
+                        obj.third._id,
+                        {$inc: {'bronze': 1}},
+                        {safe:true, upsert:true},
+                        function (err) {
+                            if (err){
+                                errors = true;
+                            }
+                            res.send(errors);
+                        });
+                });
+        });
+
+
+
+});
+
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
     User.findOne({'uid': obj.organizer}).exec(function (err, user) {
@@ -54,21 +90,23 @@ router.post('/newChallenge', function (req, res) {
 });
 
 router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) {
-    User.findOne({'uid':req.params.user_uid}).exec(function (err, user) {
+    User.findOne({'uid': req.params.user_uid}).exec(function (err, user) {
         Challenge.findOne({_id: req.params.id_chall})
             .exec(function (err, chall) {
                 if (err) res.send("err")
                 else {
                     var part = chall.participants;
                     var found = false;
-                    for (var i = 0; i< part.length; i++){
-                        if (part[i].toString() == user._id.toString()){
+                    for (var i = 0; i < part.length; i++) {
+                        if (part[i].toString() == user._id.toString()) {
                             found = true;
                             break;
                         }
                     }
-                    var obj = {'participants':part.length,
-                                'you':found}
+                    var obj = {
+                        'participants': part.length,
+                        'you': found
+                    }
                     res.send(obj);
                 }
             });
@@ -181,7 +219,7 @@ router.get('/findUsers/:user', function (req, res) {
 
 router.get('/findUserByUid/:uid', function (req, res) {
     var user_id = req.params.uid;
-    User.findOne({'uid':user_id})
+    User.findOne({'uid': user_id})
         .exec(function (err, user) {
             if (err) res.send("Error");
             else res.send(user);

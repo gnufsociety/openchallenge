@@ -37,6 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    public static int WINNER_CODE = 1;
+
     public CollapsingToolbarLayout collapseToolbar;
     public Challenge c;
     public Toolbar toolbar;
@@ -50,6 +52,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public TextView rules;
     public TextView numPart;
     private GoogleMap mMap;
+    public Podium podium;
     private FirebaseAuth auth;
     public SwipeRefreshLayout refresh;
     public Button join;
@@ -74,6 +77,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         rules = (TextView) findViewById(R.id.chall_rules);
         numPart = (TextView) findViewById(R.id.chall_npart);
         join = (Button) findViewById(R.id.chall_join_btn);
+        podium = (Podium) findViewById(R.id.chall_podium);
         /*refresh = (SwipeRefreshLayout) findViewById(R.id.chall_refresh);*/
 
         auth = FirebaseAuth.getInstance();
@@ -241,11 +245,23 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             Bundle extra = new Bundle();
             extra.putString("chall_id",c.id);
             intent.putExtras(extra);
-            startActivity(intent);
+            startActivityForResult(intent,WINNER_CODE);
 
         } else
             task.execute();
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == WINNER_CODE){
+            if (resultCode == RESULT_OK){
+                User[] winners = (User[]) data.getSerializableExtra("winners");
+                //Toast.makeText(this,"The winners are "+winners[0]+" "+winners[1]+" "+winners[2],Toast.LENGTH_LONG).show();
+                podium.setVisibility(View.VISIBLE);
+                podium.setWinners(winners);
+                join.setVisibility(View.GONE);
+            }
+        }
+    }
 }

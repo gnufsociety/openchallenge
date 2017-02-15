@@ -7,13 +7,29 @@
     android:layout_height="match_parent"
 
     tools:context="com.gnufsociety.openchallenge.WinnerActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/winner_toolbar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    </android.support.design.widget.AppBarLayout>
     <ProgressBar
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/winner_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"/>
 
     <RelativeLayout
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/winner_lay"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/winner_lay"
+        app:elevation="10dp"
         app:layout_anchorGravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
