@@ -35,7 +35,7 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public CollapsingToolbarLayout collapseToolbar;
     public Challenge c;
@@ -228,15 +228,23 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 if (joined) {
                     numPart.setText(--i + " participants");
                     btn.setText("Join Challenge");
-                }
-                else {
+                } else {
                     numPart.setText(++i + " participants");
                     btn.setText("Joined!");
                 }
                 joined = !joined;
             }
         };
-        task.execute();
+
+        if (isOrganizer) {
+            Intent intent = new Intent(this,WinnerActivity.class);
+            Bundle extra = new Bundle();
+            extra.putString("chall_id",c.id);
+            intent.putExtras(extra);
+            startActivity(intent);
+
+        } else
+            task.execute();
 
     }
 
