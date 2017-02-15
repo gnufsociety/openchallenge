@@ -47,6 +47,7 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             protected List<User> doInBackground(String... params) {
                 ApiHelper api = new ApiHelper();
+                int i = 0;
                 return api.getParticipant(params[0]);
             }
 
