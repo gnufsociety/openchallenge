@@ -17,12 +17,12 @@ If you found some bugs or have some suggestions report them [here](https://githu
 
 [Slide](https://drive.google.com/file/d/0BxzqNvZynJFuTTdDWWR0dzIxaHM/view?usp=sharing "In Google Drive...")
 
-Do users need it? [Check our survey!](https://drive.google.com/open?id=1-U_5xIuSbrT4D2hFS4C3XrPz_Ko8Ud8sek5cS1dLxmk "Users survey")
+Do people realy need it? [Check our survey!](https://drive.google.com/open?id=1-U_5xIuSbrT4D2hFS4C3XrPz_Ko8Ud8sek5cS1dLxmk "Users survey")
 
 # GCW2017 - Milestone 2
 
-[Here](https://docs.google.com/spreadsheets/d/1gcSQNKwyko8KUxCel-J6TnrHCPXHBI1VwzDgyYXCGT8/edit?usp=sharing) you can find our work's calendar
+[Here](https://docs.google.com/spreadsheets/d/1gcSQNKwyko8KUxCel-J6TnrHCPXHBI1VwzDgyYXCGT8/edit?usp=sharing) you can find our the calendar of the coding work. Note that it was accomplished after an accurate UI/UX validation and the code reflects users suggestions, where possible (the work is still in progress as in milestone 1).
 
-Pub/Organizer suvery 
+Pub/Organizer [suvery]()
 
 
