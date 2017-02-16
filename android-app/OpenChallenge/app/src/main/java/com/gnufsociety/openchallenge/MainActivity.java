@@ -356,7 +356,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
         }
 
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        /*mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 Bundle bundle = new Bundle();
@@ -367,6 +367,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 myToolbar.getContext().startActivity(i);
 
                 return false;
+            }
+        });*/
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Bundle bundle = new Bundle();
+                int pos = (int) marker.getTag();
+                bundle.putSerializable("challenge",f1.adapter.list.get(pos));
+                Intent i = new Intent(myToolbar.getContext(),ChallengeActivity.class);
+                i.putExtras(bundle);
+                myToolbar.getContext().startActivity(i);
             }
         });
     }
