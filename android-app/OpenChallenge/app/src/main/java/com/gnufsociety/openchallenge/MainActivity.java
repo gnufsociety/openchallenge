@@ -26,6 +26,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -339,16 +340,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
         // Add a marker in Sydney and move the camera
+        int i = 0;
         for (Challenge c : f1.adapter.list) {
             LatLng lat = new LatLng(c.lat,c.lng);
-            mMap.addMarker(new MarkerOptions()
+            Marker marker = mMap.addMarker(new MarkerOptions()
                             .position(lat)
                             .title(c.name));
+            marker.setTag(i);
+            i++;
         }
-        if (f1.adapter.list.size() > 0){
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(0).lat,f1.adapter.list.get(0).lng)));
+        if (f1.adapter.list.size() > 3){
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(2).lat,f1.adapter.list.get(2).lng)));
             mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
         }
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Bundle bundle = new Bundle();
+                int pos = (int) marker.getTag();
+                bundle.putSerializable("challenge",f1.adapter.list.get(pos));
+                Intent i = new Intent(myToolbar.getContext(),ChallengeActivity.class);
+                i.putExtras(bundle);
+                myToolbar.getContext().startActivity(i);
+
+                return false;
+            }
+        });
     }
 }
