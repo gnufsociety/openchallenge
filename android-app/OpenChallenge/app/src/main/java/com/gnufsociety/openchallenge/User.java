@@ -50,29 +50,6 @@ public class User implements Serializable{
         }
     }
 
-    public static ArrayList<User> getList(){
-        ArrayList<User> users = new ArrayList<>();
-        User u1 = new User("sdc",3.4,R.drawable.io1);
-        User u2 = new User("spallas",3.9,R.drawable.david1);
-        User u3 = new User("tiem",5,R.drawable.cina1);
-        User u4 = new User("k",4.3,R.drawable.panici1);
-        User u5 = new User("MaikMaglia",1,R.drawable.coke);
-        User u6 = new User("zonta",3,R.drawable.hacking);
-        users.add(u1);
-        users.add(u2);
-        users.add(u3);
-        users.add(u4);
-        users.add(u5);
-        users.add(u6);
-        users.add(u3);
-        users.add(u2);
-        users.add(u1);
-        users.add(u5);
-        users.add(u6);
-        users.add(u4);
-
-        return users;
-    }
 
     public static ArrayList<User> getUsersArray(String json) throws JSONException {
         ArrayList<User> users = new ArrayList<>();
