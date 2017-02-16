@@ -22,6 +22,7 @@ public class Challenge implements Serializable {
     public String when;
     public String id;
     public Place place;
+    public List<User> simplePart;
     public String imageLocation;
     public String rules;
     public String address;
@@ -45,6 +46,14 @@ public class Challenge implements Serializable {
         // UNCOMMENT WHEN IT'S READY
         JSONObject userObj = obj.getJSONObject("organizer");
         this.organizer = new User(userObj);
+
+        JSONArray part = obj.getJSONArray("participants");
+        simplePart = new ArrayList<>();
+
+        for (int i = 0; i < part.length(); i++) {
+            simplePart.add(new User(part.getJSONObject(i),1));
+        }
+
 
 
 

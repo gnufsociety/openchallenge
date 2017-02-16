@@ -29,6 +29,16 @@ public class User implements Serializable{
         this.rating = rating;
         this.resPic = resPic;
     }
+
+    public User(JSONObject obj, int simple){
+        try {
+            this.name = obj.getString("username");
+            this.proPicLocation = obj.getString("picture");
+            this.id = obj.getString("_id");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
     public User(JSONObject obj){
         try {
 

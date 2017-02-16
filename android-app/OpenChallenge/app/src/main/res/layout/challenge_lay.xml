@@ -128,9 +128,10 @@
                 android:text="@string/desc_cardlay"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
             <com.gnufsociety.openchallenge.Podium
-                android:visibility="gone"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:id="@+id/chall_podium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -149,6 +150,8 @@
                     android:layout_height="wrap_content">
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:visibility="gone"
+                        android:id="@+id/chall_part1"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/cina1"
@@ -156,6 +159,8 @@
                         app:civ_border_width="1dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:visibility="gone"
+                        android:id="@+id/chall_part2"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="25dp"
@@ -164,6 +169,8 @@
                         app:civ_border_width="1dp" />
 
                     <de.hdodenhof.circleimageview.CircleImageView
+                        android:visibility="gone"
+                        android:id="@+id/chall_part3"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="50dp"

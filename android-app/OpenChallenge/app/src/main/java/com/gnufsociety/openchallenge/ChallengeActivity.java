@@ -33,6 +33,9 @@ import com.google.firebase.storage.StorageReference;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -43,7 +46,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public Challenge c;
     public Toolbar toolbar;
     public ImageView image;
-    public CircleImageView user_img;
+    public CircleImageView user_img, part1,part2,part3;
     public TextView orgUsername;
     public RatingBar orgRate;
     public TextView where;
@@ -54,10 +57,10 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     private GoogleMap mMap;
     public Podium podium;
     private FirebaseAuth auth;
-    public SwipeRefreshLayout refresh;
     public Button join;
     public boolean isOrganizer = false;
     public boolean joined = false;
+
 
 
     @Override
@@ -78,9 +81,14 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         numPart = (TextView) findViewById(R.id.chall_npart);
         join = (Button) findViewById(R.id.chall_join_btn);
         podium = (Podium) findViewById(R.id.chall_podium);
-        /*refresh = (SwipeRefreshLayout) findViewById(R.id.chall_refresh);*/
+        part1 = (CircleImageView) findViewById(R.id.chall_part1);
+        part2 = (CircleImageView) findViewById(R.id.chall_part2);
+        part3 = (CircleImageView) findViewById(R.id.chall_part3);
+
 
         auth = FirebaseAuth.getInstance();
+
+
 
         AsyncTask<Void, Void, JSONObject> task = new AsyncTask<Void, Void, JSONObject>() {
             @Override
@@ -117,6 +125,61 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
             join.setText("Chooooose winner");
             isOrganizer = true;
+        }
+
+
+
+        switch (c.simplePart.size()){
+            case 1:
+                StorageReference p1 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p1)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part1);
+                part1.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                StorageReference p11 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p11)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part1);
+                StorageReference p2 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p2)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part2);
+                part1.setVisibility(View.VISIBLE);
+                part2.setVisibility(View.VISIBLE);
+
+                break;
+            case 3:
+                StorageReference p111 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p111)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part1);
+                StorageReference p22 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p22)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part2);
+                StorageReference p3 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
+                Glide.with(this)
+                        .using(new FirebaseImageLoader())
+                        .load(p3)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(part3);
+                part1.setVisibility(View.VISIBLE);
+                part2.setVisibility(View.VISIBLE);
+                part3.setVisibility(View.VISIBLE);
+
+                break;
         }
 
         image.setImageResource(c.resImage);
