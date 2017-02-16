@@ -120,7 +120,7 @@ router.get('/allChallenges', function (req, res, next) {
         .populate({
             path: 'participants',
             select: 'username picture',
-            options: {limit: 2}
+            options: {limit: 3}
         })
         .exec(function (error, chall) {
             res.send(chall);
