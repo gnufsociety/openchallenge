@@ -29,6 +29,6 @@ Do people realy need it? [Check our survey!](https://drive.google.com/open?id=1-
 
 [Here](/UX-VALIDATION/REPORT.md) you can find some material we used to validate UI/UX
 
-Pub/Organizer [suvery]()
+Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 ## GCW2017 - Milestone 3
