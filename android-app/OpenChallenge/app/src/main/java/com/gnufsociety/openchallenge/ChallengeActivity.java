@@ -169,7 +169,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                         .load(p22)
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .into(part2);
-                StorageReference p3 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
+                StorageReference p3 = sref.child("users/" + c.simplePart.get(2).proPicLocation);
                 Glide.with(this)
                         .using(new FirebaseImageLoader())
                         .load(p3)
