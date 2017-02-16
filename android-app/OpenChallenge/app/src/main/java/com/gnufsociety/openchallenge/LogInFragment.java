@@ -81,8 +81,10 @@ public class LogInFragment extends Fragment {
                             startActivity(in);
                         }
                             //checkIfUserExists(auth.getCurrentUser(),passEdit.getContext());
-                        else
-                            Toast.makeText(getContext(),"Non sei registrato furbetto",Toast.LENGTH_LONG).show();
+                        else {
+                            System.out.println(task.getException());
+                            Toast.makeText(getContext(), "Non sei registrato furbetto", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }
