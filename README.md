@@ -25,6 +25,8 @@ Do people realy need it? [Check our survey!](https://drive.google.com/open?id=1-
 
 ## GCW2017 - Milestone 2
 
+[Presentation](https://drive.google.com/open?id=0BxzqNvZynJFuLWo0SE50dUduVk0)
+
 [Here](https://docs.google.com/spreadsheets/d/1gcSQNKwyko8KUxCel-J6TnrHCPXHBI1VwzDgyYXCGT8/edit?usp=sharing) you can find our the calendar of the coding work. Note that it was accomplished after an accurate UI/UX validation and the code reflects users suggestions, where possible (the work is still in progress as in milestone 2).
 
 [Here](/UX-VALIDATION/REPORT.md) you can find some material we used to validate UI/UX
