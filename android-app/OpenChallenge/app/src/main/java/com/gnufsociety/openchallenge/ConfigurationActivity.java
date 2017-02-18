@@ -70,7 +70,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-
+        context = this;
         ButterKnife.bind(this);
     }
 
