@@ -46,7 +46,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public Challenge c;
     public Toolbar toolbar;
     public ImageView image;
-    public CircleImageView user_img, part1,part2,part3;
+    public CircleImageView user_img, part1, part2, part3;
     public TextView orgUsername;
     public RatingBar orgRate;
     public TextView where;
@@ -60,7 +60,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public Button join;
     public boolean isOrganizer = false;
     public boolean joined = false;
-
+    public SwipeRefreshLayout refreshLayout;
 
 
     @Override
@@ -84,10 +84,10 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         part1 = (CircleImageView) findViewById(R.id.chall_part1);
         part2 = (CircleImageView) findViewById(R.id.chall_part2);
         part3 = (CircleImageView) findViewById(R.id.chall_part3);
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.chall_refresh);
 
 
         auth = FirebaseAuth.getInstance();
-
 
 
         AsyncTask<Void, Void, JSONObject> task = new AsyncTask<Void, Void, JSONObject>() {
@@ -115,7 +115,17 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
 
         //set num participant from web
-        task.execute();
+        ChallengeAsync ca = new ChallengeAsync();
+        ca.execute();
+        //task.execute();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ChallengeAsync ca = new ChallengeAsync();
+                ca.execute();
+            }
+        });
 
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -128,8 +138,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         }
 
 
-
-        switch (c.simplePart.size()){
+        switch (c.simplePart.size()) {
             case 1:
                 StorageReference p1 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
                 Glide.with(this)
@@ -247,6 +256,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         return true;
     }
 
+
     public void showParticipants(View view) {
         Intent intent = new Intent(this, ParticipantsActivity.class);
         Bundle bundle = new Bundle();
@@ -304,11 +314,11 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         };
 
         if (isOrganizer) {
-            Intent intent = new Intent(this,WinnerActivity.class);
+            Intent intent = new Intent(this, WinnerActivity.class);
             Bundle extra = new Bundle();
-            extra.putString("chall_id",c.id);
+            extra.putString("chall_id", c.id);
             intent.putExtras(extra);
-            startActivityForResult(intent,WINNER_CODE);
+            startActivityForResult(intent, WINNER_CODE);
 
         } else
             task.execute();
@@ -317,14 +327,14 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == WINNER_CODE){
-            if (resultCode == RESULT_OK){
+        if (requestCode == WINNER_CODE) {
+            if (resultCode == RESULT_OK) {
                 User[] winners = (User[]) data.getSerializableExtra("winners");
                 //Toast.makeText(this,"The winners are "+winners[0]+" "+winners[1]+" "+winners[2],Toast.LENGTH_LONG).show();
                 podium.setVisibility(View.VISIBLE);
                 podium.setWinners(winners);
                 join.setVisibility(View.GONE);
-                AsyncTask<User[],Void,Void> task = new AsyncTask<User[], Void, Void>() {
+                AsyncTask<User[], Void, Void> task = new AsyncTask<User[], Void, Void>() {
                     @Override
                     protected Void doInBackground(User[]... params) {
                         ApiHelper api = new ApiHelper();
@@ -333,6 +343,34 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                     }
                 };
                 task.execute(winners);
+            }
+        }
+    }
+
+    public class ChallengeAsync extends AsyncTask<Void, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+            ApiHelper api = new ApiHelper();
+
+            return api.numParticipant(c.id,auth.getCurrentUser().getUid());
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject integer) {
+            boolean find = false;
+            try {
+                refreshLayout.setRefreshing(false);
+                find = integer.getBoolean("you");
+
+                int num = integer.getInt("participants");
+                numPart.setText(num + " participants");
+                if (find) {
+                    join.setText("Joined");
+                    joined = true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }

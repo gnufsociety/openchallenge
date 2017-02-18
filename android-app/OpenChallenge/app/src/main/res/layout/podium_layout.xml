@@ -25,14 +25,14 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginTop="55dp"
-            android:src="@drawable/io1"
+            android:src="@drawable/user"
             app:civ_border_width="2dp" />
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_weight="1"
             android:id="@+id/first_podium"
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:src="@drawable/panici1"
+            android:src="@drawable/user"
             app:civ_border_width="2dp" />
 
 
@@ -43,7 +43,7 @@
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_marginTop="75dp"
-            android:src="@drawable/david1"
+            android:src="@drawable/user"
             app:civ_border_width="2dp" />
     </LinearLayout>
 

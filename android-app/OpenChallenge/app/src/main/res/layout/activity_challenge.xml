@@ -21,46 +21,49 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
-                android:scaleType="centerCrop"
                 android:id="@+id/chall_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
                 android:src="@drawable/hacking"
                 app:layout_collapseMode="parallax" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/scrim_bottom"
                 android:layout_alignBottom="@+id/chall_image"
-                />
+                android:layout_gravity="bottom"
+                android:background="@drawable/scrim_bottom" />
+
             <android.support.v7.widget.Toolbar
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                 android:id="@+id/chall_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
     <include
 
-        layout="@layout/challenge_lay"/>
+        layout="@layout/challenge_lay" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <Button
-            android:onClick="joinChallenge"
+            android:layout_margin="5dp"
             android:id="@+id/chall_join_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:textColor="@color/white"
             android:layout_alignParentBottom="true"
+            android:background="@drawable/rounded_button"
+            android:onClick="joinChallenge"
             android:text="Join Challenge"
-            android:textSize="18sp"/>
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>
