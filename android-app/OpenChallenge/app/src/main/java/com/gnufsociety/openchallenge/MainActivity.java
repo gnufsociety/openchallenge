@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 1) {
             finish();
-        } else if (count<5) {
+        } else {
             BottomButton current = null;
             last.clickIt();
 
