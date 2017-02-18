@@ -1,7 +1,5 @@
 package com.gnufsociety.openchallenge;
 
-import com.google.android.gms.location.places.Place;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +19,6 @@ public class Challenge implements Serializable {
     public String desc;
     public String when;
     public String id;
-    public Place place;
     public List<User> simplePart;
     public String imageLocation;
     public String rules;
@@ -59,7 +56,8 @@ public class Challenge implements Serializable {
 
     }
 
-    public Challenge(String name, int resImage, User organizer, String type, String when, String where) {
+    public Challenge(String name, int resImage, User organizer,
+                     String type, String when, String where) {
         this.name = name;
         this.resImage = resImage;
         this.organizer = organizer;
@@ -88,7 +86,5 @@ public class Challenge implements Serializable {
         }
 
         return arr;
-
-
     }
 }

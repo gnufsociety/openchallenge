@@ -23,9 +23,7 @@ public class Fragment2 extends Fragment {
     public static String TAG = "fragment2";
     public FirebaseDatabase database;
 
-    public Fragment2(){
-
-    }
+    public Fragment2(){}
 
     public void search(){
         database = FirebaseDatabase.getInstance();

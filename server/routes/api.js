@@ -30,41 +30,32 @@ router.post('/setWinners', function (req, res) {
         {$inc: {'gold': 1}},
         {safe:true, upsert:true},
         function (err) {
-            if (err){
-              errors = true;
-            }
+            errors = errors || err;
             User.findByIdAndUpdate(
                 obj.second,
                 {$inc: {'silver': 1}},
                 {safe:true, upsert:true},
                 function (err) {
-                    if (err){
-                        errors = true;
-                    }
+                    errors = errors || err;
                     User.findByIdAndUpdate(
                         obj.third,
                         {$inc: {'bronze': 1}},
                         {safe:true, upsert:true},
                         function (err) {
-                            if (err){
-                                errors = true;
-                            }
+                            errors = errors || err;
+                            console.log(errors);
                             res.send(errors);
                         });
                 });
         });
-
-
-
 });
 
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
     User.findOne({'uid': obj.organizer}).exec(function (err, user) {
         assert.equal(err, null);
-        var chall = new Challenge({
+        var challenge = new Challenge({
             name: obj.name,
-            //picture: obj.picture,
             description: obj.description,
             rules: obj.rules,
             image: obj.image,
@@ -77,11 +68,11 @@ router.post('/newChallenge', function (req, res) {
             organizer: user._id,
             participants: []
         });
-        chall.save(function (err) {
+        challenge.save(function (err) {
             if (err) {
                 res.send("Error");
-            }
-            else {
+                console.log("Error saving new challenge");
+            } else {
                 res.send("Saved!");
             }
         })
@@ -90,24 +81,25 @@ router.post('/newChallenge', function (req, res) {
 });
 
 router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) {
-    User.findOne({'uid': req.params.user_uid}).exec(function (err, user) {
-        Challenge.findOne({_id: req.params.id_chall})
-            .exec(function (err, chall) {
-                if (err) res.send("err")
-                else {
-                    var part = chall.participants;
-                    var found = false;
-                    for (var i = 0; i < part.length; i++) {
-                        if (part[i].toString() == user._id.toString()) {
-                            found = true;
-                            break;
+    User.findOne({'uid': req.params.user_uid})
+        .exec(function (err, user) {
+            Challenge.findOne({_id: req.params.id_chall})
+                .exec(function (err, chall) {
+                    if (err) res.send("err");
+                    else {
+                        var part = chall.participants;
+                        var found = false;
+                        for (var i = 0; i < part.length; i++) {
+                            if (part[i].toString() == user._id.toString()) {
+                                found = true;
+                                break;
+                            }
                         }
-                    }
-                    var obj = {
-                        'participants': part.length,
-                        'you': found
-                    }
-                    res.send(obj);
+                        var obj = {
+                            'participants': part.length,
+                            'you': found
+                        };
+                        res.send(obj);
                 }
             });
     });
@@ -122,8 +114,9 @@ router.get('/allChallenges', function (req, res, next) {
             select: 'username picture',
             options: {limit: 3}
         })
-        .exec(function (error, chall) {
-            res.send(chall);
+        .exec(function (error, challenge) {
+            assert.equal(error, null);
+            res.send(challenge);
         })
 });
 
@@ -174,6 +167,7 @@ router.get('/getParticipants/:chall_id', function (req, res, next) {
     Challenge.findById(req.params.chall_id)
         .populate('participants')
         .exec(function (err, chall) {
+            assert.equal(err, null);
             res.send(chall.participants);
         })
 });
@@ -225,87 +219,6 @@ router.get('/findUserByUid/:uid', function (req, res) {
             else res.send(user);
         });
 });
-
-
-/*db.connect(db_url, function (err, done) {
- if (err) {
- console.log('[API] db.connect(db_url, ...): Unable to connect to MongoDB.');
- process.exit(1);
- } else {
-
- /** GET home page.
- *
- *
- router.get('/', function (req, res, next) {
- res.send("Hello World!");
- });
-
- /**
- * CHALLENGES APIs
- *
-
- router.post('/newChallenge', function (req, res) {
- var body_obj = req.body;
- db.get().collection('challenges').insertOne(body_obj, function (err, result) {
- assert.equal(err, null);
-
- db.get().collection('challenges').find().limit(1).toArray(function (err, docs) {
- assert.equal(null, err);
- res.send(docs[0]);
-
-
- });
-
- });
- });
-
-
- router.get('/allChallenges', function (req, res) {
- db.get().collection('challenges').find().toArray(function (err, docs) {
- assert.equal(err, null);
- var count = 0;
- docs.forEach(function (challenge, i, docs) {
- db.get().collection('users').findOne({'uid': challenge.organizer},
- function (er, item) {
- count++;
- assert.equal(er, null)
- challenge.organizer = item;
- if (count == docs.length){
- res.json(docs);
- res.send();
- }
- })
- })
-
- });
-
- });
-
-
- /**
- * USERS APIs
- *
-
- router.post('/newUser', function (req, res) {
- var body_obj = req.body;
- db.get().collection('users').insertOne(body_obj, function (err, result) {
- assert.equal(err, null);
- res.send("Created user:" + body_obj.nickname);
- })
-
- });
-
-
- router.get('/allUsers', function (req, res) {
- db.get().collection('users').find().toArray(function (err, docs) {
- assert.equal(err, null);
- res.json(docs);
-
- });
- });
-
- }
- });*/
 
 
 module.exports = router;

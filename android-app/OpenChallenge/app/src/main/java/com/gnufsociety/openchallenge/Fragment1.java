@@ -7,9 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,9 +25,7 @@ public class Fragment1 extends Fragment {
     public RecyclerView recyclerView;
     public SwipeRefreshLayout refreshLayout;
 
-    public Fragment1(){
-
-    }
+    public Fragment1(){}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,6 +59,7 @@ public class Fragment1 extends Fragment {
 
             }
         };
+
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -86,25 +83,14 @@ public class Fragment1 extends Fragment {
             }
         });
 
-
         task.execute();
-
-
-
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        //recyclerView.setAdapter(adapter);
-
-
         return view;
     }
+
     public static Fragment1 newInstance(String param1, String param2) {
-        /*BlankFragment fragment = new BlankFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
         Fragment1 fragment = new Fragment1();
         return fragment;
     }

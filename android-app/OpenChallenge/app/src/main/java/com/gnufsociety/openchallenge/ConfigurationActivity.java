@@ -26,56 +26,52 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ConfigurationActivity extends AppCompatActivity {
 
     private static final int PICK_GALLERY_INTENT = 1;
-    private EditText usernameEdit,statusEdit;
-    private Button doneBtn;
-    private CircleImageView civ;
+
+    @BindView(R.id.username_first)   EditText usernameEdit;
+    @BindView(R.id.configure_status) EditText statusEdit;
+    @BindView(R.id.done_btn)         Button doneBtn;
+    @BindView(R.id.configure_image)  CircleImageView civ;
+
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private Context context;
     private Uri uriImage;
 
 
+    @OnClick(R.id.done_btn)
+    void tryToCreateUser(){
+        FirebaseUser user = auth.getCurrentUser();
+        if (user != null){
+            if (writeNewUser(user)){
+                Toast.makeText(context,R.string.congratulations_newu,Toast.LENGTH_LONG).show();
+                createUser();
+                finish();
+            }
+            else{
+                Toast.makeText(context,"Nope!",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_configuration);
-        auth = FirebaseAuth.getInstance();
 
+        auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
-        usernameEdit = (EditText) findViewById(R.id.username_first);
-
-        statusEdit = (EditText) findViewById(R.id.configure_status);
-
-        doneBtn = (Button) findViewById(R.id.done_btn);
-
-        civ = (CircleImageView) findViewById(R.id.configure_image);
-
-        context = this;
-
-        doneBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = auth.getCurrentUser();
-                if (user != null){
-                    if (writeNewUser(user)){
-                        Toast.makeText(context,"Congratulation",Toast.LENGTH_LONG).show();
-                        createUser();
-                        finish();
-                    }
-                    else{
-                        Toast.makeText(context,"Nope!",Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-        });
-
+        ButterKnife.bind(this);
     }
 
     //add user to database

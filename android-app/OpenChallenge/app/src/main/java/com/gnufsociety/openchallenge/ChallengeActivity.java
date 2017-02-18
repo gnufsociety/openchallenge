@@ -2,12 +2,10 @@ package com.gnufsociety.openchallenge;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.AppBarLayout;
+import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -30,34 +27,39 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public static int WINNER_CODE = 1;
-
-    public CollapsingToolbarLayout collapseToolbar;
-    public Challenge c;
-    public Toolbar toolbar;
-    public ImageView image;
-    public CircleImageView user_img, part1,part2,part3;
-    public TextView orgUsername;
-    public RatingBar orgRate;
-    public TextView where;
-    public TextView when;
-    public TextView desc;
-    public TextView rules;
-    public TextView numPart;
+    Challenge c;
     private GoogleMap mMap;
-    public Podium podium;
     private FirebaseAuth auth;
-    public Button join;
+
+    @BindView(R.id.chall_collapsing_toolbar) CollapsingToolbarLayout collapseToolbar;
+    @BindView(R.id.chall_toolbar) Toolbar toolbar;
+    @BindView(R.id.chall_image) ImageView image;
+    @BindView(R.id.chall_user_img) CircleImageView user_img;
+    @BindView(R.id.chall_part1) CircleImageView part1;
+    @BindView(R.id.chall_part2) CircleImageView part2;
+    @BindView(R.id.chall_part3) CircleImageView part3;
+    @BindView(R.id.chall_organizer) TextView orgUsername;
+    @BindView(R.id.chall_rate) RatingBar orgRate;
+    @BindView(R.id.chall_where) TextView where;
+    @BindView(R.id.chall_when) TextView when;
+    @BindView(R.id.chall_desc) TextView desc;
+    @BindView(R.id.chall_rules) TextView rules;
+    @BindView(R.id.chall_npart) TextView numPart;
+    @BindView(R.id.chall_podium) Podium podium;
+    @BindView(R.id.chall_join_btn) Button join;
+
     public boolean isOrganizer = false;
     public boolean joined = false;
 
@@ -68,27 +70,9 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
         c = (Challenge) getIntent().getExtras().getSerializable("challenge");
-        collapseToolbar = (CollapsingToolbarLayout) findViewById(R.id.chall_collapsing_toolbar);
-        toolbar = (Toolbar) findViewById(R.id.chall_toolbar);
-        image = (ImageView) findViewById(R.id.chall_image);
-        user_img = (CircleImageView) findViewById(R.id.chall_user_img);
-        orgUsername = (TextView) findViewById(R.id.chall_organizer);
-        orgRate = (RatingBar) findViewById(R.id.chall_rate);
-        where = (TextView) findViewById(R.id.chall_where);
-        when = (TextView) findViewById(R.id.chall_when);
-        desc = (TextView) findViewById(R.id.chall_desc);
-        rules = (TextView) findViewById(R.id.chall_rules);
-        numPart = (TextView) findViewById(R.id.chall_npart);
-        join = (Button) findViewById(R.id.chall_join_btn);
-        podium = (Podium) findViewById(R.id.chall_podium);
-        part1 = (CircleImageView) findViewById(R.id.chall_part1);
-        part2 = (CircleImageView) findViewById(R.id.chall_part2);
-        part3 = (CircleImageView) findViewById(R.id.chall_part3);
-
+        ButterKnife.bind(this);
 
         auth = FirebaseAuth.getInstance();
-
-
 
         AsyncTask<Void, Void, JSONObject> task = new AsyncTask<Void, Void, JSONObject>() {
             @Override
@@ -102,7 +86,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 try {
                     boolean find = integer.getBoolean("you");
                     int num = integer.getInt("participants");
-                    numPart.setText(num + " participants");
+                    numPart.setText("" + num + " participants");
                     if (find) {
                         join.setText("Joined");
                         joined = true;
@@ -113,21 +97,17 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             }
         };
 
-
         //set num participant from web
         task.execute();
-
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
         StorageReference cImage = sref.child("challenges/" + c.imageLocation);
 
         if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
-            join.setText("Chooooose winner");
+            join.setText(R.string.choose_winner);
             isOrganizer = true;
         }
-
-
 
         switch (c.simplePart.size()){
             case 1:
@@ -222,15 +202,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.chall_map_fra);
 
-        /*refresh.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.black);
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(refresh.getContext(),"",Toast.LENGTH_LONG).show();
-                refresh.setRefreshing(false);
-            }
-        });*/
-
         mapFragment.getMapAsync(this);
 
     }
@@ -293,11 +264,11 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 String n = numPart.getText().toString();
                 int i = Integer.parseInt(n.split(" ")[0]);
                 if (joined) {
-                    numPart.setText(--i + " participants");
-                    btn.setText("Join Challenge");
+                    numPart.setText("" + (--i) + R.string.participants);
+                    btn.setText(R.string.join_challenge);
                 } else {
-                    numPart.setText(++i + " participants");
-                    btn.setText("Joined!");
+                    numPart.setText("" + (++i) + R.string.participants);
+                    btn.setText(R.string.joined);
                 }
                 joined = !joined;
             }

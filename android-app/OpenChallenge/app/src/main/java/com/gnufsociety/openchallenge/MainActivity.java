@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -12,15 +14,12 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
-import com.google.android.gms.common.api.Api;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,12 +28,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -46,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth auth;
     public SearchFragment searchFragment;
     private GoogleMap mMap;
+
+    //private BottomNavigationView bottomBar;
 
     private Fragment1 f1;
     private Fragment3 f3;
@@ -72,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 .replace(R.id.home_fragment, f1, Fragment1.TAG)
                 .addToBackStack(Fragment1.TAG).commit();
 
-
         //get instance of Firebase authentication
         auth = FirebaseAuth.getInstance();
 
@@ -92,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //set last as home button
         last = (BottomButton) findViewById(R.id.home_bottom);
         last.clickIt();
-
 
         System.out.println("lal");
         System.out.println("Tiemmodify");
@@ -138,12 +131,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         searchFragment.adapter.swapList(users);
                     }
                 };
-
                 task.execute(query);
-
-
                 return true;
-
             }
 
             @Override
@@ -173,12 +162,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
         }
 
-
-        //noinspection SimplifiableIfStatement
-        //if (id == R.id.action_settings) {
-        //    return true;
-        //}
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -200,12 +183,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 1) {
             finish();
-        } else {
+        } else if (count<5) {
             BottomButton current = null;
             last.clickIt();
-            //last.setColorFilter(Color.WHITE);
+
             getSupportFragmentManager().popBackStackImmediate();
-            FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
+            FragmentManager.BackStackEntry entry = getSupportFragmentManager()
+                    .getBackStackEntryAt(getSupportFragmentManager()
+                            .getBackStackEntryCount() - 1);
             String tag = entry.getName();
             if (tag.equals(Fragment1.TAG)) {
                 current = (BottomButton) findViewById(R.id.home_bottom);
@@ -247,8 +232,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager manager = getSupportFragmentManager();
         switch (btn.getId()) {
             case R.id.home_bottom:
-                //Fragment1 f = null;
-                //f1 = (Fragment1) manager.findFragmentByTag(Fragment1.TAG);
                 if (f1 == null)
                     f1 = new Fragment1();
                 manager.beginTransaction()
@@ -257,18 +240,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.favorite_bottom:
-                //f4 = (Fragment4) manager.findFragmentByTag(Fragment4.TAG);
                 if (f4 == null)
                     f4 = new Fragment4();
-                /*else
-                    manager.popBackStackImmediate(Fragment4.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                */manager.beginTransaction()
+                manager.beginTransaction()
                         .replace(R.id.home_fragment, f4, Fragment4.TAG)
                         .addToBackStack(Fragment4.TAG)
                         .commit();
                 break;
             case R.id.add_bottom:
-                //f3 = (Fragment3) manager.findFragmentByTag(Fragment3.TAG);
                 if (f3 == null) {
                     f3 = new Fragment3();
                     f3.setMainActivity(this);
@@ -280,24 +259,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .commit();
                 break;
             case R.id.map_bottom:
-                //f2 = (SupportMapFragment) manager.findFragmentByTag(Fragment2.TAG);
                 if (f2 == null)
                     f2 = new SupportMapFragment();
-                /*else
-                    manager.popBackStackImmediate(Fragment2.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                */manager.beginTransaction()
+                manager.beginTransaction()
                         .replace(R.id.home_fragment, f2, Fragment2.TAG)
                         .addToBackStack(Fragment2.TAG)
                         .commit();
                 f2.getMapAsync(this);
                 break;
             case R.id.profile_bottom:
-                //f5 = (Fragment5) manager.findFragmentByTag(Fragment5.TAG);
                 if (f5 == null)
                     f5 = new Fragment5();
-                /*else
-                    manager.popBackStackImmediate(Fragment5.TAG,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                */manager.beginTransaction()
+                manager.beginTransaction()
                         .replace(R.id.home_fragment, f5, Fragment5.TAG)
                         .addToBackStack(Fragment5.TAG)
                         .commit();
@@ -306,7 +279,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -356,19 +328,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
         }
 
-        /*mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                Bundle bundle = new Bundle();
-                int pos = (int) marker.getTag();
-                bundle.putSerializable("challenge",f1.adapter.list.get(pos));
-                Intent i = new Intent(myToolbar.getContext(),ChallengeActivity.class);
-                i.putExtras(bundle);
-                myToolbar.getContext().startActivity(i);
-
-                return false;
-            }
-        });*/
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {

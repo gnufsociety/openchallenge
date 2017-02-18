@@ -15,4 +15,10 @@
     <string name="rules">Rules</string>
     <string name="rules_title">Rules</string>
     <string name="title_activity_maps">Map</string>
+
+    <string name="choose_winner">Choooose winner!</string>
+    <string name="join_challenge">Join challenge</string>
+    <string name="joined">Joined!</string>
+    <string name="participants">participants</string>
+    <string name="congratulations_newu">Congratulations!</string>
 </resources>

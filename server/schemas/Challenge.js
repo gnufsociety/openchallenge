@@ -1,24 +1,27 @@
 var mongoose = require('mongoose');
 
 var ChallengeSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    rules: String,
-    image: String,
-    location: {
-        address: String,
-        lat: Number,
-        long: Number
-    },
-    date: String,
-    organizer: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    participants: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }]
-},{ versionKey: false });
+        name:        {type : String, trim : true },
+        description: {type : String, trim : true },
+        rules:       {type : String, trim : true },
+        image: String,
+        location: {
+            address: String,
+            lat:     Number,
+            long:    Number
+        },
+        date: String,
+        organizer: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        },
+        participants: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }]
+    },{ versionKey: false });
+    // no version key can get us into troubles: why is it set to false?
+
 
 module.exports = mongoose.model("Challenge", ChallengeSchema);

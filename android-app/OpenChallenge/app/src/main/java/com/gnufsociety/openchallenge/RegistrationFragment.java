@@ -20,17 +20,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RegistrationFragment extends Fragment {
 
-    private Button regBtn;
+    @BindView(R.id.reg_btn) Button regBtn;
+    @BindView(R.id.email_reg) EditText emailEdit;
+    @BindView(R.id.password_reg) EditText passEdit;
+    @BindView(R.id.confirm_pass_reg) EditText confPassEdit;
 
-
-
-    private EditText emailEdit, passEdit, confPassEdit;
     private FirebaseAuth auth;
 
     public RegistrationFragment() {
@@ -42,19 +46,7 @@ public class RegistrationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
-
-        regBtn = (Button) view.findViewById(R.id.reg_btn);
-
-        emailEdit = (EditText) view.findViewById(R.id.email_reg);
-        passEdit = (EditText) view.findViewById(R.id.password_reg);
-        confPassEdit = (EditText) view.findViewById(R.id.confirm_pass_reg);
-
-        regBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
+        ButterKnife.bind(this, view);
 
         auth = FirebaseAuth.getInstance();
         auth.signOut();
@@ -62,6 +54,7 @@ public class RegistrationFragment extends Fragment {
         return view;
     }
 
+    @OnClick(R.id.reg_btn)
     public void registerUser(){
         final String email = emailEdit.getText().toString();
         final String pass = passEdit.getText().toString();

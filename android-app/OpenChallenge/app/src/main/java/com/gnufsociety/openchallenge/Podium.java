@@ -11,6 +11,8 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -19,14 +21,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Podium extends RelativeLayout {
 
-    public CircleImageView first, second, third;
+    @BindView(R.id.first_podium)  CircleImageView first;
+    @BindView(R.id.second_podium) CircleImageView second;
+    @BindView(R.id.third_podium)  CircleImageView third;
 
     public Podium(Context context, AttributeSet attrs) {
         super(context, attrs);
         View root = inflate(context,R.layout.podium_layout,this);
-        first = (CircleImageView) root.findViewById(R.id.first_podium);
-        second = (CircleImageView) root.findViewById(R.id.second_podium);
-        third = (CircleImageView) root.findViewById(R.id.third_podium);
+        ButterKnife.bind(this, root);
     }
 
     public void setWinners(User[] u){

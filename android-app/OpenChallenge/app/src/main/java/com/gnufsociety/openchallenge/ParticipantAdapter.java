@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -75,15 +77,14 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     }
 
     public class PartipantHolder extends RecyclerView.ViewHolder{
-        public CircleImageView civ;
-        public TextView user;
-        public RatingBar rate;
+        @BindView(R.id.part_row_image) CircleImageView civ;
+        @BindView(R.id.part_row_user) TextView user;
+        @BindView(R.id.part_row_rate) RatingBar rate;
 
         public PartipantHolder(View itemView) {
             super(itemView);
-            civ = (CircleImageView) itemView.findViewById(R.id.part_row_image);
-            user = (TextView) itemView.findViewById(R.id.part_row_user);
-            rate = (RatingBar) itemView.findViewById(R.id.part_row_rate);
+            ButterKnife.bind(this, itemView);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,8 +95,6 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
                     civ.getContext().startActivity(intent);
                 }
             });
-
-
         }
 
     }

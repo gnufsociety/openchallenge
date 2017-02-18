@@ -18,14 +18,17 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by sdc on 1/11/17.
  */
+
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
     List<Challenge> list;
@@ -63,7 +66,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.when.setText(c.when);
         holder.where.setText(c.address.split(",")[0]);
         holder.rate.setRating((float) c.organizer.rating);
-//        holder.img.setImageResource(c.resImage);
 
         Glide.with(holder.desc.getContext())
                 .using(new FirebaseImageLoader())
@@ -76,11 +78,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 .load(userImg)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(holder.user_img);
-
-
-        //holder.user_img.setImageResource(c.organizer.resPic);
-
-
     }
 
     @Override
@@ -89,49 +86,37 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
     public class CardViewHolder extends RecyclerView.ViewHolder {
-        public FavoriteButton button;
-        public TextView title, org, when, where, desc;
-        public RatingBar rate;
-        public ImageView img;
 
-        public CircleImageView user_img;
+        @BindView(R.id.card_title) TextView title;
+        @BindView(R.id.card_when)  TextView when;
+        @BindView(R.id.card_where) TextView where;
+        @BindView(R.id.card_descr) TextView desc;
+        @BindView(R.id.card_rate)  RatingBar rate;
+        @BindView(R.id.card_img)   ImageView img;
+        @BindView(R.id.card_organizer) TextView org;
+        @BindView(R.id.card_favorite)  FavoriteButton button;
+        @BindView(R.id.card_user_img)  CircleImageView user_img;
         //Gesture detector for double tap listener
         private GestureDetector gd;
 
+        @OnClick(R.id.card_user_img)
+        public void openUserActivity() {
+            Intent user = new Intent(user_img.getContext(), UserActivity.class);
+            Bundle extra = new Bundle();
+            extra.putSerializable("user", list.get(getAdapterPosition()).organizer);
+            user.putExtras(extra);
+            user_img.getContext().startActivity(user);
+        }
+
+        @OnClick(R.id.card_favorite)
+        public void like() {
+            button.likeIt();
+            list.get(getAdapterPosition()).likeIt();
+        }
+
         public CardViewHolder(final View view) {
-
             super(view);
-            button = (FavoriteButton) view.findViewById(R.id.card_favorite);
-
-            title = (TextView) view.findViewById(R.id.card_title);
-            org = (TextView) view.findViewById(R.id.card_organizer);
-            when = (TextView) view.findViewById(R.id.card_when);
-            where = (TextView) view.findViewById(R.id.card_where);
-            desc = (TextView) view.findViewById(R.id.card_descr);
-
-            rate = (RatingBar) view.findViewById(R.id.card_rate);
-
-            img = (ImageView) view.findViewById(R.id.card_img);
-            user_img = (CircleImageView) view.findViewById(R.id.card_user_img);
-
-            user_img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent user = new Intent(user_img.getContext(), UserActivity.class);
-                    Bundle extra = new Bundle();
-                    extra.putSerializable("user",list.get(getAdapterPosition()).organizer);
-
-                    user.putExtras(extra);
-                    user_img.getContext().startActivity(user);
-                }
-            });
-
-            /*view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    view.getContext().startActivity(new Intent(view.getContext(),ChallengeActivity.class));
-                }
-            });*/
+            ButterKnife.bind(this, view);
 
             //listener
             final GestureDetector.SimpleOnGestureListener lis = new GestureDetector.SimpleOnGestureListener() {
@@ -146,14 +131,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                 @Override
                 public boolean onSingleTapConfirmed(MotionEvent e) {
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("challenge",list.get(getAdapterPosition()));
-                    Intent i = new Intent(button.getContext(),ChallengeActivity.class);
+                    bundle.putSerializable("challenge", list.get(getAdapterPosition()));
+                    Intent i = new Intent(button.getContext(), ChallengeActivity.class);
                     i.putExtras(bundle);
                     button.getContext().startActivity(i);
 
                     return true;
                 }
             };
+
             gd = new GestureDetector(button.getContext(), lis);
 
             //set listener on touch event
@@ -165,16 +151,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
                 }
             });
-            //listener favorite button
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    button.likeIt();
-                    list.get(getAdapterPosition()).likeIt();
-
-                }
-            });
-
         }
     }
 }
