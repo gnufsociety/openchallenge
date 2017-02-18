@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -59,6 +60,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     @BindView(R.id.chall_npart) TextView numPart;
     @BindView(R.id.chall_podium) Podium podium;
     @BindView(R.id.chall_join_btn) Button join;
+    @BindView(R.id.chall_refresh) SwipeRefreshLayout refreshLayout;
 
     public boolean isOrganizer = false;
     public boolean joined = false;
@@ -98,7 +100,18 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         };
 
         //set num participant from web
-        task.execute();
+        //task.execute();
+        ChallengeAsync ca = new ChallengeAsync();
+        ca.execute();
+        //task.execute();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ChallengeAsync ca = new ChallengeAsync();
+                ca.execute();
+            }
+        });
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
@@ -304,6 +317,34 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                     }
                 };
                 task.execute(winners);
+            }
+        }
+    }
+
+    public class ChallengeAsync extends AsyncTask<Void, Void, JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(Void... params) {
+            ApiHelper api = new ApiHelper();
+
+            return api.numParticipant(c.id,auth.getCurrentUser().getUid());
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject integer) {
+            boolean find = false;
+            try {
+                refreshLayout.setRefreshing(false);
+                find = integer.getBoolean("you");
+
+                int num = integer.getInt("participants");
+                numPart.setText(num + " participants");
+                if (find) {
+                    join.setText("Joined");
+                    joined = true;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }
