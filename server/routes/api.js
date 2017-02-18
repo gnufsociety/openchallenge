@@ -216,7 +216,10 @@ router.get('/findUserByUid/:uid', function (req, res) {
     User.findOne({'uid': user_id})
         .exec(function (err, user) {
             if (err) res.send("Error");
-            else res.send(user);
+            if(user)
+                res.send(user);
+            else
+                res.send("No user found");
         });
 });
 
