@@ -76,7 +76,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                     new AuthUI.IdpConfig.Builder(AuthUI.FACEBOOK_PROVIDER).build(),
                                     new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
                             ))
-                            .setLogo(R.mipmap.ic_launcher)
+                            .setLogo(R.drawable.login_logo)
                             .setTheme(R.style.AppTheme)
                             .build(),
                     RC_SIGN_IN
@@ -93,7 +93,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
             // Successfully signed in
             if (resultCode == ResultCodes.OK) {
-                startActivity(MainActivity.createIntent(this, response));
+                startActivity(MainActivity.createIntent(this, response)
+                        .putExtra("my_token", response.getIdpToken()));
                 finish();
                 return;
             } else {
