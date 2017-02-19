@@ -167,4 +167,9 @@ public class ConfigurationActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(activity, "You can't escape from the configuration!", Toast.LENGTH_LONG).show();
+    }
 }
