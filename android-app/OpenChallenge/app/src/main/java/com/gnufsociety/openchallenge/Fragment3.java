@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -80,9 +81,9 @@ public class Fragment3 extends Fragment {
     @BindView(R.id.organize_image_view)
     ImageView image;
     @BindView(R.id.organize_date_btn)
-    Button dateBtn;
+    ImageButton dateBtn;
     @BindView(R.id.organize_find_place)
-    Button placeBtn;
+    ImageButton placeBtn;
     @BindView(R.id.organize_create_btn)
     Button createBtn;
 
@@ -135,8 +136,6 @@ public class Fragment3 extends Fragment {
             public void onClick(View v) {
                 try {
                     createChallenge();
-                    //disable button preventing two challenges
-                    createBtn.setEnabled(false);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -202,6 +201,10 @@ public class Fragment3 extends Fragment {
             Toast.makeText(getContext(), "Choose a location!", Toast.LENGTH_LONG).show();
             return;
         }
+
+
+        //disable button preventing two challenges
+        createBtn.setEnabled(false);
 
 
         StorageReference challangesRef = storageRef.child("challenges/" + name);

@@ -78,9 +78,9 @@ public class LogInFragment extends Fragment {
                             Bundle extra = new Bundle();
                             extra.putBoolean("new", false);
                             in.putExtras(extra);
+                            getActivity().finish();
                             startActivity(in);
                         }
-                            //checkIfUserExists(auth.getCurrentUser(),passEdit.getContext());
                         else {
                             System.out.println(task.getException());
                             Toast.makeText(getContext(), "Non sei registrato furbetto", Toast.LENGTH_LONG).show();
@@ -89,27 +89,5 @@ public class LogInFragment extends Fragment {
                 });
     }
 
-    //theoretically this is unnecessary because if a user just login, he already have configured his account
-    private void checkIfUserExists(final FirebaseUser user, final Context context) {
-        database.getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Intent in = new Intent(context, MainActivity.class);
-                Bundle extra = new Bundle();
-                if (!dataSnapshot.hasChild(user.getUid()))
-                    extra.putBoolean("new",true);
-
-                else
-                    extra.putBoolean("new", false);
-                in.putExtras(extra);
-                startActivity(in);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
 
 }

@@ -75,6 +75,7 @@ public class RegistrationFragment extends Fragment {
                             Bundle extra = new Bundle();
                             extra.putBoolean("new", true);
                             in.putExtras(extra);
+                            getActivity().finish();
                             startActivity(in);
                         }
                     }
