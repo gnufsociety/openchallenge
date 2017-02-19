@@ -190,10 +190,19 @@ router.post('/newUser', function (req, res, next) {
         bronze: 0,
         uid: obj.uid
     });
-    user.save(function (err) {
-        if (err) res.send("Errore");
-        else res.send("User " + user.username + " created!");
-    })
+    User.findOne({'username':user.username}).exec(function (err, u) {
+        if (err) res.send("Error!");
+        else if (u){
+            res.send("already exist");
+        }
+        else {
+            user.save(function (err) {
+                if (err) res.send("Errore");
+                else res.send("User " + user.username + " created!");
+            });
+        }
+    });
+
 });
 
 router.get('/allUsers', function (req, res) {
