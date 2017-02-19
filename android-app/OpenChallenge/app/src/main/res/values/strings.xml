@@ -21,4 +21,21 @@
     <string name="joined">Joined!</string>
     <string name="participants">participants</string>
     <string name="congratulations_newu">Congratulations!</string>
+
+    <string name="unknown_error">Unknown error</string>
+    <string name="no_internet_connection">No connection available</string>
+    <string name="sign_in_cancelled">Pressed back during sign-in</string>
+    <string name="unknown_sign_in_response">Unknown sign in response</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_map_title">Nearby</string>
+    <string name="nav_organize_title">Organize</string>
+    <string name="nav_saved_title">Favorites</string>
+    <string name="nav_profile_title">Profile</string>
+
+    <string name="facebook_application_id" translatable="false">247472875705022</string>
+    <!-- Facebook Application ID, prefixed by 'fb'.  Enables Chrome Custom tabs. -->
+    <string name="facebook_login_protocol_scheme" translatable="false">fb247472875705022</string>
+
+    <string name="twitter_consumer_key" translatable="false">YOURCONSUMERKEY</string>
+    <string name="twitter_consumer_secret" translatable="false">YOURCONSUMERSECRET</string>
 </resources>

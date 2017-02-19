@@ -194,6 +194,22 @@ public class ApiHelper {
         return null;
     }
 
+
+    public boolean isPresent(String uid) {
+        Request req = new Request.Builder()
+                .url(url + "findUserByUid/" + uid)
+                .build();
+        try {
+            Response resp = client.newCall(req).execute();
+            if(resp.body().string().length()>15) return true;
+            else return false;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
     public void setWinners(User[] users) {
         try {
             JSONObject json = new JSONObject()

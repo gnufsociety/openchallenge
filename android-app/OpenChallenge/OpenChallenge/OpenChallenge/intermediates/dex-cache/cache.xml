@@ -3,678 +3,813 @@
 
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ffc15e965a9e8c28f24455eedd4cac215c45d1fc">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-10.0.1_7631168a5a23cf214fae68b19313bc406b24b8e2/classes.dex" />
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_16a08ae8e443df733f436d005997cfff63115af1/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.1_3a03d82a4b78a4ace300502c9b027ae69f6ae971/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_0b92c9f17f632229061449cd1c82952cce244907/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-10.0.1_bf2f047e30adb4b0897004519fec83a0cd63827f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f6cf557be4dbd0282ea2388633e5378634423226">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-10.0.1_65c0eb3b991583ac119db448c9a58c328be3c851/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-10.0.1_b8922d1a02d3d5a173da0c24db278e7fb2f343b1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-10.0.1_9a2af94d1c26381b4e2e363b8a3ee5555ed72ede/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="12b7a706e3a3c3feab4e73189b26281bcc5527cb">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_9295242bb98ad40770359a238d1744e554171d78/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="408a599ac77cd17fe8e8919326bec617b3d005bd">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-10.0.1_45e43910d20c43db6a7972f28d9934fa6e260b0a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="028f8255cb977b29cdffbfcf05caa0459686120c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-10.0.1_c3b0c4782f5267a9762d12af8b53a74fcfe47319/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.1_e23c1ce836faafed320d4ee59fe17ca5167a1c17/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.1.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-2.1.0_34fda56efc378289737a9fc0b5ea2d0db3cc0a5a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-10.0.1_54765ec11c14ff374e9b5fc516511f3daa828b0f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_f82aaced137c7fa8151ec3b7a8cbdbf5a0f78e43/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-10.0.1_b2b65bb659ba424442491db2f0f8e59f19be1de5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_e79dc0238d46272ca041ae8832c4f03976571c64/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-10.0.1_501101f719914d92730305e78efaf95cde636f08/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_043ce5828b5ab760f8faa964dabc829a95da295f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-10.0.1_e02c9f235380c4f2d6e00fedf1006262cc0fac06/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1d193729baf37df3d902a423291423a0df7e3779">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-10.0.1_c0417a0dc37da272f86bb660fd21d43c1a197bde/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-10.0.1_762db4eb851e35e8e8960be992f99c7d97e8f0b7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="57c2eceb8548de84509d1ebc293fedec53231f6c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-10.0.1_4b2738234c9cf91a691dd5a27ee69f5b7e0d0d87/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-appindexing/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ae80d328a8548b4610ead6c624bab8c6a6984f5b">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-appindexing-10.0.1_ca673d64636e805f46c54b505078f9e2be51428c/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-10.0.1_e4c068781bba9fab3f6fbf03dcff20ffac349b33/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.1_06973a602c5920ce4cb90eb5c5e539f75a03f73a/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-10.0.1_d932e448bddb10185d84162432ee3d544ac07a93/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-10.0.1_1618af3d776fd1f88d252d13b5f8a81e92ed54a3/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-10.0.1_79114ec32b5c4450441aa0018266b53f2fd70ce8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-10.0.1_42a1c476cc4ffe65c89749c398ff6f283e4be007/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_5161d812f171970147c8d86a5e747dd2b7ce1891/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-v4-impl/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_c73313f0ff3606c03a92af4a75aae09e5d5061e8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_c527ec72ef54afb1c72e43e87b94eb68eaff0816/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-10.0.1_e3df505c8a2036c5ae336bb7e30bd611ff0b4803/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-10.0.1_e01a104722f26a660e7de8e3cda36c7636d34925/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4385ccc0a88b33d182a836eadb47be55c8eb1107">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-10.0.1_8d1c9dc2ed3c1bd1d2bc15722b5ba40298029186/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c6e1f361e9d61aece9dac39b77fcc98a337a144d">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-10.0.1_a4c21302318844b108158312df1d2d0dee764197/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.firebaseui/firebase-ui-storage/0.6.0/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.firebaseui-firebase-ui-storage-0.6.0_615fb66826823029312e23ce385f9e4d335f907e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-10.0.1_86ac26deb85c799c73daa8fe0568d14d62cb1794/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-10.0.1_9beb88147ea872dad2fd40c41a0c7679dcd7396e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.5.1_5f36e66309b225c510d1320ae1e5b7cb645f989e/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.1.1_136bf8d038224540e76baf676daad97babcdbbc4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="a48dc0b148059764d32500be558702d5ff932058">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.1_89f4b924c77c9f7eed7f23ac8d4fbd6a375c3a74/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-10.0.1_5dc5a9405858faaf893d571f5c12af5f6e2f60b5/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.1_1432c7a01482fe37a89757be1a3e007288d0b3f7/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-10.0.1_7dacfc9eedd82ef1b9236af0028af5f823868e70/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="c9649557905bf7a80fca9e0d54cbcb7662627860">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.1_9463d56d3177fa9b2ce29667256fb06075a818dd/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-25.1.1_78592fbcb448feac6522d180219afbe8e5d054f4/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.0.2/f8d87f15b94b8d74e7ccf61d7eedb558811cdb30/converter-gson-2.0.2.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-10.0.1_b588aaabf42af3776e11ef0f91deaa364dd8abff/classes.dex" />
+        sha1="f8d87f15b94b8d74e7ccf61d7eedb558811cdb30">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.0.2_22f680ebd1dae6e9bbf4eba0eb68b7aae4460054/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.1/b9d63507329a7178e026fc334f87587ee5070ac5/gson-2.6.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-10.0.1_f053bfe2b165fd5f66fb709e8934b4feb209457c/classes.dex" />
+        sha1="b9d63507329a7178e026fc334f87587ee5070ac5">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.1_5e00ae50d994bd69ed78a2ef613e0f730ddcb9d3/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.5.1/bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc/butterknife-annotations-8.5.1.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.1_725c041f0e075b6860985b06c83c9f05fd3276e0/classes.dex" />
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-annotations-8.5.1_cea1bafcdff80d62884df58676a747d4168bd4ce/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.5.1_0f20883217fef66b1fa16d85abc92a47327f100e/classes.dex" />
+        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-10.0.1_ae759053f7da3bcbaf8ec2d12179a092f4c73d1f/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-10.0.1_69ed61b622d881041cb8831e7bb7eed941c72826/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_fb96f12c29d723c5e2f6c08777787cd105e2fc9e/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-24.0.0_5716a6d8da28ae44d5041d27da10b123cdb078ab/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-10.0.1_d3df696548c5b7656930846463a2310f33f9da3f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_ae0e95321b3cb2c5a762ad7dabf6d6f6ba074ec8/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="771267c5b0c7a5b348d3205dcfa1f871af7e0177">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-10.0.1_dcbad55bc7fce87f1f553ef1251d5f3549b7b516/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-10.0.1_c6c822dbb09fd5916dbc752829b1149df9a366f6/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.6.0_d7f477228363ae75447dcadebfbc629ca7beca5d/classes.dex" />
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-10.0.1_b90f1eec8b2ce0edb5e8db5ff0170034310641ce/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.1_af715885391900107059dc5dc12d44bd80c73357/classes.dex" />
+        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-10.0.1_59415d2914fa086ee307a51f11a34dea4589d732/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.1_096e7c585df83cc0efe6250a8f03cbcf86860f97/classes.dex" />
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.7.0_ab44546839019fd042e31b7e3dc42e866ad05a34/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-10.0.1_8a155de300e2bae77b4cb543fa8bf10cbe1e4d82/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-10.0.1_0e763db46918bee2836e6f80f04a0061931a4904/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-10.0.1_38ba59670fc250a42be24d2db1eeff4539a237af/classes.dex" />
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-10.0.1_eb48df38f12a8e3967e548936e6207ffd8054b15/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-10.0.1_a7b6e17965f56b23a3acbf2b7ac3c6578d7fcfc4/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_4eb12f071a8c87501057fd93883221039469df57/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-10.0.1_7a8b04168cf847c6e5bedcdc1908970e9e5aa9cd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_29fb153c47a5e92da3a469bba2342d770f4e2e4b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-10.0.1_4c94669037c6574bc8367689ef40eccec7b7231b/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.1_cd4a55769badb532220a1fddc1af8ca3da2ff29f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/transition/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="15b049fedbd8e3926bf99d9e45dfc9b2a1043bb9">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.1_934a253b8cf598a3790fdcc33712c01254e61a9f/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-transition-25.1.1_8db2df448df94510c28a75a0c2c2103c06266d11/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-10.0.1_7694c0268654d4bd67083c58b6e70b083ccc6b66/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="1e11c68fec92a17c84dd8d1dd80e74c4e67b12e2">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-10.0.1_e913c8d2b0b8e8756e1e8eb2b3481c7ff512face/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-10.0.1_5ff136c61eb017759b292e69eef23f088df604cd/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.0.1/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-10.0.1_892411ce90f8e9550ecc316cc2bd92fdf2d99d34/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.0.0/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/palette-v7/24.0.0/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="734e80dffea7bd76c18ae256822a124c30d85850">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.0.0_c2031b2a9878ef10db8828e37ba67364c5397e65/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-palette-v7-24.0.0_6c65b5d80612f422ef0379d8b2fa9897bc76af23/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f053a0e353dd4752b6c161e52092ef118fe10cbe">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c397edc0c7e84a1495a10c7a846c1dc88f103a3f/classes.dex" />
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_f17e05a79555836a9be6bdf633a481f31b9a5811/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.1.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_580d0727d3d76394a6770cfe0d4e75eb6a093ce0/classes.dex" />
+        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-fragment-25.1.1_382360830e067c33e0b36dac2b51fa733c26d39a/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/10.0.1/jars/classes.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-10.0.1_7796a09d867bee586fd7e7233f2b0bf8aa51c7a1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-10.0.1_bebbb5bede68944cde1ad3666007a1b6bbe763fb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e70b06239bd95c60bfd643c41211849ec84d4374">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_cfae3e6f9f4c7a4f56ac0ea5d0edede6d9ea00c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_5866f6d9f9836a9b646654ca7115b52e9a7c702f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.6.0_3c591496d6f4efb73bc577efc63ac9978524bd7c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-10.0.1_ff44be829f49402c05a3179065134671299284ca/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/10.0.1/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
         sha1="b1df8fa3d372a27e4e969ce00b00689ee1eed031">
-        <dex dex="/home/sdc/StudioProjects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-10.0.1_49d8a1e10fc709905f4134d16cfb61fa6ca396e1/classes.dex" />
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-10.0.1_abe345a3921a5337341b40c567d70e302020f990/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a8ae156c2726ac9c56daaf4b49452ec2cdb7bba9">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-25.1.1_eb9a0214a1406cc2a612af2ef067dfef3a2b209e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_30da6787f50357770427d45b6cc236fe5435f47c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-10.0.1_76a6d2a605d6bd86c2f7b22e1e84a4b8b09ca763/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-utils-25.1.1_6d1436b5f8453cbdf9c00a838e160f2cf63b1ca6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-10.0.1_5ab2882ceac0f25ee2553463b864e0bb5bfd4851/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.twitter/twitter-text/1.13.0/78415b95ae3184c5926d593feab64bfc0b73b2dd/twitter-text-1.13.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="78415b95ae3184c5926d593feab64bfc0b73b2dd">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/twitter-text-1.13.0_2c9a7985f8066d4f8ef9f21b83949ef3929b8410/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-10.0.1_9490d832c3013da9a50aed043b3ef66fd11158c5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.twitter.sdk.android/twitter/2.3.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a10ed1f1cff990ef081263ad33f13dc6c207eb4e">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.twitter.sdk.android-twitter-2.3.0_662faca1859484157e8b478e90697ca28ccea1ba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-10.0.1_f858b93bc6250afb208575ce0c9c322e026f4cf4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.twitter.sdk.android/twitter-core/2.3.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="343ad59d9fb3bbf6ab99baafad859eb4b0fecc02">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.twitter.sdk.android-twitter-core-2.3.0_7c37f8cab083a3fe8c64dcb66547c4df51ee6bf3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-10.0.1_72356c53f75ba685c498b70cb15bdb64b8a324c7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-media-compat-25.1.1_a01080a2c35ea91f9824e37092a139832319ce5b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-10.0.1_ce14fda1fc73e58a102ad4b5eef825c240742093/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-10.0.1_2f687b486e415b3e61d20df17520fce85d73a38a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-instantapps/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-instantapps-10.0.1_69cc063e0c02e5863f43e4618a2ef9b21b4e7e75/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/customtabs/25.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="73591df4ec047e55db9415034d1dfab617fa9f3c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-25.1.0_fcd0db22eeb9e13b9090d3fdcf505b2e07f45554/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-awareness/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4385ccc0a88b33d182a836eadb47be55c8eb1107">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-awareness-10.0.1_14060d0856008fd251f36eed7596afca2f62bb73/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-10.0.1_2838f4171d400b48f94be61391a7a134f0dad832/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-10.0.1_d9aad09e136706776ccb08d0ef45bb925b767f29/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.0.2/43eeae0b9fb087bb3194ba59ab63a38a32fbf3e/retrofit-2.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="043eeae0b9fb087bb3194ba59ab63a38a32fbf3e">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.0.2_d967a0a9a726b232dee0f8ec69b8d4b6311cec35/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="408a599ac77cd17fe8e8919326bec617b3d005bd">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-10.0.1_ce890f47e3377f74e729f8ec96f1387a6cefa3bc/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.18.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="43a08f2cc1bc8e9678b5a1740f3b91b50ab50ac6">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.18.0_25751310c7ea684dbb33c4ea006c5c63d1f38d8b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-25.1.1_46d2bb00643eb4d4ee73c25f629fa41b7d142043/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.firebaseui/firebase-ui-storage/0.6.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3c433e48557e476290f45fb6cb568d1a103c9978">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.firebaseui-firebase-ui-storage-0.6.0_1f93a09fdea79d4069a1177d6cab49d6300504f2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-10.0.1_aec95c1ca4dabec8ca27b803cc867bf3c9c4dfb2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-25.1.1_05b5fe6d5e29e58fc9ba4a35c2f8374b9c931e9a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-10.0.1_34d1c4503ff9094a10c088cd6fea7f9655b9dda0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-appindexing/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ae80d328a8548b4610ead6c624bab8c6a6984f5b">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-appindexing-10.0.1_f2534ea1b5d26678d9ab5e7a95aebd6cc43dfc50/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.jakewharton/butterknife/8.5.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.jakewharton-butterknife-8.5.1_92837c0298b50553f25114f41818c5e78dd2449e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c6e1f361e9d61aece9dac39b77fcc98a337a144d">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-10.0.1_19ee875c62af6638872f6b2bf908b37d917b9bba/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-core-ui-25.1.1_832a206db04e298b8fe8e7c79b0c50f2c618cca2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-10.0.1_08eaec5bffeff9cd0786980dfd8977253d4a2f97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-compat-25.1.1_87db2d4fb79c3dbcfed5cd7cd66fd02f66f6f2c3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-10.0.1_b9d9e15c8accaa15c4616d2543b1df5aef6f1ff8/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f6cf557be4dbd0282ea2388633e5378634423226">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-10.0.1_90f440c8bd2fd634fd982c5ae58ddb7f46ed7a3c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-25.1.1_19d7189dbd9a19ee37cfd11386b949f8b26e7e99/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-10.0.1_c78259c30a5c9d391b0badd45ec573b74e96283f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffc15e965a9e8c28f24455eedd4cac215c45d1fc">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-10.0.1_c84ae19779bb1480be10247fe06ff014f5356678/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-10.0.1_42c7347505c25d32f71971781687ef777a5cb539/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-10.0.1_ca64c99fd2b13f965d8ca81f8a933fe205ec0a46/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_4d60f68f420c9a2b5c00d62847bbbc0bad0d1ae5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1d193729baf37df3d902a423291423a0df7e3779">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-10.0.1_c49897fa4346ad35b6d1ef1eb6ce26b5eb447df7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0326819d377447d9d0237d36e742ef1153e547b0">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_d4749232b1449cf1d806b741b951b2c2ac0e3bfa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="028f8255cb977b29cdffbfcf05caa0459686120c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-10.0.1_0a3d0bbbc7671f593ccf06b3437f75017b1cc931/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-10.0.1_b30742a1a5574bb787d8cbbd59813dedfc7378e6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-10.0.1_7286cf3974c40a575b6b7080db3b329f98c9c237/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-v4-impl/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_913387a0c84105a8ce86ac6891d17bb60fdcab51/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-10.0.1_3084d9c6e23b24c414bcd5d9529a5dad03b4bec7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.twitter.sdk.android/tweet-ui/2.3.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7308fa2037dac339ea04b90cdd17e87f835ea294">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.twitter.sdk.android-tweet-ui-2.3.0_c8f55b12605ad8ac542bad38ee6a6df2b9fed353/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_cacd610fbf8204a7941daf8148aaab1a499806e3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.1.1/support-annotations-25.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-25.1.1_f6c3ce2eef2e871da7a705ade5c9d6d1162add6c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-10.0.1_782c1a7ed90bd95003c4c8925229ec58e785529f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.firebaseui/firebase-ui-auth/1.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9aea94e7aa8a8ed235566a120aa52d8ace3d9fe4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.firebaseui-firebase-ui-auth-1.1.1_fa437415107841c037320335548d59dde0c48d2b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-25.1.1_58b3a7493b63066bbd69ac770ae247a67699949a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-10.0.1_c7bf665507f4f214373edb609829494816a010d7/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.twitter.sdk.android/tweet-composer/2.3.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="895c63ba9782b04f0c5da69205216f6ec87119eb">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.twitter.sdk.android-tweet-composer-2.3.0_7e4ebca9a6c837708777b289e56ee5a6be388c2a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.14/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a319fd4d548ba4cc9511561d37109ba922bfbf6a">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/io.fabric.sdk.android-fabric-1.3.14_01a2a99d049aada836f6bb3e8ccfaaaa933217aa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a48dc0b148059764d32500be558702d5ff932058">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-10.0.1_35ff800eea85bfdb5ecb4a522bf88fcbf1d755c4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-10.0.1_ed2cbefe673170d13c1e09a76f0ed8308d0aec97/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-10.0.1_7e465adee40e19d95d9417c98628d48f78bb5ce9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-10.0.1_74415317c16a53b14052887754110f824f0eb627/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="57c2eceb8548de84509d1ebc293fedec53231f6c">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-10.0.1_daa1c6b4a74e0523443132eddf9e0ef27b63cc5f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.1.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a2af9c72ccaa4c5c049b500ca6ea664a4ce1f7d4">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-2.1.0_c6df5218e5ef4a08128a0916d75b670d7213f984/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-10.0.1_9e05d0c858a20f8be070183e208b14418353558e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/10.0.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1e11c68fec92a17c84dd8d1dd80e74c4e67b12e2">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-10.0.1_aa5ca6798c4922447e6ef495cf4c7196f50dbd32/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/exploded-aar/com.android.support/design/25.1.1/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="cd7951e04cfb9a8bf008d544a478d9a8d8192d38">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-25.1.1_85716a970454809825191ebe3bb4a54c5f9ccf45/classes.dex" />
     </item>
 
 </items>

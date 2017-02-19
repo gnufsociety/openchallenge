@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -27,7 +30,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -52,24 +58,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //get instance of Firebase authentication
+        auth = FirebaseAuth.getInstance();
+        final FirebaseUser currentUser = auth.getCurrentUser();
+
+        if (currentUser == null) {
+            startActivity(RegistrationActivity.createIntent(this));
+            finish();
+            return;
+        }
+
+        //If is a new user, start configuration activity
+        final Context context = this;
+        //If signed-in user is not in database, start configuration activity
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                // to be replaced with a database query with uid as field
+                // (make it an index in the model)
+                return new ApiHelper().isPresent(currentUser.getUid());
+            }
+
+            @Override
+            protected void onPostExecute(Boolean res) {
+                if(!res)
+                    startActivity(new Intent(context, ConfigurationActivity.class));
+            }
+        };
+        task.execute();
+
         setContentView(R.layout.activity_main);
-        Bundle extra = getIntent().getExtras();
         searchFragment = new SearchFragment();
         searchFragment.setContext(this);
 
-        //If is a new user, start configuration activity
-        boolean newUser = extra.getBoolean("new", false);
-        if (newUser) {
-            startActivity(new Intent(this, ConfigurationActivity.class));
-        }
         f1 = new Fragment1();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.home_fragment, f1, Fragment1.TAG)
                 .addToBackStack(Fragment1.TAG).commit();
-
-        //get instance of Firebase authentication
-        auth = FirebaseAuth.getInstance();
-
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -157,9 +183,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .addToBackStack("search").commit();
         }
         else if (id == R.id.action_logout){
-            auth.signOut();
-            startActivity(new Intent(this,RegistrationActivity.class));
-            finish();
+            AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // user is now signed out
+                            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                            finish();
+                        }
+                    });
         }
 
         return super.onOptionsItemSelected(item);
@@ -339,5 +371,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 myToolbar.getContext().startActivity(i);
             }
         });
+    }
+
+
+    public static Intent createIntent(Context context, IdpResponse idpResponse) {
+        Intent in = IdpResponse.getIntent(idpResponse);
+        in.setClass(context, MainActivity.class);
+        return in;
     }
 }
