@@ -150,7 +150,7 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
-    public void createUser(String username, String status, String imgLocation, String uid) {
+    public String createUser(String username, String status, String imgLocation, String uid) {
         JSONObject json = null;
         try {
             json = new JSONObject()
@@ -167,13 +167,14 @@ public class ApiHelper {
                     .post(body)
                     .build();
             Response resp = client.newCall(req).execute();
-            System.out.println(resp.body().string());
+            return resp.body().string();
 
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "Error404";
 
 
     }

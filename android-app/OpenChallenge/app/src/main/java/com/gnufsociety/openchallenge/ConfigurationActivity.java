@@ -1,7 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -43,7 +44,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private FirebaseDatabase database;
-    private Context context;
+    private Activity activity;
     private Uri uriImage;
 
 
@@ -51,14 +52,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     void tryToCreateUser(){
         FirebaseUser user = auth.getCurrentUser();
         if (user != null){
-            if (writeNewUser(user)){
-                Toast.makeText(context,R.string.congratulations_newu,Toast.LENGTH_LONG).show();
-                createUser();
-                finish();
-            }
-            else{
-                Toast.makeText(context,"Nope!",Toast.LENGTH_LONG).show();
-            }
+            createUser();
         }
     }
 
@@ -70,12 +64,12 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-        context = this;
+        activity = this;
         ButterKnife.bind(this);
     }
 
     //add user to database
-    private boolean writeNewUser(FirebaseUser user) {
+    /*private boolean writeNewUser(FirebaseUser user) {
         String username = usernameEdit.getText().toString();
         if (username.equals(""))
             return false;
@@ -84,34 +78,69 @@ public class ConfigurationActivity extends AppCompatActivity {
         database.getReference().child("users").child(user.getUid()).setValue(u);
 
         return true;
-    }
+    }*/
 
     public void createUser(){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+
+
         final String username = usernameEdit.getText().toString();
         final String usPic = username.toLowerCase().replace(" ","_");
         final String status = statusEdit.getText().toString();
 
-        AsyncTask<Void,Void,Void> task = new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                ApiHelper api = new ApiHelper();
-                api.createUser(username,status,usPic,user.getUid());
 
-                return null;
+        if (username.equals("")){
+            Toast.makeText(activity,"Choose an username!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (uriImage == null){
+            Toast.makeText(activity,"Choose a profile picture!",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+
+            @Override
+            protected String doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                return api.createUser(username,status,usPic,user.getUid());
+
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                if (s.equals("already exist")){
+                    Toast.makeText(activity,"Username already exist!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+
+                    Toast.makeText(activity,"Uploading profile photos",Toast.LENGTH_LONG).show();
+                    StorageReference userRef = storageRef.child("users/"+usPic);
+                    UploadTask uploadTask = userRef.putFile(uriImage);
+
+
+                    uploadTask.addOnFailureListener(activity, new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(activity,"Error uploading profile picture!",Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    uploadTask.addOnSuccessListener(activity, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    });
+                }
             }
         };
 
-        StorageReference userRef = storageRef.child("users/"+usPic);
-        UploadTask uploadTask = userRef.putFile(uriImage);
-        uploadTask.addOnFailureListener(this, new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(statusEdit.getContext(),"Error uploading profile picture!",Toast.LENGTH_LONG).show();
-            }
-        });
+
 
         task.execute();
 
