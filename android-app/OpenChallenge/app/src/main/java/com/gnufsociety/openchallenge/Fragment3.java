@@ -46,6 +46,7 @@ import java.util.Calendar;
 import java.util.Random;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -91,12 +92,7 @@ public class Fragment3 extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment3,container,false);
 
-        placeText = (TextView) view.findViewById(R.id.organize_place_text);
-        dateText = (TextView) view.findViewById(R.id.organize_date_text);
-        image = (ImageView) view.findViewById(R.id.organize_image_view);
-        nameEdit = (EditText) view.findViewById(R.id.organize_name_edit);
-        descEdit = (EditText) view.findViewById(R.id.organize_desc_edit);
-        rulesEdit = (EditText) view.findViewById(R.id.organize_rules_edit);
+        ButterKnife.bind(this, view);
 
         //image.setColorFilter(ContextCompat.getColor(getContext(),R.color.colorAccent));
 
