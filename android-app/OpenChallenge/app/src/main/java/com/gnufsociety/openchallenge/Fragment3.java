@@ -45,6 +45,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Random;
 
+import butterknife.BindView;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -64,15 +65,18 @@ public class Fragment3 extends Fragment {
 
     public static String TAG = "fragment3";
 
-    public TextView dateText, placeText;
-    public EditText nameEdit, descEdit, rulesEdit;
-    public ImageView image;
+    @BindView(R.id.organize_date_text)  TextView dateText;
+    @BindView(R.id.organize_place_text) TextView placeText;
+    @BindView(R.id.organize_name_edit) EditText nameEdit;
+    @BindView(R.id.organize_desc_edit) EditText descEdit;
+    @BindView(R.id.organize_rules_edit) EditText rulesEdit;
+    @BindView(R.id.organize_image_view) ImageView image;
+
     public Uri uriImage;
     public Place place;
     public MainActivity main;
-    public Fragment3(){
 
-    }
+    public Fragment3(){}
 
     public void setMainActivity(MainActivity main){
         this.main = main;
