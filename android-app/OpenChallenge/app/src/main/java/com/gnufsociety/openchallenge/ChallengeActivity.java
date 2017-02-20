@@ -273,17 +273,19 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                Button btn = (Button) view;
+                /*Button btn = (Button) view;
                 String n = numPart.getText().toString();
                 int i = Integer.parseInt(n.split(" ")[0]);
                 if (joined) {
-                    numPart.setText("" + (--i) + R.string.participants);
+                    numPart.setText((--i)+"" + R.string.participants);
                     btn.setText(R.string.join_challenge);
                 } else {
-                    numPart.setText("" + (++i) + R.string.participants);
+                    numPart.setText((++i)+"" + R.string.participants);
                     btn.setText(R.string.joined);
                 }
-                joined = !joined;
+                joined = !joined;*/
+                ChallengeAsync ac = new ChallengeAsync();
+                ac.execute();
             }
         };
 
@@ -294,8 +296,9 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             intent.putExtras(extra);
             startActivityForResult(intent,WINNER_CODE);
 
-        } else
+        } else {
             task.execute();
+        }
 
     }
 
@@ -342,6 +345,10 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 if (find) {
                     join.setText("Joined");
                     joined = true;
+                }
+                else {
+                    join.setText("Join Challenge");
+                    joined = false;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

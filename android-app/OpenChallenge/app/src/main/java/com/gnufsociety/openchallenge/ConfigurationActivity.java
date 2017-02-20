@@ -25,12 +25,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
+import id.zelory.compressor.FileUtil;
 
 
 public class ConfigurationActivity extends AppCompatActivity {
@@ -119,8 +122,26 @@ public class ConfigurationActivity extends AppCompatActivity {
                 else {
 
                     Toast.makeText(activity,"Uploading profile photos",Toast.LENGTH_LONG).show();
+                    File toCompress = null;
+                    try {
+                        toCompress = FileUtil.from(activity,uriImage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //Toast.makeText(activity, "Uploading challenge..", Toast.LENGTH_LONG).show();
+
+                    //return compressed image PLAY WITH THIS
+                    final File compressedFile = new Compressor.Builder(activity)
+                            .setMaxHeight(800)
+                            .setMaxWidth(800)
+                            .setQuality(90)
+                            .build().compressToFile(toCompress);
+
+
                     StorageReference userRef = storageRef.child("users/"+usPic);
-                    UploadTask uploadTask = userRef.putFile(uriImage);
+
+
+                    UploadTask uploadTask = userRef.putFile(Uri.fromFile(compressedFile));
 
 
                     uploadTask.addOnFailureListener(activity, new OnFailureListener() {

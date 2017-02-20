@@ -205,12 +205,13 @@ public class Fragment3 extends Fragment {
         //get current image
 
         File toCompress = FileUtil.from(getContext(),uriImage);
+        Toast.makeText(getContext(), "Uploading challenge..", Toast.LENGTH_LONG).show();
 
         //return compressed image PLAY WITH THIS
         final File compressedFile = new Compressor.Builder(getContext())
                 .setMaxHeight(1024)
                 .setMaxWidth(1024)
-                .setQuality(80)
+                .setQuality(90)
                 .build().compressToFile(toCompress);
 
         /* = Compressor.getDefault(getContext()).compressToFile(toCompress);*/
@@ -235,7 +236,7 @@ public class Fragment3 extends Fragment {
                 //enable the button after the upload
                 createBtn.setEnabled(true);
                 //delete compressed image
-                compressedFile.delete();
+                System.out.println("File deleted: "+compressedFile.delete());
                 Toast.makeText(getContext(), "Upload successfull", Toast.LENGTH_LONG).show();
                 setToHomePage();
 
