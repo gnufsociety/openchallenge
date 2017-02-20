@@ -12,6 +12,7 @@
     <color name="selected_btn">#FFF52500</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="delete">#DD2C00</color>
     <color name="backGroundHome1">#BDBDBD</color>
     <color name="backGroundHome2">#eeeeee</color>
     <color name="translucent_scrim_bottom">#B3000000</color>

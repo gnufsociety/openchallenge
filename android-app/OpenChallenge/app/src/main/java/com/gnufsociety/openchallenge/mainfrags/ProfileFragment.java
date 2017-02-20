@@ -1,9 +1,12 @@
 package com.gnufsociety.openchallenge.mainfrags;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +18,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.MainActivity;
 import com.gnufsociety.openchallenge.R;
+import com.gnufsociety.openchallenge.RegistrationActivity;
 import com.gnufsociety.openchallenge.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -43,8 +52,8 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_layout) public LinearLayout layout;
     @BindView(R.id.user_progress_bar) public ProgressBar spinner;
 
-    //@BindView(0) public Button deleteUserBtn;
-    //@BindView(0) public Button logoutBtn;
+    @BindView(R.id.delete_usr_button) public Button deleteUserBtn;
+    @BindView(R.id.logout_button) public Button logoutBtn;
 
     public ProfileFragment(){
 
@@ -91,6 +100,38 @@ public class ProfileFragment extends Fragment {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         task.execute(auth.getCurrentUser().getUid());
         return view;
+    }
+
+    @OnClick(R.id.delete_usr_button)
+    public void deleteUser() {
+        // TODO: call api to delete user (not implemented yet)
+        /* Uncomment when api implemented
+        AuthUI.getInstance()
+                .delete(getActivity())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Deletion succeeded
+                        } else {
+                            // Deletion failed
+                        }
+                    }
+                });
+        */
+    }
+
+    @OnClick(R.id.logout_button)
+    public void logout() {
+        AuthUI.getInstance()
+                .signOut(getActivity())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // user is now signed out
+                        startActivity(new Intent(getContext(),RegistrationActivity.class));
+                        getActivity().finish();
+                    }
+                });
     }
 
 

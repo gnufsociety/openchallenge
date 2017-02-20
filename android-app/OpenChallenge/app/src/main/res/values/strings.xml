@@ -38,4 +38,6 @@
 
     <string name="twitter_consumer_key" translatable="false">YOURCONSUMERKEY</string>
     <string name="twitter_consumer_secret" translatable="false">YOURCONSUMERSECRET</string>
+    <string name="logout">Logout</string>
+    <string name="delete_user">Delete user</string>
 </resources>
