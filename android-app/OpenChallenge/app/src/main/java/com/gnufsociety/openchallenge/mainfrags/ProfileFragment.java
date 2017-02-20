@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -31,11 +34,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     public static String TAG = "fragment5_profile";
-    public CircleImageView civ;
-    public TextView gold, silver, bronze;
-    public TextView status;
-    public LinearLayout layout;
-    public ProgressBar spinner;
+
+    @BindView(R.id.user_pro_pic) public CircleImageView profilePic;
+    @BindView(R.id.user_number_gold) public TextView gold;
+    @BindView(R.id.user_number_silver) public TextView silver;
+    @BindView(R.id.user_number_bronze) public TextView bronze;
+    @BindView(R.id.user_status) public TextView status;
+    @BindView(R.id.user_layout) public LinearLayout layout;
+    @BindView(R.id.user_progress_bar) public ProgressBar spinner;
+
+    //@BindView(0) public Button deleteUserBtn;
+    //@BindView(0) public Button logoutBtn;
 
     public ProfileFragment(){
 
@@ -45,13 +54,8 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment5_profile,container,false);
-        civ = (CircleImageView) view.findViewById(R.id.user_pro_pic);
-        gold = (TextView) view.findViewById(R.id.user_number_gold);
-        silver = (TextView) view.findViewById(R.id.user_number_silver);
-        bronze = (TextView) view.findViewById(R.id.user_number_bronze);
-        status = (TextView) view.findViewById(R.id.user_status);
-        spinner = (ProgressBar) view.findViewById(R.id.user_progress_bar);
-        layout = (LinearLayout) view.findViewById(R.id.user_layout);
+
+        ButterKnife.bind(this,view);
 
         AsyncTask<String,Void,User> task = new AsyncTask<String, Void, User>() {
             @Override
@@ -66,11 +70,11 @@ public class ProfileFragment extends Fragment {
                 StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
                 StorageReference userRef = sref.child("users/"+user.proPicLocation);
 
-                Glide.with(civ.getContext())
+                Glide.with(profilePic.getContext())
                         .using(new FirebaseImageLoader())
                         .load(userRef)
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(civ);
+                        .into(profilePic);
 
                 status.setText(user.status);
                 gold.setText(user.goldMedals+"");
@@ -85,12 +89,9 @@ public class ProfileFragment extends Fragment {
             }
         };
         FirebaseAuth auth = FirebaseAuth.getInstance();
-
         task.execute(auth.getCurrentUser().getUid());
-
-
-
-
         return view;
     }
+
+
 }
