@@ -5,8 +5,7 @@
     android:layout_height="56dp"
     android:minWidth="80dp"
     android:orientation="vertical"
-    android:paddingTop="6dp"
-    android:background="@color/colorPrimary">
+    android:paddingTop="6dp">
 
     <ImageView
         android:id="@+id/bottom_image"

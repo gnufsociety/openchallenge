@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getWindow().setBackgroundDrawable(null);
+
         //get instance of Firebase authentication
         auth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = auth.getCurrentUser();

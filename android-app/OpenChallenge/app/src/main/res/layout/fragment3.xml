@@ -186,9 +186,8 @@
                 android:layout_columnSpan="2"
                 android:layout_row="0"
                 android:padding="0dp"
-                android:layout_marginBottom="64dp"
+                android:layout_marginBottom="32dp"
                 android:layout_gravity="center"
-                android:background="#B4B4B4"
                 card:cardBackgroundColor="#B4B4B4"
                 card:cardCornerRadius="10dp"
                 card:contentPadding="0dp">
@@ -220,7 +219,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/colorAccent"
                 android:text="Create it!"
                 android:background="@drawable/rounded_button"
                 android:textColor="@color/white" />
