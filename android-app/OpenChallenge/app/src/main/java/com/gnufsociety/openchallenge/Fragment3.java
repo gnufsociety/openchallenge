@@ -1,17 +1,14 @@
 package com.gnufsociety.openchallenge;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -30,10 +27,8 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -41,19 +36,16 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.MediaType;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import id.zelory.compressor.Compressor;
+import id.zelory.compressor.FileUtil;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -128,7 +120,7 @@ public class Fragment3 extends Fragment {
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                chooseFromGallerry();
+                chooseFromGallery();
             }
         });
         createBtn.setOnClickListener(new View.OnClickListener() {
@@ -201,14 +193,31 @@ public class Fragment3 extends Fragment {
             Toast.makeText(getContext(), "Choose a location!", Toast.LENGTH_LONG).show();
             return;
         }
+        if (uriImage == null){
+            Toast.makeText(getContext(), "Choose a picture!", Toast.LENGTH_LONG).show();
+            return;
+        }
 
 
         //disable button preventing two challenges
         createBtn.setEnabled(false);
 
+        //get current image
+
+        File toCompress = FileUtil.from(getContext(),uriImage);
+
+        //return compressed image PLAY WITH THIS
+        final File compressedFile = new Compressor.Builder(getContext())
+                .setMaxHeight(1024)
+                .setMaxWidth(1024)
+                .setQuality(80)
+                .build().compressToFile(toCompress);
+
+        /* = Compressor.getDefault(getContext()).compressToFile(toCompress);*/
+
 
         StorageReference challangesRef = storageRef.child("challenges/" + name);
-        UploadTask uploadTask = challangesRef.putFile(uriImage);
+        UploadTask uploadTask = challangesRef.putFile(Uri.fromFile(compressedFile));
 
         AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
             @Override
@@ -225,6 +234,8 @@ public class Fragment3 extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 //enable the button after the upload
                 createBtn.setEnabled(true);
+                //delete compressed image
+                compressedFile.delete();
                 Toast.makeText(getContext(), "Upload successfull", Toast.LENGTH_LONG).show();
                 setToHomePage();
 
@@ -251,7 +262,7 @@ public class Fragment3 extends Fragment {
         }
     }
 
-    public void chooseFromGallerry() {
+    public void chooseFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -293,6 +304,7 @@ public class Fragment3 extends Fragment {
 
 
     }
+
 
 
 }
