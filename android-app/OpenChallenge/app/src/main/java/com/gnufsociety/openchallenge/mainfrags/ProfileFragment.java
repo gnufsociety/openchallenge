@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.mainfrags;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
@@ -26,22 +28,23 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by sdc on 1/11/17.
  */
 
-public class Fragment5 extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    public static String TAG = "fragment5";
+    public static String TAG = "fragment5_profile";
     public CircleImageView civ;
     public TextView gold, silver, bronze;
     public TextView status;
     public LinearLayout layout;
     public ProgressBar spinner;
-    public Fragment5(){
+
+    public ProfileFragment(){
 
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment5,container,false);
+        View view = inflater.inflate(R.layout.fragment5_profile,container,false);
         civ = (CircleImageView) view.findViewById(R.id.user_pro_pic);
         gold = (TextView) view.findViewById(R.id.user_number_gold);
         silver = (TextView) view.findViewById(R.id.user_number_silver);

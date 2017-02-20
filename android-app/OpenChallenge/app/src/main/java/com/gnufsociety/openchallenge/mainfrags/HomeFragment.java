@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.mainfrags;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.adapters.CardAdapter;
 import com.gnufsociety.openchallenge.model.Challenge;
 
@@ -20,15 +22,15 @@ import java.util.ArrayList;
  * Created by sdc on 1/11/17.
  */
 
-public class Fragment1 extends Fragment {
+public class HomeFragment extends Fragment {
 
-    public static String TAG = "fragment1";
+    public static String TAG = "fragment1_home";
 
     public CardAdapter adapter;
     public RecyclerView recyclerView;
     public SwipeRefreshLayout refreshLayout;
 
-    public Fragment1(){}
+    public HomeFragment(){}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment1,container,false);
+        View view = inflater.inflate(R.layout.fragment1_home,container,false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
@@ -93,8 +95,8 @@ public class Fragment1 extends Fragment {
         return view;
     }
 
-    public static Fragment1 newInstance(String param1, String param2) {
-        Fragment1 fragment = new Fragment1();
+    public static HomeFragment newInstance(String param1, String param2) {
+        HomeFragment fragment = new HomeFragment();
         return fragment;
     }
 }

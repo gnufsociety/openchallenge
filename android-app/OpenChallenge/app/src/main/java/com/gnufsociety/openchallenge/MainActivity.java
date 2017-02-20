@@ -23,6 +23,11 @@ import android.view.View;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.gnufsociety.openchallenge.customui.BottomButton;
+import com.gnufsociety.openchallenge.mainfrags.FavoriteFragment;
+import com.gnufsociety.openchallenge.mainfrags.Fragment2;
+import com.gnufsociety.openchallenge.mainfrags.HomeFragment;
+import com.gnufsociety.openchallenge.mainfrags.OrganizeFragment;
+import com.gnufsociety.openchallenge.mainfrags.ProfileFragment;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -50,11 +55,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     //private BottomNavigationView bottomBar;
 
-    private Fragment1 f1;
-    private Fragment3 f3;
-    private Fragment4 f4;
+    private HomeFragment f1;
+    private OrganizeFragment f3;
+    private FavoriteFragment f4;
     private SupportMapFragment f2;
-    private Fragment5 f5;
+    private ProfileFragment f5;
 
 
     @Override
@@ -96,10 +101,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchFragment = new SearchFragment();
         searchFragment.setContext(this);
 
-        f1 = new Fragment1();
+        f1 = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_fragment, f1, Fragment1.TAG)
-                .addToBackStack(Fragment1.TAG).commit();
+                .replace(R.id.home_fragment, f1, HomeFragment.TAG)
+                .addToBackStack(HomeFragment.TAG).commit();
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -228,15 +233,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .getBackStackEntryAt(getSupportFragmentManager()
                             .getBackStackEntryCount() - 1);
             String tag = entry.getName();
-            if (tag.equals(Fragment1.TAG)) {
+            if (tag.equals(HomeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.home_bottom);
             } else if (tag.equals(Fragment2.TAG)) {
                 current = (BottomButton) findViewById(R.id.map_bottom);
-            } else if (tag.equals(Fragment3.TAG)) {
+            } else if (tag.equals(OrganizeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.add_bottom);
-            } else if (tag.equals(Fragment4.TAG)) {
+            } else if (tag.equals(FavoriteFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.favorite_bottom);
-            } else if (tag.equals(Fragment5.TAG)) {
+            } else if (tag.equals(ProfileFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.profile_bottom);
             }
 
@@ -269,29 +274,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (btn.getId()) {
             case R.id.home_bottom:
                 if (f1 == null)
-                    f1 = new Fragment1();
+                    f1 = new HomeFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f1, Fragment1.TAG)
-                        .addToBackStack(Fragment1.TAG)
+                        .replace(R.id.home_fragment, f1, HomeFragment.TAG)
+                        .addToBackStack(HomeFragment.TAG)
                         .commit();
                 break;
             case R.id.favorite_bottom:
                 if (f4 == null)
-                    f4 = new Fragment4();
+                    f4 = new FavoriteFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f4, Fragment4.TAG)
-                        .addToBackStack(Fragment4.TAG)
+                        .replace(R.id.home_fragment, f4, FavoriteFragment.TAG)
+                        .addToBackStack(FavoriteFragment.TAG)
                         .commit();
                 break;
             case R.id.add_bottom:
                 if (f3 == null) {
-                    f3 = new Fragment3();
+                    f3 = new OrganizeFragment();
                     f3.setMainActivity(this);
 
                 }
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f3, Fragment3.TAG)
-                        .addToBackStack(Fragment3.TAG)
+                        .replace(R.id.home_fragment, f3, OrganizeFragment.TAG)
+                        .addToBackStack(OrganizeFragment.TAG)
                         .commit();
                 break;
             case R.id.map_bottom:
@@ -305,10 +310,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.profile_bottom:
                 if (f5 == null)
-                    f5 = new Fragment5();
+                    f5 = new ProfileFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f5, Fragment5.TAG)
-                        .addToBackStack(Fragment5.TAG)
+                        .replace(R.id.home_fragment, f5, ProfileFragment.TAG)
+                        .addToBackStack(ProfileFragment.TAG)
                         .commit();
                 break;
         }

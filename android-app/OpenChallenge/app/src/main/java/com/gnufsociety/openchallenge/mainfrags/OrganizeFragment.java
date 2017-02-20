@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.mainfrags;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -23,6 +23,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.MainActivity;
+import com.gnufsociety.openchallenge.R;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -34,8 +37,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-import org.json.JSONException;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,44 +50,51 @@ import id.zelory.compressor.Compressor;
 import id.zelory.compressor.FileUtil;
 
 import static android.app.Activity.RESULT_OK;
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by sdc on 1/11/17.
  */
 
-public class Fragment3 extends Fragment {
+public class OrganizeFragment extends Fragment {
     public static int PLACE_AUTOCOMPLETE_INTENT = 1;
     public static int PICK_GALLERY_INTENT = 2;
 
 
-    public static String TAG = "fragment3";
+    public static String TAG = "fragment3_organize";
 
     @BindView(R.id.organize_date_text)
-    TextView dateText;
+    public TextView dateText;
+
     @BindView(R.id.organize_place_text)
-    TextView placeText;
+    public TextView placeText;
+
     @BindView(R.id.organize_name_edit)
-    EditText nameEdit;
+    public EditText nameEdit;
+
     @BindView(R.id.organize_desc_edit)
-    EditText descEdit;
+    public EditText descEdit;
+
     @BindView(R.id.organize_rules_edit)
-    EditText rulesEdit;
+    public EditText rulesEdit;
+
     @BindView(R.id.organize_image_view)
-    ImageView image;
+    public ImageView image;
+
     @BindView(R.id.organize_date_btn)
-    ImageButton dateBtn;
+    public ImageButton dateBtn;
+
     @BindView(R.id.organize_find_place)
-    ImageButton placeBtn;
+    public ImageButton placeBtn;
+
     @BindView(R.id.organize_create_btn)
-    Button createBtn;
+    public Button createBtn;
 
 
     public Uri uriImage;
     public Place place;
     public MainActivity main;
 
-    public Fragment3() {
+    public OrganizeFragment() {
     }
 
     public void setMainActivity(MainActivity main) {
@@ -101,7 +109,7 @@ public class Fragment3 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment3, container, false);
+        View view = inflater.inflate(R.layout.fragment3_organize, container, false);
 
         ButterKnife.bind(this, view);
 
