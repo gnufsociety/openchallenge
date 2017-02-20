@@ -44,10 +44,12 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import id.zelory.compressor.Compressor;
 import id.zelory.compressor.FileUtil;
 
 import static android.app.Activity.RESULT_OK;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by sdc on 1/11/17.
@@ -103,43 +105,12 @@ public class Fragment3 extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        //image.setColorFilter(ContextCompat.getColor(getContext(),R.color.colorAccent));
-
-        placeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findPlace();
-            }
-        });
-        dateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDateDialog();
-            }
-        });
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseFromGallery();
-            }
-        });
-        createBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    createChallenge();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         return view;
     }
 
-    private void showDateDialog() {
+
+    @OnClick(R.id.organize_date_btn)
+    public void showDateDialog() {
         DatePickerDialog.OnDateSetListener mDateListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -156,7 +127,8 @@ public class Fragment3 extends Fragment {
         dpd.show();
     }
 
-    public void createChallenge() throws JSONException, IOException {
+    @OnClick(R.id.organize_create_btn)
+    public void createChallenge() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         StorageReference storageRef = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
@@ -198,13 +170,16 @@ public class Fragment3 extends Fragment {
             return;
         }
 
-
         //disable button preventing two challenges
         createBtn.setEnabled(false);
 
         //get current image
-
-        File toCompress = FileUtil.from(getContext(),uriImage);
+        File toCompress = null;
+        try {
+            toCompress = FileUtil.from(getContext(),uriImage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Toast.makeText(getContext(), "Uploading challenge..", Toast.LENGTH_LONG).show();
 
         //return compressed image PLAY WITH THIS
@@ -215,16 +190,16 @@ public class Fragment3 extends Fragment {
                 .build().compressToFile(toCompress);
 
         /* = Compressor.getDefault(getContext()).compressToFile(toCompress);*/
+        System.out.println(compressedFile.getTotalSpace());
 
-
-        StorageReference challangesRef = storageRef.child("challenges/" + name);
-        UploadTask uploadTask = challangesRef.putFile(Uri.fromFile(compressedFile));
+        StorageReference challengesRef = storageRef.child("challenges/" + name);
+        UploadTask uploadTask = challengesRef.putFile(Uri.fromFile(compressedFile));
 
         AsyncTask<Void, Void, String> task = new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
-                ApiHelper api = new ApiHelper();
-                return api.createChallenge(user.getUid(), nameC, descC, ruleC, locat, date, place);
+                    ApiHelper api = new ApiHelper();
+                    return api.createChallenge(user.getUid(), nameC, descC, ruleC, locat, date, place);
             }
         };
 
@@ -237,7 +212,7 @@ public class Fragment3 extends Fragment {
                 createBtn.setEnabled(true);
                 //delete compressed image
                 System.out.println("File deleted: "+compressedFile.delete());
-                Toast.makeText(getContext(), "Upload successfull", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Upload successful", Toast.LENGTH_LONG).show();
                 setToHomePage();
 
             }
@@ -252,17 +227,19 @@ public class Fragment3 extends Fragment {
 
     }
 
+
+    @OnClick(R.id.organize_find_place)
     public void findPlace() {
         try {
             Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(getActivity());
             startActivityForResult(intent, PLACE_AUTOCOMPLETE_INTENT);
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesNotAvailableException e) {
+        } catch (GooglePlayServicesRepairableException
+                | GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
         }
     }
 
+    @OnClick(R.id.organize_image_view)
     public void chooseFromGallery() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -284,7 +261,6 @@ public class Fragment3 extends Fragment {
         } else if (requestCode == PICK_GALLERY_INTENT) {
             if (resultCode == RESULT_OK) {
                 uriImage = data.getData();
-
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), uriImage);
                     image.clearColorFilter();
@@ -293,19 +269,10 @@ public class Fragment3 extends Fragment {
                     image.requestLayout();
                     image.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     image.setImageBitmap(bitmap);
-
-
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
-
         }
-
-
     }
-
-
-
 }

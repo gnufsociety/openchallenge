@@ -9,38 +9,34 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.model.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import org.w3c.dom.Text;
-
-import java.util.Random;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserActivity extends AppCompatActivity {
 
     public User user;
-    public CircleImageView userPic;
-    public Toolbar toolbar;
-    public TextView userStatus;
-    public TextView goldMedal, silverMedal, bronzeMedal;
+
+    @BindView(R.id.user_pro_pic) public CircleImageView userPic;
+    @BindView(R.id.user_toolbar) public Toolbar toolbar;
+    @BindView(R.id.user_status)  public TextView userStatus;
+
+    @BindView(R.id.user_number_gold)   public TextView goldMedal;
+    @BindView(R.id.user_number_silver) public TextView silverMedal;
+    @BindView(R.id.user_number_bronze) public TextView bronzeMedal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        ButterKnife.bind(this);
         Bundle extra = getIntent().getExtras();
         user = (User) extra.getSerializable("user");
-
-
-        userStatus = (TextView) findViewById(R.id.user_status);
-        userPic = (CircleImageView) findViewById(R.id.user_pro_pic);
-        goldMedal = (TextView) findViewById(R.id.user_number_gold);
-        silverMedal = (TextView) findViewById(R.id.user_number_silver);
-        bronzeMedal = (TextView) findViewById(R.id.user_number_bronze);
-        toolbar = (Toolbar) findViewById(R.id.user_toolbar);
-
         userPic.setImageResource(user.resPic);
 
         FirebaseStorage storage = FirebaseStorage.getInstance();

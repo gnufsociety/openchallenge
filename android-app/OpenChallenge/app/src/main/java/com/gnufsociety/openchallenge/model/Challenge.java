@@ -1,4 +1,6 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.model;
+
+import com.gnufsociety.openchallenge.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +39,7 @@ public class Challenge implements Serializable {
         this.address = place.getString("address");
         this.lat = place.getDouble("lat");
         this.lng = place.getDouble("long");
-        this.organizer = new User("marco",4,R.drawable.io1);
+        this.organizer = new User("marco",4, R.drawable.io1);
         this.id = obj.getString("_id");
 
         // UNCOMMENT WHEN IT'S READY

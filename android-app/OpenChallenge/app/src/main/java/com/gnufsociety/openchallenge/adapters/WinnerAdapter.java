@@ -1,6 +1,5 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.adapters;
 
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.R;
+import com.gnufsociety.openchallenge.WinnerActivity;
+import com.gnufsociety.openchallenge.model.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 

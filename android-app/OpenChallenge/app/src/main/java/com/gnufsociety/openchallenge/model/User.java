@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;

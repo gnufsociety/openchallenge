@@ -82,7 +82,7 @@
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/hacking" />
-                <com.gnufsociety.openchallenge.FavoriteButton
+                <com.gnufsociety.openchallenge.customui.FavoriteButton
                     android:id="@+id/card_favorite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

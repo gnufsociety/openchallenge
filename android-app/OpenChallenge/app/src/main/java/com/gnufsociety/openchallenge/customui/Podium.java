@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.customui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,6 +8,8 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.R;
+import com.gnufsociety.openchallenge.model.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -21,9 +23,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Podium extends RelativeLayout {
 
-    @BindView(R.id.first_podium)  CircleImageView first;
-    @BindView(R.id.second_podium) CircleImageView second;
-    @BindView(R.id.third_podium)  CircleImageView third;
+    @BindView(R.id.first_podium)  public CircleImageView first;
+    @BindView(R.id.second_podium) public CircleImageView second;
+    @BindView(R.id.third_podium)  public CircleImageView third;
 
     public Podium(Context context, AttributeSet attrs) {
         super(context, attrs);

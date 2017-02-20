@@ -3,7 +3,6 @@ package com.gnufsociety.openchallenge;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -16,53 +15,45 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.gnufsociety.openchallenge.adapters.WinnerAdapter;
+import com.gnufsociety.openchallenge.model.User;
+
 import java.util.List;
 
-import static com.gnufsociety.openchallenge.ChallengeActivity.WINNER_CODE;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class WinnerActivity extends AppCompatActivity {
 
-    public RecyclerView rec;
-    public ProgressBar progressBar;
-    public RelativeLayout layout;
-    public FloatingActionButton btn;
+    @BindView(R.id.winner_lay) public RelativeLayout layout;
+    @BindView(R.id.winner_recycler) public RecyclerView recyclerView;
+    @BindView(R.id.winner_progress) public ProgressBar progressBar;
+    @BindView(R.id.winner_done_btn) public FloatingActionButton doneBtn;
+    @BindView(R.id.winner_toolbar)  public Toolbar toolbar;
+
     public User[] winners;
     public WinnerActivity win;
-    public Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner);
 
+        winners = new User[3];
+        win = this;
+
         Bundle extra = getIntent().getExtras();
         String chall_id = extra.getString("chall_id");
 
-        rec = (RecyclerView) findViewById(R.id.winner_recycler);
-        layout = (RelativeLayout) findViewById(R.id.winner_lay);
-        progressBar = (ProgressBar) findViewById(R.id.winner_progress);
-        btn = (FloatingActionButton) findViewById(R.id.winner_done_btn);
-        toolbar = (Toolbar) findViewById(R.id.winner_toolbar);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Choose winners");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        winners = new User[3];
-        win = this;
-
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("winners",winners);
-                setResult(-1,intent);
-                finish();
-            }
-        });
-
-        rec.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         AsyncTask<String, Void, List<User>> task = new AsyncTask<String, Void, List<User>>() {
             @Override
             protected List<User> doInBackground(String... params) {
@@ -73,19 +64,26 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(List<User> users) {
                 WinnerAdapter adapter = new WinnerAdapter(users,win);
-                rec.setAdapter(adapter);
+                recyclerView.setAdapter(adapter);
                 progressBar.setVisibility(View.GONE);
-                //Snackbar.make(findViewById(R.id.activity_winner),"Choose the first",Snackbar.LENGTH_INDEFINITE).show();
-                Toast.makeText(btn.getContext(),"Choose the first",Toast.LENGTH_SHORT).show();
+                Toast.makeText(doneBtn.getContext(),"Choose the first",Toast.LENGTH_SHORT).show();
             }
         };
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rec.getContext(), DividerItemDecoration.VERTICAL);
-        rec.addItemDecoration(dividerItemDecoration);
+        DividerItemDecoration dividerItemDecoration =
+                new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
+        recyclerView.addItemDecoration(dividerItemDecoration);
 
         task.execute(chall_id);
 
+    }
 
+    @OnClick(R.id.winner_done_btn)
+    public void onDone() {
+        Intent intent = new Intent();
+        intent.putExtra("winners",winners);
+        setResult(-1,intent);
+        finish();
     }
 
     @Override
@@ -94,7 +92,6 @@ public class WinnerActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 return true;
-
         }
         return false;
     }

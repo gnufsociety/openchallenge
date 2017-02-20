@@ -46,7 +46,6 @@ public class ConfigurationActivity extends AppCompatActivity {
     @BindView(R.id.configure_image)  CircleImageView civ;
 
     private FirebaseAuth auth;
-    private FirebaseDatabase database;
     private Activity activity;
     private Uri uriImage;
 
@@ -66,22 +65,10 @@ public class ConfigurationActivity extends AppCompatActivity {
         setContentView(R.layout.fragment_configuration);
 
         auth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
         activity = this;
         ButterKnife.bind(this);
     }
 
-    //add user to database
-    /*private boolean writeNewUser(FirebaseUser user) {
-        String username = usernameEdit.getText().toString();
-        if (username.equals(""))
-            return false;
-        User u = new User(username,0.0,1);
-        u.email = user.getEmail();
-        database.getReference().child("users").child(user.getUid()).setValue(u);
-
-        return true;
-    }*/
 
     public void createUser(){
 

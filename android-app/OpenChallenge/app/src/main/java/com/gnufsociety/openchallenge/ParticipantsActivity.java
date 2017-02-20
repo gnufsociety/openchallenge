@@ -9,6 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.gnufsociety.openchallenge.adapters.ParticipantAdapter;
+import com.gnufsociety.openchallenge.model.Challenge;
+import com.gnufsociety.openchallenge.model.User;
+
 import java.util.ArrayList;
 
 public class ParticipantsActivity extends AppCompatActivity {
@@ -16,19 +20,19 @@ public class ParticipantsActivity extends AppCompatActivity {
     Toolbar mToolbar;
     RecyclerView recyclerView;
     ParticipantAdapter adapter;
-    Challenge c;
+    Challenge challenge;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participants);
         Bundle bundle = getIntent().getExtras();
-        c = (Challenge) bundle.getSerializable("challenge");
+        challenge = (Challenge) bundle.getSerializable("challenge");
 
         AsyncTask<Void, Void, ArrayList<User>> task = new AsyncTask<Void, Void, ArrayList<User>>() {
             @Override
             protected ArrayList<User> doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                return api.getParticipant(c.id);
+                return api.getParticipant(challenge.id);
             }
 
             @Override

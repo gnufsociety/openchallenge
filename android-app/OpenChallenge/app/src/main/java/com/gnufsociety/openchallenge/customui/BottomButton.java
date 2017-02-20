@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.customui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.gnufsociety.openchallenge.R;
 
 /**
  * Created by Leonardo on 15/01/2017.
@@ -25,7 +27,7 @@ public class BottomButton extends LinearLayout {
     public BottomButton(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        clickedColor = ContextCompat.getColor(context,R.color.colorAccent);
+        clickedColor = ContextCompat.getColor(context, R.color.colorAccent);
         nonclickedColor = ContextCompat.getColor(context,R.color.white);
 
         View root = inflate(context, R.layout.bottom_button, this);

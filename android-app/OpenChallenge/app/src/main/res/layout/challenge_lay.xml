@@ -134,7 +134,7 @@
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
-            <com.gnufsociety.openchallenge.Podium
+            <com.gnufsociety.openchallenge.customui.Podium
                 android:id="@+id/chall_podium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -18,6 +18,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.customui.Podium;
+import com.gnufsociety.openchallenge.model.Challenge;
+import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -58,7 +61,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     @BindView(R.id.chall_desc) TextView desc;
     @BindView(R.id.chall_rules) TextView rules;
     @BindView(R.id.chall_npart) TextView numPart;
-    @BindView(R.id.chall_podium) Podium podium;
+    @BindView(R.id.chall_podium)
+    Podium podium;
     @BindView(R.id.chall_join_btn) Button join;
     @BindView(R.id.chall_refresh) SwipeRefreshLayout refreshLayout;
 
@@ -273,15 +277,15 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                /*Button btn = (Button) view;
+                /*Button doneBtn = (Button) view;
                 String n = numPart.getText().toString();
                 int i = Integer.parseInt(n.split(" ")[0]);
                 if (joined) {
                     numPart.setText((--i)+"" + R.string.participants);
-                    btn.setText(R.string.join_challenge);
+                    doneBtn.setText(R.string.join_challenge);
                 } else {
                     numPart.setText((++i)+"" + R.string.participants);
-                    btn.setText(R.string.joined);
+                    doneBtn.setText(R.string.joined);
                 }
                 joined = !joined;*/
                 ChallengeAsync ac = new ChallengeAsync();

@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.customui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageButton;
+
+import com.gnufsociety.openchallenge.R;
 
 /**
  * Created by Leonardo on 14/01/2017.
@@ -29,7 +31,7 @@ public class FavoriteButton extends ImageButton {
     }
 
     private void likeAnimation() {
-        Animation anim = AnimationUtils.loadAnimation(this.getContext(),R.anim.anim_scale);
+        Animation anim = AnimationUtils.loadAnimation(this.getContext(), R.anim.anim_scale);
         //bounce effect
         anim.setInterpolator(new BounceInterpolator());
 

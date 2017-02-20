@@ -1,5 +1,7 @@
 package com.gnufsociety.openchallenge;
 
+import com.gnufsociety.openchallenge.model.Challenge;
+import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.location.places.Place;
 
 import org.json.JSONException;

@@ -16,9 +16,7 @@ public class Fragment4 extends Fragment {
     public static String TAG = "fragment4";
 
 
-    public Fragment4(){
-
-    }
+    public Fragment4(){}
 
     @Nullable
     @Override

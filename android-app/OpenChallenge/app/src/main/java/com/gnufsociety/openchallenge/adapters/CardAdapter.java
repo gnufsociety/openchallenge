@@ -1,4 +1,4 @@
-package com.gnufsociety.openchallenge;
+package com.gnufsociety.openchallenge.adapters;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.ChallengeActivity;
+import com.gnufsociety.openchallenge.R;
+import com.gnufsociety.openchallenge.UserActivity;
+import com.gnufsociety.openchallenge.customui.FavoriteButton;
+import com.gnufsociety.openchallenge.model.Challenge;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -31,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
-    List<Challenge> list;
+    public List<Challenge> list;
     public FirebaseStorage fstorage;
     public StorageReference storage;
 
@@ -94,7 +99,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         @BindView(R.id.card_rate)  RatingBar rate;
         @BindView(R.id.card_img)   ImageView img;
         @BindView(R.id.card_organizer) TextView org;
-        @BindView(R.id.card_favorite)  FavoriteButton button;
+        @BindView(R.id.card_favorite)
+        FavoriteButton button;
         @BindView(R.id.card_user_img)  CircleImageView user_img;
         //Gesture detector for double tap listener
         private GestureDetector gd;

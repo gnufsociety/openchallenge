@@ -21,29 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 public class Fragment2 extends Fragment {
 
     public static String TAG = "fragment2";
-    public FirebaseDatabase database;
 
     public Fragment2(){}
 
-    public void search(){
-        database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference().child("users");
-        Query searchUser = ref.orderByChild("name").startAt("sc");
-        searchUser.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //System.out.println(dataSnapshot);
-                for (DataSnapshot ds: dataSnapshot.getChildren()){
-                    System.out.println("username "+ds.child("name").getValue());
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -32,7 +32,7 @@
         android:layout_height="56dp"
         android:background="@color/colorPrimary"
         android:orientation="horizontal">
-        <com.gnufsociety.openchallenge.BottomButton
+        <com.gnufsociety.openchallenge.customui.BottomButton
             android:id="@+id/home_bottom"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -43,7 +43,7 @@
 
             />
 
-        <com.gnufsociety.openchallenge.BottomButton
+        <com.gnufsociety.openchallenge.customui.BottomButton
             android:layout_weight="1"
             android:layout_width="0dp"
             android:id="@+id/map_bottom"
@@ -54,7 +54,7 @@
 
             />
 
-        <com.gnufsociety.openchallenge.BottomButton
+        <com.gnufsociety.openchallenge.customui.BottomButton
             android:id="@+id/add_bottom"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -65,7 +65,7 @@
 
             />
 
-        <com.gnufsociety.openchallenge.BottomButton
+        <com.gnufsociety.openchallenge.customui.BottomButton
             android:id="@+id/favorite_bottom"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -75,7 +75,7 @@
             android:onClick="clickBottomBar"
 
             />
-        <com.gnufsociety.openchallenge.BottomButton
+        <com.gnufsociety.openchallenge.customui.BottomButton
             android:id="@+id/profile_bottom"
             android:layout_weight="1"
             android:layout_width="0dp"
