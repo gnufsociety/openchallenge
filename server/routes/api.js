@@ -18,9 +18,12 @@ router.get('/', function (req, res, next) {
     res.send("Ciao chicco!");
 });
 
-/**
- * Challenge api
- * */
+/*****************************************************************************
+ *
+ * API to manage CHALLENGES
+ *
+ */
+
 
 router.post('/setWinners', function (req, res) {
     var obj = req.body;
@@ -50,42 +53,46 @@ router.post('/setWinners', function (req, res) {
         });
 });
 
+
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
-    User.findOne({'uid': obj.organizer}).exec(function (err, user) {
-        assert.equal(err, null);
-        var challenge = new Challenge({
-            name: obj.name,
-            description: obj.description,
-            rules: obj.rules,
-            image: obj.image,
-            location: {
-                address: obj.location.address,
-                lat: obj.location.lat,
-                long: obj.location.long
-            },
-            date: obj.date,
-            organizer: user._id,
-            participants: []
+    User.findOne({'uid': obj.organizer})
+        .exec(function (err, user) {
+            assert.equal(err, null);
+            var challenge = new Challenge({
+                name: obj.name,
+                description: obj.description,
+                rules: obj.rules,
+                image: obj.image,
+                location: {
+                    address: obj.location.address,
+                    lat: obj.location.lat,
+                    long: obj.location.long
+                },
+                date: obj.date,
+                organizer: user._id,
+                participants: []
+            });
+            challenge.save(function (err) {
+                if (err) {
+                    res.send("Error");
+                    console.log("Error saving new challenge");
+                } else {
+                    res.send("Saved!");
+                }
+            }).then(function (challenge) {                  // add challenge to user's organized list
+                user.organizedChallenges.push(challenge);
+            })
         });
-        challenge.save(function (err) {
-            if (err) {
-                res.send("Error");
-                console.log("Error saving new challenge");
-            } else {
-                res.send("Saved!");
-            }
-        })
-    });
-
 });
+
 
 router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) {
     User.findOne({'uid': req.params.user_uid})
         .exec(function (err, user) {
             Challenge.findOne({_id: req.params.id_chall})
                 .exec(function (err, chall) {
-                    if (err) res.send("err");
+                    if (err) res.send("Error");
                     else {
                         var part = chall.participants;
                         var found = false;
@@ -105,6 +112,8 @@ router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) 
     });
 
 });
+
+
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
@@ -124,35 +133,37 @@ router.get('/allChallenges', function (req, res, next) {
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-    User.findOne({'uid': user_id}).exec(function (err, user) {
-        Challenge.findByIdAndUpdate(
-            chall_id,
-            {$addToSet: {"participants": user._id}},  // do not add if already present
-            {safe: true, upsert: true},
-            function (err) {
-                if (err) {
-                    res.send('err');
-                    console.log(err);
+    User.findOneAndUpdate({'uid': user_id}, { $addToSet: {joinedChallenges : chall_id}}) // add to joined list
+        .exec(function (err, user) {
+            assert.equal(error, null);
+            Challenge.findByIdAndUpdate(
+                chall_id,
+                {$addToSet: {"participants": user._id}},  // do not add if already present
+                {safe: true, upsert: true},
+                function (err) {
+                    if (err) {
+                        res.send('Error');
+                        console.log(err);
+                    }
+                    else res.send('you participate now!')
                 }
-                else res.send('you participate now!')
-            }
         );
     });
-
-
 });
+
 
 router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
-    User.findOne({'uid': user_id}).exec(function (err, user) {
+    User.findOneAndUpdate({'uid': user_id}, {$pull : {joinedChallenges : chall_id}})  // remove from joined list
+        .exec(function (err, user) {
         Challenge.findByIdAndUpdate(
             chall_id,
             {$pull: {"participants": user._id}},
             {safe: true, upsert: true},
             function (err) {
                 if (err) {
-                    res.send('err');
+                    res.send('Error');
                     console.log(err);
                 }
                 else res.send('removed!');
@@ -173,8 +184,10 @@ router.get('/getParticipants/:chall_id', function (req, res, next) {
 });
 
 
-/**
- * User api
+/*****************************************************************************
+ *
+ * API to manage USERS
+ * 
  */
 
 
@@ -188,22 +201,34 @@ router.post('/newUser', function (req, res, next) {
         gold: 0,
         silver: 0,
         bronze: 0,
-        uid: obj.uid
+        uid: obj.uid,
+        joinedChallenges: [],
+        organizedChallenges: []
     });
     User.findOne({'username':user.username}).exec(function (err, u) {
         if (err) res.send("Error!");
         else if (u){
-            res.send("already exist");
+            res.send("already exists");
         }
         else {
             user.save(function (err) {
-                if (err) res.send("Errore");
+                if (err) res.send("Error");
                 else res.send("User " + user.username + " created!");
             });
         }
     });
 
 });
+
+
+router.get('deleteUser/:user', function (req, res) {
+    User.deleteOne({_id : req.params.user})
+        .exec(function (err) {
+            assert.equal(err, null);
+            res.send('deleted');
+        })
+});
+
 
 router.get('/allUsers', function (req, res) {
     User.find(function (err, users) {

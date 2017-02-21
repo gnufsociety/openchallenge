@@ -52,8 +52,6 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_layout) public LinearLayout layout;
     @BindView(R.id.user_progress_bar) public ProgressBar spinner;
 
-    @BindView(R.id.delete_usr_button) public Button deleteUserBtn;
-    @BindView(R.id.logout_button) public Button logoutBtn;
 
     public ProfileFragment(){
 
@@ -102,7 +100,7 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.delete_usr_button)
+
     public void deleteUser() {
         // TODO: call api to delete user (not implemented yet)
         /* Uncomment when api implemented
@@ -121,7 +119,7 @@ public class ProfileFragment extends Fragment {
         */
     }
 
-    @OnClick(R.id.logout_button)
+
     public void logout() {
         AuthUI.getInstance()
                 .signOut(getActivity())

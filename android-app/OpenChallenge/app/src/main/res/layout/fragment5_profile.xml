@@ -139,30 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_status"
             android:src="@drawable/work" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-            <Button
-                android:id="@+id/logout_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/logout"
-                android:textColor="@color/white"
-                android:background="@drawable/rounded_button"
-                android:layout_marginRight="8dp"/>
-            <Button
-                android:id="@+id/delete_usr_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/delete_user"
-                android:textColor="@color/white"
-                android:background="@drawable/rounded_button_red"/>
-        </LinearLayout>
+        
 
         <ProgressBar
             android:id="@+id/user_progress_bar"

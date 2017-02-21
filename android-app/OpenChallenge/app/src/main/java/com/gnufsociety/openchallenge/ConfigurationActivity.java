@@ -16,8 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -44,6 +47,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     @BindView(R.id.configure_status) EditText statusEdit;
     @BindView(R.id.done_btn)         Button doneBtn;
     @BindView(R.id.configure_image)  CircleImageView civ;
+    @BindView(R.id.logout_btn)       Button logoutBtn;
 
     private FirebaseAuth auth;
     private Activity activity;
@@ -56,6 +60,19 @@ public class ConfigurationActivity extends AppCompatActivity {
         if (user != null){
             createUser();
         }
+    }
+
+    @OnClick(R.id.logout_btn)
+    public void logout() {
+        AuthUI.getInstance()
+                .signOut(this)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // user is now signed out
+                        startActivity(new Intent(ConfigurationActivity.this, RegistrationActivity.class));
+                        finish();
+                    }
+                });
     }
 
 
@@ -147,12 +164,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         };
-
-
-
         task.execute();
-
-
     }
     public void chooseProPic(View view){
         Intent intent = new Intent();
@@ -178,6 +190,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(activity, "You can't escape from the configuration!", Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, "You can't escape from the configuration!", Toast.LENGTH_LONG)
+                .show();
     }
 }

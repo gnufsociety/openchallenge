@@ -9,7 +9,15 @@ var UserSchema = new mongoose.Schema({
         silver:   Number,
         bronze:   Number,
         uid:      {type: String,
-                   required: true}
+                   required: true},
+        joinedChallenges: [{
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Challenge'
+        }],
+        organizedChallenges: [{
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Challenge'
+        }]
     },{ versionKey: false });
     // no version key can get us into troubles: why is it set to false?
 
