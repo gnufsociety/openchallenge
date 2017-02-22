@@ -151,11 +151,10 @@ router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) 
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
-        .populate('organizer')
+        .select('name description rules image location date organizer')
         .populate({
-            path: 'participants',
-            select: 'username picture',
-            options: {limit: 3}
+            path:'organizer',
+            select: 'username picture uid rate'
         })
         .exec(function (error, challenge) {
             assert.equal(error, null);
