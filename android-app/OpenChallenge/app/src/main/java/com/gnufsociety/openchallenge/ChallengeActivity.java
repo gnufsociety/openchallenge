@@ -32,9 +32,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,6 +72,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public boolean isOrganizer = false;
     public boolean joined = false;
 
+    public StorageReference store;
 
 
     @Override
@@ -90,8 +94,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             @Override
             protected void onPostExecute(JSONObject integer) {
                 try {
-                    boolean find = integer.getBoolean("you");
-                    int num = integer.getInt("participants");
+                    boolean find = integer.getBoolean("joined");
+                    int num = integer.getInt("numParticipants");
                     numPart.setText("" + num + " participants");
                     if (find) {
                         join.setText("Joined");
@@ -105,6 +109,11 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         //set num participant from web
         //task.execute();
+        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
+            join.setText(R.string.choose_winner);
+            isOrganizer = true;
+        }
+
         ChallengeAsync ca = new ChallengeAsync();
         ca.execute();
         //task.execute();
@@ -118,15 +127,12 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         });
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
-        StorageReference cImage = sref.child("challenges/" + c.imageLocation);
+        store = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
 
-        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
-            join.setText(R.string.choose_winner);
-            isOrganizer = true;
-        }
 
-        switch (c.simplePart.size()){
+
+
+        /*switch (c.simplePart.size()){
             case 1:
                 StorageReference p1 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
                 Glide.with(this)
@@ -177,8 +183,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 part3.setVisibility(View.VISIBLE);
 
                 break;
-        }
-
+        }*/
+        StorageReference cImage = store.child("challenges/" + c.imageLocation);
         image.setImageResource(c.resImage);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
@@ -188,13 +194,14 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         desc.setText(c.desc);
         where.setText(c.address.split(",")[0]);
-        when.setText(c.when);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        when.setText(format.format(c.when));
         rules.setText(c.rules);
 
 
         user_img.setImageResource(c.organizer.resPic);
 
-        StorageReference userImage = sref.child("users/" + c.organizer.proPicLocation);
+        StorageReference userImage = store.child("users/" + c.organizer.proPicLocation);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(userImage)
@@ -339,14 +346,17 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         @Override
         protected void onPostExecute(JSONObject integer) {
-            boolean find = false;
+            boolean youJoin;
             try {
                 refreshLayout.setRefreshing(false);
-                find = integer.getBoolean("you");
+                youJoin = integer.getBoolean("joined");
 
-                int num = integer.getInt("participants");
+                int num = integer.getInt("numParticipants");
+
+                JSONArray participants = integer.getJSONArray("participants");
+
                 numPart.setText(num + " participants");
-                if (find) {
+                if (youJoin) {
                     join.setText("Joined");
                     joined = true;
                 }
@@ -354,6 +364,45 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                     join.setText("Join Challenge");
                     joined = false;
                 }
+                if (isOrganizer){
+                    joined = false;
+                    join.setText("Choose the winners!");
+                }
+
+                if (num > 0){
+                    String image = participants.getJSONObject(0).getString("picture");
+                    StorageReference p1 = store.child("users/" + image);
+                    Glide.with(numPart.getContext())
+                            .using(new FirebaseImageLoader())
+                            .load(p1)
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .into(part1);
+                    part1.setVisibility(View.VISIBLE);
+                }
+                if (num > 1){
+                    String image = participants.getJSONObject(1).getString("picture");
+                    StorageReference p2 = store.child("users/" + image);
+                    Glide.with(numPart.getContext())
+                            .using(new FirebaseImageLoader())
+                            .load(p2)
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .into(part2);
+                    part2.setVisibility(View.VISIBLE);
+                }
+                if (num > 2){
+                    String image = participants.getJSONObject(2).getString("picture");
+                    StorageReference p3 = store.child("users/" + image);
+                    Glide.with(numPart.getContext())
+                            .using(new FirebaseImageLoader())
+                            .load(p3)
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                            .into(part3);
+                    part3.setVisibility(View.VISIBLE);
+                }
+
+                if (num < 3) part3.setVisibility(View.GONE);
+                if (num < 2) part2.setVisibility(View.GONE);
+                if (num < 1) part1.setVisibility(View.GONE);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

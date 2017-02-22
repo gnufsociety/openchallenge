@@ -4,6 +4,7 @@ import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.location.places.Place;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -126,7 +127,8 @@ public class ApiHelper {
                 .build();
         try {
             Response response = client.newCall(request).execute();
-            return new JSONObject(response.body().string());
+            JSONArray arr = new JSONArray(response.body().string());
+            return arr.getJSONObject(0);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {

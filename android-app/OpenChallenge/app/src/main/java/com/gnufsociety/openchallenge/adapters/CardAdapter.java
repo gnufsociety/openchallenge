@@ -23,7 +23,9 @@ import com.gnufsociety.openchallenge.model.Challenge;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,7 +70,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.desc.setText(c.desc);
         holder.title.setText(c.name);
         holder.org.setText(c.organizer.name);
-        holder.when.setText(c.when);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+        holder.when.setText(format.format(c.when));
         holder.where.setText(c.address.split(",")[0]);
         holder.rate.setRating((float) c.organizer.rating);
 
