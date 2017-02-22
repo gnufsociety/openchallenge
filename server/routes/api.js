@@ -128,7 +128,7 @@ router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) 
                             options: {limit: 3}
                         },
                         function (err, challPop) {
-                        //adding youparticipate field
+                            //adding youparticipate field
                             challPop[0].joined = found;
                             res.send(challPop)
                         })
@@ -159,19 +159,21 @@ router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var user_id = req.params.user_id;
     User.findOneAndUpdate({'uid': user_id}, {$addToSet: {joinedChallenges: chall_id}}) // add to joined list
         .exec(function (err, user) {
-            assert.equal(error, null);
-            Challenge.findByIdAndUpdate(
-                chall_id,
-                {$addToSet: {"participants": user._id}},  // do not add if already present
-                {safe: true, upsert: true},
-                function (err) {
-                    if (err) {
-                        res.send('Error');
-                        console.log(err);
+            if (err) res.send("Errrrror");
+            else {
+                Challenge.findByIdAndUpdate(
+                    chall_id,
+                    {$addToSet: {"participants": user._id}},  // do not add if already present
+                    {safe: true, upsert: true},
+                    function (err) {
+                        if (err) {
+                            res.send('Error');
+                            console.log(err);
+                        }
+                        else res.send('you participate now!')
                     }
-                    else res.send('you participate now!')
-                }
-            );
+                );
+            }
         });
 });
 
@@ -181,18 +183,21 @@ router.get('/removeParticipant/:chall_id/:user_id', function (req, res) {
     var user_id = req.params.user_id;
     User.findOneAndUpdate({'uid': user_id}, {$pull: {joinedChallenges: chall_id}})  // remove from joined list
         .exec(function (err, user) {
-            Challenge.findByIdAndUpdate(
-                chall_id,
-                {$pull: {"participants": user._id}},
-                {safe: true, upsert: true},
-                function (err) {
-                    if (err) {
-                        res.send('Error');
-                        console.log(err);
+            if (err) res.send("Error");
+            else {
+                Challenge.findByIdAndUpdate(
+                    chall_id,
+                    {$pull: {"participants": user._id}},
+                    {safe: true, upsert: true},
+                    function (err) {
+                        if (err) {
+                            res.send('Error');
+                            console.log(err);
+                        }
+                        else res.send('removed!');
                     }
-                    else res.send('removed!');
-                }
-            );
+                );
+            }
         });
 
 
