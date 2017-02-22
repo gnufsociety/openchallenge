@@ -73,15 +73,23 @@ router.post('/newChallenge', function (req, res) {
                 organizer: user._id,
                 participants: []
             });
-            challenge.save(function (err) {
+            challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
                     console.log("Error saving new challenge");
                 } else {
-                    res.send("Saved!");
+                    User.findByIdAndUpdate(
+                        user._id,
+                        {$addToSet:{organizedChallenges : chall._id}},
+                        function (errr) {
+                            if (errr){
+                                res.send("Error updating users");
+                            }
+                            else res.send("Saved!");
+                        }
+                    )
+
                 }
-            }).then(function (challenge) {                  // add challenge to user's organized list
-                user.organizedChallenges.push(challenge);
             })
         });
 });
