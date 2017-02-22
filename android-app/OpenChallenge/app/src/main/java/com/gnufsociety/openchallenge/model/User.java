@@ -34,6 +34,8 @@ public class User implements Serializable{
         try {
             this.name = obj.getString("username");
             this.proPicLocation = obj.getString("picture");
+            this.rating = obj.getDouble("rate");
+            this.uid = obj.getString("uid");
             this.id = obj.getString("_id");
         } catch (JSONException e) {
             e.printStackTrace();

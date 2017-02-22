@@ -10,7 +10,7 @@ var ChallengeSchema = new mongoose.Schema({
             lat:     Number,
             long:    Number
         },
-        date: String,
+        date: Date,
         organizer: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',

@@ -59,6 +59,7 @@ router.post('/newChallenge', function (req, res) {
     User.findOne({'uid': obj.organizer})
         .exec(function (err, user) {
             assert.equal(err, null);
+            var dat = obj.date.split("/");
             var challenge = new Challenge({
                 name: obj.name,
                 description: obj.description,
@@ -69,10 +70,11 @@ router.post('/newChallenge', function (req, res) {
                     lat: obj.location.lat,
                     long: obj.location.long
                 },
-                date: obj.date,
+
                 organizer: user._id,
                 participants: []
             });
+            challenge.date = new Date(Date.UTC(dat[2],dat[1]-1,dat[0],0,0,0,0));
             challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
@@ -149,11 +151,11 @@ router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) 
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
-        .populate('organizer')
+        .select('name description rules image location date organizer')
+        .sort({date:-1})
         .populate({
-            path: 'participants',
-            select: 'username picture',
-            options: {limit: 3}
+            path:'organizer',
+            select: 'username picture uid rate'
         })
         .exec(function (err, challenge) {
             assert.equal(err, null);

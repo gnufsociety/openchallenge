@@ -7,8 +7,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Leonardo on 14/01/2017.
@@ -19,9 +23,9 @@ public class Challenge implements Serializable {
     public int resImage;
     public User organizer;
     public String desc;
-    public String when;
+    public Date when;
     public String id;
-    public List<User> simplePart;
+    //public List<User> simplePart;
     public String imageLocation;
     public String rules;
     public String address;
@@ -34,24 +38,31 @@ public class Challenge implements Serializable {
         this.desc = obj.getString("description");
         this.rules = obj.getString("rules");
         this.imageLocation = obj.getString("image");
-        this.when = obj.getString("date");
+
+
+        String date = obj.getString("date");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+        try {
+            when = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         JSONObject place = obj.getJSONObject("location");
         this.address = place.getString("address");
         this.lat = place.getDouble("lat");
         this.lng = place.getDouble("long");
-        this.organizer = new User("marco",4, R.drawable.io1);
         this.id = obj.getString("_id");
 
         // UNCOMMENT WHEN IT'S READY
         JSONObject userObj = obj.getJSONObject("organizer");
-        this.organizer = new User(userObj);
+        this.organizer = new User(userObj,0);
 
-        JSONArray part = obj.getJSONArray("participants");
+        /*JSONArray part = obj.getJSONArray("participants");
         simplePart = new ArrayList<>();
 
         for (int i = 0; i < part.length(); i++) {
             simplePart.add(new User(part.getJSONObject(i),1));
-        }
+        }*/
 
 
 
@@ -64,7 +75,7 @@ public class Challenge implements Serializable {
         this.resImage = resImage;
         this.organizer = organizer;
         this.desc = type;
-        this.when = when;
+        //this.when = when;
         this.address = where;
     }
 
