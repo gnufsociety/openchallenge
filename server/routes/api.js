@@ -155,8 +155,8 @@ router.get('/allChallenges', function (req, res, next) {
             select: 'username picture',
             options: {limit: 3}
         })
-        .exec(function (error, challenge) {
-            assert.equal(error, null);
+        .exec(function (err, challenge) {
+            assert.equal(err, null);
             res.send(challenge);
         })
 });
@@ -292,6 +292,22 @@ router.get('/findUserByUid/:uid', function (req, res) {
             else
                 res.send("No user found");
         });
+});
+
+
+router.get('/organizedChallenges/:user_id', function (req, res) {
+   User.findById(req.params.user_id, function (err, user) {
+        assert.equal(err, null);
+        res.json(user.organizedChallenges);
+   })
+});
+
+
+router.get('/joinedChallenges/:user_id', function (req, res) {
+    User.findById(req.params.user_id, function (err, user) {
+        assert.equal(err, null);
+        res.json(user.joinedChallenges);
+    })
 });
 
 

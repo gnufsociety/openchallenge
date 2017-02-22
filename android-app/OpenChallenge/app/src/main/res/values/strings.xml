@@ -40,4 +40,6 @@
     <string name="twitter_consumer_secret" translatable="false">YOURCONSUMERSECRET</string>
     <string name="logout">Logout</string>
     <string name="delete_user">Delete user</string>
+    <string name="organized_challenges">Organized challenges</string>
+    <string name="joined_challenges">Joined challenges</string>
 </resources>

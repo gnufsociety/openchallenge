@@ -6,149 +6,183 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/profile_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:visibility="gone"
-        android:divider="@drawable/mydivider"
-        android:showDividers="middle"
-        android:id="@+id/user_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:weightSum="1">
-
-        <GridLayout
-            android:id="@+id/user_grid_profile"
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp"
-            tools:columnCount="5"
-            tools:rowCount="2">
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-            <android.support.v4.widget.Space
-                android:layout_column="1"
-                android:layout_columnWeight="1"
-                android:layout_row="0" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/user_pro_pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_column="0"
-                android:layout_row="0"
-                android:layout_rowSpan="2"
-                android:src="@drawable/user"
-                app:civ_border_width="1dp" />
-
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_column="4"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="0"
-                android:scaleType="centerCrop"
-                android:src="@drawable/bronze128" />
-
-            <TextView
-                android:id="@+id/user_number_gold"
-                android:layout_column="2"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:text="21"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/user_number_bronze"
-                android:layout_column="4"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:text="12"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/user_number_silver"
-                android:layout_column="3"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="1"
-                android:text="120"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_column="2"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="0"
-                android:scaleType="centerCrop"
-                android:src="@drawable/gold128" />
-
-            <ImageView
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_column="3"
-                android:layout_columnSpan="1"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                android:layout_row="0"
-                android:scaleType="centerCrop"
-                android:src="@drawable/silver128" />
-
-        </GridLayout>
-
-        <TextView
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:id="@+id/user_status"
+        <LinearLayout
+            android:visibility="gone"
+            android:divider="@drawable/mydivider"
+            android:showDividers="middle"
+            android:id="@+id/user_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_grid_profile"
-            android:text="Ci scrivo barre a caso perchè non so che dire"
-            android:textSize="19sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:weightSum="1">
+
+            <GridLayout
+                android:id="@+id/user_grid_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="12dp"
+                tools:columnCount="5"
+                tools:rowCount="2">
+
+                <android.support.v4.widget.Space
+                    android:layout_column="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_pro_pic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_rowSpan="2"
+                    android:src="@drawable/user"
+                    app:civ_border_width="1dp" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_column="4"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="0"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bronze128" />
+
+                <TextView
+                    android:id="@+id/user_number_gold"
+                    android:layout_column="2"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="1"
+                    android:text="21"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/user_number_bronze"
+                    android:layout_column="4"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="1"
+                    android:text="12"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/user_number_silver"
+                    android:layout_column="3"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="1"
+                    android:text="120"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_column="2"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="0"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/gold128" />
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_column="3"
+                    android:layout_columnSpan="1"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center"
+                    android:layout_row="0"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/silver128" />
+
+            </GridLayout>
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:id="@+id/user_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/user_grid_profile"
+                android:text="Ci scrivo barre a caso perchè non so che dire"
+                android:textSize="19sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_org_text"
+                    android:text="@string/organized_challenges"/>
 
 
-        <ImageView
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_status"
-            android:src="@drawable/work" />
-        
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/profile_org_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical" />
+            </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/user_progress_bar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/profile_join_text"
+                    android:text="@string/joined_challenges"/>
 
-    </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/profile_join_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/user_progress_bar"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
+
+        </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

@@ -7,7 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +26,16 @@ import com.gnufsociety.openchallenge.ApiHelper;
 import com.gnufsociety.openchallenge.MainActivity;
 import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.RegistrationActivity;
+import com.gnufsociety.openchallenge.adapters.CardAdapter;
+import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,10 +58,16 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_layout) public LinearLayout layout;
     @BindView(R.id.user_progress_bar) public ProgressBar spinner;
 
+    @BindView(R.id.profile_org_recycler) public RecyclerView orgRecycler;
+    @BindView(R.id.profile_refresh) public SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.profile_join_recycler) public RecyclerView joinedRecycler;
 
-    public ProfileFragment(){
+    public CardAdapter orgCardAdapter;
+    public CardAdapter joinedCardAdapter;
 
-    }
+    public User currentUser;
+
+    public ProfileFragment(){}
 
     @Nullable
     @Override
@@ -64,7 +76,7 @@ public class ProfileFragment extends Fragment {
 
         ButterKnife.bind(this,view);
 
-        AsyncTask<String,Void,User> task = new AsyncTask<String, Void, User>() {
+        AsyncTask<String,Void,User> currentUserTask = new AsyncTask<String, Void, User>() {
             @Override
             protected User doInBackground(String... params) {
                 ApiHelper api = new ApiHelper();
@@ -88,6 +100,8 @@ public class ProfileFragment extends Fragment {
                 silver.setText(user.silverMedals+"");
                 bronze.setText(user.bronzeMedals+"");
 
+                currentUser = user;
+
                 ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(user.name);
 
                 spinner.setVisibility(View.GONE);
@@ -95,8 +109,25 @@ public class ProfileFragment extends Fragment {
 
             }
         };
+
+        AsyncTask<User,Void,ArrayList<Challenge>> organizedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
+            @Override
+            protected ArrayList<Challenge> doInBackground(User... users) {
+                return null;
+            }
+        };
+
+        AsyncTask<User,Void,ArrayList<Challenge>> joinedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
+            @Override
+            protected ArrayList<Challenge> doInBackground(User... users) {
+                return null;
+            }
+        };
+
+
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        task.execute(auth.getCurrentUser().getUid());
+        currentUserTask.execute(auth.getCurrentUser().getUid());
         return view;
     }
 

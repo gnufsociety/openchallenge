@@ -68,7 +68,7 @@ public class ApiHelper {
                 .build();
         try {
             Response resp = client.newCall(request).execute();
-
+            assert(resp.body().string() != );
             return Challenge.getArrayList(resp.body().string());
 
 
