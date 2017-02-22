@@ -107,28 +107,59 @@ public class ProfileFragment extends Fragment {
                 spinner.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
 
+                populateChallenges(false);
+
             }
         };
 
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        currentUserTask.execute(auth.getCurrentUser().getUid());
+
+        // is all this code duplication really needed?
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                populateChallenges(true);
+            }
+        });
+
+        return view;
+    }
+
+
+    public void populateChallenges(final boolean isRefresh) {
         AsyncTask<User,Void,ArrayList<Challenge>> organizedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
             @Override
             protected ArrayList<Challenge> doInBackground(User... users) {
-                return null;
+                return new ApiHelper().getOrganizedChallenges(users[0]);
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Challenge> challenges) {
+                super.onPostExecute(challenges);
+                orgCardAdapter = new CardAdapter(challenges);
+                orgRecycler.setAdapter(orgCardAdapter);
+                if(isRefresh) refreshLayout.setRefreshing(false);
             }
         };
 
         AsyncTask<User,Void,ArrayList<Challenge>> joinedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
             @Override
             protected ArrayList<Challenge> doInBackground(User... users) {
-                return null;
+                return new ApiHelper().getJoinedChallenges(users[0]);
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Challenge> challenges) {
+                super.onPostExecute(challenges);
+                joinedCardAdapter = new CardAdapter(challenges);
+                joinedRecycler.setAdapter(joinedCardAdapter);
+                if(isRefresh) refreshLayout.setRefreshing(false);
             }
         };
 
-
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        currentUserTask.execute(auth.getCurrentUser().getUid());
-        return view;
+        organizedTask.execute(currentUser);
+        joinedTask.execute(currentUser);
     }
 
 

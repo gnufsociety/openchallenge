@@ -232,4 +232,40 @@ public class ApiHelper {
             e.printStackTrace();
         }
     }
+
+
+    public ArrayList<Challenge> getOrganizedChallenges(User user) {
+        ArrayList<Challenge> organized = new ArrayList<>();
+        try {
+            Request req = new Request.Builder()
+                    .url(url+"organizedChallenges/"+user.id)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+            System.out.printf("******** FROM SERVER ********");
+            System.out.println(res.body().string());
+            System.out.printf("******** FROM SERVER ********");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return organized;
+    }
+
+
+    public ArrayList<Challenge> getJoinedChallenges(User user) {
+        ArrayList<Challenge> joined = new ArrayList<>();
+        try {
+            Request req = new Request.Builder()
+                    .url(url+"joinedChallenges/"+user.id)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+            System.out.printf("******** FROM SERVER ********");
+            System.out.println(res.body().string());
+            System.out.printf("******** FROM SERVER ********");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return joined;
+    }
 }

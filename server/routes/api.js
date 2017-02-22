@@ -298,18 +298,22 @@ router.get('/findUserByUid/:uid', function (req, res) {
 
 
 router.get('/organizedChallenges/:user_id', function (req, res) {
-   User.findById(req.params.user_id, function (err, user) {
-        assert.equal(err, null);
-        res.json(user.organizedChallenges);
-   })
+    User.findById(req.params.user_id)
+        .populate('organizedChallenges')
+        .exec(function (err, user) {
+            assert.equal(err, null);
+            res.json(user.organizedChallenges);
+        })
 });
 
 
 router.get('/joinedChallenges/:user_id', function (req, res) {
-    User.findById(req.params.user_id, function (err, user) {
-        assert.equal(err, null);
-        res.json(user.joinedChallenges);
-    })
+    User.findById(req.params.user_id)
+        .populate('joinedChallenges')
+        .exec(function (err, user) {
+            assert.equal(err, null);
+            res.json(user.joinedChallenges);
+        })
 });
 
 

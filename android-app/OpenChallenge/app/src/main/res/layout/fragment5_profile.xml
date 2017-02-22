@@ -146,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/profile_org_text"
-                    android:text="@string/organized_challenges"/>
+                    android:text="@string/organized_challenges"
+                    android:textSize="32sp"/>
 
 
                 <android.support.v7.widget.RecyclerView
@@ -164,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/profile_join_text"
+                    android:textSize="32sp"
                     android:text="@string/joined_challenges"/>
 
                 <android.support.v7.widget.RecyclerView
