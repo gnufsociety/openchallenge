@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ApiHelper.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ApiHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/mainfrags/ProfileFragment.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/mainfrags/ProfileFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/res/layout/fragment5_profile.xml" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/res/layout/fragment5_profile.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -63,8 +60,8 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="304" column="45" lean-forward="false" selection-start-line="304" selection-start-column="45" selection-end-line="304" selection-end-column="45" />
+            <state relative-caret-position="162">
+              <caret line="303" column="21" lean-forward="false" selection-start-line="303" selection-start-column="21" selection-end-line="303" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -320,7 +317,7 @@
       <workItem from="1487595528888" duration="235000" />
       <workItem from="1487711934367" duration="2670000" />
       <workItem from="1487790485590" duration="739000" />
-      <workItem from="1487794049661" duration="1813000" />
+      <workItem from="1487794049661" duration="1838000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -361,7 +358,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29581000" />
+    <option name="totallyTimeSpent" value="29606000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="813" extended-state="6" />
@@ -856,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="304" column="45" lean-forward="false" selection-start-line="304" selection-start-column="45" selection-end-line="304" selection-end-column="45" />
+        <state relative-caret-position="162">
+          <caret line="303" column="21" lean-forward="false" selection-start-line="303" selection-start-column="21" selection-end-line="303" selection-end-column="21" />
           <folding />
         </state>
       </provider>

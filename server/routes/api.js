@@ -299,7 +299,13 @@ router.get('/findUserByUid/:uid', function (req, res) {
 
 router.get('/organizedChallenges/:user_id', function (req, res) {
     User.findById(req.params.user_id)
-        .populate('organizedChallenges')
+        .populate({
+            path: 'organizedChallenges',
+            populate: {
+                path: 'organizer',
+                select: 'username picture uid rate'
+            }
+        })
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.organizedChallenges);
@@ -309,7 +315,13 @@ router.get('/organizedChallenges/:user_id', function (req, res) {
 
 router.get('/joinedChallenges/:user_id', function (req, res) {
     User.findById(req.params.user_id)
-        .populate('joinedChallenges')
+        .populate({
+            path: 'joinedChallenges',
+            populate: {
+                path: 'organizer',
+                select: 'username picture uid rate'
+            }
+        })
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.joinedChallenges);

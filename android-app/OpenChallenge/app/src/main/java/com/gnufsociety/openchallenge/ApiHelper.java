@@ -242,9 +242,7 @@ public class ApiHelper {
                     .build();
 
             Response res = client.newCall(req).execute();
-            System.out.printf("******** FROM SERVER ********");
-            System.out.println(res.body().string());
-            System.out.printf("******** FROM SERVER ********");
+            organized = Challenge.getArrayList(res.body().string());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -260,9 +258,7 @@ public class ApiHelper {
                     .build();
 
             Response res = client.newCall(req).execute();
-            System.out.printf("******** FROM SERVER ********");
-            System.out.println(res.body().string());
-            System.out.printf("******** FROM SERVER ********");
+            joined = Challenge.getArrayList(res.body().string());
         } catch (IOException e) {
             e.printStackTrace();
         }
