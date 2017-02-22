@@ -59,6 +59,7 @@ router.post('/newChallenge', function (req, res) {
     User.findOne({'uid': obj.organizer})
         .exec(function (err, user) {
             assert.equal(err, null);
+            var dat = obj.date.split("/");
             var challenge = new Challenge({
                 name: obj.name,
                 description: obj.description,
@@ -69,10 +70,11 @@ router.post('/newChallenge', function (req, res) {
                     lat: obj.location.lat,
                     long: obj.location.long
                 },
-                date: obj.date,
+
                 organizer: user._id,
                 participants: []
             });
+            challenge.date = new Date(Date.UTC(dat[2],dat[1]-1,dat[0],0,0,0,0));
             challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
