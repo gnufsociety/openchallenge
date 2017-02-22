@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,6 +112,9 @@ public class ProfileFragment extends Fragment {
 
             }
         };
+
+        orgRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        joinedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         currentUserTask.execute(auth.getCurrentUser().getUid());

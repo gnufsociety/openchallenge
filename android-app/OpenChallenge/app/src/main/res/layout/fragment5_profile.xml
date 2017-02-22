@@ -154,7 +154,8 @@
                     android:id="@+id/profile_org_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:paddingBottom="16dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -172,7 +173,8 @@
                     android:id="@+id/profile_join_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:paddingBottom="16dp"/>
 
             </LinearLayout>
 
