@@ -152,6 +152,7 @@ router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .select('name description rules image location date organizer')
+        .sort({date:-1})
         .populate({
             path:'organizer',
             select: 'username picture uid rate'
