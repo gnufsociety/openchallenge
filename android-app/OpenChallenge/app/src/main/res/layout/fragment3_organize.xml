@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:textAppearanceLarge"
                     android:textStyle="bold"
-                    android:text="@string/rules_title"
+                    android:text="@string/rules"
                     android:textAlignment="center"
                     android:layout_marginBottom="0dp"/>
 

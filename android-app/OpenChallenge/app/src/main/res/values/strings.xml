@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">OpenChallenge</string>
+    <string name="app_name" translatable="false">OpenChallenge</string>
     <string name="action_search">Search...</string>
-    <string name="app_name_label">Open Challenge</string>
-    <string name="register_underlined">New user? Register <u>here</u></string>
+    <string name="app_name_label" translatable="false">Open Challenge</string>
+    <string name="register_underlined" translatable="false">New user? Register <u>here</u></string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="login_underlined">Already registered? Sign in <u>here</u></string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -13,8 +13,7 @@
 
     <string name="desc_cardlay">Competition between hackers, who\'s gonna be the first destroying the machine? Maybe Harold Finch! Come here and prove yourself </string>
     <string name="rules">Rules</string>
-    <string name="rules_title">Rules</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
 
     <string name="choose_winner">Choooose winner!</string>
     <string name="join_challenge">Join challenge</string>

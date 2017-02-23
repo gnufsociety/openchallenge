@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_search">Cerca...</string>
+    <string name="choose_winner">Scegli i vincitori!</string>
+    <string name="congratulations_newu">Congratulazioni!</string>
+    <string name="delete_user">Elimina utente</string>
+    <string name="desc_cardlay">Mettiti alla prova!</string>
+    <string name="hello_blank_fragment">Fragment vuoto</string>
+    <string name="join_challenge">Iscriviti</string>
+    <string name="joined">Iscritto!</string>
+    <string name="joined_challenges">Sfide sostenute</string>
+    <string name="logout">Logout</string>
+    <string name="nav_home_title">Home</string>
+    <string name="nav_map_title">Vicino</string>
+    <string name="nav_organize_title">Organizza</string>
+    <string name="nav_profile_title">Profilo</string>
+    <string name="nav_saved_title">Preferiti</string>
+    <string name="no_internet_connection">Non sei connesso a internet</string>
+    <string name="organized_challenges">Sfide organizzate</string>
+    <string name="participants">partecipanti</string>
+    <string name="rules">Regole</string>
+    <string name="sign_in_cancelled"></string>
+    <string name="title_activity_maps"></string>
+    <string name="unknown_error">Errore sconosciuto</string>
+    <string name="unknown_sign_in_response">Risposta sign-in sconosciut  a</string>
+</resources>
