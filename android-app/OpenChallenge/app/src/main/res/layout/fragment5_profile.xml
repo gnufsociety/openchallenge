@@ -14,7 +14,7 @@
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
@@ -55,6 +55,7 @@
                     android:layout_rowSpan="2"
                     android:src="@drawable/user"
                     app:civ_border_width="1dp" />
+
 
                 <ImageView
                     android:layout_width="72dp"
@@ -128,15 +129,29 @@
 
             </GridLayout>
 
-            <TextView
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:id="@+id/user_status"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/user_grid_profile"
-                android:text="Ci scrivo barre a caso perchè non so che dire"
-                android:textSize="19sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:id="@+id/user_status"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/user_grid_profile"
+                    android:text="Ci scrivo barre a caso perchè non so che dire"
+                    android:textSize="19sp" />
+
+                <ImageButton
+                    android:id="@+id/edit_status_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:src="@drawable/ic_mode_edit_black_24dp"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -147,8 +162,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/profile_org_text"
                     android:text="@string/organized_challenges"
-                    android:textSize="32sp"/>
-
+                    android:textSize="24sp"
+                    android:textColor="@color/colorAccent"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/profile_org_recycler"
@@ -156,18 +171,14 @@
                     android:layout_height="match_parent"
                     android:scrollbars="vertical"
                     android:paddingBottom="16dp"/>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/profile_join_text"
-                    android:textSize="32sp"
-                    android:text="@string/joined_challenges"/>
+                    android:textSize="24sp"
+                    android:text="@string/joined_challenges"
+                    android:textColor="@color/colorAccent"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/profile_join_recycler"

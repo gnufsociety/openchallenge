@@ -264,4 +264,17 @@ public class ApiHelper {
         }
         return joined;
     }
+
+    public void setStatus(User user, String new_status) {
+        //TODO: implement api in server
+        try {
+            Request req = new Request.Builder()
+                    .url(url+"setStatus/"+user.id+"/"+new_status)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

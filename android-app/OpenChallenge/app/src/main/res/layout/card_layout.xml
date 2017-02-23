@@ -54,20 +54,6 @@
                 android:textColor="#424242"
                 android:textSize="15sp" />
 
-
-            <!--<android.support.v4.widget.Space
-                android:id="@+id/card_space"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_below="@id/frame_img_card"/>-->
-            <!-- <FrameLayout
-                 android:paddingTop="8dp"
-                 android:id="@+id/frame_img_card"
-                 android:layout_alignBottom="@+id/card_descr"
-                 android:layout_alignParentRight="true"
-                 android:layout_alignParentEnd="true"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content">-->
             <FrameLayout
                 android:id="@+id/frame_image"
                 android:layout_width="wrap_content"

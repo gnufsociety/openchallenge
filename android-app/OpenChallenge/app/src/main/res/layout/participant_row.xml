@@ -22,17 +22,6 @@
         android:layout_rowSpan="2"
         />
 
-    <!--<Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Add"
-        android:layout_gravity="center_vertical"
-        android:layout_column="3"
-        android:layout_row="0"
-        android:layout_rowSpan="2"
-
-        />-->
-
     <android.support.v7.widget.AppCompatRatingBar
         android:id="@+id/part_row_rate"
         style="@style/Base.Widget.AppCompat.RatingBar.Small"

@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -24,10 +24,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.gnufsociety.openchallenge.ApiHelper;
-import com.gnufsociety.openchallenge.MainActivity;
 import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.RegistrationActivity;
-import com.gnufsociety.openchallenge.adapters.CardAdapter;
+import com.gnufsociety.openchallenge.adapters.ChallengeAdapter;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -58,13 +57,14 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_status) public TextView status;
     @BindView(R.id.user_layout) public LinearLayout layout;
     @BindView(R.id.user_progress_bar) public ProgressBar spinner;
+    @BindView(R.id.edit_status_btn) public ImageButton editStatusBtn;
 
     @BindView(R.id.profile_org_recycler) public RecyclerView orgRecycler;
     @BindView(R.id.profile_refresh) public SwipeRefreshLayout refreshLayout;
     @BindView(R.id.profile_join_recycler) public RecyclerView joinedRecycler;
 
-    public CardAdapter orgCardAdapter;
-    public CardAdapter joinedCardAdapter;
+    public ChallengeAdapter orgCardAdapter;
+    public ChallengeAdapter joinedCardAdapter;
 
     public User currentUser;
 
@@ -108,6 +108,8 @@ public class ProfileFragment extends Fragment {
                 spinner.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
 
+                // IMPORTANT: the user must be loaded before we can execute
+                // the tasks for downloading organized/joined challenges.
                 populateChallenges(false);
 
             }
@@ -115,6 +117,14 @@ public class ProfileFragment extends Fragment {
 
         orgRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         joinedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+
+        orgRecycler.setNestedScrollingEnabled(false);
+        orgRecycler.addItemDecoration(dividerItemDecoration);
+
+        joinedRecycler.setNestedScrollingEnabled(false);
+        joinedRecycler.addItemDecoration(dividerItemDecoration);
 
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         currentUserTask.execute(auth.getCurrentUser().getUid());
@@ -130,7 +140,12 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-
+    /**
+     * Executes two async tasks querying the joined/organized challenges
+     * from server and displaying them into the recycler list
+     *
+     * @param isRefresh is true if the function is called refreshing the layout
+     */
     public void populateChallenges(final boolean isRefresh) {
         AsyncTask<User,Void,ArrayList<Challenge>> organizedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
             @Override
@@ -141,7 +156,7 @@ public class ProfileFragment extends Fragment {
             @Override
             protected void onPostExecute(ArrayList<Challenge> challenges) {
                 super.onPostExecute(challenges);
-                orgCardAdapter = new CardAdapter(challenges);
+                orgCardAdapter = new ChallengeAdapter(challenges);
                 orgRecycler.setAdapter(orgCardAdapter);
                 if(isRefresh) refreshLayout.setRefreshing(false);
             }
@@ -156,7 +171,7 @@ public class ProfileFragment extends Fragment {
             @Override
             protected void onPostExecute(ArrayList<Challenge> challenges) {
                 super.onPostExecute(challenges);
-                joinedCardAdapter = new CardAdapter(challenges);
+                joinedCardAdapter = new ChallengeAdapter(challenges);
                 joinedRecycler.setAdapter(joinedCardAdapter);
                 if(isRefresh) refreshLayout.setRefreshing(false);
             }
@@ -164,6 +179,11 @@ public class ProfileFragment extends Fragment {
 
         organizedTask.execute(currentUser);
         joinedTask.execute(currentUser);
+    }
+
+    @OnClick(R.id.edit_status_btn)
+    public void editStatus() {
+
     }
 
 

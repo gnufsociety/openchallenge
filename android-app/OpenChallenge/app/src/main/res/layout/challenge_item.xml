@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/first_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white" >
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Smash The Stack"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/item_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="8dp"
+        android:layout_below="@+id/item_title"
+        android:layout_toLeftOf="@+id/item_heart"
+        android:text="@string/desc_cardlay"
+        android:textColor="#424242"
+        android:textSize="15sp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/item_when"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23/02/2017"
+        android:textSize="18dp"
+        android:textColor="@color/colorAccent"
+        android:layout_below="@+id/item_desc"
+        android:paddingTop="4dp"
+        android:paddingLeft="8dp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/item_img"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hacking"
+        android:layout_alignParentRight="true"/>
+
+    <com.gnufsociety.openchallenge.customui.FavoriteButton
+        android:id="@+id/item_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/item_img"
+        android:layout_toStartOf="@+id/item_img"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="4dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/favorite_black_40"
+        android:visibility="gone"/>
+
+</RelativeLayout>
