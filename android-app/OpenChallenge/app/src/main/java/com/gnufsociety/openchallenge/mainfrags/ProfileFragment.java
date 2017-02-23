@@ -3,6 +3,7 @@ package com.gnufsociety.openchallenge.mainfrags;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,8 +16,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -58,6 +61,11 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_layout) public LinearLayout layout;
     @BindView(R.id.user_progress_bar) public ProgressBar spinner;
     @BindView(R.id.edit_status_btn) public ImageButton editStatusBtn;
+
+    @BindView(R.id.show_organized) public RelativeLayout orgList;
+    @BindView(R.id.show_joined) public RelativeLayout joinedList;
+    @BindView(R.id.show_hide_org) public ImageView showHideOrg;
+    @BindView(R.id.show_hide_joined) public ImageView showHideJoined;
 
     @BindView(R.id.profile_org_recycler) public RecyclerView orgRecycler;
     @BindView(R.id.profile_refresh) public SwipeRefreshLayout refreshLayout;
@@ -181,9 +189,33 @@ public class ProfileFragment extends Fragment {
         joinedTask.execute(currentUser);
     }
 
+
+    @OnClick(R.id.show_organized)
+    public void revealOrganized() {
+        if(orgRecycler.getVisibility() == View.VISIBLE) {
+            orgRecycler.setVisibility(View.GONE);
+            showHideOrg.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        } else {
+            orgRecycler.setVisibility(View.VISIBLE);
+            showHideOrg.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+        }
+    }
+
+    @OnClick(R.id.show_joined)
+    public void revealJoined() {
+        if(joinedRecycler.getVisibility() == View.VISIBLE) {
+            joinedRecycler.setVisibility(View.GONE);
+            showHideJoined.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        } else {
+            joinedRecycler.setVisibility(View.VISIBLE);
+            showHideJoined.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+        }
+    }
+
+
     @OnClick(R.id.edit_status_btn)
     public void editStatus() {
-
+        //TODO: implement...
     }
 
 

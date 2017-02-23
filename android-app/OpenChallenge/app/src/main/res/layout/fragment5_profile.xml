@@ -153,41 +153,76 @@
                     android:src="@drawable/ic_mode_edit_black_24dp"/>
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:id="@+id/show_organized">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:id="@+id/profile_org_text"
                     android:text="@string/organized_challenges"
                     android:textSize="24sp"
                     android:textColor="@color/colorAccent"/>
 
+                <ImageView
+                    android:id="@+id/show_hide_org"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_toLeftOf="@+id/profile_org_text"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/profile_org_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/profile_org_text"
                     android:scrollbars="vertical"
-                    android:paddingBottom="16dp"/>
+                    android:paddingBottom="16dp"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_joined">
 
                 <TextView
+                    android:id="@+id/profile_join_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/profile_join_text"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:textSize="24sp"
                     android:text="@string/joined_challenges"
                     android:textColor="@color/colorAccent"/>
+
+                <ImageView
+                    android:id="@+id/show_hide_joined"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toLeftOf="@+id/profile_join_text"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/profile_join_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_below="@+id/profile_join_text"
                     android:scrollbars="vertical"
-                    android:paddingBottom="16dp"/>
+                    android:paddingBottom="16dp"
+                    android:visibility="gone"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <ProgressBar
                 android:id="@+id/user_progress_bar"
