@@ -18,7 +18,8 @@
     <string name="choose_winner">Choooose winner!</string>
     <string name="join_challenge">Join challenge</string>
     <string name="joined">Joined!</string>
-    <string name="participants">participants</string>
+    <string name="participants">%1$d participants</string>
+    <string name="single_participant">%1$d participant</string>
     <string name="congratulations_newu">Congratulations!</string>
 
     <string name="unknown_error">Unknown error</string>
@@ -41,4 +42,12 @@
     <string name="delete_user">Delete user</string>
     <string name="organized_challenges">Organized challenges</string>
     <string name="joined_challenges">Joined challenges</string>
+    <string name="organize_create_btn">Create it!</string>
+    <string name="organize_location"><![CDATA[Choose a location ->]]></string>
+    <string name="organize_date"><![CDATA[Choose a date ->]]></string>
+    <string name="organize_chall_rules">Challenge rules</string>
+    <string name="organize_chall_desc">Challenge description</string>
+    <string name="organize_chall_name">Challenge name</string>
+    <string name="chall_location">Location</string>
+
 </resources>

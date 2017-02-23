@@ -1,6 +1,7 @@
 package com.gnufsociety.openchallenge;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -84,31 +85,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         auth = FirebaseAuth.getInstance();
 
-        AsyncTask<Void, Void, JSONObject> task = new AsyncTask<Void, Void, JSONObject>() {
-            @Override
-            protected JSONObject doInBackground(Void... params) {
-                ApiHelper api = new ApiHelper();
-                return api.numParticipant(c.id, auth.getCurrentUser().getUid());
-            }
-
-            @Override
-            protected void onPostExecute(JSONObject integer) {
-                try {
-                    boolean find = integer.getBoolean("joined");
-                    int num = integer.getInt("numParticipants");
-                    numPart.setText("" + num + " participants");
-                    if (find) {
-                        join.setText("Joined");
-                        joined = true;
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        //set num participant from web
-        //task.execute();
         if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
             join.setText(R.string.choose_winner);
             isOrganizer = true;
@@ -116,7 +92,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         ChallengeAsync ca = new ChallengeAsync();
         ca.execute();
-        //task.execute();
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -129,61 +104,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         FirebaseStorage storage = FirebaseStorage.getInstance();
         store = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
 
-
-
-
-        /*switch (c.simplePart.size()){
-            case 1:
-                StorageReference p1 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p1)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part1);
-                part1.setVisibility(View.VISIBLE);
-                break;
-            case 2:
-                StorageReference p11 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p11)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part1);
-                StorageReference p2 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p2)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part2);
-                part1.setVisibility(View.VISIBLE);
-                part2.setVisibility(View.VISIBLE);
-
-                break;
-            case 3:
-                StorageReference p111 = sref.child("users/" + c.simplePart.get(0).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p111)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part1);
-                StorageReference p22 = sref.child("users/" + c.simplePart.get(1).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p22)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part2);
-                StorageReference p3 = sref.child("users/" + c.simplePart.get(2).proPicLocation);
-                Glide.with(this)
-                        .using(new FirebaseImageLoader())
-                        .load(p3)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(part3);
-                part1.setVisibility(View.VISIBLE);
-                part2.setVisibility(View.VISIBLE);
-                part3.setVisibility(View.VISIBLE);
-
-                break;
-        }*/
         StorageReference cImage = store.child("challenges/" + c.imageLocation);
         image.setImageResource(c.resImage);
         Glide.with(this)
@@ -213,7 +133,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
 
         collapseToolbar.setTitle(c.name);
-        //collapseToolbar.setExpandedTitleColor(ContextCompat.getColor(this,R.color.white));
         collapseToolbar.setContentScrimColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         //Edit this two to change color and text appearance
@@ -284,17 +203,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                /*Button doneBtn = (Button) view;
-                String n = numPart.getText().toString();
-                int i = Integer.parseInt(n.split(" ")[0]);
-                if (joined) {
-                    numPart.setText((--i)+"" + R.string.participants);
-                    doneBtn.setText(R.string.join_challenge);
-                } else {
-                    numPart.setText((++i)+"" + R.string.participants);
-                    doneBtn.setText(R.string.joined);
-                }
-                joined = !joined;*/
                 ChallengeAsync ac = new ChallengeAsync();
                 ac.execute();
             }
@@ -318,7 +226,6 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         if (requestCode == WINNER_CODE){
             if (resultCode == RESULT_OK){
                 User[] winners = (User[]) data.getSerializableExtra("winners");
-                //Toast.makeText(this,"The winners are "+winners[0]+" "+winners[1]+" "+winners[2],Toast.LENGTH_LONG).show();
                 podium.setVisibility(View.VISIBLE);
                 podium.setWinners(winners);
                 join.setVisibility(View.GONE);
@@ -354,19 +261,22 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 int num = integer.getInt("numParticipants");
 
                 JSONArray participants = integer.getJSONArray("participants");
-
-                numPart.setText(num + " participants");
+                Resources res = getResources();
+                if (num == 1)
+                    numPart.setText(res.getString(R.string.single_participant,num));
+                else
+                    numPart.setText(res.getString(R.string.participants,num));
                 if (youJoin) {
-                    join.setText("Joined");
+                    join.setText(R.string.joined);
                     joined = true;
                 }
                 else {
-                    join.setText("Join Challenge");
+                    join.setText(R.string.join_challenge);
                     joined = false;
                 }
                 if (isOrganizer){
                     joined = false;
-                    join.setText("Choose the winners!");
+                    join.setText(R.string.choose_winner);
                 }
 
                 if (num > 0){

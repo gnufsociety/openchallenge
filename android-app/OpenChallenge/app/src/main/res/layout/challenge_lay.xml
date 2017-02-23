@@ -220,7 +220,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingTop="10dp"
-                    android:text="Rules"
+                    android:text="@string/rules"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold" />
@@ -256,7 +256,7 @@
                     android:layout_gravity="center"
                     android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:text="Location"
+                    android:text="@string/chall_location"
                     android:textColor="@color/black"
                     android:textSize="32sp"
                     android:textStyle="bold" />

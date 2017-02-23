@@ -17,10 +17,18 @@
     <string name="nav_saved_title">Preferiti</string>
     <string name="no_internet_connection">Non sei connesso a internet</string>
     <string name="organized_challenges">Sfide organizzate</string>
-    <string name="participants">partecipanti</string>
+    <string name="participants">%1$d partecipanti</string>
+    <string name="single_participant">%1$d partecipante</string>
     <string name="rules">Regole</string>
     <string name="sign_in_cancelled"></string>
     <string name="title_activity_maps"></string>
     <string name="unknown_error">Errore sconosciuto</string>
     <string name="unknown_sign_in_response">Risposta sign-in sconosciut  a</string>
+    <string name="organize_chall_desc">Descrizione sfida</string>
+    <string name="organize_chall_name">Nome sfida</string>
+    <string name="organize_chall_rules">Regole sfida</string>
+    <string name="organize_create_btn">Crea!</string>
+    <string name="organize_date">Scegli la data -></string>
+    <string name="organize_location">Scegli il luogo -></string>
+    <string name="chall_location">Luogo</string>
 </resources>

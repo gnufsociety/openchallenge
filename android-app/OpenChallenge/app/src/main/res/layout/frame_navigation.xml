@@ -37,7 +37,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:title="Home"
+            app:title="@string/nav_home_title"
             app:imageButton="@drawable/home_24"
             android:onClick="clickBottomBar"
 
@@ -48,7 +48,7 @@
             android:layout_width="0dp"
             android:id="@+id/map_bottom"
             android:layout_height="wrap_content"
-            app:title="Nearby"
+            app:title="@string/nav_map_title"
             app:imageButton="@drawable/map_24"
             android:onClick="clickBottomBar"
 
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:title="Organize"
+            app:title="@string/nav_organize_title"
             app:imageButton="@drawable/add_box_24"
             android:onClick="clickBottomBar"
 
@@ -70,7 +70,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:title="Favorites"
+            app:title="@string/nav_saved_title"
             app:imageButton="@drawable/favorite_24"
             android:onClick="clickBottomBar"
 
@@ -80,7 +80,7 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:title="Profile"
+            app:title="@string/nav_profile_title"
             app:imageButton="@drawable/profile_24"
             android:onClick="clickBottomBar"
 

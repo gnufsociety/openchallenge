@@ -264,7 +264,6 @@ public class OrganizeFragment extends Fragment {
                 placeText.setText(s.split(",")[0]);
                 placeText.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
 
-                System.out.println(place.getAddress());
             }
         } else if (requestCode == PICK_GALLERY_INTENT) {
             if (resultCode == RESULT_OK) {
