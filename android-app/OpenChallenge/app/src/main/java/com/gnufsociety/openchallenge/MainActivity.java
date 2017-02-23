@@ -326,12 +326,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.side_profile) {
-            // Handle the profile clicked action
-            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        } else if (id == R.id.side_achievements) {
-            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            FragmentManager manager = getSupportFragmentManager();
+            manager.beginTransaction()
+                    .replace(R.id.home_fragment, new ProfileFragment(), ProfileFragment.TAG)
+                    .addToBackStack(ProfileFragment.TAG)
+                    .commit();
+            return true;
         } else if (id == R.id.side_settings) {
             Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
