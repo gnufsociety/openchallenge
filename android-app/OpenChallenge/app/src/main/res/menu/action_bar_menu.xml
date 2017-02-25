@@ -5,8 +5,11 @@
     <!-- SEARCH: the item to start the search activity -->
     <item
         android:id="@+id/action_logout"
-        android:title="Log out"
+        android:title="@string/logout"
         />
+    <item
+        android:id="@+id/action_filter"
+        android:title="@string/filter"/>
     <item
         android:id="@+id/action_search"
         android:icon="@drawable/search_24"

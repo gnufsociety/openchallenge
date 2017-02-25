@@ -49,5 +49,6 @@
     <string name="organize_chall_desc">Challenge description</string>
     <string name="organize_chall_name">Challenge name</string>
     <string name="chall_location">Location</string>
+    <string name="filter">Filter</string>
 
 </resources>
