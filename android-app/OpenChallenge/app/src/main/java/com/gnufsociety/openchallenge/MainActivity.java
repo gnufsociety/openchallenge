@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,6 +23,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
@@ -29,6 +35,7 @@ import com.gnufsociety.openchallenge.customui.BottomButton;
 import com.gnufsociety.openchallenge.mainfrags.FavoriteFragment;
 import com.gnufsociety.openchallenge.mainfrags.Fragment2;
 import com.gnufsociety.openchallenge.mainfrags.HomeFragment;
+import com.gnufsociety.openchallenge.mainfrags.LocationHelper;
 import com.gnufsociety.openchallenge.mainfrags.OrganizeFragment;
 import com.gnufsociety.openchallenge.mainfrags.ProfileFragment;
 import com.gnufsociety.openchallenge.model.Challenge;
@@ -55,6 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth auth;
     public SearchFragment searchFragment;
     private GoogleMap mMap;
+
+    public LocationHelper loc;
+
+    private boolean okPressed = false;
 
     //private BottomNavigationView bottomBar;
 
@@ -94,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             protected void onPostExecute(Boolean res) {
-                if(!res)
+                if (!res)
                     startActivity(new Intent(context, ConfigurationActivity.class));
             }
         };
@@ -174,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             @Override
-            public boolean onQueryTextChange(String newText){
+            public boolean onQueryTextChange(String newText) {
 
                 return false;
             }
@@ -193,19 +204,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.home_fragment, searchFragment, "search")
                     .addToBackStack("search").commit();
-        }
-        else if (id == R.id.action_logout){
+        } else if (id == R.id.action_logout) {
             AuthUI.getInstance()
                     .signOut(this)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
                             // user is now signed out
-                            startActivity(new Intent(MainActivity.this,RegistrationActivity.class));
+                            startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
                             finish();
                         }
                     });
-        }
-        else if (id == R.id.action_filter){
+        } else if (id == R.id.action_filter) {
             showFilterDialog();
 
         }
@@ -223,14 +232,88 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View dialogView = inflater.inflate(R.layout.filter_dialog, null);
         builder.setView(dialogView);
 
-        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+        final Spinner s = (Spinner) dialogView.findViewById(R.id.spinner_filter);
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.filter_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        s.setAdapter(adapter);
+
+
+        builder.setPositiveButton("Ok", null);
+        builder.setNeutralButton("Annulla", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
             }
         });
 
-        builder.create().show();
+        final AlertDialog mDialog = builder.create();
+
+        loc = new LocationHelper(this) {
+            @Override
+            public void onLocationChanged(Location location) {
+                super.onLocationChanged(location);
+                if (okPressed) {
+                    mDialog.dismiss();
+                    okPressed = false;
+                }
+            }
+        };
+
+
+        mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(final DialogInterface dialog) {
+                final Button ok = mDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        switch (s.getSelectedItemPosition()){
+                            case 0:
+                                if (loc.currLocation != null) {
+                                    f1.orderByPosition(loc.currLocation);
+
+                                } else {
+                                    okPressed = true;
+                                    Toast.makeText(f1.getContext(), "Attendi che vedo la tua cazzo di posizione", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                break;
+                            case 1:
+                                f1.downloadChall();
+
+                                break;
+
+                        }
+                        dialog.dismiss();
+                        loc.disconnectApi();
+
+
+                    }
+                });
+            }
+        });
+        mDialog.show();
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        loc.buildGoogleApi();
+                        break;
+                    case 1:
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
     }
@@ -388,29 +471,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Add a marker in Sydney and move the camera
         int i = 0;
         for (Challenge c : f1.adapter.list) {
-            LatLng lat = new LatLng(c.lat,c.lng);
+            LatLng lat = new LatLng(c.lat, c.lng);
             Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(lat)
-                            .title(c.name));
+                    .position(lat)
+                    .title(c.name));
             marker.setTag(i);
             i++;
         }
-        if (f1.adapter.list.size() > 3){
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(2).lat,f1.adapter.list.get(2).lng)));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(18),2000,null);
-        }
+        loc = new LocationHelper(this){
+            @Override
+            public void onLocationChanged(Location location) {
+                super.onLocationChanged(location);
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(loc.currLocation.getLatitude(), loc.currLocation.getLongitude())));
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
+
+            }
+        };
+        loc.buildGoogleApi();
+
+        /*if (f1.adapter.list.size() > 3) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(2).lat, f1.adapter.list.get(2).lng)));
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
+        }*/
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Bundle bundle = new Bundle();
                 int pos = (int) marker.getTag();
-                bundle.putSerializable("challenge",f1.adapter.list.get(pos));
-                Intent i = new Intent(myToolbar.getContext(),ChallengeActivity.class);
+                bundle.putSerializable("challenge", f1.adapter.list.get(pos));
+                Intent i = new Intent(myToolbar.getContext(), ChallengeActivity.class);
                 i.putExtras(bundle);
                 myToolbar.getContext().startActivity(i);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 12) {
+            if (resultCode == RESULT_OK) {
+                loc.foo();
+            }
+        }
     }
 
 

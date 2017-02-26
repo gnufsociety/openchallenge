@@ -4,5 +4,5 @@
     android:id="@+id/map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gnufsociety.openchallenge.MapsActivity"
+    tools:activity="com.gnufsociety.openchallenge.MapsActivity"
         android:name="com.google.android.gms.maps.SupportMapFragment"/>

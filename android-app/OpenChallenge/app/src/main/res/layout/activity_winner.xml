@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.gnufsociety.openchallenge.WinnerActivity">
+    tools:activity="com.gnufsociety.openchallenge.WinnerActivity">
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

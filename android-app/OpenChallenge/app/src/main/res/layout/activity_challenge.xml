@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.gnufsociety.openchallenge.ChallengeActivity">
+    tools:activity="com.gnufsociety.openchallenge.ChallengeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

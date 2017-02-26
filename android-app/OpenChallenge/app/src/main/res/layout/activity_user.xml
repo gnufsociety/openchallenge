@@ -10,7 +10,7 @@
     android:dividerPadding="12dp"
     android:divider="@drawable/mydivider"
 
-    tools:context="com.gnufsociety.openchallenge.UserActivity">
+    tools:activity="com.gnufsociety.openchallenge.UserActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

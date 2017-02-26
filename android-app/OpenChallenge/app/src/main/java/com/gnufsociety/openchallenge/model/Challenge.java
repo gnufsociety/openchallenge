@@ -1,7 +1,5 @@
 package com.gnufsociety.openchallenge.model;
 
-import com.gnufsociety.openchallenge.R;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,9 +8,10 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
 
 /**
  * Created by Leonardo on 14/01/2017.
@@ -55,7 +54,7 @@ public class Challenge implements Serializable {
 
         // UNCOMMENT WHEN IT'S READY
         JSONObject userObj = obj.getJSONObject("organizer");
-        this.organizer = new User(userObj,0);
+        this.organizer = new User(userObj, 0);
 
         /*JSONArray part = obj.getJSONArray("participants");
         simplePart = new ArrayList<>();
@@ -63,8 +62,6 @@ public class Challenge implements Serializable {
         for (int i = 0; i < part.length(); i++) {
             simplePart.add(new User(part.getJSONObject(i),1));
         }*/
-
-
 
 
     }
@@ -99,5 +96,35 @@ public class Challenge implements Serializable {
         }
 
         return arr;
+    }
+
+    public static class DistanceChallangeComparator implements Comparator<Challenge> {
+        public double mLat;
+        public double mLng;
+
+        public DistanceChallangeComparator(double mLat, double mLng) {
+            this.mLat = mLat;
+            this.mLng = mLng;
+        }
+
+        public Double distanceFromMe(double lat, double lng) {
+            double dLat = Math.toRadians(lat - mLat);
+            double dLng = Math.toRadians(lng - mLng);
+
+            double radmLat = Math.toRadians(mLat);
+            double radLat = Math.toRadians(lat);
+
+            double a = Math.pow(Math.sin(dLat / 2), 2) + Math.pow(Math.sin(dLng / 2), 2) * Math.cos(radmLat) * Math.cos(radLat);
+
+            return 2 * Math.asin(Math.sqrt(a));
+
+        }
+
+
+        @Override
+        public int compare(Challenge o1, Challenge o2) {
+
+            return distanceFromMe(o1.lat,o1.lng).compareTo(distanceFromMe(o2.lat,o2.lng));
+        }
     }
 }

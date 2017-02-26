@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge.mainfrags;
 
+import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.gnufsociety.openchallenge.adapters.CardAdapter;
 import com.gnufsociety.openchallenge.model.Challenge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by sdc on 1/11/17.
@@ -30,7 +32,8 @@ public class HomeFragment extends Fragment {
     public RecyclerView recyclerView;
     public SwipeRefreshLayout refreshLayout;
 
-    public HomeFragment(){}
+    public HomeFragment() {
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,60 +46,56 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment1_home,container,false);
+        View view = inflater.inflate(R.layout.fragment1_home, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
 
-        final AsyncTask<Void,Void,ArrayList<Challenge>> task = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
-            @Override
-            protected ArrayList<Challenge> doInBackground(Void... params) {
-                ApiHelper api = new ApiHelper();
-                return api.getHomeChallenge();
-            }
-
-            @Override
-            protected void onPostExecute(ArrayList<Challenge> challenges) {
-                super.onPostExecute(challenges);
-                adapter = new CardAdapter(challenges);
-                recyclerView.setAdapter(adapter);
-                //refreshLayout.setRefreshing(false);
-
-            }
-        };
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                AsyncTask<Void,Void,ArrayList<Challenge>> tas = new AsyncTask<Void, Void, ArrayList<Challenge>>() {
-                    @Override
-                    protected ArrayList<Challenge> doInBackground(Void... params) {
-                        ApiHelper api = new ApiHelper();
-                        return api.getHomeChallenge();
-                    }
-
-                    @Override
-                    protected void onPostExecute(ArrayList<Challenge> challenges) {
-                        super.onPostExecute(challenges);
-                        adapter = new CardAdapter(challenges);
-                        recyclerView.setAdapter(adapter);
-                        refreshLayout.setRefreshing(false);
-
-                    }
-                };
-                tas.execute();
+                downloadChall();
             }
         });
 
-        task.execute();
+        downloadChall();
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         return view;
     }
 
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        return fragment;
+    public void orderByPosition(Location currLocation){
+        Collections.sort(adapter.list, new Challenge.DistanceChallangeComparator(currLocation.getLatitude(),currLocation.getLongitude()));
+        adapter.notifyDataSetChanged();
+    }
+
+    public void downloadChall(){
+        HomeAsync taskHome = new HomeAsync();
+        taskHome.execute();
+    }
+
+    public class HomeAsync extends AsyncTask<Void, Void, ArrayList<Challenge>>{
+
+        @Override
+        protected ArrayList<Challenge> doInBackground(Void... params) {
+            ApiHelper api = new ApiHelper();
+            return api.getHomeChallenge();
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<Challenge> challenges) {
+            super.onPostExecute(challenges);
+            adapter = new CardAdapter(challenges);
+            recyclerView.setAdapter(adapter);
+            //Collections.sort(adapter.list, new Challenge.DistanceChallangeComparator(41.9149028,12.5599963));
+            //LocationHelper help = new LocationHelper(getActivity());
+            //help.buildGoogleApi();
+            //adapter.notifyDataSetChanged();
+            refreshLayout.setRefreshing(false);
+
+        }
     }
 }
