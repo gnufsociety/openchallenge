@@ -6,9 +6,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,6 +53,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     Challenge c;
     private GoogleMap mMap;
     private FirebaseAuth auth;
+    private ShareActionProvider miShareAction;
+
 
     @BindView(R.id.chall_collapsing_toolbar) CollapsingToolbarLayout collapseToolbar;
     @BindView(R.id.chall_toolbar) Toolbar toolbar;
@@ -149,6 +154,31 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate menu resource file.
+        getMenuInflater().inflate(R.menu.challenge_menu, menu);
+        // Locate MenuItem with ShareActionProvider
+        MenuItem item = menu.findItem(R.id.menu_item_share);
+        // Fetch reference to the share action provider
+        miShareAction = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
+        setShareIntent(createShareIntent());
+        // Return true to display menu
+        return true;
+    }
+
+    private void setShareIntent(Intent shareIntent) {
+        if (miShareAction != null) {
+            miShareAction.setShareIntent(shareIntent);
+        }
+    }
+    private Intent createShareIntent() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                "Come and join this challenge: '"+ c.name +"'");
+        return shareIntent;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
