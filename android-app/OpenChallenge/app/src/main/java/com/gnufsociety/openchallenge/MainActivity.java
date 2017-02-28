@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         System.out.println("lal");
         System.out.println("Tiemmodify");
         System.out.println("Sdcmmodify");
-        System.out.println("TheMonkeyKing");
+        System.out.println("TheMonkeyKing ");
     }
 
     @Override

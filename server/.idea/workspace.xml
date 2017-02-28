@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/.idea/misc.xml" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schemas/User.js" afterPath="$PROJECT_DIR$/schemas/User.js" />
-    </list>
+    <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -322,7 +316,7 @@
       <workItem from="1487790485590" duration="739000" />
       <workItem from="1487794049661" duration="2127000" />
       <workItem from="1488293113284" duration="1024000" />
-      <workItem from="1488309867343" duration="359000" />
+      <workItem from="1488309867343" duration="455000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -363,7 +357,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31278000" />
+    <option name="totallyTimeSpent" value="31374000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="813" extended-state="6" />
