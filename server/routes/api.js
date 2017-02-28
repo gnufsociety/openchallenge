@@ -242,7 +242,8 @@ router.post('/newUser', function (req, res, next) {
         bronze: 0,
         uid: obj.uid,
         joinedChallenges: [],
-        organizedChallenges: []
+        organizedChallenges: [],
+        following: []
     });
     User.findOne({'username': user.username}).exec(function (err, u) {
         if (err) res.send("Error!");
@@ -328,5 +329,29 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
         })
 });
 
+/*
+router.post('/setStatus/:user_id', function (req, res) {
+   User.findById(req.params.user_id)
+       .exec()
+});
+*/
+
+router.post('/follow/:user_id/:followed', function (req, res) {
+   User.findByIdAndUpdate(req.params.user_id, 
+       {$addToSet : {'following' : req.params.followed}}, function (err) {
+           assert.equal(err, null);
+           res.send(err);
+       }
+   ) 
+});
+
+
+router.get('/following/:user_id', function (req, res) {
+    User.findById(req.params.user_id)
+        .exec(function (err, user) {
+            assert.equal(err, null);
+            res.json(user.following);
+        })
+});
 
 module.exports = router;

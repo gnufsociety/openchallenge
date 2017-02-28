@@ -17,6 +17,10 @@ var UserSchema = new mongoose.Schema({
         organizedChallenges: [{
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Challenge'
+        }],
+        following: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
         }]
     },{ versionKey: false });
     // no version key can get us into troubles: why is it set to false?
