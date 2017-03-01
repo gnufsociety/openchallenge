@@ -34,7 +34,9 @@ import static android.app.Activity.RESULT_OK;
  * Created by Leonardo on 26/02/2017.
  */
 
-public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,  GoogleApiClient.OnConnectionFailedListener, LocationListener, ActivityCompat.OnRequestPermissionsResultCallback {
+public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
+                                       GoogleApiClient.OnConnectionFailedListener,
+                                       LocationListener, ActivityCompat.OnRequestPermissionsResultCallback {
     private Activity activity;
     private LocationManager locManager;
     private GoogleApiClient apiClient;
@@ -61,7 +63,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,  Goo
         if (apiClient != null) {
             apiClient.disconnect();
         }
-        Toast.makeText(activity,"Disconnected!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "Disconnected!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -126,14 +128,28 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,  Goo
         });
 
 
-
     }
-    public void foo(){
+
+    public void foo() {
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         currLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
         if (currLocation == null) {
             Toast.makeText(activity, "nessuna posizione", Toast.LENGTH_LONG).show();
         } else {
-            //Toast.makeText(activity,"lat: "+currLocation.getLatitude()+" lng: "+currLocation.getLongitude(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(activity,"lat: "+currLocation.getLatitude()+"
+            // lng: "+currLocation.getLongitude(), Toast.LENGTH_LONG).show();
             onLocationChanged(currLocation);
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(apiClient, request, this);
@@ -156,7 +172,8 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,  Goo
 
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(activity, "loc changed lat: " + location.getLatitude() + " lng: " + location.getLongitude(), Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, "loc changed lat: " + location.getLatitude()
+                + " lng: " + location.getLongitude(), Toast.LENGTH_LONG).show();
         currLocation = location;
     }
 

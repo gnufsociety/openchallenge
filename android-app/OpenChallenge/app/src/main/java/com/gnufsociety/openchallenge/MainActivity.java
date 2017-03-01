@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 } else {
                                     okPressed = true;
-                                    Toast.makeText(f1.getContext(), "Attendi che vedo la tua cazzo di posizione", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(f1.getContext(), "Attendi che vedo la tua posizione", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 break;
