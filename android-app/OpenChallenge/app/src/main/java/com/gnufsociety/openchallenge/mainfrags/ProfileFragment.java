@@ -1,12 +1,17 @@
 package com.gnufsociety.openchallenge.mainfrags;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,7 +54,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by sdc on 1/11/17.
  */
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment{
 
     public static String TAG = "fragment5_profile";
 
@@ -214,7 +220,30 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.edit_status_btn)
     public void editStatus() {
-        //TODO: implement...
+        // Use the Builder class for convenient dialog construction
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setTitle(R.string.insert_new_status)
+                .setView(getActivity().getLayoutInflater()
+                                      .inflate(R.layout.dialog_status, null))
+                .setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        status.setText(((EditText) ((AlertDialog) dialog).findViewById(R.id.new_status_text))
+                                .getText().toString());
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        builder.create().show();
+    }
+
+
+    public void uploadNewStatus() {
+        // TODO: upload to server current status...
     }
 
 
