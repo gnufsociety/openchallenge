@@ -70,7 +70,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 .signOut(this)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-                        // user is now signed out
+                        // currentUser is now signed out
                         startActivity(new Intent(ConfigurationActivity.this, RegistrationActivity.class));
                         finish();
                     }

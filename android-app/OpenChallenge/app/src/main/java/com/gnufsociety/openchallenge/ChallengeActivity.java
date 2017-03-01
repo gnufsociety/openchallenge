@@ -214,7 +214,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public void showUser(View view) {
         Intent user = new Intent(this, UserActivity.class);
         Bundle extra = new Bundle();
-        extra.putSerializable("user", c.organizer);
+        extra.putSerializable("currentUser", c.organizer);
         user.putExtras(extra);
         startActivity(user);
     }

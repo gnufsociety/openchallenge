@@ -90,7 +90,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
                 public void onClick(View v) {
                     Intent intent = new Intent(civ.getContext(),UserActivity.class);
                     Bundle extra = new Bundle();
-                    extra.putSerializable("user",users.get(getAdapterPosition()));
+                    extra.putSerializable("currentUser",users.get(getAdapterPosition()));
                     intent.putExtras(extra);
                     civ.getContext().startActivity(intent);
                 }

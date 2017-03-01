@@ -53,8 +53,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     /**
-     * In the first screen the user clicks the sign-in button. This means tht his intention is
-     * to access as ana already registered user.
+     * In the first screen the currentUser clicks the sign-in button. This means tht his intention is
+     * to access as ana already registered currentUser.
      */
     @OnClick(R.id.login_btn)
     public void signIn() {

@@ -3,7 +3,6 @@ package com.gnufsociety.openchallenge.mainfrags;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -57,9 +56,9 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.user_number_gold) public TextView gold;
     @BindView(R.id.user_number_silver) public TextView silver;
     @BindView(R.id.user_number_bronze) public TextView bronze;
-    @BindView(R.id.user_status) public TextView status;
+    @BindView(R.id.profile_status) public TextView status;
     @BindView(R.id.user_layout) public LinearLayout layout;
-    @BindView(R.id.user_progress_bar) public ProgressBar spinner;
+    @BindView(R.id.profile_progress_bar) public ProgressBar spinner;
     @BindView(R.id.edit_status_btn) public ImageButton editStatusBtn;
 
     @BindView(R.id.show_organized) public RelativeLayout orgList;
@@ -116,7 +115,7 @@ public class ProfileFragment extends Fragment {
                 spinner.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
 
-                // IMPORTANT: the user must be loaded before we can execute
+                // IMPORTANT: the currentUser must be loaded before we can execute
                 // the tasks for downloading organized/joined challenges.
                 populateChallenges(false);
 
@@ -220,7 +219,7 @@ public class ProfileFragment extends Fragment {
 
 
     public void deleteUser() {
-        // TODO: call api to delete user (not implemented yet)
+        // TODO: call api to delete currentUser (not implemented yet)
         /* Uncomment when api implemented
         AuthUI.getInstance()
                 .delete(getActivity())
@@ -243,7 +242,7 @@ public class ProfileFragment extends Fragment {
                 .signOut(getActivity())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     public void onComplete(@NonNull Task<Void> task) {
-                        // user is now signed out
+                        // currentUser is now signed out
                         startActivity(new Intent(getContext(),RegistrationActivity.class));
                         getActivity().finish();
                     }

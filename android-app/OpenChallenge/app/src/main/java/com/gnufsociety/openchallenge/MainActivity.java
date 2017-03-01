@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             return;
         }
 
-        //If is a new user, start configuration activity
+        //If is a new currentUser, start configuration activity
         final Context context = this;
-        //If signed-in user is not in database, start configuration activity
+        //If signed-in currentUser is not in database, start configuration activity
         AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .signOut(this)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         public void onComplete(@NonNull Task<Void> task) {
-                            // user is now signed out
+                            // currentUser is now signed out
                             startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
                             finish();
                         }
@@ -347,18 +347,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .getBackStackEntryAt(getSupportFragmentManager()
                             .getBackStackEntryCount() - 1);
             String tag = entry.getName();
+            if(tag == null) {
+                current = (BottomButton) findViewById(R.id.home_bottom);
+                //set black color to current button
+                current.clickIt();
+                last = current;
+                return;
+            }
             if (tag.equals(HomeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.home_bottom);
-            } else if (tag.equals(mapFragment.getTag())) {
-                current = (BottomButton) findViewById(R.id.map_bottom);
             } else if (tag.equals(OrganizeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.add_bottom);
             } else if (tag.equals(FavoriteFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.favorite_bottom);
             } else if (tag.equals(ProfileFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.profile_bottom);
+            }  else /*if (tag.equals(mapFragment.getTag()))*/ {
+                current = (BottomButton) findViewById(R.id.map_bottom);
             }
-
             //set black color to current button
             current.clickIt();
             last = current;

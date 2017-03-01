@@ -112,7 +112,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         public void openUserActivity() {
             Intent user = new Intent(user_img.getContext(), UserActivity.class);
             Bundle extra = new Bundle();
-            extra.putSerializable("user", list.get(getAdapterPosition()).organizer);
+            extra.putSerializable("currentUser", list.get(getAdapterPosition()).organizer);
             user.putExtras(extra);
             user_img.getContext().startActivity(user);
         }
