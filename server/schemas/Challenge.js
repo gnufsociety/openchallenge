@@ -19,7 +19,20 @@ var ChallengeSchema = new mongoose.Schema({
         participants: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
-        }]
+        }],
+        isTerminated: {type: Boolean, default: true},
+        winner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        secondPlace: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        thirdPlace: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
     },{ versionKey: false });
     // no version key can get us into troubles: why is it set to false?
 

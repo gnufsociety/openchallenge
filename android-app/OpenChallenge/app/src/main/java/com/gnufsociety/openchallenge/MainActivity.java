@@ -66,26 +66,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public LocationHelper loc;
 
     private boolean okPressed = false;
-
-    //private BottomNavigationView bottomBar;
-
-    private HomeFragment f1;
-    private OrganizeFragment f3;
-    private FavoriteFragment f4;
-    private SupportMapFragment f2;
-    private ProfileFragment f5;
+    
+    private HomeFragment homeFragment;
+    private OrganizeFragment organizeFragment;
+    private FavoriteFragment favoriteFragment;
+    private SupportMapFragment mapFragment;
+    private ProfileFragment profileFragment;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         getWindow().setBackgroundDrawable(null);
-
         //get instance of Firebase authentication
         auth = FirebaseAuth.getInstance();
         final FirebaseUser currentUser = auth.getCurrentUser();
-
         if (currentUser == null) {
             startActivity(RegistrationActivity.createIntent(this));
             finish();
@@ -119,9 +114,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         searchFragment = new SearchFragment();
         searchFragment.setContext(this);
 
-        f1 = new HomeFragment();
+        homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.home_fragment, f1, HomeFragment.TAG)
+                .replace(R.id.home_fragment, homeFragment, HomeFragment.TAG)
                 .addToBackStack(HomeFragment.TAG).commit();
 
         myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
@@ -276,16 +271,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         switch (s.getSelectedItemPosition()){
                             case 0:
                                 if (loc.currLocation != null) {
-                                    f1.orderByPosition(loc.currLocation);
+                                    homeFragment.orderByPosition(loc.currLocation);
 
                                 } else {
                                     okPressed = true;
-                                    Toast.makeText(f1.getContext(), "Attendi che vedo la tua posizione", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(homeFragment.getContext(), "Attendi che vedo la tua posizione", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 break;
                             case 1:
-                                f1.downloadChall();
+                                homeFragment.downloadChall();
 
                                 break;
 
@@ -389,46 +384,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager manager = getSupportFragmentManager();
         switch (btn.getId()) {
             case R.id.home_bottom:
-                if (f1 == null)
-                    f1 = new HomeFragment();
+                if (homeFragment == null)
+                    homeFragment = new HomeFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f1, HomeFragment.TAG)
+                        .replace(R.id.home_fragment, homeFragment, HomeFragment.TAG)
                         .addToBackStack(HomeFragment.TAG)
                         .commit();
                 break;
             case R.id.favorite_bottom:
-                if (f4 == null)
-                    f4 = new FavoriteFragment();
+                if (favoriteFragment == null)
+                    favoriteFragment = new FavoriteFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f4, FavoriteFragment.TAG)
+                        .replace(R.id.home_fragment, favoriteFragment, FavoriteFragment.TAG)
                         .addToBackStack(FavoriteFragment.TAG)
                         .commit();
                 break;
             case R.id.add_bottom:
-                if (f3 == null) {
-                    f3 = new OrganizeFragment();
-                    f3.setMainActivity(this);
+                if (organizeFragment == null) {
+                    organizeFragment = new OrganizeFragment();
+                    organizeFragment.setMainActivity(this);
 
                 }
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f3, OrganizeFragment.TAG)
+                        .replace(R.id.home_fragment, organizeFragment, OrganizeFragment.TAG)
                         .addToBackStack(OrganizeFragment.TAG)
                         .commit();
                 break;
             case R.id.map_bottom:
-                if (f2 == null)
-                    f2 = new SupportMapFragment();
+                if (mapFragment == null)
+                    mapFragment = new SupportMapFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f2, Fragment2.TAG)
+                        .replace(R.id.home_fragment, mapFragment, Fragment2.TAG)
                         .addToBackStack(Fragment2.TAG)
                         .commit();
-                f2.getMapAsync(this);
+                mapFragment.getMapAsync(this);
                 break;
             case R.id.profile_bottom:
-                if (f5 == null)
-                    f5 = new ProfileFragment();
+                if (profileFragment == null)
+                    profileFragment = new ProfileFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, f5, ProfileFragment.TAG)
+                        .replace(R.id.home_fragment, profileFragment, ProfileFragment.TAG)
                         .addToBackStack(ProfileFragment.TAG)
                         .commit();
                 break;
@@ -471,10 +466,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-
         // Add a marker in Sydney and move the camera
         int i = 0;
-        for (Challenge c : f1.adapter.list) {
+        for (Challenge c : homeFragment.adapter.list) {
             LatLng lat = new LatLng(c.lat, c.lng);
             Marker marker = mMap.addMarker(new MarkerOptions()
                     .position(lat)
@@ -487,29 +481,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onLocationChanged(Location location) {
                 super.onLocationChanged(location);
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(loc.currLocation.getLatitude(), loc.currLocation.getLongitude())));
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
-
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(13), 2000, null);
+                //13 is a good zoom level to have an overview of the city events
             }
         };
         loc.buildGoogleApi();
-
-        /*if (f1.adapter.list.size() > 3) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(f1.adapter.list.get(2).lat, f1.adapter.list.get(2).lng)));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
-        }*/
 
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
                 Bundle bundle = new Bundle();
                 int pos = (int) marker.getTag();
-                bundle.putSerializable("challenge", f1.adapter.list.get(pos));
+                bundle.putSerializable("challenge", homeFragment.adapter.list.get(pos));
                 Intent i = new Intent(myToolbar.getContext(), ChallengeActivity.class);
                 i.putExtras(bundle);
                 myToolbar.getContext().startActivity(i);
             }
         });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

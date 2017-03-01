@@ -329,12 +329,21 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
         })
 });
 
-/*
+
 router.post('/setStatus/:user_id', function (req, res) {
    User.findById(req.params.user_id)
-       .exec()
 });
-*/
+
+
+router.put('/terminateChallenge/:challenge_id', function (req, res) {
+    Challenge.findByIdAndUpdate(req.params.challenge_id, {});
+});
+
+
+router.post('setWinners/:first/:second/:third', function (req, res) {
+    
+});
+
 
 router.post('/follow/:user_id/:followed', function (req, res) {
    User.findByIdAndUpdate(req.params.user_id, 
