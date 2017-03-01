@@ -240,7 +240,7 @@ public class OrganizeFragment extends Fragment {
     public void findPlace() {
         try {
             Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(getActivity());
-            startActivityForResult(intent, PLACE_AUTOCOMPLETE_INTENT);
+            getActivity().startActivityForResult(intent, PLACE_AUTOCOMPLETE_INTENT);
         } catch (GooglePlayServicesRepairableException
                 | GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
@@ -252,7 +252,7 @@ public class OrganizeFragment extends Fragment {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select from gallery"), PICK_GALLERY_INTENT);
+        getActivity().startActivityForResult(Intent.createChooser(intent, "Select from gallery"), PICK_GALLERY_INTENT);
     }
 
     @Override

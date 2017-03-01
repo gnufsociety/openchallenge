@@ -37,6 +37,7 @@ import static android.app.Activity.RESULT_OK;
 public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
                                        GoogleApiClient.OnConnectionFailedListener,
                                        LocationListener, ActivityCompat.OnRequestPermissionsResultCallback {
+    public static final int ENABLE_GPS_CODE = 12;
     private Activity activity;
     private LocationManager locManager;
     private GoogleApiClient apiClient;
@@ -113,7 +114,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         Toast.makeText(activity, "Not enabled", Toast.LENGTH_SHORT).show();
                         try {
-                            status.startResolutionForResult(activity, 12);
+                            status.startResolutionForResult(activity, ENABLE_GPS_CODE);
                         } catch (IntentSender.SendIntentException e) {
                             e.printStackTrace();
                         }

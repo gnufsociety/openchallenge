@@ -53,6 +53,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
+import static com.gnufsociety.openchallenge.mainfrags.LocationHelper.ENABLE_GPS_CODE;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
 
     //last button pressed
@@ -66,12 +68,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private boolean okPressed = false;
 
-    public HomeFragment homeFragment;
-    public OrganizeFragment organizeFragment;
-    public FavoriteFragment favoriteFragment;
-    public SupportMapFragment mapFragment;
-    public ProfileFragment profileFragment;
 
+    private HomeFragment homeFragment;
+    private OrganizeFragment organizeFragment;
+    private FavoriteFragment favoriteFragment;
+    private SupportMapFragment mapFragment;
+    private ProfileFragment profileFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -269,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switch (s.getSelectedItemPosition()){
+                        switch (s.getSelectedItemPosition()) {
                             case 0:
                                 if (loc.currLocation != null) {
                                     homeFragment.orderByPosition(loc.currLocation);
@@ -477,7 +479,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             marker.setTag(i);
             i++;
         }
-        loc = new LocationHelper(this){
+        loc = new LocationHelper(this) {
             @Override
             public void onLocationChanged(Location location) {
                 super.onLocationChanged(location);
@@ -504,11 +506,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 12) {
+        if (requestCode == ENABLE_GPS_CODE) {
             if (resultCode == RESULT_OK) {
                 loc.foo();
             }
         }
+        if (organizeFragment != null)
+            organizeFragment.onActivityResult(requestCode, resultCode, data);
     }
 
 

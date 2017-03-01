@@ -56,7 +56,7 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".UserActivity" />
-        <activity android:name=".WinnerActivity"></activity>
+        <activity android:name=".WinnerActivity"/>
     </application>
 
 </manifest>
