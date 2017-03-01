@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:activity="com.gnufsociety.openchallenge.ConfigurationActivity">
+    tools:activity="com.gnufsociety.openchallenge.ConfigurationActivity"
+    android:background="@color/backGroundHome2">
 
 
     <TextView
@@ -11,32 +12,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:layout_margin="16dp"
         android:gravity="center_horizontal"
-        android:text="Configure your profile"
+        android:text="@string/configure_profile"
         android:textColor="@color/black"
-        android:textSize="40sp" />
+        android:textSize="32sp"
+        android:textStyle="bold"/>
 
     <EditText
-        android:id="@+id/username_first"
+        android:id="@+id/choose_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
+        android:layout_margin="8dp"
         android:layout_below="@+id/textView3"
-        android:hint="Username" />
+        android:hint="@string/choose_username" />
 
     <EditText
-        android:id="@+id/configure_status"
+        android:id="@+id/choose_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/username_first"
-        android:hint="Status" />
+        android:layout_below="@+id/choose_username"
+        android:layout_margin="8dp"
+        android:hint="@string/choose_status" />
 
     <Button
         android:id="@+id/done_btn"
@@ -45,7 +50,9 @@
         android:text="Done"
         android:layout_marginBottom="32dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/logout_btn"
@@ -55,18 +62,30 @@
         android:layout_above="@+id/done_btn"
         android:layout_marginBottom="96dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/configure_image"
+        android:id="@+id/chosen_profile_pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/user"
         app:civ_border_width="2dp"
-        android:layout_below="@+id/configure_status"
+        android:layout_below="@+id/choose_status"
         android:layout_centerHorizontal="true"
         android:onClick="chooseProPic"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="24dp"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/choose_profile_pic"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/choose_status"
+        android:src="@drawable/choose_profile_pic"
+        android:onClick="chooseProPic" />
 
 
 </RelativeLayout>

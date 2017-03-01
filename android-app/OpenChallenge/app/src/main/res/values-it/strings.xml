@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_search">Cerca...</string>
+    <string name="action_search">Cerca…</string>
     <string name="choose_winner">Scegli i vincitori!</string>
     <string name="congratulations_newu">Congratulazioni!</string>
     <string name="delete_user">Elimina utente</string>
@@ -20,10 +20,8 @@
     <string name="participants">%1$d partecipanti</string>
     <string name="single_participant">%1$d partecipante</string>
     <string name="rules">Regole</string>
-    <string name="sign_in_cancelled"></string>
-    <string name="title_activity_maps"></string>
     <string name="unknown_error">Errore sconosciuto</string>
-    <string name="unknown_sign_in_response">Risposta sign-in sconosciut  a</string>
+    <string name="unknown_sign_in_response">Risposta sign-in sconosciuta</string>
     <string name="organize_chall_desc">Descrizione sfida</string>
     <string name="organize_chall_name">Nome sfida</string>
     <string name="organize_chall_rules">Regole sfida</string>
@@ -31,4 +29,17 @@
     <string name="organize_date">Scegli la data -></string>
     <string name="organize_location">Scegli il luogo -></string>
     <string name="chall_location">Luogo</string>
+    <string name="login">Entra</string>
+    <string name="signup">Registrati</string>
+    <string name="filter">Filtra</string>
+    <string name="login_cancelled">Hai premuto indietro durante il login</string>
+    <string name="welcome_msg">Benvenuto in OpenChallenge</string>
+    <string name="sign_in_with_email">Continua con l\'email</string>
+    <string name="sign_in_with_facebook">Continua con Facebook</string>
+    <string name="sign_in_with_google">Continua con Google</string>
+    <string name="sign_in_with_twitter">Continua con Twitter</string>
+    <string name="configure_profile">Configura il tuo profilo</string>
+    <string name="choose_status">Stato</string>
+    <string name="choose_username">Nickname</string>
+    <string name="sign_up_cancelled">Hai premuto indietro durante la registrazione</string>
 </resources>

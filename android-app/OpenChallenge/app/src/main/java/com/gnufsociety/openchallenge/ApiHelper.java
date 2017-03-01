@@ -30,7 +30,8 @@ public class ApiHelper {
         client = new OkHttpClient();
     }
 
-    public String createChallenge(String org, String name, String desc, String rules, String image, String date, Place place) {
+    public String createChallenge(String org, String name, String desc, String rules,
+                                  String image, String date, Place place) {
         JSONObject json;
         try {
             json = new JSONObject()
@@ -45,7 +46,6 @@ public class ApiHelper {
                             .put("lat", place.getLatLng().latitude)
                             .put("long", place.getLatLng().longitude));
 
-
             RequestBody body = RequestBody.create(JSON, json.toString());
             Request request = new Request.Builder()
                     .url(url + "newChallenge")
@@ -54,12 +54,10 @@ public class ApiHelper {
             Response resp = client.newCall(request).execute();
 
             return resp.body().string();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
-        return "errore";
+        return "error";
     }
 
     public ArrayList<Challenge> getHomeChallenge() {
@@ -70,13 +68,9 @@ public class ApiHelper {
         try {
             Response resp = client.newCall(request).execute();
             return Challenge.getArrayList(resp.body().string());
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         return new ArrayList<>();
     }
 

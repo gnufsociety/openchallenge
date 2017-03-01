@@ -107,10 +107,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             protected void onPostExecute(Boolean res) {
                 if (!res)
                     startActivity(new Intent(context, ConfigurationActivity.class));
+                onResumeCreate();
             }
         };
         task.execute();
+    }
 
+
+    public void onResumeCreate() {
         setContentView(R.layout.activity_main);
         searchFragment = new SearchFragment();
         searchFragment.setContext(this);

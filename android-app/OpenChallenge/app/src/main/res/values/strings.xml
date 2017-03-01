@@ -2,11 +2,9 @@
     <string name="app_name" translatable="false">OpenChallenge</string>
     <string name="action_search">Search...</string>
     <string name="app_name_label" translatable="false">Open Challenge</string>
-    <string name="register_underlined" translatable="false">New user? Register <u>here</u></string>
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-    <string name="login_underlined">Already registered? Sign in <u>here</u></string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -24,7 +22,8 @@
 
     <string name="unknown_error">Unknown error</string>
     <string name="no_internet_connection">No connection available</string>
-    <string name="sign_in_cancelled">Pressed back during sign-in</string>
+    <string name="sign_up_cancelled">Pressed back during sign-up</string>
+    <string name="login_cancelled">Pressed back during login</string>
     <string name="unknown_sign_in_response">Unknown sign in response</string>
     <string name="nav_home_title">Home</string>
     <string name="nav_map_title">Nearby</string>
@@ -50,5 +49,18 @@
     <string name="organize_chall_name">Challenge name</string>
     <string name="chall_location">Location</string>
     <string name="filter">Filter</string>
+    <string name="welcome_msg">Welcome To OpenChallenge</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+
+
+    <!-- Override FirebaseUI strings -->
+    <string name="sign_in_with_google">Continue with Google</string>
+    <string name="sign_in_with_facebook">Continue with Facebook</string>
+    <string name="sign_in_with_twitter">Continue with Twitter</string>
+    <string name="sign_in_with_email">Continue with email</string>
+    <string name="choose_username">Username</string>
+    <string name="choose_status">Status</string>
+    <string name="configure_profile">Configure your profile</string>
 
 </resources>

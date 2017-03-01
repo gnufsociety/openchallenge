@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -43,11 +44,12 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private static final int PICK_GALLERY_INTENT = 1;
 
-    @BindView(R.id.username_first)   EditText usernameEdit;
-    @BindView(R.id.configure_status) EditText statusEdit;
-    @BindView(R.id.done_btn)         Button doneBtn;
-    @BindView(R.id.configure_image)  CircleImageView civ;
-    @BindView(R.id.logout_btn)       Button logoutBtn;
+    @BindView(R.id.choose_username) EditText usernameEdit;
+    @BindView(R.id.choose_status)   EditText statusEdit;
+    @BindView(R.id.done_btn)        Button doneBtn;
+    @BindView(R.id.logout_btn)      Button logoutBtn;
+    @BindView(R.id.chosen_profile_pic) CircleImageView profilePic;
+    @BindView(R.id.choose_profile_pic) ImageView chooseProfilePic;
 
     private FirebaseAuth auth;
     private Activity activity;
@@ -80,20 +82,19 @@ public class ConfigurationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_configuration);
-
         auth = FirebaseAuth.getInstance();
         activity = this;
         ButterKnife.bind(this);
     }
 
-
+    /**
+     * Verify that all information is filled then upload everything to server
+     */
     public void createUser(){
-
 
         final String username = usernameEdit.getText().toString();
         final String usPic = username.toLowerCase().replace(" ","_");
         final String status = statusEdit.getText().toString();
-
 
         if (username.equals("")){
             Toast.makeText(activity,"Choose an username!",Toast.LENGTH_SHORT).show();
@@ -103,7 +104,6 @@ public class ConfigurationActivity extends AppCompatActivity {
             Toast.makeText(activity,"Choose a profile picture!",Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         AsyncTask<Void,Void,String> task = new AsyncTask<Void, Void, String>() {
 
@@ -141,12 +141,9 @@ public class ConfigurationActivity extends AppCompatActivity {
                             .setQuality(90)
                             .build().compressToFile(toCompress);
 
-
                     StorageReference userRef = storageRef.child("users/"+usPic);
 
-
                     UploadTask uploadTask = userRef.putFile(Uri.fromFile(compressedFile));
-
 
                     uploadTask.addOnFailureListener(activity, new OnFailureListener() {
                         @Override
@@ -166,12 +163,15 @@ public class ConfigurationActivity extends AppCompatActivity {
         };
         task.execute();
     }
+
+
     public void chooseProPic(View view){
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select from gallery"),PICK_GALLERY_INTENT);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -180,13 +180,16 @@ public class ConfigurationActivity extends AppCompatActivity {
                 uriImage = data.getData();
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uriImage);
-                    civ.setImageBitmap(bitmap);
+                    profilePic.setImageBitmap(bitmap);
+                    chooseProfilePic.setVisibility(View.GONE);
+                    profilePic.setVisibility(View.VISIBLE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
+
 
     @Override
     public void onBackPressed() {
