@@ -37,6 +37,8 @@
                 android:layout_toLeftOf="@+id/frame_image"
                 android:layout_toStartOf="@+id/frame_image"
                 android:paddingRight="15dp"
+                android:ellipsize="end"
+                android:maxLines="4"
                 android:text="@string/desc_cardlay"
                 android:textColor="#424242"
                 android:textSize="15sp" />
@@ -78,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="8dp"
                 android:text="Smash The Stack"
+                android:maxLines="1"
                 android:ellipsize="end"
                 android:textColor="@color/black"
                 android:textSize="24sp"

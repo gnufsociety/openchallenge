@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/api.js" afterPath="$PROJECT_DIR$/routes/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/schemas/Challenge.js" afterPath="$PROJECT_DIR$/schemas/Challenge.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/mainfrags/Fragment2.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/res/layout/fragment2_unused.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/MainActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -60,11 +62,9 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
+            <state relative-caret-position="5595">
               <caret line="373" column="64" lean-forward="false" selection-start-line="373" selection-start-column="64" selection-end-line="373" selection-end-column="64" />
-              <folding>
-                <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -327,7 +327,7 @@
       <workItem from="1487794049661" duration="2127000" />
       <workItem from="1488293113284" duration="1024000" />
       <workItem from="1488309867343" duration="939000" />
-      <workItem from="1488369895046" duration="3070000" />
+      <workItem from="1488369895046" duration="3595000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -368,7 +368,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34928000" />
+    <option name="totallyTimeSpent" value="35453000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="813" extended-state="6" />
@@ -454,9 +454,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -540,9 +538,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1755">
           <caret line="117" column="38" lean-forward="true" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -626,9 +622,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -682,9 +676,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -738,9 +730,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -778,9 +768,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -875,11 +863,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
+        <state relative-caret-position="5595">
           <caret line="373" column="64" lean-forward="false" selection-start-line="373" selection-start-column="64" selection-end-line="373" selection-end-column="64" />
-          <folding>
-            <marker date="1488385676000" expanded="true" signature="10554:10791" ph="{...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>

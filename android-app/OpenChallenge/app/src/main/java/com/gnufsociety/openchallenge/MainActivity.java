@@ -33,7 +33,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.gnufsociety.openchallenge.customui.BottomButton;
 import com.gnufsociety.openchallenge.mainfrags.FavoriteFragment;
-import com.gnufsociety.openchallenge.mainfrags.Fragment2;
 import com.gnufsociety.openchallenge.mainfrags.HomeFragment;
 import com.gnufsociety.openchallenge.mainfrags.LocationHelper;
 import com.gnufsociety.openchallenge.mainfrags.OrganizeFragment;
@@ -66,16 +65,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public LocationHelper loc;
 
     private boolean okPressed = false;
-    
-    private HomeFragment homeFragment;
-    private OrganizeFragment organizeFragment;
-    private FavoriteFragment favoriteFragment;
-    private SupportMapFragment mapFragment;
-    private ProfileFragment profileFragment;
+
+    public HomeFragment homeFragment;
+    public OrganizeFragment organizeFragment;
+    public FavoriteFragment favoriteFragment;
+    public SupportMapFragment mapFragment;
+    public ProfileFragment profileFragment;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawable(null);
         //get instance of Firebase authentication
@@ -234,7 +233,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final Spinner s = (Spinner) dialogView.findViewById(R.id.spinner_filter);
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.filter_options, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter
+                .createFromResource(this, R.array.filter_options,
+                        android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
 
@@ -346,7 +347,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String tag = entry.getName();
             if (tag.equals(HomeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.home_bottom);
-            } else if (tag.equals(Fragment2.TAG)) {
+            } else if (tag.equals(mapFragment.getTag())) {
                 current = (BottomButton) findViewById(R.id.map_bottom);
             } else if (tag.equals(OrganizeFragment.TAG)) {
                 current = (BottomButton) findViewById(R.id.add_bottom);
@@ -414,8 +415,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (mapFragment == null)
                     mapFragment = new SupportMapFragment();
                 manager.beginTransaction()
-                        .replace(R.id.home_fragment, mapFragment, Fragment2.TAG)
-                        .addToBackStack(Fragment2.TAG)
+                        .replace(R.id.home_fragment, mapFragment, mapFragment.getTag())
+                        .addToBackStack(mapFragment.getTag())
                         .commit();
                 mapFragment.getMapAsync(this);
                 break;
