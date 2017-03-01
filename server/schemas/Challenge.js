@@ -20,7 +20,7 @@ var ChallengeSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }],
-        isTerminated: {type: Boolean, default: true},
+        isTerminated: {type: Boolean, default: false},
         winner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'

@@ -25,35 +25,6 @@ router.get('/', function (req, res, next) {
  */
 
 
-router.post('/setWinners', function (req, res) {
-    var obj = req.body;
-    var errors = false;
-    User.findByIdAndUpdate(
-        obj.first,
-        {$inc: {'gold': 1}},
-        {safe: true, upsert: true},
-        function (err) {
-            errors = errors || err;
-            User.findByIdAndUpdate(
-                obj.second,
-                {$inc: {'silver': 1}},
-                {safe: true, upsert: true},
-                function (err) {
-                    errors = errors || err;
-                    User.findByIdAndUpdate(
-                        obj.third,
-                        {$inc: {'bronze': 1}},
-                        {safe: true, upsert: true},
-                        function (err) {
-                            errors = errors || err;
-                            console.log(errors);
-                            res.send(errors);
-                        });
-                });
-        });
-});
-
-
 router.post('/newChallenge', function (req, res) {
     var obj = req.body;
     User.findOne({'uid': obj.organizer})
@@ -70,9 +41,9 @@ router.post('/newChallenge', function (req, res) {
                     lat: obj.location.lat,
                     long: obj.location.long
                 },
-
                 organizer: user._id,
-                participants: []
+                participants: [],
+                isTerminated : false
             });
             challenge.date = new Date(Date.UTC(dat[2],dat[1]-1,dat[0],0,0,0,0));
             challenge.save(function (err, chall) {
@@ -152,7 +123,7 @@ router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .select('name description rules image location date organizer')
-        .sort({date:-1})
+        .sort({date:1})
         .populate({
             path:'organizer',
             select: 'username picture uid rate'
@@ -220,6 +191,43 @@ router.get('/getParticipants/:chall_id', function (req, res, next) {
             assert.equal(err, null);
             res.send(chall.participants);
         })
+});
+
+
+router.put('/terminateChallenge/:challenge_id', function (req, res) {
+    Challenge.findByIdAndUpdate(req.params.challenge_id,
+        {isTerminated: true},
+        function (err, challenge) {
+            assert.equal(err, null);
+            res.send("Challenge " + challenge.name + " terminated")
+        });
+});
+
+
+router.post('setWinners/:ch_id/:first/:second/:third', function (req, res) {
+    Challenge.findByIdAndUpdate(req.params.ch_id,
+        { $set: { "winner" : req.params.first,
+                  "secondPlace": req.params.second,
+                  "thirdPlace": req.params.third }
+        },
+        function (err, challenge) {
+            assert.equal(err, null);
+            res.send("Winners updated")
+        });
+});
+
+
+router.get('winners/:challenge_id', function (req, res) {
+    var winners = [];
+    Challenge.findById(req.params.challenge_id)
+        .populate('winner secondPlace thirdPlace')
+        .exec(function (err, challenge) {
+            assert.equal(err, null);
+            winners.push(challenge.winner);
+            winners.push(challenge.secondPlace);
+            winners.push(challenge.thirdPlace);
+            res.json(JSON.stringify(winners));
+        });
 });
 
 
@@ -330,18 +338,18 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
 });
 
 
+/**
+ * request must be a json object in this form:
+ * {
+ *    "new_status" : "text of the new status"
+ * }
+ */
 router.post('/setStatus/:user_id', function (req, res) {
-   User.findById(req.params.user_id)
-});
-
-
-router.put('/terminateChallenge/:challenge_id', function (req, res) {
-    Challenge.findByIdAndUpdate(req.params.challenge_id, {});
-});
-
-
-router.post('setWinners/:first/:second/:third', function (req, res) {
-    
+   User.findByIdAndUpdate(req.params.user_id, {$set: {status: req.body.new_status}},
+       function (err, user) {
+           assert.equal(err, null);
+           res.send("Successfully updated status of " + user.username);
+       });
 });
 
 
@@ -350,8 +358,7 @@ router.post('/follow/:user_id/:followed', function (req, res) {
        {$addToSet : {'following' : req.params.followed}}, function (err) {
            assert.equal(err, null);
            res.send(err);
-       }
-   ) 
+       });
 });
 
 
@@ -360,7 +367,39 @@ router.get('/following/:user_id', function (req, res) {
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.following);
-        })
+        });
 });
+
+/**
+ * Update number of victories of users contained in request body
+ */
+router.post('/setWinners', function (req, res) {
+    var obj = req.body;
+    var errors = false;
+    User.findByIdAndUpdate(
+        obj.first,
+        {$inc: {'gold': 1}},
+        {safe: true, upsert: true},
+        function (err) {
+            errors = errors || err;
+            User.findByIdAndUpdate(
+                obj.second,
+                {$inc: {'silver': 1}},
+                {safe: true, upsert: true},
+                function (err) {
+                    errors = errors || err;
+                    User.findByIdAndUpdate(
+                        obj.third,
+                        {$inc: {'bronze': 1}},
+                        {safe: true, upsert: true},
+                        function (err) {
+                            errors = errors || err;
+                            console.log(errors);
+                            res.send(errors);
+                        });
+                });
+        });
+});
+
 
 module.exports = router;
