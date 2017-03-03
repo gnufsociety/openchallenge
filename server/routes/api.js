@@ -345,7 +345,7 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
  * }
  */
 router.post('/setStatus/:user_id', function (req, res) {
-   User.findByIdAndUpdate(req.params.user_id, {$set: {status: req.body.new_status}},
+   User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
        function (err, user) {
            assert.equal(err, null);
            res.send("Successfully updated status of " + user.username);
