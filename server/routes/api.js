@@ -348,6 +348,7 @@ router.post('/setStatus/:user_id', function (req, res) {
    User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
        function (err, user) {
            assert.equal(err, null);
+           console.log("Successfully updated status of " + user.username);
            res.send("Successfully updated status of " + user.username);
        });
 });
