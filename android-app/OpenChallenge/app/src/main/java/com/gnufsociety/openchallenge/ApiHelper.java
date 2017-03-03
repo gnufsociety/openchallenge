@@ -271,4 +271,16 @@ public class ApiHelper {
             e.printStackTrace();
         }
     }
+
+    public void follow(String user, String followed){
+        try{
+            Request req = new Request.Builder()
+                    .url(url+"follow/"+user+"/"+followed)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }

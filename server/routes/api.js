@@ -353,7 +353,7 @@ router.post('/setStatus/:user_id', function (req, res) {
 });
 
 
-router.post('/follow/:user_id/:followed', function (req, res) {
+router.get('/follow/:user_id/:followed', function (req, res) {
    User.findByIdAndUpdate(req.params.user_id, 
        {$addToSet : {'following' : req.params.followed}}, function (err) {
            assert.equal(err, null);

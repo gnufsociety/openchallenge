@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.gnufsociety.openchallenge.adapters.ChallengeAdapter;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -54,13 +56,19 @@ public class UserActivity extends AppCompatActivity {
     @BindView(R.id.user_refresh) public SwipeRefreshLayout refreshLayout;
     @BindView(R.id.user_join_recycler) public RecyclerView joinedRecycler;
 
+    @BindView(R.id.follow_button) Button fButton;
+
     public ChallengeAdapter orgCardAdapter;
     public ChallengeAdapter joinedCardAdapter;
+    public boolean isFollowed = false;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        auth = FirebaseAuth.getInstance();
 
         ButterKnife.bind(this);
         Bundle extra = getIntent().getExtras();
@@ -185,5 +193,23 @@ public class UserActivity extends AppCompatActivity {
                 return true;
         }
         return false;
+    }
+
+    public void followUser(final View view){
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                if(!isFollowed)
+                    api.follow(auth.getCurrentUser().getUid(), currentUser.id);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                fButton.setText("Followed");
+            }
+        };
+        task.execute();
     }
 }

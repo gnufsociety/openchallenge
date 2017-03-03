@@ -65,5 +65,6 @@
     <string name="insert_new_status">Insert new status</string>
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
+    <string name="follow">Follow</string>
 
 </resources>
