@@ -287,10 +287,10 @@ public class ApiHelper {
         }
     }
 
-    public ArrayList<User> getFollowed(String user_id) {
+    public ArrayList<User> getFollowed(String user_uid) {
         ArrayList<User> followed = new ArrayList<>();
         Request req = new Request.Builder()
-                .url(url+"following/" + user_id)
+                .url(url+"following/" + user_uid)
                 .build();
 
         Response res = null;

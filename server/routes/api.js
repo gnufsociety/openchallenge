@@ -362,8 +362,8 @@ router.get('/follow/:user_id/:followed', function (req, res) {
 });
 
 
-router.get('/following/:user_id', function (req, res) {
-    User.findById(req.params.user_id)
+router.get('/following/:user_uid', function (req, res) {
+    User.findOne({'uid' : req.params.user_uid})
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.following);
