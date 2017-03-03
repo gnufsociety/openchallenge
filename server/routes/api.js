@@ -345,7 +345,7 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
  * }
  */
 router.post('/setStatus/:user_id', function (req, res) {
-   User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
+   User.findByIdAndUpdate(req.params.user_id, {$set: {status: req.body.new_status}},
        function (err, user) {
            assert.equal(err, null);
            res.send("Successfully updated status of " + user.username);
@@ -355,7 +355,8 @@ router.post('/setStatus/:user_id', function (req, res) {
 
 router.get('/follow/:user_id/:followed', function (req, res) {
    User.findByIdAndUpdate(req.params.user_id, 
-       {$addToSet : {'following' : req.params.followed}}, function (err) {
+       {$addToSet : {'following' : req.params.followed}},
+       function (err) {
            assert.equal(err, null);
            res.send(err);
        });
@@ -364,6 +365,9 @@ router.get('/follow/:user_id/:followed', function (req, res) {
 
 router.get('/following/:user_uid', function (req, res) {
     User.findOne({'uid' : req.params.user_uid})
+        .populate({
+            path : 'following'
+        })
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.following);

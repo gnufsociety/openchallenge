@@ -253,6 +253,7 @@ public class ProfileFragment extends Fragment{
                 return null;
             }
         };
+        uploadStatus.execute();
     }
 
 
