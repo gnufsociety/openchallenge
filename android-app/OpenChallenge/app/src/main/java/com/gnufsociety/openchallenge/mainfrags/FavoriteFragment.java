@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.ArrayList;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by sdc on 1/11/17.
@@ -41,6 +42,8 @@ public class FavoriteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View thisView = inflater.inflate(R.layout.fragment4_favorites, container, false);
+
+        ButterKnife.bind(this, thisView);
 
         auth = FirebaseAuth.getInstance();
         currentUser = auth.getCurrentUser();
