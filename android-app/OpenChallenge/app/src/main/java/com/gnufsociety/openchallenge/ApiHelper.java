@@ -17,6 +17,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.gnufsociety.openchallenge.R.drawable.user;
+
 /**
  * Created by sdc on 2/10/17.
  */
@@ -260,10 +262,11 @@ public class ApiHelper {
     }
 
     public void setStatus(User user, String new_status) {
-        //TODO: implement api in server
         try {
+            RequestBody body = RequestBody.create(JSON, "{ 'new_status' :" + new_status + "}");
             Request req = new Request.Builder()
-                    .url(url+"setStatus/"+user.id+"/"+new_status)
+                    .url(url+"setStatus/"+user.id)
+                    .post(body)
                     .build();
 
             Response res = client.newCall(req).execute();
@@ -282,5 +285,21 @@ public class ApiHelper {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<User> getFollowed(String user_id) {
+        ArrayList<User> followed = new ArrayList<>();
+        Request req = new Request.Builder()
+                .url(url+"following/" + user_id)
+                .build();
+
+        Response res = null;
+        try {
+            res = client.newCall(req).execute();
+            followed = User.getUsersArray(res.body().string());
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return followed;
     }
 }

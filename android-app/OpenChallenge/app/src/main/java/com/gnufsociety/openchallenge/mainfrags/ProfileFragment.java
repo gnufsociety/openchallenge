@@ -230,6 +230,7 @@ public class ProfileFragment extends Fragment{
                     public void onClick(DialogInterface dialog, int id) {
                         status.setText(((EditText) ((AlertDialog) dialog).findViewById(R.id.new_status_text))
                                 .getText().toString());
+                        uploadNewStatus();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -243,7 +244,14 @@ public class ProfileFragment extends Fragment{
 
 
     public void uploadNewStatus() {
-        // TODO: upload to server current status...
+        final String new_status = status.getText().toString();
+        AsyncTask<Void, Void, Void> uploadStatus = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                new ApiHelper().setStatus(currentUser, new_status);
+                return null;
+            }
+        };
     }
 
 
