@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +52,10 @@ public class FavoriteFragment extends Fragment {
 
         refresh();
 
+        followedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        followedRecycler.addItemDecoration(dividerItemDecoration);
+
         refreshFollowed.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -61,20 +67,21 @@ public class FavoriteFragment extends Fragment {
     }
 
     public void refresh() {
+        System.out.println("Called");
         AsyncTask<Void, Void, ArrayList<User>> task = new AsyncTask<Void, Void, ArrayList<User>>() {
             @Override
             protected ArrayList<User> doInBackground(Void... params) {
+                System.out.println("Executed");
                 ApiHelper api = new ApiHelper();
                 return api.getFollowed(currentUser.getUid());
             }
 
             @Override
             protected void onPostExecute(ArrayList<User> users) {
-
                 followedRecycler.setAdapter(new ParticipantAdapter(users));
             }
         };
-
         task.execute();
+        refreshFollowed.setRefreshing(false);
     }
 }

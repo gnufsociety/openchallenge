@@ -147,6 +147,7 @@ public class ProfileFragment extends Fragment{
             @Override
             public void onRefresh() {
                 populateChallenges(true);
+
             }
         });
 
