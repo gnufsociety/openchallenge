@@ -66,5 +66,6 @@
     <string name="done">Done</string>
     <string name="cancel">Cancel</string>
     <string name="follow">Follow</string>
+    <string name="followed">Followed</string>
 
 </resources>

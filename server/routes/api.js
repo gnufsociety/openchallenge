@@ -126,7 +126,7 @@ router.get('/allChallenges', function (req, res, next) {
         .sort({date:1})
         .populate({
             path:'organizer',
-            select: 'username picture uid rate'
+            select: 'username picture uid status rate'
         })
         .exec(function (err, challenge) {
             assert.equal(err, null);
@@ -287,7 +287,7 @@ router.get('/allUsers', function (req, res) {
 
 router.get('/findUsers/:user', function (req, res) {
     var user = req.params.user;
-    User.find({'username': new RegExp('^' + user)}).exec(function (err, users) {
+    User.find({'username': new RegExp('^' + user, "i")}).exec(function (err, users) {
         if (err) res.send('Error');
         else res.send(users);
     });
@@ -348,16 +348,16 @@ router.post('/setStatus/:user_id', function (req, res) {
    User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
        function (err, user) {
            assert.equal(err, null);
-           console.log("Successfully updated status of " + user.username);
            res.send("Successfully updated status of " + user.username);
        });
 });
 
 
-router.get('/follow/:user_id/:followed', function (req, res) {
-   User.findByIdAndUpdate(req.params.user_id, 
+router.get('/follow/:user_uid/:followed', function (req, res) {
+   User.findOneAndUpdate({'uid' : req.params.user_uid},
        {$addToSet : {'following' : req.params.followed}},
        function (err) {
+           if(err) console.log(err);
            assert.equal(err, null);
            res.send(err);
        });

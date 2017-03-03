@@ -207,7 +207,7 @@ public class UserActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Void aVoid) {
-                fButton.setText("Followed");
+                fButton.setText(R.string.followed);
             }
         };
         task.execute();

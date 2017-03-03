@@ -263,7 +263,8 @@ public class ApiHelper {
 
     public void setStatus(User user, String new_status) {
         try {
-            RequestBody body = RequestBody.create(JSON, "{ \"new_status\" : \"" + new_status + "\"}");
+            RequestBody body = RequestBody.create(JSON,
+                    "{ \"new_status\" : \"" + new_status + "\"}");
             Request req = new Request.Builder()
                     .url(url+"setStatus/"+user.id)
                     .post(body)
