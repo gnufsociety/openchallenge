@@ -4,6 +4,7 @@ var assert = require('assert');
 var mongoose = require('mongoose');
 var User = require('../schemas/User');
 var Challenge = require('../schemas/Challenge');
+var Version = require('../schemas/Version')
 var ObjectId = require('mongoose').Types.ObjectId;
 
 
@@ -17,6 +18,27 @@ mongoose.connect(db_url);
 router.get('/', function (req, res, next) {
     res.send("Ciao chicco!");
 });
+
+
+router.get('/checkUpdate/:my_version', function (req, res){
+   var v = req.params.my_version;
+   Version.findOne().exec(function (err, version) {
+       if (err) res.send("Errore");
+       else {
+           if (v != version.version)
+               res.send("yes");
+           else res.send("no");
+       }
+   })
+});
+
+router.get('/newUpdate/:my_version', function (req, res) {
+    var v = new Version({ 'version' : req.params.my_version});
+    v.save(function (err) {
+        if (err) res.send("Errrore");
+        else res.send("Updated!")
+    })
+})
 
 /*****************************************************************************
  *
