@@ -20,25 +20,25 @@ router.get('/', function (req, res, next) {
 });
 
 
-router.get('/checkUpdate/:my_version', function (req, res){
-   var v = req.params.my_version;
-   Version.findOne().exec(function (err, version) {
-       if (err) res.send("Errore");
-       else {
-           if (v != version.version)
-               res.send("yes");
-           else res.send("no");
-       }
-   })
+router.get('/checkUpdate/:my_version', function (req, res) {
+    var v = req.params.my_version;
+    Version.findOne().exec(function (err, version) {
+        if (err) res.send("Errore");
+        else {
+            if (v != version.version)
+                res.send("yes");
+            else res.send("no");
+        }
+    })
 });
 
 router.get('/newUpdate/:my_version', function (req, res) {
-    var v = new Version({ 'version' : req.params.my_version});
-    v.save(function (err) {
+    var v = new Version({'version': req.params.my_version});
+    Version.findOneAndUpdate({}, {'version': req.params.my_version}).exec(function (err) {
         if (err) res.send("Errrore");
         else res.send("Updated!")
-    })
-})
+    });
+});
 
 /*****************************************************************************
  *
@@ -65,10 +65,10 @@ router.post('/newChallenge', function (req, res) {
                 },
                 organizer: user._id,
                 participants: [],
-                isTerminated : false
+                isTerminated: false
             });
-            challenge.date = new Date(Date.UTC(dat[2],dat[1]-1,dat[0],0,0,0,0));
-            if(challenge.date < Date.now()) challenge.isTerminated = true;
+            challenge.date = new Date(Date.UTC(dat[2], dat[1] - 1, dat[0], 0, 0, 0, 0));
+            if (challenge.date < Date.now()) challenge.isTerminated = true;
             challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
@@ -76,9 +76,9 @@ router.post('/newChallenge', function (req, res) {
                 } else {
                     User.findByIdAndUpdate(
                         user._id,
-                        {$addToSet:{organizedChallenges : chall._id}},
+                        {$addToSet: {organizedChallenges: chall._id}},
                         function (errr) {
-                            if (errr){
+                            if (errr) {
                                 res.send("Error updating users");
                             }
                             else res.send("Saved!");
@@ -146,9 +146,9 @@ router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
         .select('name description rules image location date organizer isTerminated')
-        .sort({date:1})
+        .sort({date: 1})
         .populate({
-            path:'organizer',
+            path: 'organizer',
             select: 'username picture uid status rate'
         })
         .exec(function (err, challenge) {
@@ -161,9 +161,9 @@ router.get('/allChallenges', function (req, res, next) {
 router.get('/activeChallenges', function (req, res) {
     Challenge.find({isTerminated: false})
         .select('name description rules image location date organizer')
-        .sort({date:1})
+        .sort({date: 1})
         .populate({
-            path:'organizer',
+            path: 'organizer',
             select: 'username picture uid status rate'
         })
         .exec(function (err, challenge) {
@@ -246,7 +246,7 @@ router.post('/setWinners/:ch_id', function (req, res) {
     var podium = req.body;
     Challenge.findByIdAndUpdate(req.params.ch_id,
         {
-            "winner" : ObjectId(podium.first),
+            "winner": ObjectId(podium.first),
             "secondPlace": ObjectId(podium.second),
             "thirdPlace": ObjectId(podium.third)
         },
@@ -412,29 +412,29 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
  * }
  */
 router.post('/setStatus/:user_id', function (req, res) {
-   User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
-       function (err, user) {
-           assert.equal(err, null);
-           res.send("Successfully updated status of " + user.username);
-       });
+    User.findByIdAndUpdate(req.params.user_id, {status: req.body.new_status},
+        function (err, user) {
+            assert.equal(err, null);
+            res.send("Successfully updated status of " + user.username);
+        });
 });
 
 
 router.get('/follow/:user_uid/:followed', function (req, res) {
-   User.findOneAndUpdate({'uid' : req.params.user_uid},
-       {$addToSet : {'following' : req.params.followed}},
-       function (err) {
-           if(err) console.log(err);
-           assert.equal(err, null);
-           res.send(err);
-       });
+    User.findOneAndUpdate({'uid': req.params.user_uid},
+        {$addToSet: {'following': req.params.followed}},
+        function (err) {
+            if (err) console.log(err);
+            assert.equal(err, null);
+            res.send(err);
+        });
 });
 
 
 router.get('/following/:user_uid', function (req, res) {
-    User.findOne({'uid' : req.params.user_uid})
+    User.findOne({'uid': req.params.user_uid})
         .populate({
-            path : 'following'
+            path: 'following'
         })
         .exec(function (err, user) {
             assert.equal(err, null);
