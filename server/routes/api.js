@@ -229,8 +229,34 @@ router.post('setWinners/:ch_id', function (req, res) {
             "thirdPlace": ObjectId(podium.third)
         },
         function (err, challenge) {
+            if (err) console.log(err);
             assert.equal(err, null);
-            res.send("Winners updated")
+        });
+    // update medals
+    var errors = false;
+    User.findByIdAndUpdate(
+        podium.first,
+        {$inc: {'gold': 1}},
+        {safe: true, upsert: true},
+        function (err) {
+            errors = errors || err;
+            User.findByIdAndUpdate(
+                podium.second,
+                {$inc: {'silver': 1}},
+                {safe: true, upsert: true},
+                function (err) {
+                    errors = errors || err;
+                    User.findByIdAndUpdate(
+                        podium.third,
+                        {$inc: {'bronze': 1}},
+                        {safe: true, upsert: true},
+                        function (err) {
+                            errors = errors || err;
+                            assert.equal(errors, null);
+                            console.log(errors);
+                            res.send(errors);
+                        });
+                });
         });
 });
 

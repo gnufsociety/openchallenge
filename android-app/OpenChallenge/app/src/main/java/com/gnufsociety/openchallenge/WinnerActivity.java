@@ -117,7 +117,7 @@ public class WinnerActivity extends AppCompatActivity {
                     @Override
                     protected Void doInBackground(User[]... params) {
                         ApiHelper api = new ApiHelper();
-                        api.setWinners(params[0]);
+                        api.setWinners(params[0], challenge_id);
                         return null;
                     }
                 };
