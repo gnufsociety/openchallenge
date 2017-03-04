@@ -233,8 +233,8 @@ router.post('setWinners/:ch_id/:first/:second/:third', function (req, res) {
 });
 
 
-router.get('winners/:challenge_id', function (req, res) {
-    Challenge.findById(req.params.challenge_id)
+router.get('getWinners/:ch_id', function (req, res) {
+    Challenge.findById(req.params.ch_id)
         .populate('winner secondPlace thirdPlace')
         .exec(function (err, challenge) {
             assert.equal(err, null);
