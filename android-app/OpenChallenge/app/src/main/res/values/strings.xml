@@ -76,5 +76,8 @@
     <string name="choose_third">Choose the third</string>
     <string name="click_button">Click the button</string>
     <string name="said_click_button">I said click the button!!!</string>
+    <string name="no_internet_alert">Whoops! You are not connected to Internet!</string>
+    <string name="retry_now">Retry now</string>
+    <string name="no_internet_instructions">Check the status of your connection and press the button when you are back online</string>
 
 </resources>

@@ -385,7 +385,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="b6438ad1713446bb9bc4ef41c56cc5dc56d36d76">
+        sha1="8ebdea22099c8c9255d940eb0a20316042307bc4">
         <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cfae3e6f9f4c7a4f56ac0ea5d0edede6d9ea00c1/classes.dex" />
     </item>
     <item

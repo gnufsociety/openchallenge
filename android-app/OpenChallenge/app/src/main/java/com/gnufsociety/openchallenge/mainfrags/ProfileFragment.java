@@ -2,8 +2,11 @@ package com.gnufsociety.openchallenge.mainfrags;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -32,6 +35,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.MainActivity;
+import com.gnufsociety.openchallenge.NoConnectionActivity;
 import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.RegistrationActivity;
 import com.gnufsociety.openchallenge.adapters.ChallengeAdapter;
@@ -86,6 +91,20 @@ public class ProfileFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ConnectivityManager cm =
+                (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            Intent intent = new Intent(getActivity(), NoConnectionActivity.class);
+            startActivity(intent);
+            return null;
+        }
+
         View view = inflater.inflate(R.layout.fragment5_profile,container,false);
 
         ButterKnife.bind(this,view);
@@ -266,7 +285,7 @@ public class ProfileFragment extends Fragment{
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            // Deletion succeeded
+                            // Deletion succeeded: delete from database through api call
                         } else {
                             // Deletion failed
                         }

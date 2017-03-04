@@ -2,6 +2,8 @@ package com.gnufsociety.openchallenge;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
 import android.support.annotation.Nullable;
@@ -41,6 +43,21 @@ public class RegistrationActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registration_activity);
+
+        ConnectivityManager cm =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            Intent intent = new Intent(this, NoConnectionActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
             // already signed in
@@ -146,5 +163,4 @@ public class RegistrationActivity extends AppCompatActivity {
         in.setClass(context, RegistrationActivity.class);
         return in;
     }
-
 }
