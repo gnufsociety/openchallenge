@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="" />
+    <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ChallengeActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ChallengeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ParticipantsActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ParticipantsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/UserActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/UserActivity.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -57,10 +62,10 @@
       <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="272" column="28" lean-forward="false" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
+            <state relative-caret-position="3570">
+              <caret line="294" column="28" lean-forward="false" selection-start-line="294" selection-start-column="28" selection-end-line="294" selection-end-column="28" />
               <folding>
-                <element signature="e#2281#4108#0" expanded="false" />
+                <element signature="e#2876#4703#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -327,7 +332,7 @@
       <workItem from="1488293113284" duration="1024000" />
       <workItem from="1488309867343" duration="939000" />
       <workItem from="1488369895046" duration="9206000" />
-      <workItem from="1488625375990" duration="7617000" />
+      <workItem from="1488625375990" duration="8052000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -368,7 +373,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48681000" />
+    <option name="totallyTimeSpent" value="49116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="813" extended-state="6" />
@@ -412,14 +417,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/schemas/Challenge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/start/main">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -455,7 +452,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -541,7 +538,7 @@
         <state relative-caret-position="1755">
           <caret line="117" column="38" lean-forward="true" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -627,7 +624,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -683,7 +680,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -739,7 +736,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -779,7 +776,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -873,12 +870,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/schemas/Version.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="272" column="28" lean-forward="false" selection-start-line="272" selection-start-column="28" selection-end-line="272" selection-end-column="28" />
+        <state relative-caret-position="3570">
+          <caret line="294" column="28" lean-forward="false" selection-start-line="294" selection-start-column="28" selection-end-line="294" selection-end-column="28" />
           <folding>
-            <element signature="e#2281#4108#0" expanded="false" />
+            <element signature="e#2876#4703#0" expanded="false" />
           </folding>
         </state>
       </provider>

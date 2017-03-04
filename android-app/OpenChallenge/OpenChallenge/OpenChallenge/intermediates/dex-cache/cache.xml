@@ -3,12 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="/Users/tiem51/LocalDocuments/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="08a7e0750b2ffc623c206802a440ecac2111b13a">
-        <dex dex="/Users/tiem51/LocalDocuments/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_3497910d586102279f68067d5926e3ab6957538e/classes.dex" />
+        sha1="f24fa732c744e42e8b1a08be7a910b04745fb6ab">
+        <dex dex="/Users/davidespallaccini/developer/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_cfae3e6f9f4c7a4f56ac0ea5d0edede6d9ea00c1/classes.dex" />
     </item>
 
 </items>

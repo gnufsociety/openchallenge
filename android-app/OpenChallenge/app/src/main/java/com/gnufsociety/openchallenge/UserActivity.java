@@ -1,5 +1,9 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -70,15 +74,26 @@ public class UserActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        ConnectivityManager cm =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            System.out.println(">>>>>>>>>>>>>>>> NOT CONNECTED <<<<<<<<<<<<<<<<<<");
+            Intent intent = new Intent(this, NoConnectionActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
 
         ButterKnife.bind(this);
         Bundle extra = getIntent().getExtras();
         currentUser = (User) extra.getSerializable("currentUser");
         userPic.setImageResource(currentUser.resPic);
-
-        isFollowed = checkFollow();
-        if(isFollowed) fButton.setText("Followed");
-        else fButton.setText("Follow");
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
@@ -110,7 +125,7 @@ public class UserActivity extends AppCompatActivity {
         joinedRecycler.setNestedScrollingEnabled(false);
         joinedRecycler.addItemDecoration(dividerItemDecoration);
 
-
+        checkFollow();
         populateChallenges(false);
 
         // is all this code duplication really needed?
@@ -120,7 +135,6 @@ public class UserActivity extends AppCompatActivity {
                 populateChallenges(true);
             }
         });
-
     }
 
 
@@ -219,13 +233,27 @@ public class UserActivity extends AppCompatActivity {
         task.execute();
     }
 
-    public boolean checkFollow(){
-        ApiHelper api = new ApiHelper();
-        ArrayList<User> followedList = api.getFollowed(auth.getCurrentUser().getUid());
-        int length = followedList.size();
-        for(int i=0; i<length; i++){
-            if(followedList.get(i).equals(currentUser)) return true;
-        }
-        return false;
+    public void checkFollow(){
+        final boolean[] res = new boolean[1];
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                ApiHelper api = new ApiHelper();
+                ArrayList<User> followedList = api.getFollowed(auth.getCurrentUser().getUid());
+                for (User u: followedList) {
+                    if(u.uid.equals(currentUser.uid)) return Boolean.TRUE;
+                }
+                return Boolean.FALSE;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean alreadyFollowed) {
+                if(alreadyFollowed)
+                    fButton.setText(R.string.followed);
+                else
+                    fButton.setTag(R.string.follow);
+            }
+        };
+        task.execute();
     }
 }
