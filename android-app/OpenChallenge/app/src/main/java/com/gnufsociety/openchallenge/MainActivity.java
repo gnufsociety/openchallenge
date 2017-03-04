@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -41,6 +42,7 @@ import com.gnufsociety.openchallenge.mainfrags.OrganizeFragment;
 import com.gnufsociety.openchallenge.mainfrags.ProfileFragment;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
+import com.google.android.gms.common.api.BooleanResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -153,10 +155,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         last = (BottomButton) findViewById(R.id.home_bottom);
         last.clickIt();
 
+        AsyncTask<String, Void, Boolean> task = new AsyncTask<String, Void, Boolean>() {
+            @Override
+            protected Boolean doInBackground(String... params) {
+                System.out.println("version: "+params[0]);
+                return new ApiHelper().checkUpdate(params[0]);
+            }
+
+            @Override
+            protected void onPostExecute(Boolean b) {
+                if (b) showUpdateDialog();
+            }
+        };
+
+        task.execute(BuildConfig.VERSION_NAME);
+
         System.out.println("lal");
         System.out.println("Tiemmodify");
         System.out.println("Sdcmmodify");
         System.out.println("TheMonkeyKing ");
+    }
+
+    private void showUpdateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("New Update!");
+        builder.setMessage("New update is now available.\n Do you want to download it?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://gnufsociety.github.io/howto.html"));
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.create().show();
     }
 
     @Override
