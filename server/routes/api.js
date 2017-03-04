@@ -34,7 +34,7 @@ router.get('/checkUpdate/:my_version', function (req, res) {
 
 router.get('/newUpdate/:my_version', function (req, res) {
     var v = new Version({'version': req.params.my_version});
-    Version.findOneAndUpdate({}, {'version': req.params.my_version}).exec(function (err) {
+    Version.findOneAndUpdate({}, {'version': req.params.my_version}, { upsert: true} ).exec(function (err) {
         if (err) res.send("Errrore");
         else res.send("Updated!")
     });
