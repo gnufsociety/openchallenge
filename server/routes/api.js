@@ -234,16 +234,16 @@ router.post('setWinners/:ch_id/:first/:second/:third', function (req, res) {
 
 
 router.get('winners/:challenge_id', function (req, res) {
-    console.log(">>>>>>> Route engaged <<<<<<");
-    var winners = [];
     Challenge.findById(req.params.challenge_id)
         .populate('winner secondPlace thirdPlace')
         .exec(function (err, challenge) {
             assert.equal(err, null);
+            var winners = [];
             winners.push(challenge.winner);
             winners.push(challenge.secondPlace);
             winners.push(challenge.thirdPlace);
             res.json(JSON.stringify(winners));
+            res.send();
         });
 });
 
