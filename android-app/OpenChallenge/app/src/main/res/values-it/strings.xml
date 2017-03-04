@@ -56,4 +56,5 @@
     <string name="ok">OK</string>
     <string name="retry_now">Riprova ora</string>
     <string name="said_click_button">Ho detto clicca!</string>
+    <string name="terminate_challenge_msg">La sfida finirà. Gli utenti non potranno più registrarsi</string>
 </resources>

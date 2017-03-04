@@ -271,7 +271,6 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void checkFollow(){
-        final boolean[] res = new boolean[1];
         AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
@@ -288,7 +287,9 @@ public class UserActivity extends AppCompatActivity {
                 if(alreadyFollowed)
                     fButton.setText(R.string.followed);
                 else
-                    fButton.setTag(R.string.follow);
+                    fButton.setText(R.string.follow);
+                if(auth.getCurrentUser().getUid().equals(currentUser.uid))
+                    fButton.setVisibility(View.GONE);
             }
         };
         task.execute();
