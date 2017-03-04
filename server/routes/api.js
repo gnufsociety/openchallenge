@@ -270,7 +270,7 @@ router.get('/winners/:challenge_id', function (req, res) {
             winners.push(challenge.winner);
             winners.push(challenge.secondPlace);
             winners.push(challenge.thirdPlace);
-            res.json(JSON.stringify(winners));
+            res.json(winners);
         });
 
 });
