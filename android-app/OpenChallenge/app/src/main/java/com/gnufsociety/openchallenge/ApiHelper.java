@@ -226,24 +226,6 @@ public class ApiHelper {
     }
 
 
-    public void setWinners(User[] users) {
-        try {
-            JSONObject json = new JSONObject()
-                    .put("first", users[0].id)
-                    .put("second", users[1].id)
-                    .put("third", users[2].id);
-            RequestBody body = RequestBody.create(JSON, json.toString());
-            Request req = new Request.Builder()
-                    .url(url+"setWinners")
-                    .post(body)
-                    .build();
-            Response resp = client.newCall(req).execute();
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public void setWinners(User[] users, String challenge_id) {
         try {
             JSONObject json = new JSONObject()
