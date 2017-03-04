@@ -334,4 +334,20 @@ public class ApiHelper {
         }
         return followed;
     }
+
+    public boolean checkUpdate(String mVersion){
+        Request req = new Request.Builder()
+                .url(url+ "checkUpdate/"+mVersion)
+                .build();
+        try {
+            Response resp = client.newCall(req).execute();
+            boolean b = resp.body().string().equals("yes");
+            return b;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+
+
+    }
 }
