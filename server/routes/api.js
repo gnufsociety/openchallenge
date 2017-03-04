@@ -220,11 +220,12 @@ router.get('/terminateChallenge/:challenge_id', function (req, res) {
 });
 
 
-router.post('setWinners/:ch_id/:first/:second/:third', function (req, res) {
+router.post('setWinners/:ch_id', function (req, res) {
+    var podium = req.body;
     Challenge.findByIdAndUpdate(req.params.ch_id,
-        { $set: { "winner" : req.params.first,
-                  "secondPlace": req.params.second,
-                  "thirdPlace": req.params.third }
+        { $set: { "winner" : podium.first,
+                  "secondPlace": podium.second,
+                  "thirdPlace": podium.third }
         },
         function (err, challenge) {
             assert.equal(err, null);
@@ -243,7 +244,6 @@ router.get('/winners/:challenge_id', function (req, res) {
             winners.push(challenge.secondPlace);
             winners.push(challenge.thirdPlace);
             res.json(JSON.stringify(winners));
-            res.send();
         });
 
 });
