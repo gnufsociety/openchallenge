@@ -12,7 +12,8 @@ The focus is on people meeting in a place to take part in challenges: here peopl
 
 You can download our application and test it on your smartphone. [Here (Not working at the moment pd)] you can find the last working apk.
 Once you downloaded it sign up with your email, choose a username and join us into our magic world!
-In our [Website](https://gnufsociety.github.io/index.html) you can find everything you need to know about this app. Check it now!
+
+####In our [Website](https://gnufsociety.github.io/index.html) you can find everything you need to know about this app. Check it now!
 
 ### Contribute
 
