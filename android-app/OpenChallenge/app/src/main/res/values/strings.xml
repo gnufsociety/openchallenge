@@ -67,5 +67,14 @@
     <string name="cancel">Cancel</string>
     <string name="follow">Follow</string>
     <string name="followed">Followed</string>
+    <string name="ok">OK</string>
+    <string name="terminate_challenge_msg">The challenge will end. Other users will not be able to join any more.</string>
+    <string name="confirm_termination">Do you want to end this challenge?</string>
+    <string name="choose_winners">Choose winners</string>
+    <string name="choose_first">Choose the first</string>
+    <string name="choose_second">Choose the second</string>
+    <string name="choose_third">Choose the third</string>
+    <string name="click_button">Click the button</string>
+    <string name="said_click_button">I said click the button!!!</string>
 
 </resources>

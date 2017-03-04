@@ -46,6 +46,7 @@ router.post('/newChallenge', function (req, res) {
                 isTerminated : false
             });
             challenge.date = new Date(Date.UTC(dat[2],dat[1]-1,dat[0],0,0,0,0));
+            if(challenge.date < Date.now()) challenge.isTerminated = true;
             challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
@@ -135,6 +136,21 @@ router.get('/allChallenges', function (req, res, next) {
 });
 
 
+router.get('/activeChallenges', function (req, res) {
+    Challenge.find({isTerminated: false})
+        .select('name description rules image location date organizer')
+        .sort({date:1})
+        .populate({
+            path:'organizer',
+            select: 'username picture uid status rate'
+        })
+        .exec(function (err, challenge) {
+            assert.equal(err, null);
+            res.send(challenge);
+        })
+});
+
+
 router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
     var chall_id = req.params.chall_id;
     var user_id = req.params.user_id;
@@ -194,7 +210,7 @@ router.get('/getParticipants/:chall_id', function (req, res, next) {
 });
 
 
-router.put('/terminateChallenge/:challenge_id', function (req, res) {
+router.get('/terminateChallenge/:challenge_id', function (req, res) {
     Challenge.findByIdAndUpdate(req.params.challenge_id,
         {isTerminated: true},
         function (err, challenge) {

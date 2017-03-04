@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -35,6 +37,8 @@ public class WinnerActivity extends AppCompatActivity {
 
     public User[] winners;
     public WinnerActivity win;
+    private String challenge_id;
+
 
 
     @Override
@@ -46,12 +50,12 @@ public class WinnerActivity extends AppCompatActivity {
         win = this;
 
         Bundle extra = getIntent().getExtras();
-        String chall_id = extra.getString("chall_id");
+        challenge_id = extra.getString("chall_id");
 
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Choose winners");
+        getSupportActionBar().setTitle(R.string.choose_winners);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -67,27 +71,56 @@ public class WinnerActivity extends AppCompatActivity {
                 WinnerAdapter adapter = new WinnerAdapter(users,win);
                 recyclerView.setAdapter(adapter);
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(doneBtn.getContext(),"Choose the first",Toast.LENGTH_SHORT).show();
+                Toast.makeText(doneBtn.getContext(), R.string.choose_first,Toast.LENGTH_SHORT).show();
             }
         };
+        task.execute(challenge_id);
 
         DividerItemDecoration dividerItemDecoration =
                 new DividerItemDecoration(recyclerView.getContext(),DividerItemDecoration.VERTICAL);
         recyclerView.addItemDecoration(dividerItemDecoration);
-
-        task.execute(chall_id);
-
     }
 
     @OnClick(R.id.winner_done_btn)
     public void onDone() {
+        // Use the Builder class for convenient dialog construction
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        //AlertDialog dialog = new AlertDialog();
+        builder.setTitle(R.string.confirm_termination)
+                .setMessage(R.string.terminate_challenge_msg)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        terminateChallenge(challenge_id);
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User cancelled the dialog
+                    }
+                });
+        // Create the AlertDialog object and return it
+        builder.create().show();
+    }
 
-        Intent intent = new Intent();
-        intent.putExtra("winners",winners);
-        setResult(-1,intent);
-        finish();
+    public void terminateChallenge(String ch_id) {
+        AsyncTask<String, Void, Void> taskTermination = new AsyncTask<String, Void, Void>() {
+            @Override
+            protected Void doInBackground(String... strings) {
+                new ApiHelper().terminate(strings[0]);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                
+                Intent intent = new Intent();
+                intent.putExtra("winners",winners);
+                setResult(-1,intent);
+                finish();
+            }
+        };
+        taskTermination.execute(ch_id);
     }
 
     @Override

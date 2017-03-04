@@ -100,26 +100,22 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
                             curr.goldMedals++;
                             medal.setImageResource(R.drawable.gold128);
                             winnerActivity.winners[0] = curr;
-                            //Snackbar.make(itemView,"Choose the second",Snackbar.LENGTH_LONG).show();
-                            Toast.makeText(v.getContext(),"Choose the second",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), R.string.choose_second,Toast.LENGTH_SHORT).show();
                             break;
                         case 1:
                             curr.silverMedals++;
                             winnerActivity.winners[1] = curr;
                             medal.setImageResource(R.drawable.silver128);
-                            //Snackbar.make(itemView,"Choose the third",Snackbar.LENGTH_LONG).show();
-                            Toast.makeText(v.getContext(),"Choose the third",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), R.string.choose_third,Toast.LENGTH_SHORT).show();
                             break;
                         case 2:
                             curr.bronzeMedals++;
                             winnerActivity.winners[2] = curr;
                             medal.setImageResource(R.drawable.bronze128);
-                            //Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
-                            Toast.makeText(v.getContext(),"Click the button",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), R.string.click_button,Toast.LENGTH_SHORT).show();
                             break;
                         default:
-                            //Snackbar.make(itemView,"Click the button",Snackbar.LENGTH_LONG).show();
-                            Toast.makeText(v.getContext(),"I said click the button ass ho*e",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), R.string.said_click_button,Toast.LENGTH_SHORT).show();
                     }
                     choosen++;
                 }

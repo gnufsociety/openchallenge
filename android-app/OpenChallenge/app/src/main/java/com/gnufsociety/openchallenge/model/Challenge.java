@@ -18,26 +18,27 @@ import java.util.regex.Matcher;
  */
 
 public class Challenge implements Serializable {
+
     public String name;
     public int resImage;
     public User organizer;
     public String desc;
     public Date when;
     public String id;
-    //public List<User> simplePart;
     public String imageLocation;
     public String rules;
     public String address;
     public double lat;
     public double lng;
     public boolean liked = false;
+    public boolean isTerminated = false;
 
     public Challenge(JSONObject obj) throws JSONException {
         this.name = obj.getString("name");
         this.desc = obj.getString("description");
         this.rules = obj.getString("rules");
         this.imageLocation = obj.getString("image");
-
+        this.isTerminated = obj.getBoolean("isTerminated");
 
         String date = obj.getString("date");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
@@ -52,17 +53,8 @@ public class Challenge implements Serializable {
         this.lng = place.getDouble("long");
         this.id = obj.getString("_id");
 
-        // UNCOMMENT WHEN IT'S READY
         JSONObject userObj = obj.getJSONObject("organizer");
         this.organizer = new User(userObj, 0);
-
-        /*JSONArray part = obj.getJSONArray("participants");
-        simplePart = new ArrayList<>();
-
-        for (int i = 0; i < part.length(); i++) {
-            simplePart.add(new User(part.getJSONObject(i),1));
-        }*/
-
 
     }
 

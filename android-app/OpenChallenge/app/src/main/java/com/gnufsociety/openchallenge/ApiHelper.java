@@ -129,10 +129,26 @@ public class ApiHelper {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return null;
-
     }
+
+    /**
+     * API:
+     * router.get('/terminateChallenge/:challenge_id', function (req, res) {
+     *      Challenge.findByIdAndUpdate(req.params.challenge_id,
+     *      {isTerminated: true},
+     */
+    public void terminate(String challenge_id) {
+        Request request = new Request.Builder()
+                .url(url + "terminateChallenge/" + challenge_id)
+                .build();
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<User> searchUsers(String prefix) {
         Request request = new Request.Builder()
@@ -227,6 +243,23 @@ public class ApiHelper {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public ArrayList<User> getWinners(Challenge challenge) {
+        ArrayList<User> winners = new ArrayList<>();
+        Request req = new Request.Builder()
+                .url(url+"winners/" + challenge.id)
+                .build();
+
+        Response res = null;
+        try {
+            res = client.newCall(req).execute();
+            winners = User.getUsersArray(res.body().string());
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return winners;
     }
 
 

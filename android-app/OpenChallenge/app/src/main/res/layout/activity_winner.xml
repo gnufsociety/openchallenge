@@ -38,9 +38,8 @@
             android:id="@+id/winner_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-
     </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         app:useCompatPadding="true"
         android:id="@+id/winner_done_btn"

@@ -62,8 +62,8 @@
             android:layout_alignParentBottom="true"
             android:background="@drawable/rounded_button"
             android:onClick="joinChallenge"
-            android:text="Join Challenge"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="gone"/>
     </RelativeLayout>
 </android.support.design.widget.CoordinatorLayout>

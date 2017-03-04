@@ -41,6 +41,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -70,8 +72,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     @BindView(R.id.chall_desc) TextView desc;
     @BindView(R.id.chall_rules) TextView rules;
     @BindView(R.id.chall_npart) TextView numPart;
-    @BindView(R.id.chall_podium)
-    Podium podium;
+    @BindView(R.id.chall_podium) Podium podium;
     @BindView(R.id.chall_join_btn) Button join;
     @BindView(R.id.chall_refresh) SwipeRefreshLayout refreshLayout;
 
@@ -154,7 +155,37 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
 
         mapFragment.getMapAsync(this);
 
+        if(!challenge.isTerminated) join.setVisibility(View.VISIBLE);
+
+        // check if challenge is terminated
+        checkIsTerminated();
     }
+
+
+    public void checkIsTerminated() {
+        AsyncTask<Void, Void, List<User>> task = new AsyncTask<Void, Void, List<User>>() {
+            @Override
+            protected List<User> doInBackground(Void... voids) {
+                ArrayList<User> winners = new ArrayList<>(3);
+                if(challenge.isTerminated) {
+                    winners = new ApiHelper().getWinners(challenge);
+                }
+                return winners;
+            }
+
+            @Override
+            protected void onPostExecute(List<User> winners) {
+                super.onPostExecute(winners);
+                if(challenge.isTerminated) {
+                    podium.setVisibility(View.VISIBLE);
+                    podium.setWinners((User[]) winners.toArray());
+                    join.setVisibility(View.GONE);
+                }
+            }
+        };
+        task.execute();
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -168,6 +199,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         // Return true to display menu
         return true;
     }
+
 
     private void setShareIntent(Intent shareIntent) {
         if (miShareAction != null) {
