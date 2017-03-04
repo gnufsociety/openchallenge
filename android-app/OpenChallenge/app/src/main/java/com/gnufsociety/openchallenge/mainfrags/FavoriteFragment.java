@@ -1,5 +1,9 @@
 package com.gnufsociety.openchallenge.mainfrags;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.NoConnectionActivity;
 import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.adapters.ParticipantAdapter;
 import com.gnufsociety.openchallenge.model.User;
@@ -42,6 +47,19 @@ public class FavoriteFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ConnectivityManager cm =
+                (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            Intent intent = new Intent(getActivity(), NoConnectionActivity.class);
+            startActivity(intent);
+            return null;
+        }
 
         View thisView = inflater.inflate(R.layout.fragment4_favorites, container, false);
 

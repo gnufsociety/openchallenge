@@ -1,5 +1,9 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -70,6 +74,22 @@ public class UserActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        ConnectivityManager cm =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            System.out.println(">>>>>>>>>>>>>>>> NOT CONNECTED <<<<<<<<<<<<<<<<<<");
+            Intent intent = new Intent(this, NoConnectionActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         ButterKnife.bind(this);
         Bundle extra = getIntent().getExtras();
         currentUser = (User) extra.getSerializable("currentUser");
@@ -115,7 +135,6 @@ public class UserActivity extends AppCompatActivity {
                 populateChallenges(true);
             }
         });
-
     }
 
 

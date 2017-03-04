@@ -1,5 +1,9 @@
 package com.gnufsociety.openchallenge;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +32,22 @@ public class ParticipantsActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         challenge = (Challenge) bundle.getSerializable("challenge");
 
+        ConnectivityManager cm =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            // already signed in
+            System.out.println(">>>>>>>>>>>>>>>> NOT CONNECTED <<<<<<<<<<<<<<<<<<");
+            Intent intent = new Intent(this, NoConnectionActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         AsyncTask<Void, Void, ArrayList<User>> task = new AsyncTask<Void, Void, ArrayList<User>>() {
             @Override
             protected ArrayList<User> doInBackground(Void... params) {
@@ -42,17 +62,10 @@ public class ParticipantsActivity extends AppCompatActivity {
                 recyclerView.setAdapter(adapter);
             }
         };
-
         task.execute();
-
 
         mToolbar = (Toolbar) findViewById(R.id.participants_toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.part_recycler);
-
-
-        /**
-        * Pass here the participant list with apihelper
-        * */
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

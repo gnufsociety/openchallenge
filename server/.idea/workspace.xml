@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7b0db41-c058-4d31-b356-82094adcc312" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/OpenChallenge/OpenChallenge/intermediates/dex-cache/cache.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ChallengeActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ChallengeActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ParticipantsActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/ParticipantsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/UserActivity.java" afterPath="$PROJECT_DIR$/../android-app/OpenChallenge/app/src/main/java/com/gnufsociety/openchallenge/UserActivity.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -329,7 +332,7 @@
       <workItem from="1488293113284" duration="1024000" />
       <workItem from="1488309867343" duration="939000" />
       <workItem from="1488369895046" duration="9206000" />
-      <workItem from="1488625375990" duration="7965000" />
+      <workItem from="1488625375990" duration="8052000" />
     </task>
     <task id="LOCAL-00001" summary="mongoose">
       <created>1486854970010</created>
@@ -370,7 +373,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49029000" />
+    <option name="totallyTimeSpent" value="49116000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="813" extended-state="6" />

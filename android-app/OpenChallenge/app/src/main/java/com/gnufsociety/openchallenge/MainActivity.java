@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, NoConnectionActivity.class);
             startActivity(intent);
             finish();
+            return;
         }
 
         //If is a new currentUser, start configuration activity
