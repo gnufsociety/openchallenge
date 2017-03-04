@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_search">Cerca…</string>
-    <string name="choose_winner">Scegli i vincitori!</string>
+    <string name="choose_winner">Scegli il vincitore!</string>
     <string name="congratulations_newu">Congratulazioni!</string>
     <string name="delete_user">Elimina utente</string>
     <string name="desc_cardlay">Mettiti alla prova!</string>
@@ -42,4 +42,18 @@
     <string name="choose_status">Stato</string>
     <string name="choose_username">Nickname</string>
     <string name="sign_up_cancelled">Hai premuto indietro durante la registrazione</string>
+    <string name="cancel">Annulla</string>
+    <string name="choose_first"></string>
+    <string name="confirm_termination">Vuoi terminare questa sfida?</string>
+    <string name="choose_winners">Scegli i vincitori</string>
+    <string name="click_button">Clicca il bottone</string>
+    <string name="done">Fatto</string>
+    <string name="follow">Segui</string>
+    <string name="followed">Segui già</string>
+    <string name="insert_new_status">Inserisci un nuovo stato</string>
+    <string name="no_internet_alert">Oops! Non sei connesso a Internet!</string>
+    <string name="no_internet_instructions">Controlla lo stato della connessione e premi il bottone quando sei di nuovo online</string>
+    <string name="ok">OK</string>
+    <string name="retry_now">Riprova ora</string>
+    <string name="said_click_button">Ho detto clicca!</string>
 </resources>
