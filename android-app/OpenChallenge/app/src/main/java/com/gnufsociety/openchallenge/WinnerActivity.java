@@ -113,7 +113,15 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-
+                AsyncTask<User[],Void,Void> task = new AsyncTask<User[], Void, Void>() {
+                    @Override
+                    protected Void doInBackground(User[]... params) {
+                        ApiHelper api = new ApiHelper();
+                        api.setWinners(params[0]);
+                        return null;
+                    }
+                };
+                task.execute(winners);
                 Intent intent = new Intent();
                 intent.putExtra("winners",winners);
                 setResult(-1,intent);

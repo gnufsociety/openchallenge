@@ -224,9 +224,9 @@ router.post('setWinners/:ch_id', function (req, res) {
     var podium = req.body;
     Challenge.findByIdAndUpdate(req.params.ch_id,
         {
-            "winner" : podium.first,
-            "secondPlace": podium.second,
-            "thirdPlace": podium.third
+            "winner" : ObjectId(podium.first),
+            "secondPlace": ObjectId(podium.second),
+            "thirdPlace": ObjectId(podium.third)
         },
         function (err, challenge) {
             assert.equal(err, null);
