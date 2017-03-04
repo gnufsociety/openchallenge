@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0">
+
+    <TextView
+        android:id="@+id/no_conn_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_internet_alert"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:textColor="#616161"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/no_conn_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_internet_instructions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/no_conn_text"
+        android:textColor="#90a4ae"
+        android:textSize="16sp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/no_conn_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_conn_msg"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_cloud_off_128dp"/>
+
+    <Button
+        android:id="@+id/no_conn_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_conn_img"
+        android:layout_centerInParent="true"
+        android:text="@string/retry_now"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#616161"
+        android:layout_gravity="center" />
+
+</RelativeLayout>
