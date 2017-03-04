@@ -56,8 +56,9 @@
                     android:layout_width="120dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/hacking" />
+                    android:layout_margin="4dp"/>
+
+                <!-- insert source in this image view to see preview -->
 
                 <com.gnufsociety.openchallenge.customui.FavoriteButton
                     android:id="@+id/card_favorite"

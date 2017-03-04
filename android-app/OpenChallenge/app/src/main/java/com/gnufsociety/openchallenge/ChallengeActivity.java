@@ -50,7 +50,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public static int WINNER_CODE = 1;
-    Challenge c;
+    Challenge challenge;
     private GoogleMap mMap;
     private FirebaseAuth auth;
     private ShareActionProvider miShareAction;
@@ -85,12 +85,14 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge);
-        c = (Challenge) getIntent().getExtras().getSerializable("challenge");
+
         ButterKnife.bind(this);
+
+        challenge = (Challenge) getIntent().getExtras().getSerializable("challenge");
 
         auth = FirebaseAuth.getInstance();
 
-        if (auth.getCurrentUser().getUid().equals(c.organizer.uid)) {
+        if (auth.getCurrentUser().getUid().equals(challenge.organizer.uid)) {
             join.setText(R.string.choose_winner);
             isOrganizer = true;
         }
@@ -109,35 +111,35 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         FirebaseStorage storage = FirebaseStorage.getInstance();
         store = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
 
-        StorageReference cImage = store.child("challenges/" + c.imageLocation);
-        image.setImageResource(c.resImage);
+        StorageReference cImage = store.child("challenges/" + challenge.imageLocation);
+        image.setImageResource(challenge.resImage);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(cImage)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(image);
 
-        desc.setText(c.desc);
-        where.setText(c.address.split(",")[0]);
+        desc.setText(challenge.desc);
+        where.setText(challenge.address.split(",")[0]);
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-        when.setText(format.format(c.when));
-        rules.setText(c.rules);
+        when.setText(format.format(challenge.when));
+        rules.setText(challenge.rules);
 
 
-        user_img.setImageResource(c.organizer.resPic);
+        user_img.setImageResource(challenge.organizer.resPic);
 
-        StorageReference userImage = store.child("users/" + c.organizer.proPicLocation);
+        StorageReference userImage = store.child("users/" + challenge.organizer.proPicLocation);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(userImage)
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(user_img);
 
-        orgUsername.setText(c.organizer.name);
-        orgRate.setRating((float) c.organizer.rating);
+        orgUsername.setText(challenge.organizer.name);
+        orgRate.setRating((float) challenge.organizer.rating);
 
 
-        collapseToolbar.setTitle(c.name);
+        collapseToolbar.setTitle(challenge.name);
         collapseToolbar.setContentScrimColor(ContextCompat.getColor(this, R.color.colorPrimary));
 
         //Edit this two to change color and text appearance
@@ -176,7 +178,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT,
-                "Come and join this challenge: '"+ c.name +"'");
+                "Come and join this challenge: '"+ challenge.name +"'");
         return shareIntent;
     }
 
@@ -194,7 +196,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public void showParticipants(View view) {
         Intent intent = new Intent(this, ParticipantsActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("challenge", c);
+        bundle.putSerializable("challenge", challenge);
         intent.putExtras(bundle);
 
         startActivity(intent);
@@ -205,8 +207,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng marker = new LatLng(c.lat, c.lng);
-        mMap.addMarker(new MarkerOptions().position(marker).title(c.name));
+        LatLng marker = new LatLng(challenge.lat, challenge.lng);
+        mMap.addMarker(new MarkerOptions().position(marker).title(challenge.name));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(marker));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(18), 2000, null);
     }
@@ -214,7 +216,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     public void showUser(View view) {
         Intent user = new Intent(this, UserActivity.class);
         Bundle extra = new Bundle();
-        extra.putSerializable("currentUser", c.organizer);
+        extra.putSerializable("currentUser", challenge.organizer);
         user.putExtras(extra);
         startActivity(user);
     }
@@ -225,9 +227,9 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
             protected Void doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
                 if (joined)
-                    api.removeParticipant(c.id, auth.getCurrentUser().getUid());
+                    api.removeParticipant(challenge.id, auth.getCurrentUser().getUid());
                 else
-                    api.addParticipant(c.id, auth.getCurrentUser().getUid());
+                    api.addParticipant(challenge.id, auth.getCurrentUser().getUid());
                 return null;
             }
 
@@ -241,7 +243,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         if (isOrganizer) {
             Intent intent = new Intent(this,WinnerActivity.class);
             Bundle extra = new Bundle();
-            extra.putString("chall_id",c.id);
+            extra.putString("chall_id", challenge.id);
             intent.putExtras(extra);
             startActivityForResult(intent,WINNER_CODE);
 
@@ -278,7 +280,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         protected JSONObject doInBackground(Void... params) {
             ApiHelper api = new ApiHelper();
 
-            return api.numParticipant(c.id,auth.getCurrentUser().getUid());
+            return api.numParticipant(challenge.id,auth.getCurrentUser().getUid());
         }
 
         @Override

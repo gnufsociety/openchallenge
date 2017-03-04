@@ -3,6 +3,7 @@ package com.gnufsociety.openchallenge;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -80,6 +81,9 @@ public class WinnerActivity extends AppCompatActivity {
 
     @OnClick(R.id.winner_done_btn)
     public void onDone() {
+
+        //AlertDialog dialog = new AlertDialog();
+
         Intent intent = new Intent();
         intent.putExtra("winners",winners);
         setResult(-1,intent);
