@@ -113,7 +113,7 @@ public class WinnerActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Void aVoid) {
                 super.onPostExecute(aVoid);
-                
+
                 Intent intent = new Intent();
                 intent.putExtra("winners",winners);
                 setResult(-1,intent);
