@@ -42,7 +42,6 @@ import com.gnufsociety.openchallenge.mainfrags.OrganizeFragment;
 import com.gnufsociety.openchallenge.mainfrags.ProfileFragment;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
-import com.google.android.gms.common.api.BooleanResult;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -287,15 +286,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View dialogView = inflater.inflate(R.layout.filter_dialog, null);
         builder.setView(dialogView);
 
-        final Spinner s = (Spinner) dialogView.findViewById(R.id.spinner_filter);
+        final Spinner sortSpinner = (Spinner) dialogView.findViewById(R.id.filter_sort_spinner);
+        final Spinner showSpinner = (Spinner) dialogView.findViewById(R.id.filter_show_spinner);
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter
-                .createFromResource(this, R.array.filter_options,
-                        android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.filter_sort_options,
+                android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        s.setAdapter(adapter);
+        sortSpinner.setAdapter(adapter);
 
+        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
+                R.array.filter_show_options,
+                android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        showSpinner.setAdapter(adapter2);
 
         builder.setPositiveButton("Ok", null);
         builder.setNeutralButton("Annulla", new DialogInterface.OnClickListener() {
@@ -326,7 +331,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        switch (s.getSelectedItemPosition()) {
+                        switch (sortSpinner.getSelectedItemPosition()) {
                             case 0:
                                 if (loc.currLocation != null) {
                                     homeFragment.orderByPosition(loc.currLocation);
@@ -353,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
         mDialog.show();
 
-        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {

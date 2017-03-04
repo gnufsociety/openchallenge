@@ -65,6 +65,21 @@ public class ApiHelper {
     public ArrayList<Challenge> getHomeChallenge() {
 
         Request request = new Request.Builder()
+                .url(url + "activeChallenges")
+                .build();
+        try {
+            Response resp = client.newCall(request).execute();
+            return Challenge.getArrayList(resp.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>();
+    }
+
+
+    public ArrayList<Challenge> getAllChallenge() {
+
+        Request request = new Request.Builder()
                 .url(url + "allChallenges")
                 .build();
         try {
@@ -75,6 +90,7 @@ public class ApiHelper {
         }
         return new ArrayList<>();
     }
+
 
     public ArrayList<User> getParticipant(String id_chall) {
         Request request = new Request.Builder()

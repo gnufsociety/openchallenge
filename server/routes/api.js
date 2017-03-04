@@ -160,7 +160,7 @@ router.get('/allChallenges', function (req, res, next) {
 
 router.get('/activeChallenges', function (req, res) {
     Challenge.find({isTerminated: false})
-        .select('name description rules image location date organizer')
+        .select('name description rules image location date organizer isTerminated')
         .sort({date: 1})
         .populate({
             path: 'organizer',

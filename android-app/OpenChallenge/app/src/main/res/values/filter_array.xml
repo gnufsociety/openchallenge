@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="filter_options">
+    <string-array name="filter_sort_options">
         <item >Posizione</item>
         <item>Data</item>
+    </string-array>
+
+    <string-array name="filter_show_options">
+        <item >All</item>
+        <item>Active</item>
     </string-array>
 
 </resources>

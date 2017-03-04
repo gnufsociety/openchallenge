@@ -79,5 +79,7 @@
     <string name="no_internet_alert">Whoops! You are not connected to Internet!</string>
     <string name="retry_now">Retry now</string>
     <string name="no_internet_instructions">Check the status of your connection and press the button when you are back online</string>
+    <string name="sort_by">Sort by</string>
+    <string name="show">Show</string>
 
 </resources>
