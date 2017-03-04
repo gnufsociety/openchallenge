@@ -15,6 +15,7 @@ You can download our application and test it on your smartphone. [Here (Not work
 Once you downloaded it sign up with your email, choose a username and join us into our magic world!
 
 In our Website you can find everything you need to know about this app. Check it now!
+####You can also find us on [Facebook](https://www.facebook.com/gnuf.openchallenge/?fref=ts) and [Twitter](https://twitter.com/GnufTeam?lang=it)
 
 ### Contribute
 
