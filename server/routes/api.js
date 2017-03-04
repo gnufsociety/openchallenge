@@ -220,7 +220,7 @@ router.get('/terminateChallenge/:challenge_id', function (req, res) {
 });
 
 
-router.post('setWinners/:ch_id', function (req, res) {
+router.post('/setWinners/:ch_id', function (req, res) {
     var podium = req.body;
     Challenge.findByIdAndUpdate(req.params.ch_id,
         {
