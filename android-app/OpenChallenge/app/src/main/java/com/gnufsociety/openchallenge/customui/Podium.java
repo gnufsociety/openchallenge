@@ -34,6 +34,7 @@ public class Podium extends RelativeLayout {
     }
 
     public void setWinners(User[] u){
+        if(u.length == 0) return;
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
         StorageReference firstRef = sref.child("users/" + u[0].proPicLocation);

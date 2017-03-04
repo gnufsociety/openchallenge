@@ -178,7 +178,9 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
                 super.onPostExecute(winners);
                 if(challenge.isTerminated) {
                     podium.setVisibility(View.VISIBLE);
-                    podium.setWinners((User[]) winners.toArray());
+                    User[] onPodium = new User[winners.size()];
+                    winners.toArray(onPodium);
+                    podium.setWinners(onPodium);
                     join.setVisibility(View.GONE);
                 }
             }
