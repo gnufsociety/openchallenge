@@ -1,11 +1,14 @@
 package com.gnufsociety.openchallenge;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,7 +17,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -67,6 +72,8 @@ public class UserActivity extends AppCompatActivity {
     public boolean isFollowed = false;
     private FirebaseAuth auth;
 
+    StorageReference userRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +104,7 @@ public class UserActivity extends AppCompatActivity {
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference sref = storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
-        StorageReference userRef = sref.child("users/"+ currentUser.proPicLocation);
+        userRef = sref.child("users/"+ currentUser.proPicLocation);
         Glide.with(this)
                 .using(new FirebaseImageLoader())
                 .load(userRef)
@@ -202,6 +209,36 @@ public class UserActivity extends AppCompatActivity {
             joinedRecycler.setVisibility(View.VISIBLE);
             showHideJoined.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
         }
+    }
+
+
+    @OnClick(R.id.user_pro_pic)
+    public void showPicDialog() {
+        // Use the Builder class for convenient dialog construction
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        View view = this.getLayoutInflater().inflate(R.layout.dialog_profile_pic, null);
+
+
+        ImageView dialogImage = (ImageView) view.findViewById(R.id.dialog_img);
+
+        Glide.with(this)
+                .using(new FirebaseImageLoader())
+                .load(userRef)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .into(dialogImage);
+
+        builder.setView(view)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // back to profile
+                    }
+                });
+        // Create the AlertDialog object and return it
+        AlertDialog dialog = builder.create();
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(null);
+        dialog.show();
     }
 
 
