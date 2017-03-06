@@ -35,7 +35,8 @@
         android:layout_rowWeight="1"
         android:paddingLeft="8dp"
         android:paddingTop="0dp"
-        android:rating="5" />
+        android:rating="5"
+        android:visibility="gone"/>
 
     <TextView
         android:layout_rowWeight="1"
