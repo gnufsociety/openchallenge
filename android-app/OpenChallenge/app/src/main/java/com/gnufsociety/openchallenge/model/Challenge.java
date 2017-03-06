@@ -54,7 +54,7 @@ public class Challenge implements Serializable {
         this.id = obj.getString("_id");
 
         JSONObject userObj = obj.getJSONObject("organizer");
-        this.organizer = new User(userObj, 0);
+        this.organizer = new User(userObj);
 
     }
 
