@@ -228,12 +228,7 @@ public class UserActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .into(dialogImage);
 
-        builder.setView(view)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // back to profile
-                    }
-                });
+        builder.setView(view);
         // Create the AlertDialog object and return it
         AlertDialog dialog = builder.create();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
