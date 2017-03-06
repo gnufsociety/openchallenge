@@ -120,8 +120,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             @Override
             protected void onPostExecute(Boolean res) {
-                if (!res)
+                if (!res) {
                     startActivity(new Intent(context, ConfigurationActivity.class));
+                    finish();
+                }
                 onResumeCreate();
             }
         };
