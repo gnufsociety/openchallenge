@@ -143,8 +143,8 @@
                 android:layout_column="3"
                 android:layout_gravity="center_vertical"
                 android:layout_row="1"
-                android:src="@drawable/map_24"
-                android:tint="@android:color/tab_indicator_text" />
+                android:src="@drawable/map_24_grey"
+                 />
 
             <TextView
                 android:id="@+id/card_when"
@@ -165,8 +165,7 @@
                 android:layout_column="3"
                 android:layout_gravity="center_vertical"
                 android:layout_row="0"
-                android:src="@drawable/clock_24"
-                android:tint="@android:color/tab_indicator_text" />
+                android:src="@drawable/clock_24_grey" />
 
             <android.support.v4.widget.Space
                 android:layout_height="match_parent"

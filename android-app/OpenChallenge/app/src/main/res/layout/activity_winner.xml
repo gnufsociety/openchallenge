@@ -44,7 +44,6 @@
         app:useCompatPadding="true"
         android:id="@+id/winner_done_btn"
         android:src="@drawable/done"
-        android:tint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/winner_lay"
