@@ -145,10 +145,10 @@ router.get('/getNumParticipants/:id_chall/:user_uid', function (req, res, next) 
 router.get('/allChallenges', function (req, res, next) {
 
     Challenge.find()
+        .select('name description rules image location date organizer isTerminated')
         .sort({date: 1})
         .populate({
-            path: 'organizer',
-            select: 'username picture uid status rate'
+            path: 'organizer'
         })
         .exec(function (err, challenge) {
             assert.equal(err, null);
@@ -159,10 +159,10 @@ router.get('/allChallenges', function (req, res, next) {
 
 router.get('/activeChallenges', function (req, res) {
     Challenge.find({isTerminated: false})
+		.select('name description rules image location date organizer isTerminated')
         .sort({date: 1})
         .populate({
-            path: 'organizer',
-            select: 'username picture uid status rate'
+            path: 'organizer'
         })
         .exec(function (err, challenge) {
             assert.equal(err, null);
