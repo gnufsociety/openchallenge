@@ -43,7 +43,7 @@
     <string name="choose_username">Nickname</string>
     <string name="sign_up_cancelled">Hai premuto indietro durante la registrazione</string>
     <string name="cancel">Annulla</string>
-    <string name="choose_first"></string>
+    <string name="choose_first">Scegli il primo</string>
     <string name="confirm_termination">Vuoi terminare questa sfida?</string>
     <string name="choose_winners">Scegli i vincitori</string>
     <string name="click_button">Clicca il bottone</string>
@@ -57,4 +57,8 @@
     <string name="retry_now">Riprova ora</string>
     <string name="said_click_button">Ho detto clicca!</string>
     <string name="terminate_challenge_msg">La sfida finirà. Gli utenti non potranno più registrarsi</string>
+    <string name="show">Mostra</string>
+    <string name="sort_by">Ordina per</string>
+    <string name="choose_second">Scegli il secondo</string>
+    <string name="choose_third">Scegli il terzo</string>
 </resources>
