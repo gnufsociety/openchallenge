@@ -38,3 +38,7 @@ Do people realy need it? [Check our survey!](https://drive.google.com/open?id=1-
 Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 ## GCW2017 - Milestone 3
+
+[Presentation](https://drive.google.com/open?id=0BxzqNvZynJFuLWo0SE50dUduVk0)
+
+Link to Play store coming soon!
