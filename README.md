@@ -1,7 +1,7 @@
 <img src="ic_launcher.png" alt="Icon" width="200" height="200"/>
 
 # OpenChallenge 
-##->[Website](https://gnufsociety.github.io/index.html)<-
+###Please if you are curious about the funny part of the project check our [Website](https://gnufsociety.github.io/index.html)!
 
 OpenChallenge is a new app that allows you to challenge your friends in anything that comes to your mind.
 
