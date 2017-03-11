@@ -39,7 +39,7 @@ Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 ## GCW2017 - Milestone 3
 
-[Presentation](https://drive.google.com/open?id=0BxzqNvZynJFuLWo0SE50dUduVk0)
+[Presentation](https://drive.google.com/open?id=0B8WhWrWYbb1dSGZJencwR0Rmdk0)
 
 [Video](https://drive.google.com/open?id=0B8WhWrWYbb1dUkJEbmtxZDdrSEk)
 
