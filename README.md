@@ -41,4 +41,6 @@ Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 [Presentation](https://drive.google.com/open?id=0BxzqNvZynJFuLWo0SE50dUduVk0)
 
+[Video](https://drive.google.com/open?id=0B8WhWrWYbb1dUkJEbmtxZDdrSEk)
+
 Link to Play store coming soon!
