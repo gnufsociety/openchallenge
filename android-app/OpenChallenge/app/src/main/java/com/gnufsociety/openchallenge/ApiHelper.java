@@ -335,6 +335,18 @@ public class ApiHelper {
         }
     }
 
+    public void unfollow(String user, String followed){
+        try{
+            Request req = new Request.Builder()
+                    .url(url+"unfollow/"+user+"/"+followed)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public ArrayList<User> getFollowed(String user_uid) {
         ArrayList<User> followed = new ArrayList<>();
         Request req = new Request.Builder()

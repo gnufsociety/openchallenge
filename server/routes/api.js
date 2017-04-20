@@ -431,7 +431,7 @@ router.get('/follow/:user_uid/:followed', function (req, res) {
         });
 });
 
-router.post('unfollow/:user_uid/:followed', function (req, res) {
+router.get('unfollow/:user_uid/:followed', function (req, res) {
     User.findOneAndUpdate({'uid': req.params.user_uid},
         {$pull: {'following': req.params.followed}},
         function (err) {
