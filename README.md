@@ -1,7 +1,7 @@
 <img src="ic_launcher.png" alt="Icon" width="200" height="200"/>
 
 # OpenChallenge 
-###Please if you are curious about the funny part of the project check our [Website](https://gnufsociety.github.io/index.html)!
+### Please if you are curious about the funny part of the project check our [Website](https://gnufsociety.github.io/index.html)!
 
 OpenChallenge is a new app that allows you to challenge your friends in anything that comes to your mind.
 
@@ -15,7 +15,7 @@ You can download our application and test it on your smartphone. On our website 
 Once you downloaded it sign up, choose a username and join us into our magic world!
 
 In our Website you can find everything you need to know about this app. Check it now!
-####You can also find us on [Facebook](https://www.facebook.com/gnuf.openchallenge/?fref=ts) and [Twitter](https://twitter.com/GnufTeam?lang=it)
+#### You can also find us on [Facebook](https://www.facebook.com/gnuf.openchallenge/?fref=ts) and [Twitter](https://twitter.com/GnufTeam?lang=it)
 
 ### Contribute
 
@@ -43,4 +43,6 @@ Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 [Video](https://drive.google.com/open?id=0B8WhWrWYbb1dUkJEbmtxZDdrSEk)
 
-Link to Play store coming soon!
+<a href="https://play.google.com/store/apps/details?id=com.gnufsociety.openchallenge">
+  <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="30%" width="30%">
+</a>
