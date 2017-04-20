@@ -46,3 +46,7 @@ Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 <a href="https://play.google.com/store/apps/details?id=com.gnufsociety.openchallenge">
   <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="30%" width="30%">
 </a>
+
+## GCW2017 - Final submission
+
+[Documentation](https://docs.google.com/document/d/141gLc_HyIuWW-naM7tssa_i4JVw_Vo1ATDYdsJmUpQ0/edit?usp=sharing) (live version, work in progress...)
