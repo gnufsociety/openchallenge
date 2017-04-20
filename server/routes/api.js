@@ -4,7 +4,7 @@ var assert = require('assert');
 var mongoose = require('mongoose');
 var User = require('../schemas/User');
 var Challenge = require('../schemas/Challenge');
-var Version = require('../schemas/Version')
+var Version = require('../schemas/Version');
 var ObjectId = require('mongoose').Types.ObjectId;
 
 
@@ -417,6 +417,9 @@ router.post('/setStatus/:user_id', function (req, res) {
         });
 });
 
+router.post('/setProfilePicture/:user_id', function (req, res) {
+    // TODO
+});
 
 router.get('/follow/:user_uid/:followed', function (req, res) {
     User.findOneAndUpdate({'uid': req.params.user_uid},
@@ -428,6 +431,15 @@ router.get('/follow/:user_uid/:followed', function (req, res) {
         });
 });
 
+router.post('unfollow/:user_uid/:followed', function (req, res) {
+    User.findOneAndUpdate({'uid': req.params.user_uid},
+        {$pull: {'following': req.params.followed}},
+        function (err) {
+            if (err) console.log(err);
+            assert.equal(err, null);
+            res.send(err);
+        });
+});
 
 router.get('/following/:user_uid', function (req, res) {
     User.findOne({'uid': req.params.user_uid})
