@@ -248,18 +248,24 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void followUser(final View view){
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+        AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
             @Override
-            protected Void doInBackground(Void... params) {
+            protected Boolean doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                if(!isFollowed)
+                if(isFollowed)
+                    api.unfollow(auth.getCurrentUser().getUid(), currentUser.id);
+                else
                     api.follow(auth.getCurrentUser().getUid(), currentUser.id);
-                return null;
+                isFollowed = !isFollowed;
+                return isFollowed;
             }
 
             @Override
-            protected void onPostExecute(Void aVoid) {
-                fButton.setText(R.string.followed);
+            protected void onPostExecute(Boolean isFollowed) {
+                if(isFollowed)
+                    fButton.setText(R.string.followed);
+                else
+                    fButton.setText(R.string.follow);
             }
         };
         task.execute();
@@ -279,10 +285,13 @@ public class UserActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Boolean alreadyFollowed) {
-                if(alreadyFollowed)
+                if(alreadyFollowed) {
                     fButton.setText(R.string.followed);
-                else
+                    isFollowed = true;
+                } else {
                     fButton.setText(R.string.follow);
+                    isFollowed = false;
+                }
                 if(auth.getCurrentUser().getUid().equals(currentUser.uid))
                     fButton.setVisibility(View.GONE);
             }
