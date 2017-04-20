@@ -1,7 +1,7 @@
 <img src="ic_launcher.png" alt="Icon" width="200" height="200"/>
 
 # OpenChallenge 
-##->[Website](https://gnufsociety.github.io/index.html)<-
+### Please if you are curious about the funny part of the project check our [Website](https://gnufsociety.github.io/index.html)!
 
 OpenChallenge is a new app that allows you to challenge your friends in anything that comes to your mind.
 
@@ -15,7 +15,7 @@ You can download our application and test it on your smartphone. On our website 
 Once you downloaded it sign up, choose a username and join us into our magic world!
 
 In our Website you can find everything you need to know about this app. Check it now!
-####You can also find us on [Facebook](https://www.facebook.com/gnuf.openchallenge/?fref=ts) and [Twitter](https://twitter.com/GnufTeam?lang=it)
+#### You can also find us on [Facebook](https://www.facebook.com/gnuf.openchallenge/?fref=ts) and [Twitter](https://twitter.com/GnufTeam?lang=it)
 
 ### Contribute
 
@@ -38,3 +38,15 @@ Do people realy need it? [Check our survey!](https://drive.google.com/open?id=1-
 Pub/Organizer [suvery](https://goo.gl/forms/7LozerXpSppzj2Dy1)
 
 ## GCW2017 - Milestone 3
+
+[Presentation](https://drive.google.com/open?id=0B8WhWrWYbb1dSGZJencwR0Rmdk0)
+
+[Video](https://drive.google.com/open?id=0B8WhWrWYbb1dUkJEbmtxZDdrSEk)
+
+<a href="https://play.google.com/store/apps/details?id=com.gnufsociety.openchallenge">
+  <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="30%" width="30%">
+</a>
+
+## GCW2017 - Final submission
+
+[Documentation](https://docs.google.com/document/d/141gLc_HyIuWW-naM7tssa_i4JVw_Vo1ATDYdsJmUpQ0/edit?usp=sharing) (live version, work in progress...)
