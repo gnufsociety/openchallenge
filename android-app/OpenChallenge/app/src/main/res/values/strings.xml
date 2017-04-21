@@ -83,5 +83,9 @@
     <string name="show">Show</string>
     <string name="error_profpic_upload">Error uploading profile picture!</string>
     <string name="success_profpic_upload">Profile picture uploaded!</string>
+    <string name="help_us">Help us</string>
+    <string name="donate">Donate</string>
+    <string name="report_a_bug">Report a bug</string>
+    <string name="info_copyright">Info/Copyright</string>
 
 </resources>

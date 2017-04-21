@@ -507,24 +507,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.side_profile) {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
-            FragmentManager manager = getSupportFragmentManager();
-            manager.beginTransaction()
-                    .replace(R.id.home_fragment, new ProfileFragment(), ProfileFragment.TAG)
-                    .addToBackStack(ProfileFragment.TAG)
-                    .commit();
-            return true;
-        } else if (id == R.id.side_settings) {
-            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-        } else if (id == R.id.side_share) {
-            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+        if (id == R.id.side_donate) {
+            startActivity(DonateActivity.createIntent(this));
+        } else if (id == R.id.side_bug_report) {
         } else if (id == R.id.side_info) {
-            Snackbar.make(findViewById(R.id.frame_navigation), "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            startActivity(InfoActivity.createIntent(this));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
