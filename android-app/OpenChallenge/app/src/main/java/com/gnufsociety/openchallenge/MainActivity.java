@@ -490,8 +490,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mapFragment.getMapAsync(this);
                 break;
             case R.id.profile_bottom:
-                if (profileFragment == null)
+                if (profileFragment == null) {
                     profileFragment = new ProfileFragment();
+                }
                 manager.beginTransaction()
                         .replace(R.id.home_fragment, profileFragment, ProfileFragment.TAG)
                         .addToBackStack(ProfileFragment.TAG)
@@ -580,6 +581,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         if (organizeFragment != null)
             organizeFragment.onActivityResult(requestCode, resultCode, data);
+        if (profileFragment != null)
+            profileFragment.onActivityResult(requestCode, resultCode, data);
     }
 
 

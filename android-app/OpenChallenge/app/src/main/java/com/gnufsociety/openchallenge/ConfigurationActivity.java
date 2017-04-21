@@ -93,7 +93,7 @@ public class ConfigurationActivity extends AppCompatActivity {
      */
     public void createUser(){
 
-        final String username = usernameEdit.getText().toString();
+        final String username = usernameEdit.getText().toString().trim();
         final String usPic = username.toLowerCase().replace(" ","_");
         final String status = statusEdit.getText().toString();
 
@@ -149,13 +149,12 @@ public class ConfigurationActivity extends AppCompatActivity {
                     uploadTask.addOnFailureListener(activity, new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(activity,"Error uploading profile picture!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(activity, R.string.error_profpic_upload,Toast.LENGTH_LONG).show();
                         }
-                    });
-                    uploadTask.addOnSuccessListener(activity, new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    }).addOnSuccessListener(activity, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(activity, "Congratulations!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity, R.string.success_profpic_upload, Toast.LENGTH_SHORT).show();
                             finish();
                         }
                     });

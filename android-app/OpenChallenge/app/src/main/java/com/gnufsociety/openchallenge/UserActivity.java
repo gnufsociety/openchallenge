@@ -248,24 +248,21 @@ public class UserActivity extends AppCompatActivity {
     }
 
     public void followUser(final View view){
+        isFollowed = !isFollowed; // click on button changes status.
+        if(isFollowed)
+            fButton.setText(R.string.followed);
+        else
+            fButton.setText(R.string.follow);
+
         AsyncTask<Void, Void, Boolean> task = new AsyncTask<Void, Void, Boolean>() {
             @Override
             protected Boolean doInBackground(Void... params) {
                 ApiHelper api = new ApiHelper();
-                if(isFollowed)
+                if(!isFollowed) // make coherent status of database
                     api.unfollow(auth.getCurrentUser().getUid(), currentUser.id);
                 else
                     api.follow(auth.getCurrentUser().getUid(), currentUser.id);
-                isFollowed = !isFollowed;
                 return isFollowed;
-            }
-
-            @Override
-            protected void onPostExecute(Boolean isFollowed) {
-                if(isFollowed)
-                    fButton.setText(R.string.followed);
-                else
-                    fButton.setText(R.string.follow);
             }
         };
         task.execute();

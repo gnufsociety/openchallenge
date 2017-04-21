@@ -1,17 +1,17 @@
 package com.gnufsociety.openchallenge.mainfrags;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +19,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -29,13 +31,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.gnufsociety.openchallenge.ApiHelper;
-import com.gnufsociety.openchallenge.MainActivity;
 import com.gnufsociety.openchallenge.NoConnectionActivity;
 import com.gnufsociety.openchallenge.R;
 import com.gnufsociety.openchallenge.RegistrationActivity;
@@ -43,17 +45,27 @@ import com.gnufsociety.openchallenge.adapters.ChallengeAdapter;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import id.zelory.compressor.Compressor;
+import id.zelory.compressor.FileUtil;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by sdc on 1/11/17.
@@ -62,6 +74,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment{
 
     public static String TAG = "fragment5_profile";
+
+    private static final int PICK_GALLERY_INTENT = 42;
 
     @BindView(R.id.user_pro_pic) public CircleImageView profilePic;
     @BindView(R.id.user_number_gold) public TextView gold;
@@ -86,11 +100,19 @@ public class ProfileFragment extends Fragment{
 
     public User currentUser;
 
+    FirebaseStorage storage = FirebaseStorage.getInstance();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    StorageReference storageRef=storage.getReferenceFromUrl("gs://openchallenge-81990.appspot.com");
+    private Uri uriImage;
+
     public ProfileFragment(){}
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState)
+    {
         ConnectivityManager cm =
                 (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -273,6 +295,70 @@ public class ProfileFragment extends Fragment{
             }
         };
         uploadStatus.execute();
+    }
+
+    @OnClick(R.id.user_pro_pic)
+    public void editProfilePicture() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        getActivity().startActivityForResult(Intent.createChooser(intent, "Select from gallery"), PICK_GALLERY_INTENT);
+    }
+
+
+    public void uploadProfilePicture() {
+        try {
+            Bitmap bitmap = MediaStore.Images.Media
+                    .getBitmap(getContext().getContentResolver(), uriImage);
+            profilePic.setImageBitmap(bitmap);
+            File toCompress = FileUtil.from(getActivity(), uriImage);
+
+            File compressedFile = new Compressor.Builder(getActivity())
+                    .setMaxHeight(800)
+                    .setMaxWidth(800)
+                    .setQuality(90)
+                    .build().compressToFile(toCompress);
+
+
+            String pic_title = currentUser.proPicLocation;
+
+            StorageReference oldRef = storageRef.child("users/" + pic_title);
+
+            oldRef.delete().addOnFailureListener(getActivity(), new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    System.out.println("Error deleting old profile picture");
+                }
+            });
+
+            UploadTask uploadTask = oldRef.putFile(Uri.fromFile(compressedFile));
+
+            uploadTask.addOnFailureListener(getActivity(), new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getActivity(), R.string.error_profpic_upload,Toast.LENGTH_LONG).show();
+                }
+            }).addOnSuccessListener(getActivity(), new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(getActivity(), R.string.success_profpic_upload, Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_GALLERY_INTENT){
+            if (resultCode == RESULT_OK){
+                uriImage = data.getData();
+                uploadProfilePicture();
+            }
+        }
     }
 
 

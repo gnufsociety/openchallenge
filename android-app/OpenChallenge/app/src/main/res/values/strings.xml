@@ -81,5 +81,7 @@
     <string name="no_internet_instructions">Check the status of your connection and press the button when you are back online</string>
     <string name="sort_by">Sort by</string>
     <string name="show">Show</string>
+    <string name="error_profpic_upload">Error uploading profile picture!</string>
+    <string name="success_profpic_upload">Profile picture uploaded!</string>
 
 </resources>
