@@ -10,8 +10,8 @@ Here are some of the questions we made:
 - How would you save a challenge?
 - How would you look for a challenge?
 - How would you see who participates in a challenge?
-- How wold you join a challenge?
-- How do you fell watching the interface?
+- How would you join a challenge?
+- How do you feel watching the interface?
 
 Here are some of the hand-sketched images we showed:
 
