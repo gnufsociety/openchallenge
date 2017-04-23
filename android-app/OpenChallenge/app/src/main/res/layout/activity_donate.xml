@@ -1,14 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gnufsociety.openchallenge.DonateActivity">
+    android:background="#e0e0e0">
 
     <TextView
+        android:id="@+id/donate_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thanks for your attention, donate through paypal at:"/>
+        android:text="Hi! We hope you are enjoying our awesome app!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_gravity="center"
+        android:textColor="#616161"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/donate_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="If you want to pay us a sandwich got to this address and use a PayPal account to donate in a safe way:"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/donate_text"
+        android:textColor="#707070"
+        android:textSize="18sp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/donate_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="https://www.paypal.me/OpenChallenge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/donate_msg"
+        android:textColor="#0000FF"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textIsSelectable="true"/>
+
+    <ImageView
+        android:id="@+id/donate_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/donate_address"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_attach_money_128dp"/>
+
+    <Button
+        android:id="@+id/donate_copy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/donate_img"
+        android:layout_centerInParent="true"
+        android:text="copy address to clipboard"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#616161"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/donate_thanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank you challenger!"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/donate_copy_btn"
+        android:textColor="#707070"
+        android:textSize="18sp"
+        android:textAlignment="center"/>
+
+</RelativeLayout>

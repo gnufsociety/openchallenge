@@ -1,16 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gnufsociety.openchallenge.InfoActivity">
+    android:background="#e0e0e0">
 
     <TextView
+        android:id="@+id/info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Apache License Version 2.0, \n January 2004 \n http://www.apache.org/licenses/"/>
+        android:text="This software is licensed under:"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_gravity="center"
+        android:textColor="#616161"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/info_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apache License Version 2.0,\n January 2004\n http://www.apache.org/licenses/"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/info_text"
+        android:textColor="#707070"
+        android:textSize="18sp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/donate_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/donate_address"
+        android:layout_centerInParent="true"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_copyright_64dp"/>
+
+
+
+</RelativeLayout>
