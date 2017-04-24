@@ -65,6 +65,7 @@ router.post('/newChallenge', function (req, res) {
                 },
                 organizer: user._id,
                 participants: [],
+                invited: [],
                 isTerminated: false
             });
             challenge.date = new Date(Date.UTC(dat[2], dat[1] - 1, dat[0], 0, 0, 0, 0));
@@ -171,20 +172,20 @@ router.get('/activeChallenges', function (req, res) {
 });
 
 
-router.get('/addParticipant/:chall_id/:user_id', function (req, res) {
-    var chall_id = req.params.chall_id;
+router.get('/addParticipant/:challenge_id/:user_id', function (req, res) {
+    var challenge_id = req.params.challenge_id;
     var user_id = req.params.user_id;
-    User.findOneAndUpdate({'uid': user_id}, {$addToSet: {joinedChallenges: chall_id}}) // add to joined list
+    User.findOneAndUpdate({'uid': user_id}, {$addToSet: {joinedChallenges: challenge_id}}) // add to joined list
         .exec(function (err, user) {
-            if (err) res.send("Errrrror");
+            if (err) res.send("Error in finding and updating joined list");
             else {
                 Challenge.findByIdAndUpdate(
-                    chall_id,
+                    challenge_id,
                     {$addToSet: {"participants": user._id}},  // do not add if already present
                     {safe: true, upsert: true},
                     function (err) {
                         if (err) {
-                            res.send('Error');
+                            res.send('Error in finding and updating participants list');
                             console.log(err);
                         }
                         else res.send('you participate now!')
@@ -295,6 +296,56 @@ router.get('/winners/:challenge_id', function (req, res) {
 
 });
 
+router.get('/invite/:challenge_id/:user_id', function (req, res) {
+    var challenge_id = req.params.challenge_id;
+    var user_id = req.params.user_id;
+    User.findOneAndUpdate({'uid': user_id}, {$addToSet: {invitations: challenge_id}})
+        .exec(function (err, user) {
+            if (err) res.send("Error in finding and updating invitations list");
+            else {
+                Challenge.findByIdAndUpdate(
+                    challenge_id,
+                    {$addToSet: {"invited": user._id}},  // do not add if already present
+                    {safe: true, upsert: true},
+                    function (err) {
+                        if (err) {
+                            res.send('Error in finding and updating invited list');
+                            console.log(err);
+                        } else res.send('you participate now!')
+                    });
+            }
+        });
+});
+
+router.get('/cancelInvite/:challenge_id/:user_id', function (req, res) {
+    var challenge_id = req.params.challenge_id;
+    var user_id = req.params.user_id;
+    User.findOneAndUpdate({'uid': user_id}, {$pull: {invitations: challenge_id}})
+        .exec(function (err, user) {
+            if (err) res.send("Error in finding and updating invitations list");
+            else {
+                Challenge.findByIdAndUpdate(
+                    challenge_id,
+                    {$pull: {"invited": user._id}},  // do not add if already present
+                    {safe: true, upsert: true},
+                    function (err) {
+                        if (err) {
+                            res.send('Error in finding and updating invited list');
+                            console.log(err);
+                        } else res.send('you participate now!')
+                    });
+            }
+        });
+});
+
+router.get('/usersInvited/:challenge_id', function (req, res) {
+    Challenge.findById(req.params.challenge_id)
+        .populate('invited')
+        .exec(function (err, challenge) {
+            assert.equal(err, null);
+            res.send(challenge.participants);
+        });
+});
 
 /*****************************************************************************
  *
@@ -302,8 +353,7 @@ router.get('/winners/:challenge_id', function (req, res) {
  *
  */
 
-
-router.post('/newUser', function (req, res, next) {
+router.post('/newUser', function (req, res) {
     var obj = req.body;
     var user = new User({
         username: obj.username,
@@ -316,6 +366,7 @@ router.post('/newUser', function (req, res, next) {
         uid: obj.uid,
         joinedChallenges: [],
         organizedChallenges: [],
+        invitations: [],
         following: []
     });
     User.findOne({'username': user.username}).exec(function (err, u) {
@@ -333,15 +384,13 @@ router.post('/newUser', function (req, res, next) {
 
 });
 
-
-router.get('deleteUser/:user', function (req, res) {
+router.get('/deleteUser/:user', function (req, res) {
     User.deleteOne({_id: req.params.user})
         .exec(function (err) {
             assert.equal(err, null);
             res.send('deleted');
         })
 });
-
 
 router.get('/allUsers', function (req, res) {
     User.find(function (err, users) {
@@ -370,7 +419,6 @@ router.get('/findUserByUid/:uid', function (req, res) {
         });
 });
 
-
 router.get('/organizedChallenges/:user_id', function (req, res) {
     User.findById(req.params.user_id)
         .populate({
@@ -385,7 +433,6 @@ router.get('/organizedChallenges/:user_id', function (req, res) {
             res.json(user.organizedChallenges);
         })
 });
-
 
 router.get('/joinedChallenges/:user_id', function (req, res) {
     User.findById(req.params.user_id)
@@ -402,7 +449,6 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
         })
 });
 
-
 /**
  * request must be a json object in this form:
  * {
@@ -415,10 +461,6 @@ router.post('/setStatus/:user_id', function (req, res) {
             assert.equal(err, null);
             res.send("Successfully updated status of " + user.username);
         });
-});
-
-router.post('/setProfilePicture/:user_id', function (req, res) {
-    // TODO
 });
 
 router.get('/follow/:user_uid/:followed', function (req, res) {
@@ -452,9 +494,6 @@ router.get('/following/:user_uid', function (req, res) {
         });
 });
 
-/**
- * Update number of victories of users contained in request body
- */
 router.post('/setWinners', function (req, res) {
     var obj = req.body;
     var errors = false;
@@ -483,5 +522,12 @@ router.post('/setWinners', function (req, res) {
         });
 });
 
+router.get('/pendingInvitations/:user_id', function (req, res) {
+    // TODO
+});
+
+router.get('/declineInvitation/:user_id/:challenge_id', function (req, res) {
+    // TODO
+});
 
 module.exports = router;
