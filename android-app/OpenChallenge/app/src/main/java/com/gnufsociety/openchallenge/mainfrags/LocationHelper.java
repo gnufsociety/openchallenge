@@ -107,12 +107,12 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
                 //LocationSettingsStates states = locationSettingsResult.getLocationSettingsStates();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
-                        Toast.makeText(activity, "Gps enabled", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, "Gps enabled", Toast.LENGTH_SHORT).show();
 
                         foo();
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                        Toast.makeText(activity, "Not enabled", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, "Not enabled", Toast.LENGTH_SHORT).show();
                         try {
                             status.startResolutionForResult(activity, ENABLE_GPS_CODE);
                         } catch (IntentSender.SendIntentException e) {
@@ -121,7 +121,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
                         break;
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
 
-                        Toast.makeText(activity, "Can't change settings", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(activity, "Can't change settings", Toast.LENGTH_SHORT).show();
                         break;
                 }
 

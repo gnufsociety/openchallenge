@@ -208,7 +208,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate menu resource file.
         getMenuInflater().inflate(R.menu.challenge_menu, menu);
@@ -219,7 +219,7 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         setShareIntent(createShareIntent());
         // Return true to display menu
         return true;
-    }
+    }*/
 
 
     private void setShareIntent(Intent shareIntent) {
