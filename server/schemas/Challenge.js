@@ -20,7 +20,7 @@ var ChallengeSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }],
-        invited: [{
+        invitedList: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User'
         }],

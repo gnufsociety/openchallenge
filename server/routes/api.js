@@ -305,7 +305,7 @@ router.get('/invite/:challenge_id/:user_id', function (req, res) {
             else {
                 Challenge.findByIdAndUpdate(
                     challenge_id,
-                    {$addToSet: {"invited": user._id}},  // do not add if already present
+                    {$addToSet: {"invitedList": user._id}},  // do not add if already present
                     {safe: true, upsert: true},
                     function (err) {
                         if (err) {
@@ -326,7 +326,7 @@ router.get('/cancelInvite/:challenge_id/:user_id', function (req, res) {
             else {
                 Challenge.findByIdAndUpdate(
                     challenge_id,
-                    {$pull: {"invited": user._id}},  // do not add if already present
+                    {$pull: {"invitedList": user._id}},  // do not add if already present
                     {safe: true, upsert: true},
                     function (err) {
                         if (err) {
@@ -340,7 +340,7 @@ router.get('/cancelInvite/:challenge_id/:user_id', function (req, res) {
 
 router.get('/usersInvited/:challenge_id', function (req, res) {
     Challenge.findById(req.params.challenge_id)
-        .populate('invited')
+        .populate('invitedList')
         .exec(function (err, challenge) {
             assert.equal(err, null);
             res.send(challenge.participants);
@@ -431,7 +431,7 @@ router.get('/organizedChallenges/:user_id', function (req, res) {
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.organizedChallenges);
-        })
+        });
 });
 
 router.get('/joinedChallenges/:user_id', function (req, res) {
@@ -446,7 +446,7 @@ router.get('/joinedChallenges/:user_id', function (req, res) {
         .exec(function (err, user) {
             assert.equal(err, null);
             res.json(user.joinedChallenges);
-        })
+        });
 });
 
 /**
@@ -523,11 +523,18 @@ router.post('/setWinners', function (req, res) {
 });
 
 router.get('/pendingInvitations/:user_id', function (req, res) {
-    // TODO
-});
-
-router.get('/declineInvitation/:user_id/:challenge_id', function (req, res) {
-    // TODO
+    User.findById(req.params.user_id)
+        .populate({
+            path: 'invitations',
+            populate: {
+                path: 'organizer',
+                select: 'username picture uid rate'
+            }
+        })
+        .exec(function (err, user) {
+            assert.equal(err, null);
+            res.json(user.joinedChallenges);
+        });
 });
 
 module.exports = router;
