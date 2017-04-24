@@ -64,7 +64,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
         if (apiClient != null) {
             apiClient.disconnect();
         }
-        Toast.makeText(activity, "Disconnected!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(activity, "Disconnected!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -72,7 +72,7 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
         if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(activity, "Cose", Toast.LENGTH_LONG).show();
+            //Toast.makeText(activity, "Cose", Toast.LENGTH_LONG).show();
 
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -173,8 +173,8 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
 
     @Override
     public void onLocationChanged(Location location) {
-        Toast.makeText(activity, "loc changed lat: " + location.getLatitude()
-                + " lng: " + location.getLongitude(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(activity, "loc changed lat: " + location.getLatitude()
+          //      + " lng: " + location.getLongitude(), Toast.LENGTH_LONG).show();
         currLocation = location;
     }
 
