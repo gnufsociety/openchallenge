@@ -311,7 +311,7 @@ router.get('/invite/:challenge_id/:user_id', function (req, res) {
                         if (err) {
                             res.send('Error in finding and updating invited list');
                             console.log(err);
-                        } else res.send('you participate now!')
+                        } else res.send('you have been invited!')
                     });
             }
         });
@@ -533,7 +533,7 @@ router.get('/pendingInvitations/:user_id', function (req, res) {
         })
         .exec(function (err, user) {
             assert.equal(err, null);
-            res.json(user.joinedChallenges);
+            res.json(user.invitations);
         });
 });
 

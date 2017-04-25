@@ -378,4 +378,70 @@ public class ApiHelper {
 
 
     }
+
+    public ArrayList<User> getInvitedList(Challenge challenge) {
+        ArrayList<User> invitedList = new ArrayList<>();
+        Request req = new Request.Builder()
+                .url(url+"usersInvited/" + challenge.id)
+                .build();
+
+        Response res = null;
+        try {
+            res = client.newCall(req).execute();
+            invitedList = User.getUsersArray(res.body().string());
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return invitedList;
+    }
+
+    public void invtite(Challenge challenge, User user) {
+        invtite(challenge.id, user.id);
+    }
+    public void invtite(String challenge_id, String user_id) {
+        Request req = new Request.Builder()
+                .url(url+"invite/" + challenge_id + "/" + user_id)
+                .build();
+
+        Response res = null;
+        try {
+            res = client.newCall(req).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void cancelInvtite(Challenge challenge, User user){
+        cancelInvtite(challenge.id, user.id);
+    }
+    public void cancelInvtite(String challenge_id, String user_id) {
+        Request req = new Request.Builder()
+                .url(url+"cancelInvite/" + challenge_id + "/" + user_id)
+                .build();
+
+        Response res = null;
+        try {
+            res = client.newCall(req).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Challenge> getPendingInvitations(User user) {
+        ArrayList<Challenge> pendingInvitations = new ArrayList<>();
+        try {
+            Request req = new Request.Builder()
+                    .url(url+"pendingInvitations/"+user.id)
+                    .build();
+
+            Response res = client.newCall(req).execute();
+            pendingInvitations = Challenge.getArrayList(res.body().string());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return pendingInvitations;
+    }
+
+
+
 }
