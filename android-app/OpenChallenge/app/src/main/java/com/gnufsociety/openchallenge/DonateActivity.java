@@ -20,8 +20,8 @@ public class DonateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
         setContentView(R.layout.activity_donate);
+        ButterKnife.bind(this);
     }
 
     @OnClick(R.id.donate_copy_btn)
@@ -34,7 +34,7 @@ public class DonateActivity extends AppCompatActivity {
 
     public static Intent createIntent(Context context) {
         Intent in = new Intent();
-        in.setClass(context, RegistrationActivity.class);
+        in.setClass(context, DonateActivity.class);
         return in;
     }
 }

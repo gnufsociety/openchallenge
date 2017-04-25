@@ -15,7 +15,7 @@ public class InfoActivity extends AppCompatActivity {
 
     public static Intent createIntent(Context context) {
         Intent in = new Intent();
-        in.setClass(context, RegistrationActivity.class);
+        in.setClass(context, InfoActivity.class);
         return in;
     }
 }

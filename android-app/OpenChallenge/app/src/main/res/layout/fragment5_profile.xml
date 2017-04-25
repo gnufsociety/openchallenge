@@ -75,7 +75,7 @@
                     android:layout_columnWeight="1"
                     android:layout_gravity="center"
                     android:layout_row="1"
-                    android:text="21"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -87,7 +87,7 @@
                     android:layout_columnWeight="1"
                     android:layout_gravity="center"
                     android:layout_row="1"
-                    android:text="12"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -99,7 +99,7 @@
                     android:layout_columnWeight="1"
                     android:layout_gravity="center"
                     android:layout_row="1"
-                    android:text="120"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -135,8 +135,8 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:id="@+id/profile_status"
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -151,6 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center_vertical"
+                    android:layout_marginRight="16dp"
                     android:src="@drawable/ic_mode_edit_black_24dp"/>
             </LinearLayout>
 
