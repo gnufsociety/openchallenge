@@ -24,8 +24,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gnufsociety.openchallenge.ApiHelper;
+import com.gnufsociety.openchallenge.InviteActivity;
 import com.gnufsociety.openchallenge.MainActivity;
 import com.gnufsociety.openchallenge.R;
+import com.gnufsociety.openchallenge.model.Challenge;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -152,29 +154,28 @@ public class OrganizeFragment extends Fragment {
         final String date = dateText.getText().toString();
 
         //Check if you put correct value
-
         if (nameC.equals("")) {
-            Toast.makeText(getContext(), "Choose a name for the challenge!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.choose_name, Toast.LENGTH_LONG).show();
             return;
         }
         if (descC.equals("")) {
-            Toast.makeText(getContext(), "Insert a little description!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.choose_description, Toast.LENGTH_LONG).show();
             return;
         }
         if (ruleC.equals("")) {
-            Toast.makeText(getContext(), "Insert some rules!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.insert_rules, Toast.LENGTH_LONG).show();
             return;
         }
-        if (date.equals("Choose a date ->")) {
-            Toast.makeText(getContext(), "Choose a date!", Toast.LENGTH_LONG).show();
+        if (date.equals(R.string.choose_date)) {
+            Toast.makeText(getContext(), R.string.choose_date, Toast.LENGTH_LONG).show();
             return;
         }
-        if (placeText.getText().toString().equals("Choose a location ->")) {
-            Toast.makeText(getContext(), "Choose a location!", Toast.LENGTH_LONG).show();
+        if (placeText.getText().toString().equals(R.string.choose_location)) {
+            Toast.makeText(getContext(), R.string.choose_location, Toast.LENGTH_LONG).show();
             return;
         }
         if (uriImage == null){
-            Toast.makeText(getContext(), "Choose a picture!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.choose_picture, Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -188,7 +189,7 @@ public class OrganizeFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Toast.makeText(getContext(), "Uploading challenge..", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), R.string.uploading_challenge, Toast.LENGTH_LONG).show();
 
         //return compressed image PLAY WITH THIS
         final File compressedFile = new Compressor.Builder(getContext())
@@ -231,8 +232,15 @@ public class OrganizeFragment extends Fragment {
                 Toast.makeText(getContext(), "Failed Uploading", Toast.LENGTH_LONG).show();
             }
         });
+    }
 
 
+    public void invite(Challenge challenge) {
+        Intent intent = new Intent(this.getContext(), InviteActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("challenge", challenge);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 

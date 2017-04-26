@@ -92,5 +92,14 @@
     <string name="invited">Invited</string>
     <string name="invitations">Invitations</string>
     <string name="loading">Loading...</string>
+    <string name="uploading_challenge">Uploading challenge..</string>
+    <string name="choose_name">Choose a name for the challenge!</string>
+    <string name="choose_description">Insert a little description!</string>
+    <string name="insert_rules">Insert some rules!</string>
+    <string name="choose_date">Choose a date!</string>
+    <string name="choose_location">Choose a location!</string>
+    <string name="choose_picture">Choose a picture!</string>
+    <string name="delete">Cancel</string>
+    <string name="wait_position">Wait position loading</string>
 
 </resources>

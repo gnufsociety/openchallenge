@@ -167,13 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 if (b) showUpdateDialog();
             }
         };
-
         task.execute(BuildConfig.VERSION_NAME);
-
-        System.out.println("lal");
-        System.out.println("Tiemmodify");
-        System.out.println("Sdcmmodify");
-        System.out.println("TheMonkeyKing ");
     }
 
     private void showUpdateDialog() {
@@ -280,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         //add to string.xml
-        builder.setTitle("Filter");
+        builder.setTitle(R.string.filter);
 
         LayoutInflater inflater = getLayoutInflater();
         View dialogView = inflater.inflate(R.layout.filter_dialog, null);
@@ -288,7 +282,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         final Spinner sortSpinner = (Spinner) dialogView.findViewById(R.id.filter_sort_spinner);
         final Spinner showSpinner = (Spinner) dialogView.findViewById(R.id.filter_show_spinner);
-
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.filter_sort_options,
@@ -302,8 +295,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         showSpinner.setAdapter(adapter2);
 
-        builder.setPositiveButton("Ok", null);
-        builder.setNeutralButton("Annulla", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, null);
+        builder.setNeutralButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -323,7 +316,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
 
-
         mDialog.setOnShowListener(new DialogInterface.OnShowListener() {
             @Override
             public void onShow(final DialogInterface dialog) {
@@ -332,26 +324,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onClick(View v) {
                         switch (sortSpinner.getSelectedItemPosition()) {
-                            case 0:
+                            case 1:
                                 if (loc.currLocation != null) {
                                     homeFragment.orderByPosition(loc.currLocation);
-
                                 } else {
                                     okPressed = true;
-                                    Toast.makeText(homeFragment.getContext(), "Attendi che vedo la tua posizione", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(homeFragment.getContext(), R.string.wait_position, Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                                 break;
-                            case 1:
-                                homeFragment.downloadChall();
-
+                            case 0:
+                                homeFragment.downloadChall(false);
                                 break;
-
+                        }
+                        switch (showSpinner.getSelectedItemPosition()) {
+                            case 0: // All
+                                homeFragment.downloadChall(true);
+                                break;
+                            case 1: // Active only
+                                homeFragment.downloadChall(false);
+                                break;
                         }
                         dialog.dismiss();
-                        loc.disconnectApi();
-
-
+                        if(loc!=null) loc.disconnectApi();
                     }
                 });
             }
@@ -362,11 +357,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0:
+                    case 1:
                         loc.buildGoogleApi();
                         break;
-                    case 1:
-
+                    case 0:
                         break;
                 }
             }
@@ -507,15 +501,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.side_donate) {
+
+            startActivity(DonateActivity.createIntent(this));
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-            startActivity(DonateActivity.createIntent(this));
         } else if (id == R.id.side_bug_report) {
             // TODO
         } else if (id == R.id.side_info) {
+            startActivity(InfoActivity.createIntent(this));
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-            startActivity(InfoActivity.createIntent(this));
         }
         return true;
     }

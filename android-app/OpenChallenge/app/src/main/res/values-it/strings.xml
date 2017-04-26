@@ -61,4 +61,24 @@
     <string name="sort_by">Ordina per</string>
     <string name="choose_second">Scegli il secondo</string>
     <string name="choose_third">Scegli il terzo</string>
+    <string name="donate">Doma</string>
+    <string name="error_profpic_upload">Errore nel caricamento dell\'immagine del profilo</string>
+    <string name="help_us">Aiutaci</string>
+    <string name="info_copyright">Info/Copyright</string>
+    <string name="invitations">Inviti</string>
+    <string name="invite">Invita</string>
+    <string name="invite_friends">Invita amici</string>
+    <string name="invited">Invitati</string>
+    <string name="loading">Caricamento...</string>
+    <string name="report_a_bug">Segnala un bug</string>
+    <string name="success_profpic_upload">Immagine del profilo</string>
+    <string name="wait_position">Attendi che vedo la tua posizione</string>
+    <string name="delete">Annulla</string>
+    <string name="choose_date">Scegli una data</string>
+    <string name="uploading_challenge">Upload della sfida...</string>
+    <string name="insert_rules">Inserisci alcune regole</string>
+    <string name="choose_description">Inserisci una breve descrizione</string>
+    <string name="choose_location">Inserisci un luogo</string>
+    <string name="choose_name">Scegli un nome per la tua sfida!</string>
+    <string name="choose_picture">Scegli una foto rappresentativa!</string>
 </resources>

@@ -32,14 +32,13 @@ public class HomeFragment extends Fragment {
     public RecyclerView recyclerView;
     public SwipeRefreshLayout refreshLayout;
 
-    public HomeFragment() {
-    }
+    public boolean allChallenges = false;
+
+    public HomeFragment() { }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //adapter = new CardAdapter();
-
     }
 
     @Nullable
@@ -51,19 +50,15 @@ public class HomeFragment extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_card_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
 
-
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                downloadChall();
+                downloadChall(allChallenges);
             }
         });
-
-        downloadChall();
-
+        downloadChall(allChallenges);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         return view;
     }
 
@@ -72,7 +67,8 @@ public class HomeFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void downloadChall(){
+    public void downloadChall(boolean all){
+        allChallenges = all;
         HomeAsync taskHome = new HomeAsync();
         taskHome.execute();
     }
@@ -82,7 +78,8 @@ public class HomeFragment extends Fragment {
         @Override
         protected ArrayList<Challenge> doInBackground(Void... params) {
             ApiHelper api = new ApiHelper();
-            return api.getHomeChallenge();
+            if(allChallenges) return api.getAllChallenges();
+            else return api.getHomeChallenge();
         }
 
         @Override
@@ -95,7 +92,6 @@ public class HomeFragment extends Fragment {
             //help.buildGoogleApi();
             //adapter.notifyDataSetChanged();
             refreshLayout.setRefreshing(false);
-
         }
     }
 }

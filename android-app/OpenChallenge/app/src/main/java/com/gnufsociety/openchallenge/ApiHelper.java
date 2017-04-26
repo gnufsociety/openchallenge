@@ -74,8 +74,7 @@ public class ApiHelper {
         return new ArrayList<>();
     }
 
-
-    public ArrayList<Challenge> getAllChallenge() {
+    public ArrayList<Challenge> getAllChallenges() {
 
         Request request = new Request.Builder()
                 .url(url + "allChallenges")

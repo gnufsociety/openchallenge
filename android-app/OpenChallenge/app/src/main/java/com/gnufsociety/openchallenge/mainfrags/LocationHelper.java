@@ -59,9 +59,8 @@ public class LocationHelper implements GoogleApiClient.ConnectionCallbacks,
     }
 
     public void disconnectApi() {
-        LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this);
-
         if (apiClient != null) {
+            LocationServices.FusedLocationApi.removeLocationUpdates(apiClient, this);
             apiClient.disconnect();
         }
         //Toast.makeText(activity, "Disconnected!", Toast.LENGTH_SHORT).show();

@@ -50,6 +50,7 @@ public class InviteActivity extends AppCompatActivity {
                 // The organizer can invite users from his list of followed users.
                 // If some user has been already invited it will not show up in the
                 // invite list.
+                // TODO: replace with two lists one for people already invited...
                 ArrayList<User> followed = api.getFollowed(mChallenge.organizer.uid);
                 ArrayList<User> alreadyInvited = api.getInvitedList(mChallenge);
                 followed.removeAll(alreadyInvited);
