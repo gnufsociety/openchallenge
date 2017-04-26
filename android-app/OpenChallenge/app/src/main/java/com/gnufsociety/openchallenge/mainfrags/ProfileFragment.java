@@ -88,15 +88,20 @@ public class ProfileFragment extends Fragment{
 
     @BindView(R.id.show_organized) public RelativeLayout orgList;
     @BindView(R.id.show_joined) public RelativeLayout joinedList;
+    @BindView(R.id.show_invitations) public RelativeLayout invitationsLayout;
     @BindView(R.id.show_hide_org) public ImageView showHideOrg;
     @BindView(R.id.show_hide_joined) public ImageView showHideJoined;
+    @BindView(R.id.show_hide_invitations) public ImageView showHideInvitations;
 
-    @BindView(R.id.profile_org_recycler) public RecyclerView orgRecycler;
     @BindView(R.id.profile_refresh) public SwipeRefreshLayout refreshLayout;
+    @BindView(R.id.profile_org_recycler) public RecyclerView orgRecycler;
     @BindView(R.id.profile_join_recycler) public RecyclerView joinedRecycler;
+    @BindView(R.id.profile_invitations_recycler) public  RecyclerView invitationsRecycler;
+
 
     public ChallengeAdapter orgCardAdapter;
     public ChallengeAdapter joinedCardAdapter;
+    public ChallengeAdapter invitationsAdapter;
 
     public User currentUser;
 
@@ -113,19 +118,7 @@ public class ProfileFragment extends Fragment{
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        ConnectivityManager cm =
-                (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
-        if(!isConnected) {
-            // already signed in
-            Intent intent = new Intent(getActivity(), NoConnectionActivity.class);
-            startActivity(intent);
-            return null;
-        }
+        checkConnectivity();
 
         View view = inflater.inflate(R.layout.fragment5_profile,container,false);
 
@@ -171,6 +164,7 @@ public class ProfileFragment extends Fragment{
 
         orgRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         joinedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        invitationsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
 
@@ -179,6 +173,9 @@ public class ProfileFragment extends Fragment{
 
         joinedRecycler.setNestedScrollingEnabled(false);
         joinedRecycler.addItemDecoration(dividerItemDecoration);
+
+        invitationsRecycler.setNestedScrollingEnabled(false);
+        invitationsRecycler.addItemDecoration(dividerItemDecoration);
 
         final FirebaseAuth auth = FirebaseAuth.getInstance();
         currentUserTask.execute(auth.getCurrentUser().getUid());
@@ -193,6 +190,21 @@ public class ProfileFragment extends Fragment{
         });
 
         return view;
+    }
+
+    private void checkConnectivity() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected) {
+            Intent intent = new Intent(getActivity(), NoConnectionActivity.class);
+            startActivity(intent);
+            getActivity().finish();
+        }
     }
 
     /**
@@ -232,6 +244,22 @@ public class ProfileFragment extends Fragment{
             }
         };
 
+        AsyncTask<User,Void,ArrayList<Challenge>> invitedTask = new AsyncTask<User, Void, ArrayList<Challenge>>() {
+            @Override
+            protected ArrayList<Challenge> doInBackground(User... users) {
+                return new ApiHelper().getPendingInvitations(users[0]);
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<Challenge> challenges) {
+                super.onPostExecute(challenges);
+                invitationsAdapter = new ChallengeAdapter(challenges);
+                invitationsRecycler.setAdapter(invitationsAdapter);
+                if(isRefresh) refreshLayout.setRefreshing(false);
+            }
+        };
+
+        invitedTask.execute(currentUser);
         organizedTask.execute(currentUser);
         joinedTask.execute(currentUser);
     }
@@ -256,6 +284,17 @@ public class ProfileFragment extends Fragment{
         } else {
             joinedRecycler.setVisibility(View.VISIBLE);
             showHideJoined.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
+        }
+    }
+
+    @OnClick(R.id.show_invitations)
+    public void revealInvitations() {
+        if(invitationsRecycler.getVisibility() == View.VISIBLE) {
+            invitationsRecycler.setVisibility(View.GONE);
+            showHideInvitations.setImageResource(R.drawable.ic_arrow_drop_down_black_24dp);
+        } else {
+            invitationsRecycler.setVisibility(View.VISIBLE);
+            showHideInvitations.setImageResource(R.drawable.ic_arrow_drop_up_black_24dp);
         }
     }
 

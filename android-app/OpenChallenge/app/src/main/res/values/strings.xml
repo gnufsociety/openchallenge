@@ -90,5 +90,7 @@
     <string name="invite">Invite</string>
     <string name="invite_friends">Invite friends</string>
     <string name="invited">Invited</string>
+    <string name="invitations">Invitations</string>
+    <string name="loading">Loading...</string>
 
 </resources>

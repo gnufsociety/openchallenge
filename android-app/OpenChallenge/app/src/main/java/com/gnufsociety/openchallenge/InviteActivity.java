@@ -11,6 +11,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.gnufsociety.openchallenge.adapters.InviteAdapter;
 import com.gnufsociety.openchallenge.adapters.ParticipantAdapter;
@@ -45,7 +46,14 @@ public class InviteActivity extends AppCompatActivity {
                 new AsyncTask<Void, Void, ArrayList<User>>() {
             @Override
             protected ArrayList<User> doInBackground(Void... params) {
-                return new ApiHelper().getFollowed(mChallenge.organizer.uid);
+                ApiHelper api = new ApiHelper();
+                // The organizer can invite users from his list of followed users.
+                // If some user has been already invited it will not show up in the
+                // invite list.
+                ArrayList<User> followed = api.getFollowed(mChallenge.organizer.uid);
+                ArrayList<User> alreadyInvited = api.getInvitedList(mChallenge);
+                followed.removeAll(alreadyInvited);
+                return followed;
             }
 
             @Override
@@ -67,6 +75,17 @@ public class InviteActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Invite your friends");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+
+        }
+        return false;
     }
 
     private void checkConnection() {

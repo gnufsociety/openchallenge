@@ -343,7 +343,7 @@ router.get('/usersInvited/:challenge_id', function (req, res) {
         .populate('invitedList')
         .exec(function (err, challenge) {
             assert.equal(err, null);
-            res.send(challenge.participants);
+            res.send(challenge.invitedList);
         });
 });
 

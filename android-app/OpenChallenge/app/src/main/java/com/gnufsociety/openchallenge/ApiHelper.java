@@ -17,8 +17,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.gnufsociety.openchallenge.R.drawable.user;
-
 /**
  * Created by sdc on 2/10/17.
  */
@@ -395,10 +393,10 @@ public class ApiHelper {
         return invitedList;
     }
 
-    public void invtite(Challenge challenge, User user) {
-        invtite(challenge.id, user.id);
+    public void invite(Challenge challenge, User user) {
+        invite(challenge.id, user.id);
     }
-    public void invtite(String challenge_id, String user_id) {
+    public void invite(String challenge_id, String user_id) {
         Request req = new Request.Builder()
                 .url(url+"invite/" + challenge_id + "/" + user_id)
                 .build();
@@ -411,10 +409,10 @@ public class ApiHelper {
         }
     }
 
-    public void cancelInvtite(Challenge challenge, User user){
-        cancelInvtite(challenge.id, user.id);
+    public void cancelInvite(Challenge challenge, User user){
+        cancelInvite(challenge.id, user.id);
     }
-    public void cancelInvtite(String challenge_id, String user_id) {
+    public void cancelInvite(String challenge_id, String user_id) {
         Request req = new Request.Builder()
                 .url(url+"cancelInvite/" + challenge_id + "/" + user_id)
                 .build();

@@ -54,26 +54,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/chall_join_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/chall_invite_btn"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/rounded_button"
-            android:onClick="joinChallenge"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:visibility="gone" />
 
         <Button
             android:id="@+id/chall_invite_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/chall_join_btn"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/rounded_button"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/chall_join_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_margin="8dp"
             android:background="@drawable/rounded_button"
+            android:onClick="joinChallenge"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:visibility="gone" />

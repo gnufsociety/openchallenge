@@ -1,6 +1,5 @@
 package com.gnufsociety.openchallenge.adapters;
 
-import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
@@ -92,7 +91,7 @@ public class InviteAdapter extends RecyclerView.Adapter<InviteAdapter.InviteHold
                     AsyncTask<Void,Void,Void> inviteTask = new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {
-                            new ApiHelper().invtite(challenge.id, user_id);
+                            new ApiHelper().invite(challenge.id, user_id);
                             return null;
                         }
                     };

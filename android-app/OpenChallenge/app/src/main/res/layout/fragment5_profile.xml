@@ -141,8 +141,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/grid_profile"
-                    android:text="Loading..."
+                    android:text="@string/loading"
                     android:textSize="19sp" />
 
                 <ImageButton
@@ -220,6 +219,42 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@+id/profile_join_text"
+                    android:scrollbars="vertical"
+                    android:paddingBottom="16dp"
+                    android:visibility="gone"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_invitations">
+
+                <TextView
+                    android:id="@+id/profile_invitations_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:textSize="24sp"
+                    android:text="@string/invitations"
+                    android:textColor="@color/colorAccent"/>
+
+                <ImageView
+                    android:id="@+id/show_hide_invitations"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_toLeftOf="@+id/profile_invitations_text"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_arrow_drop_down_black_24dp"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/profile_invitations_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/profile_invitations_text"
                     android:scrollbars="vertical"
                     android:paddingBottom="16dp"
                     android:visibility="gone"/>
