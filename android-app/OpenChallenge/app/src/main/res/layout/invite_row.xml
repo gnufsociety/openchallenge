@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_width="1dp"
+        android:id="@+id/invite_img"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@drawable/user"/>
+
+    <TextView
+        android:id="@+id/invite_username"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="scemodicecosa"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="16dp"/>
+
+    <android.support.v4.widget.Space
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/invite_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/invite"
+        android:textColor="@color/white"
+        android:layout_gravity="center_vertical"
+        app:backgroundTint="@color/colorAccent"/>
+
+</LinearLayout>

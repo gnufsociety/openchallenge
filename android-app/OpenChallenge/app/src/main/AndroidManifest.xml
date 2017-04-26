@@ -56,7 +56,8 @@
         <activity android:name=".WinnerActivity" />
         <activity android:name=".NoConnectionActivity" />
         <activity android:name=".DonateActivity" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".InviteActivity"></activity>
     </application>
 
 </manifest>

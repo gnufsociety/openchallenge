@@ -31,7 +31,7 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
     FirebaseStorage storage;
     StorageReference sref;
     public WinnerActivity winnerActivity;
-    public int choosen = 0;
+    public int chosen = 0;
 
     public WinnerAdapter(List<User> users, WinnerActivity winnerActivity){
         for (User user : users) {
@@ -95,7 +95,7 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
                 @Override
                 public void onClick(View v) {
                     User curr = users.get(getAdapterPosition());
-                    switch (choosen){
+                    switch (chosen){
                         case 0:
                             curr.goldMedals++;
                             medal.setImageResource(R.drawable.gold128);
@@ -117,7 +117,7 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.WinnerHold
                         default:
                             Toast.makeText(v.getContext(), R.string.said_click_button,Toast.LENGTH_SHORT).show();
                     }
-                    choosen++;
+                    chosen++;
                 }
             });
         }

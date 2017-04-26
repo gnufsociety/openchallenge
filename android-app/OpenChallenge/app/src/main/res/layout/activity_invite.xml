@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_winner"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:activity="com.gnufsociety.openchallenge.WinnerActivity">
+    tools:context="com.gnufsociety.openchallenge.InviteActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/winner_toolbar"
+            android:id="@+id/invite_toolbar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -21,33 +21,18 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     </android.support.design.widget.AppBarLayout>
-    <ProgressBar
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/winner_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|top"/>
+
 
     <RelativeLayout
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:id="@+id/winner_lay"
+        android:id="@+id/invite_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/winner_recycler"
+            android:id="@+id/invite_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>
-
-    <android.support.design.widget.FloatingActionButton
-        app:useCompatPadding="true"
-        android:id="@+id/winner_done_btn"
-        android:src="@drawable/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_anchor="@id/winner_lay"
-        app:elevation="10dp"
-        app:layout_anchorGravity="bottom|end"/>
 
 </android.support.design.widget.CoordinatorLayout>

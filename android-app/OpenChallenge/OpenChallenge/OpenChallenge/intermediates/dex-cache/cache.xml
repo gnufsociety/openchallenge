@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="165160a001150f83e064253ec56a12774ae8e08d">
+        sha1="ef75947939e3b460d70ffeb23d019c78eb8c32f8">
         <dex dex="/Users/davidespallaccini/developer/android_projects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_39feee94683f8e457efaf42845b0f8514f2653c6/classes.dex" />
     </item>
 
