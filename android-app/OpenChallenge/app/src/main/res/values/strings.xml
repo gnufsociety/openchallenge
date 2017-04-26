@@ -88,5 +88,7 @@
     <string name="report_a_bug">Report a bug</string>
     <string name="info_copyright">Info/Copyright</string>
     <string name="invite">Invite</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="invited">Invited</string>
 
 </resources>

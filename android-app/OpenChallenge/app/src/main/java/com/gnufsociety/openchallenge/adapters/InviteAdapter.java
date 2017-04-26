@@ -1,5 +1,6 @@
 package com.gnufsociety.openchallenge.adapters;
 
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
@@ -85,6 +86,9 @@ public class InviteAdapter extends RecyclerView.Adapter<InviteAdapter.InviteHold
             inviteBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    inviteBtn.setClickable(false);
+                    inviteBtn.setBackgroundResource(R.drawable.rounded_button_grey);
+                    inviteBtn.setText(R.string.invited);
                     AsyncTask<Void,Void,Void> inviteTask = new AsyncTask<Void, Void, Void>() {
                         @Override
                         protected Void doInBackground(Void... voids) {

@@ -9,12 +9,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +23,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.gnufsociety.openchallenge.adapters.InviteAdapter;
 import com.gnufsociety.openchallenge.customui.Podium;
 import com.gnufsociety.openchallenge.model.Challenge;
 import com.gnufsociety.openchallenge.model.User;
@@ -50,6 +49,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -77,6 +77,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
     @BindView(R.id.chall_npart) TextView numPart;
     @BindView(R.id.chall_podium) Podium podium;
     @BindView(R.id.chall_join_btn) Button join;
+    @BindView(R.id.chall_invite_btn) Button inviteBtn;
+
     @BindView(R.id.chall_refresh) SwipeRefreshLayout refreshLayout;
 
     public boolean isOrganizer = false;
@@ -115,6 +117,8 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         if (auth.getCurrentUser().getUid().equals(challenge.organizer.uid)) {
             join.setText(R.string.choose_winner);
             isOrganizer = true;
+            inviteBtn.setText(R.string.invite_friends);
+            inviteBtn.setVisibility(View.VISIBLE);
         }
 
         ChallengeAsync ca = new ChallengeAsync();
@@ -252,6 +256,15 @@ public class ChallengeActivity extends AppCompatActivity implements OnMapReadyCa
         bundle.putSerializable("challenge", challenge);
         intent.putExtras(bundle);
 
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.chall_invite_btn)
+    public void invite() {
+        Intent intent = new Intent(this, InviteActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("challenge", challenge);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

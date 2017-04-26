@@ -36,6 +36,6 @@
         android:text="@string/invite"
         android:textColor="@color/white"
         android:layout_gravity="center_vertical"
-        app:backgroundTint="@color/colorAccent"/>
+        android:background="@drawable/rounded_button"  />
 
 </LinearLayout>

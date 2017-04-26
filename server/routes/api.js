@@ -299,7 +299,7 @@ router.get('/winners/:challenge_id', function (req, res) {
 router.get('/invite/:challenge_id/:user_id', function (req, res) {
     var challenge_id = req.params.challenge_id;
     var user_id = req.params.user_id;
-    User.findOneAndUpdate({'uid': user_id}, {$addToSet: {invitations: challenge_id}})
+    User.findByIdAndUpdate(user_id, {$addToSet: {invitations: challenge_id}})
         .exec(function (err, user) {
             if (err) res.send("Error in finding and updating invitations list");
             else {
@@ -320,7 +320,7 @@ router.get('/invite/:challenge_id/:user_id', function (req, res) {
 router.get('/cancelInvite/:challenge_id/:user_id', function (req, res) {
     var challenge_id = req.params.challenge_id;
     var user_id = req.params.user_id;
-    User.findOneAndUpdate({'uid': user_id}, {$pull: {invitations: challenge_id}})
+    User.findByIdAndUpdate(user_id, {$pull: {invitations: challenge_id}})
         .exec(function (err, user) {
             if (err) res.send("Error in finding and updating invitations list");
             else {
