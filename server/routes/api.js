@@ -68,8 +68,10 @@ router.post('/newChallenge', function (req, res) {
                 invited: [],
                 isTerminated: false
             });
+            /*
             challenge.date = new Date(Date.UTC(dat[2], dat[1] - 1, dat[0], 0, 0, 0, 0));
             if (challenge.date < Date.now()) challenge.isTerminated = true;
+            */
             challenge.save(function (err, chall) {
                 if (err) {
                     res.send("Error");
