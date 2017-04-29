@@ -86,7 +86,7 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -95,31 +95,23 @@
         </RelativeLayout>
 
 
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/first_card"
-            android:paddingTop="10dp"
-            tools:columnCount="5"
-            tools:rowCount="2">
+            android:paddingTop="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/card_user_img"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_column="0"
                 android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:layout_rowSpan="2"
                 android:src="@drawable/pullups" />
 
             <TextView
                 android:id="@+id/card_organizer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
                 android:layout_gravity="center_vertical"
-                android:layout_row="0"
                 android:paddingLeft="10dp"
                 android:text="spallas"
                 android:textSize="16sp" />
@@ -129,9 +121,7 @@
                 style="@style/Base.Widget.AppCompat.RatingBar.Small"
                 android:layout_width="88dp"
                 android:layout_height="wrap_content"
-                android:layout_column="1"
                 android:layout_gravity="center_vertical"
-                android:layout_row="1"
                 android:isIndicator="true"
                 android:numStars="5"
                 android:paddingLeft="8dp"
@@ -139,57 +129,64 @@
                 android:rating="5"
                 android:visibility="gone"/>
 
-            <ImageView
-                android:id="@+id/card_map"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_column="3"
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:src="@drawable/map_24_grey"
-                 />
-
-            <TextView
-                android:id="@+id/card_when"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="4"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:paddingLeft="4dp"
-                android:text="2 feb 2017" />
-
-            <ImageView
-                android:id="@+id/card_time"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_column="3"
-                android:layout_gravity="center_vertical"
-                android:layout_row="0"
-                android:src="@drawable/clock_24_grey" />
-
             <android.support.v4.widget.Space
                 android:layout_height="match_parent"
-                android:layout_column="2"
-                android:layout_columnWeight="1"
-                android:layout_row="0"
-                android:layout_rowSpan="2" />
+                android:layout_width="10dp" />
 
-            <TextView
-                android:id="@+id/card_where"
-                android:ellipsize="end"
-                android:maxLines="1"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_column="4"
-                android:layout_gravity="center_vertical"
-                android:layout_row="1"
-                android:paddingLeft="4dp"
-                android:text="Via galla placidia 21" />
+                android:layout_gravity="center_vertical">
 
-        </GridLayout>
+                <ImageView
+                    android:id="@+id/card_map"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/map_24_grey" />
+
+                <TextView
+                    android:id="@+id/card_when"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/card_where"
+                    android:layout_toLeftOf="@+id/card_time"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:text="2 feb 2017" />
+
+                <ImageView
+                    android:id="@+id/card_time"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_below="@+id/card_map"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginTop="4dp"
+                    android:src="@drawable/clock_24_grey" />
+
+                <TextView
+                    android:id="@+id/card_where"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_toLeftOf="@id/card_map"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="Via galla placidia 21" />
+            </RelativeLayout>
+
+        </LinearLayout>
 
 
     </LinearLayout>

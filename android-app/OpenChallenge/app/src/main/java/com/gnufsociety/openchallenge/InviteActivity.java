@@ -73,7 +73,7 @@ public class InviteActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
 
-        getSupportActionBar().setTitle("Invite your friends");
+        getSupportActionBar().setTitle(R.string.invite_your_friends);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

@@ -12,24 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="/Users/davidespallaccini/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta1/constraint-layout-solver-1.0.0-beta1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ac4965ed6786f8d63f1960a996a6be667064cd28">
-        <dex dex="/Users/davidespallaccini/developer/android_projects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.0-beta1_149f34595f6614865a13b2caee1141951e7bfcf1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/davidespallaccini/.android/build-cache/c2398da7837ece7786da326c05e6de6988a8c732/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c4ad8321cff5fa475cb39daf387b3cb581aab17f">
-        <dex dex="/Users/davidespallaccini/developer/android_projects/openchallenge/android-app/OpenChallenge/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_12cb7153fb4a724e7080b5b79c0f80d0e27f9fb1/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="/Users/davidespallaccini/developer/android_projects/openchallenge/android-app/OpenChallenge/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
