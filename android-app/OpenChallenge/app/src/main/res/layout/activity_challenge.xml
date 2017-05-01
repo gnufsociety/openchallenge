@@ -67,7 +67,7 @@
             android:background="@drawable/rounded_button"
             android:textColor="@color/white"
             android:textSize="18sp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/chall_join_btn"
